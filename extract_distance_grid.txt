@@ -1,0 +1,15 @@
+﻿ vector pos = minpos(1,@P);
+ float d = distance(@P, pos);
+ d *= ch('scale');
+ @Cd = 0;
+ @Cd.r = sin(d);
+
+ f@density = d;
+ 
+ i[]@neighbours = neighbours(geoself(), @ptnum);
+ // test == @ptnum-1 -> -x direction
+ // test == @ptnum+1 -> +x
+ // test < @ptnum-1 -> -z direction
+ // test > @ptnum+1 -> +z direction
+ 
+ // nearpoints( geom, vector, maxdist ) gathers near points from geom
