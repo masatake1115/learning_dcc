@@ -10,7 +10,7 @@ opcf mat
 
 # Node metalgrate (Vop/principledshader::2.0)
 opadd -e -n principledshader::2.0 metalgrate
-oplocate -x 0 -y 0 metalgrate
+oplocate -x -7.5708000000000002 -y 8.2872000000000003 metalgrate
 opspareds "" metalgrate
 chblockbegin
 chadd -t 0 0 metalgrate specular_tint
@@ -45,6 +45,120 @@ opuserdata -n '__inputgroup_Opacity' -v 'collapsed' metalgrate
 opuserdata -n '__inputgroup_Settings' -v 'collapsed' metalgrate
 opuserdata -n '__inputgroup_Surface' -v 'collapsed' metalgrate
 opuserdata -n '__inputgroup_Textures' -v 'collapsed' metalgrate
+
+# Node bricks (Vop/principledshader::2.0)
+opadd -e -n principledshader::2.0 bricks
+oplocate -x -5.0472000000000001 -y 5.5247999999999999 bricks
+opspareds "" bricks
+chblockbegin
+chadd -t 0 0 bricks specular_tint
+chkey -t 0 -v 0 -m 0 -a 0 -A 0 -T a  -F 'ch("metallic")+(1-ch("metallic"))*ch("reflecttint")' bricks/specular_tint
+chadd -t 0 0 bricks baseBump_useTexture
+chkey -t 0 -v 0 -m 0 -a 0 -A 0 -T a  -F 'ch("baseBumpAndNormal_enable") && strcmp(chs("baseBumpAndNormal_type"), "bump") == 0' bricks/baseBump_useTexture
+chadd -t 0 0 bricks baseNormal_useTexture
+chkey -t 0 -v 0 -m 0 -a 0 -A 0 -T a  -F 'ch("baseBumpAndNormal_enable") && strcmp(chs("baseBumpAndNormal_type"), "normal") == 0' bricks/baseNormal_useTexture
+chadd -t 0 0 bricks shop_disable_displace_shader
+chkey -t 0 -v 0 -m 0 -a 0 -A 0 -T a  -F '!ch("dispInput_enable") && !ch("dispTex_enable") && !ch("dispNoise_enable")' bricks/shop_disable_displace_shader
+chadd -t 0 0 bricks vm_displacebound
+chkey -t 0 -v 0 -m 0 -a 0 -A 0 -T a  -F '1.01*ch("dispInput_enable")*ch("dispInput_max") + ch("dispTex_enable")*max(abs((1.0+ch("dispTex_offset"))*ch("dispTex_scale")), abs(ch("dispTex_offset")*ch("dispTex_scale"))) + ch("dispNoise_enable")*abs(ch("dispNoise_amp"))' bricks/vm_displacebound
+chadd -t 0 0 bricks speccolorr
+chkey -t 0 -v 0 -m 0 -a 0 -A 0 -T a  -F 'ch("basecolorr")' bricks/speccolorr
+chadd -t 0 0 bricks speccolorg
+chkey -t 0 -v 0 -m 0 -a 0 -A 0 -T a  -F 'ch("basecolorg")' bricks/speccolorg
+chadd -t 0 0 bricks speccolorb
+chkey -t 0 -v 0 -m 0 -a 0 -A 0 -T a  -F 'ch("basecolorb")' bricks/speccolorb
+chblockend
+opparm bricks specmodel ( ggx ) coatspecmodel ( ggx ) specular_tint ( specular_tint ) diffuse_folder_15 ( 0 0 0 0 0 0 ) folder7 ( 1 ) basecolor ( 1 1 1 ) albedomult ( 1 ) basecolor_usePointColor ( on ) basecolor_usePackedColor ( off ) frontface ( on ) folder4 ( 1 ) ior ( 1.5 ) rough ( 1 ) aniso ( 0 ) anisodir ( 0 ) folder12 ( 0 ) metallic ( 0 ) reflect ( 1 ) reflecttint ( 0 ) coat ( 0 ) coatrough ( 0 ) folder13 ( 0 ) transparency ( 0 ) transcolor ( 1 1 1 ) transdist ( 0.1 ) dispersion ( 0 ) priority ( 0 ) transcolor_usePointColor ( off ) folder8 ( 0 ) sss ( 0 ) ssscolor ( 1 1 1 ) sssmodel ( pbrsss ) sssdist ( 0.1 ) sssphase ( 0 ) ssscolor_usePointColor ( off ) folder11 ( 0 ) sheen ( 0 ) sheentint ( 0 ) folder9 ( 0 ) emitint ( 0 ) emitcolor ( 1 1 1 ) emitcolor_usePointColor ( off ) emitillum ( on ) folder15 ( 0 ) opac ( 1 ) opaccolor ( 1 1 1 ) opacpointalpha ( on ) opacpackedalpha ( off ) folder6 ( 0 ) fakecausticsenabled ( off ) fakecausticstransmit ( 1 ) fakecausticsshadow ( 1 ) fakecausticsopacity ( 0 ) folder17 ( 0 ) alphablendmode ( blend ) alphacutoff ( 0.5 ) folder54 ( 0 ) basecolor_useTexture ( on ) basecolor_texture ( '$HFS/houdini/pic/texture/bricks001_basecolor.rat' ) basecolor_textureIntensity ( 1 ) basecolor_textureWrap ( repeat ) basecolor_textureColorSpace ( auto ) basecolor_useTextureAlpha ( off ) folder1 ( 0 ) ior_useTexture ( off ) ior_texture ( "" ) ior_monoChannel ( 0 ) ior_textureWrap ( repeat ) ior_textureColorSpace ( linear ) folder227 ( 0 ) rough_useTexture ( on ) rough_texture ( '$HFS/houdini/pic/texture/bricks001_rough.rat' ) rough_monoChannel ( 0 ) rough_textureWrap ( repeat ) rough_textureColorSpace ( linear ) folder228 ( 0 ) aniso_useTexture ( off ) aniso_texture ( "" ) aniso_monoChannel ( 0 ) aniso_textureWrap ( repeat ) aniso_textureColorSpace ( linear ) folder229 ( 0 ) anisodir_useTexture ( off ) anisodir_texture ( "" ) anisodir_monoChannel ( 0 ) anisodir_textureWrap ( repeat ) anisodir_textureColorSpace ( linear ) anisodir_textureFilter ( point ) folder55 ( 0 ) metallic_useTexture ( off ) metallic_texture ( "" ) metallic_monoChannel ( 0 ) metallic_textureWrap ( repeat ) metallic_textureColorSpace ( linear ) folder16 ( 0 ) reflect_useTexture ( off ) reflect_texture ( "" ) reflect_monoChannel ( 0 ) reflect_textureWrap ( repeat ) reflect_textureColorSpace ( linear ) folder226 ( 0 ) reflecttint_useTexture ( off ) reflecttint_texture ( "" ) reflecttint_monoChannel ( 0 ) reflecttint_textureWrap ( repeat ) reflecttint_textureColorSpace ( linear ) folder233 ( 0 ) coat_useTexture ( off ) coat_texture ( "" ) coat_monoChannel ( 0 ) coat_textureWrap ( repeat ) coat_textureColorSpace ( linear ) folder234 ( 0 ) coatrough_useTexture ( off ) coatrough_texture ( "" ) coatrough_monoChannel ( 0 ) coatrough_textureWrap ( repeat ) coatrough_textureColorSpace ( linear ) folder2 ( 0 ) transparency_useTexture ( off ) transparency_texture ( "" ) transparency_monoChannel ( 0 ) transparency_textureWrap ( repeat ) transparency_textureColorSpace ( linear ) folder5 ( 0 ) transcolor_useTexture ( off ) transcolor_texture ( "" ) transcolor_textureIntensity ( 1 ) transcolor_textureWrap ( repeat ) transcolor_textureColorSpace ( auto ) folder5_1 ( 0 ) transdist_useTexture ( off ) transdist_texture ( "" ) transdist_monoChannel ( 0 ) transdist_textureWrap ( repeat ) transdist_textureColorSpace ( linear ) folder5_2 ( 0 ) dispersion_useTexture ( off ) dispersion_texture ( "" ) dispersion_monoChannel ( 0 ) dispersion_textureWrap ( repeat ) dispersion_textureColorSpace ( linear ) folder230 ( 0 ) sss_useTexture ( off ) sss_texture ( "" ) sss_monoChannel ( 0 ) sss_textureWrap ( repeat ) sss_textureColorSpace ( linear ) folder3 ( 0 ) sssdist_useTexture ( off ) sssdist_texture ( "" ) sssdist_monoChannel ( 0 ) sssdist_textureWrap ( repeat ) sssdist_textureColorSpace ( linear ) folder3_1 ( 0 ) ssscolor_useTexture ( off ) ssscolor_texture ( "" ) ssscolor_textureWrap ( repeat ) ssscolor_textureColorSpace ( linear ) folder231 ( 0 ) sheen_useTexture ( off ) sheen_texture ( "" ) sheen_monoChannel ( 0 ) sheen_textureWrap ( repeat ) sheen_textureColorSpace ( linear ) folder232 ( 0 ) sheentint_useTexture ( off ) sheentint_texture ( "" ) sheentint_monoChannel ( 0 ) sheentint_textureWrap ( repeat ) sheentint_textureColorSpace ( linear ) diffuse_folder_14_3 ( 0 ) emitcolor_useTexture ( off ) emitcolor_texture ( "" ) emitcolor_textureIntensity ( 1 ) emitcolor_textureWrap ( repeat ) emitcolor_textureColorSpace ( repeat ) folder14 ( 0 ) opaccolor_useTexture ( off ) opaccolor_texture ( "" ) opaccolor_textureWrap ( repeat ) opaccolor_textureIntensity ( 1 ) opaccolor_textureColorSpace ( repeat ) folder18 ( 0 ) occlusion_useTexture ( off ) occlusion_texture ( "" ) occlusion_textureWrap ( repeat ) occlusion_textureIntensity ( 1 ) occlusion_textureColorSpace ( auto ) folder235 ( 0 ) surface_textureFilter ( catrom ) surface_textureFilterWidth ( 1 ) roundedEdge_enable ( off ) roundedEdge_radius ( 0.01 ) roundedEdge_mode ( 0 ) shading_16 ( 0 0 ) baseBumpAndNormal_enable ( off ) baseBumpAndNormal_type ( normal ) baseBump_colorSpace ( linear ) baseBump_bumpScale ( 0.05 ) baseBump_bumpTexture ( "" ) baseBump_wrap ( repeat ) baseBump_filter ( gauss ) baseBump_filterWidth ( 1 ) baseBump_channel ( 0 ) baseBump_imagePlane ( "" ) baseNormal_colorspace ( linear ) baseNormal_vectorSpace ( uvtangent ) baseNormal_scale ( 1 ) baseNormal_texture ( "" ) baseNormal_wrap ( repeat ) baseNormal_filter ( gauss ) baseNormal_filterWidth ( 1 ) baseNormal_channel ( 0 ) baseNormal_imagePlane ( "" ) baseNormal_space ( 0 ) baseNormal_flipX ( off ) baseNormal_flipY ( off ) baseBump_useTexture ( baseBump_useTexture ) baseNormal_useTexture ( baseNormal_useTexture ) separateCoatNormals ( off ) coatBumpAndNormal_enable ( on ) coatBumpAndNormal_type ( normal ) coatBump_colorSpace ( linear ) coatBump_bumpScale ( 0.05 ) coatBump_bumpTexture ( "" ) coatBump_wrap ( repeat ) coatBump_filter ( gauss ) coatBump_filterWidth ( 1 ) coatBump_channel ( 0 ) coatBump_imagePlane ( "" ) coatNormal_colorspace ( linear ) coatNormal_vectorSpace ( uvtangent ) coatNormal_scale ( 1 ) coatNormal_texture ( "" ) coatNormal_wrap ( repeat ) coatNormal_filter ( gauss ) coatNormal_filterWidth ( 1 ) coatNormal_channel ( 0 ) coatNormal_imagePlane ( "" ) coatNormal_space ( 0 ) coatNormal_flipX ( off ) coatNormal_flipY ( off ) shop_disable_displace_shader ( shop_disable_displace_shader ) folder236 ( 0 ) vm_displacebound ( vm_displacebound ) vm_truedisplace ( on ) vm_bumpraydisplace ( on ) folder10 ( 0 ) dispInput_enable ( off ) dispInput_max ( 1 ) dispInput_vectorspace ( uvtangent ) folder237 ( 0 ) dispTex_enable ( on ) dispTex_type ( disp ) dispTex_colorSpace ( linear ) dispTex_vectorSpace ( uvtangent ) dispTex_channelOrder ( xyz ) dispTex_offset ( -0.5 ) dispTex_scale ( 0.05 ) dispTex_texture ( '$HFS/houdini/pic/texture/bricks001_height.rat' ) dispTex_channel ( 0 ) dispTex_wrap ( repeat ) dispTex_filter ( gauss ) dispTex_filterWidth ( 1 ) folder238 ( 0 ) dispNoise_enable ( off ) dispNoise_type ( xnoise ) dispNoise_freq ( 10 10 10 ) dispNoise_offset ( 0 0 0 ) dispNoise_amp ( 1 ) dispNoise_rough ( 0.5 ) dispNoise_atten ( 1 ) dispNoise_turb ( 5 ) folder239 ( 0 ) difflabel ( diffuse ) refllabel ( reflect ) refractlabel ( refract ) coatlabel ( coat ) ssslabel ( sss ) folder0 ( 0 ) uvtrans ( 0 0 ) uvrot ( 0 ) uvscale ( 1 1 ) Cd ( 1 1 1 ) Alpha ( 1 ) layer ( "" ) direct ( 0 0 0 ) indirect ( 0 0 0 ) Ce ( 0 0 0 ) direct_emission ( 0 0 0 ) all_emission ( 0 0 0 ) all ( 0 0 0 ) indirect_emission ( 0 0 0 ) direct_comp ( "" ) indirect_comp ( "" ) all_comp ( "" ) direct_noshadow ( 0 0 0 ) direct_shadow ( 0 0 0 ) indirect_noshadow ( 0 0 0 ) indirect_shadow ( 0 0 0 ) level ( 0 ) diffuselevel ( 0 ) specularlevel ( 0 ) volumelevel ( 0 ) direct_samples ( 0 ) indirect_samples ( 0 ) nlights ( 0 ) direct_noshadow_comp ( "" ) indirect_noshadow_comp ( "" ) nddispersion ( 0 ) ndpriority ( 0 ) ndior ( 0 ) absorption ( 0 0 0 ) Oc ( 0 0 0 ) Cv ( 0 0 0 ) Th ( 0 0 0 ) Ab ( 0 0 0 ) Cu ( 0 0 0 ) Vd ( 0 0 0 ) Nt ( 0 0 0 ) Ds ( 0 0 0 ) pre_disp_P ( 0 0 0 ) pre_disp_utan ( 0 0 0 ) pre_disp_vtan ( 0 0 0 ) pre_disp_N ( 0 0 0 ) disp ( 0 ) vdisp ( 0 0 0 ) Dt ( 0 0 0 ) Vdt ( 0 0 0 ) baseN ( 0 0 0 ) coatN ( 0 0 0 ) speccolor ( speccolorr speccolorg speccolorb ) displayColor ( 1 1 1 ) st ( 0 0 ) displayOpacity ( 1 )
+chlock bricks -*
+chautoscope bricks -*
+opcomment -c 'Created from Gallery Entry: Bricks\n\nBricks' bricks
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off -L off -M off -H on -E on bricks
+opexprlanguage -s hscript bricks
+opuserdata -n '___Version___' -v '' bricks
+opuserdata -n '___toolcount___' -v '176' bricks
+opuserdata -n '___toolid___' -v 'convertGallery' bricks
+opuserdata -n '__inputgroup_Bump & Normals' -v 'collapsed' bricks
+opuserdata -n '__inputgroup_Displacement' -v 'collapsed' bricks
+opuserdata -n '__inputgroup_Opacity' -v 'collapsed' bricks
+opuserdata -n '__inputgroup_Settings' -v 'collapsed' bricks
+opuserdata -n '__inputgroup_Surface' -v 'collapsed' bricks
+opuserdata -n '__inputgroup_Textures' -v 'collapsed' bricks
+
+# Node goldpaint (Vop/principledshader::2.0)
+opadd -e -n principledshader::2.0 goldpaint
+oplocate -x -2.5236000000000001 -y 2.7624 goldpaint
+opspareds "" goldpaint
+chblockbegin
+chadd -t 0 0 goldpaint specular_tint
+chkey -t 0 -v 0 -m 0 -a 0 -A 0 -T a  -F 'ch("metallic")+(1-ch("metallic"))*ch("reflecttint")' goldpaint/specular_tint
+chadd -t 0 0 goldpaint baseBump_useTexture
+chkey -t 0 -v 0 -m 0 -a 0 -A 0 -T a  -F 'ch("baseBumpAndNormal_enable") && strcmp(chs("baseBumpAndNormal_type"), "bump") == 0' goldpaint/baseBump_useTexture
+chadd -t 0 0 goldpaint baseNormal_useTexture
+chkey -t 0 -v 0 -m 0 -a 0 -A 0 -T a  -F 'ch("baseBumpAndNormal_enable") && strcmp(chs("baseBumpAndNormal_type"), "normal") == 0' goldpaint/baseNormal_useTexture
+chadd -t 0 0 goldpaint shop_disable_displace_shader
+chkey -t 0 -v 0 -m 0 -a 0 -A 0 -T a  -F '!ch("dispInput_enable") && !ch("dispTex_enable") && !ch("dispNoise_enable")' goldpaint/shop_disable_displace_shader
+chadd -t 0 0 goldpaint vm_displacebound
+chkey -t 0 -v 0 -m 0 -a 0 -A 0 -T a  -F '1.01*ch("dispInput_enable")*ch("dispInput_max") + ch("dispTex_enable")*max(abs((1.0+ch("dispTex_offset"))*ch("dispTex_scale")), abs(ch("dispTex_offset")*ch("dispTex_scale"))) + ch("dispNoise_enable")*abs(ch("dispNoise_amp"))' goldpaint/vm_displacebound
+chadd -t 0 0 goldpaint speccolorr
+chkey -t 0 -v 0 -m 0 -a 0 -A 0 -T a  -F 'ch("basecolorr")' goldpaint/speccolorr
+chadd -t 0 0 goldpaint speccolorg
+chkey -t 0 -v 0 -m 0 -a 0 -A 0 -T a  -F 'ch("basecolorg")' goldpaint/speccolorg
+chadd -t 0 0 goldpaint speccolorb
+chkey -t 0 -v 0 -m 0 -a 0 -A 0 -T a  -F 'ch("basecolorb")' goldpaint/speccolorb
+chblockend
+opparm goldpaint specmodel ( ggx ) coatspecmodel ( ggx ) specular_tint ( specular_tint ) diffuse_folder_15 ( 0 0 0 0 0 0 ) folder7 ( 1 ) basecolor ( 0.549 0.38712599873542786 0.086 ) albedomult ( 1 ) basecolor_usePointColor ( on ) basecolor_usePackedColor ( off ) frontface ( on ) folder4 ( 1 ) ior ( 1.5 ) rough ( 0.65 ) aniso ( 0 ) anisodir ( 0 ) folder12 ( 1 ) metallic ( 1 ) reflect ( 1 ) reflecttint ( 0 ) coat ( 0 ) coatrough ( 0 ) folder13 ( 0 ) transparency ( 0 ) transcolor ( 1 1 1 ) transdist ( 0.1 ) dispersion ( 0 ) priority ( 0 ) transcolor_usePointColor ( off ) folder8 ( 0 ) sss ( 0 ) ssscolor ( 1 1 1 ) sssmodel ( pbrsss ) sssdist ( 0.1 ) sssphase ( 0 ) ssscolor_usePointColor ( off ) folder11 ( 0 ) sheen ( 0 ) sheentint ( 0 ) folder9 ( 0 ) emitint ( 0 ) emitcolor ( 1 1 1 ) emitcolor_usePointColor ( off ) emitillum ( on ) folder15 ( 0 ) opac ( 1 ) opaccolor ( 1 1 1 ) opacpointalpha ( on ) opacpackedalpha ( off ) folder6 ( 0 ) fakecausticsenabled ( off ) fakecausticstransmit ( 1 ) fakecausticsshadow ( 1 ) fakecausticsopacity ( 0 ) folder17 ( 0 ) alphablendmode ( blend ) alphacutoff ( 0.5 ) folder54 ( 0 ) basecolor_useTexture ( off ) basecolor_texture ( "" ) basecolor_textureIntensity ( 1 ) basecolor_textureWrap ( repeat ) basecolor_textureColorSpace ( auto ) basecolor_useTextureAlpha ( off ) folder1 ( 0 ) ior_useTexture ( off ) ior_texture ( "" ) ior_monoChannel ( 0 ) ior_textureWrap ( repeat ) ior_textureColorSpace ( linear ) folder227 ( 0 ) rough_useTexture ( off ) rough_texture ( "" ) rough_monoChannel ( 0 ) rough_textureWrap ( repeat ) rough_textureColorSpace ( linear ) folder228 ( 0 ) aniso_useTexture ( off ) aniso_texture ( "" ) aniso_monoChannel ( 0 ) aniso_textureWrap ( repeat ) aniso_textureColorSpace ( linear ) folder229 ( 0 ) anisodir_useTexture ( off ) anisodir_texture ( "" ) anisodir_monoChannel ( 0 ) anisodir_textureWrap ( repeat ) anisodir_textureColorSpace ( linear ) anisodir_textureFilter ( point ) folder55 ( 0 ) metallic_useTexture ( off ) metallic_texture ( "" ) metallic_monoChannel ( 0 ) metallic_textureWrap ( repeat ) metallic_textureColorSpace ( linear ) folder16 ( 0 ) reflect_useTexture ( off ) reflect_texture ( "" ) reflect_monoChannel ( 0 ) reflect_textureWrap ( repeat ) reflect_textureColorSpace ( linear ) folder226 ( 0 ) reflecttint_useTexture ( off ) reflecttint_texture ( "" ) reflecttint_monoChannel ( 0 ) reflecttint_textureWrap ( repeat ) reflecttint_textureColorSpace ( linear ) folder233 ( 0 ) coat_useTexture ( off ) coat_texture ( "" ) coat_monoChannel ( 0 ) coat_textureWrap ( repeat ) coat_textureColorSpace ( linear ) folder234 ( 0 ) coatrough_useTexture ( off ) coatrough_texture ( "" ) coatrough_monoChannel ( 0 ) coatrough_textureWrap ( repeat ) coatrough_textureColorSpace ( linear ) folder2 ( 0 ) transparency_useTexture ( off ) transparency_texture ( "" ) transparency_monoChannel ( 0 ) transparency_textureWrap ( repeat ) transparency_textureColorSpace ( linear ) folder5 ( 0 ) transcolor_useTexture ( off ) transcolor_texture ( "" ) transcolor_textureIntensity ( 1 ) transcolor_textureWrap ( repeat ) transcolor_textureColorSpace ( auto ) folder5_1 ( 0 ) transdist_useTexture ( off ) transdist_texture ( "" ) transdist_monoChannel ( 0 ) transdist_textureWrap ( repeat ) transdist_textureColorSpace ( linear ) folder5_2 ( 0 ) dispersion_useTexture ( off ) dispersion_texture ( "" ) dispersion_monoChannel ( 0 ) dispersion_textureWrap ( repeat ) dispersion_textureColorSpace ( linear ) folder230 ( 0 ) sss_useTexture ( off ) sss_texture ( "" ) sss_monoChannel ( 0 ) sss_textureWrap ( repeat ) sss_textureColorSpace ( linear ) folder3 ( 0 ) sssdist_useTexture ( off ) sssdist_texture ( "" ) sssdist_monoChannel ( 0 ) sssdist_textureWrap ( repeat ) sssdist_textureColorSpace ( linear ) folder3_1 ( 0 ) ssscolor_useTexture ( off ) ssscolor_texture ( "" ) ssscolor_textureWrap ( repeat ) ssscolor_textureColorSpace ( linear ) folder231 ( 0 ) sheen_useTexture ( off ) sheen_texture ( "" ) sheen_monoChannel ( 0 ) sheen_textureWrap ( repeat ) sheen_textureColorSpace ( linear ) folder232 ( 0 ) sheentint_useTexture ( off ) sheentint_texture ( "" ) sheentint_monoChannel ( 0 ) sheentint_textureWrap ( repeat ) sheentint_textureColorSpace ( linear ) diffuse_folder_14_3 ( 0 ) emitcolor_useTexture ( off ) emitcolor_texture ( "" ) emitcolor_textureIntensity ( 1 ) emitcolor_textureWrap ( repeat ) emitcolor_textureColorSpace ( repeat ) folder14 ( 0 ) opaccolor_useTexture ( off ) opaccolor_texture ( "" ) opaccolor_textureWrap ( repeat ) opaccolor_textureIntensity ( 1 ) opaccolor_textureColorSpace ( repeat ) folder18 ( 0 ) occlusion_useTexture ( off ) occlusion_texture ( "" ) occlusion_textureWrap ( repeat ) occlusion_textureIntensity ( 1 ) occlusion_textureColorSpace ( auto ) folder235 ( 0 ) surface_textureFilter ( catrom ) surface_textureFilterWidth ( 1 ) roundedEdge_enable ( off ) roundedEdge_radius ( 0.01 ) roundedEdge_mode ( 0 ) shading_16 ( 0 0 ) baseBumpAndNormal_enable ( off ) baseBumpAndNormal_type ( normal ) baseBump_colorSpace ( linear ) baseBump_bumpScale ( 0.05 ) baseBump_bumpTexture ( "" ) baseBump_wrap ( repeat ) baseBump_filter ( gauss ) baseBump_filterWidth ( 1 ) baseBump_channel ( 0 ) baseBump_imagePlane ( "" ) baseNormal_colorspace ( linear ) baseNormal_vectorSpace ( uvtangent ) baseNormal_scale ( 1 ) baseNormal_texture ( "" ) baseNormal_wrap ( repeat ) baseNormal_filter ( gauss ) baseNormal_filterWidth ( 1 ) baseNormal_channel ( 0 ) baseNormal_imagePlane ( "" ) baseNormal_space ( 0 ) baseNormal_flipX ( off ) baseNormal_flipY ( off ) baseBump_useTexture ( baseBump_useTexture ) baseNormal_useTexture ( baseNormal_useTexture ) separateCoatNormals ( off ) coatBumpAndNormal_enable ( on ) coatBumpAndNormal_type ( normal ) coatBump_colorSpace ( linear ) coatBump_bumpScale ( 0.05 ) coatBump_bumpTexture ( "" ) coatBump_wrap ( repeat ) coatBump_filter ( gauss ) coatBump_filterWidth ( 1 ) coatBump_channel ( 0 ) coatBump_imagePlane ( "" ) coatNormal_colorspace ( linear ) coatNormal_vectorSpace ( uvtangent ) coatNormal_scale ( 1 ) coatNormal_texture ( "" ) coatNormal_wrap ( repeat ) coatNormal_filter ( gauss ) coatNormal_filterWidth ( 1 ) coatNormal_channel ( 0 ) coatNormal_imagePlane ( "" ) coatNormal_space ( 0 ) coatNormal_flipX ( off ) coatNormal_flipY ( off ) shop_disable_displace_shader ( shop_disable_displace_shader ) folder236 ( 0 ) vm_displacebound ( vm_displacebound ) vm_truedisplace ( off ) vm_bumpraydisplace ( on ) folder10 ( 0 ) dispInput_enable ( off ) dispInput_max ( 1 ) dispInput_vectorspace ( uvtangent ) folder237 ( 0 ) dispTex_enable ( off ) dispTex_type ( disp ) dispTex_colorSpace ( linear ) dispTex_vectorSpace ( uvtangent ) dispTex_channelOrder ( xyz ) dispTex_offset ( -0.5 ) dispTex_scale ( 1 ) dispTex_texture ( "" ) dispTex_channel ( 0 ) dispTex_wrap ( repeat ) dispTex_filter ( gauss ) dispTex_filterWidth ( 1 ) folder238 ( 0 ) dispNoise_enable ( off ) dispNoise_type ( xnoise ) dispNoise_freq ( 10 10 10 ) dispNoise_offset ( 0 0 0 ) dispNoise_amp ( 1 ) dispNoise_rough ( 0.5 ) dispNoise_atten ( 1 ) dispNoise_turb ( 5 ) folder239 ( 0 ) difflabel ( diffuse ) refllabel ( reflect ) refractlabel ( refract ) coatlabel ( coat ) ssslabel ( sss ) folder0 ( 0 ) uvtrans ( 0 0 ) uvrot ( 0 ) uvscale ( 1 1 ) Cd ( 1 1 1 ) Alpha ( 1 ) layer ( "" ) direct ( 0 0 0 ) indirect ( 0 0 0 ) Ce ( 0 0 0 ) direct_emission ( 0 0 0 ) all_emission ( 0 0 0 ) all ( 0 0 0 ) indirect_emission ( 0 0 0 ) direct_comp ( "" ) indirect_comp ( "" ) all_comp ( "" ) direct_noshadow ( 0 0 0 ) direct_shadow ( 0 0 0 ) indirect_noshadow ( 0 0 0 ) indirect_shadow ( 0 0 0 ) level ( 0 ) diffuselevel ( 0 ) specularlevel ( 0 ) volumelevel ( 0 ) direct_samples ( 0 ) indirect_samples ( 0 ) nlights ( 0 ) direct_noshadow_comp ( "" ) indirect_noshadow_comp ( "" ) nddispersion ( 0 ) ndpriority ( 0 ) ndior ( 0 ) absorption ( 0 0 0 ) Oc ( 0 0 0 ) Cv ( 0 0 0 ) Th ( 0 0 0 ) Ab ( 0 0 0 ) Cu ( 0 0 0 ) Vd ( 0 0 0 ) Nt ( 0 0 0 ) Ds ( 0 0 0 ) pre_disp_P ( 0 0 0 ) pre_disp_utan ( 0 0 0 ) pre_disp_vtan ( 0 0 0 ) pre_disp_N ( 0 0 0 ) disp ( 0 ) vdisp ( 0 0 0 ) Dt ( 0 0 0 ) Vdt ( 0 0 0 ) baseN ( 0 0 0 ) coatN ( 0 0 0 ) speccolor ( speccolorr speccolorg speccolorb ) displayColor ( 1 1 1 ) st ( 0 0 ) displayOpacity ( 1 )
+chlock goldpaint -*
+chautoscope goldpaint -*
+opcomment -c 'Created from Gallery Entry: Gold Paint\n\nGold Paint Surface Shader' goldpaint
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off -L off -M off -H on -E on goldpaint
+opexprlanguage -s hscript goldpaint
+opuserdata -n '___Version___' -v '' goldpaint
+opuserdata -n '___toolcount___' -v '176' goldpaint
+opuserdata -n '___toolid___' -v 'convertGallery' goldpaint
+opuserdata -n '__inputgroup_Bump & Normals' -v 'collapsed' goldpaint
+opuserdata -n '__inputgroup_Displacement' -v 'collapsed' goldpaint
+opuserdata -n '__inputgroup_Opacity' -v 'collapsed' goldpaint
+opuserdata -n '__inputgroup_Settings' -v 'collapsed' goldpaint
+opuserdata -n '__inputgroup_Surface' -v 'collapsed' goldpaint
+opuserdata -n '__inputgroup_Textures' -v 'collapsed' goldpaint
+
+# Node woodchips (Vop/principledshader::2.0)
+opadd -e -n principledshader::2.0 woodchips
+oplocate -x 0 -y 0 woodchips
+opspareds "" woodchips
+chblockbegin
+chadd -t 0 0 woodchips specular_tint
+chkey -t 0 -v 0 -m 0 -a 0 -A 0 -T a  -F 'ch("metallic")+(1-ch("metallic"))*ch("reflecttint")' woodchips/specular_tint
+chadd -t 0 0 woodchips baseBump_useTexture
+chkey -t 0 -v 0 -m 0 -a 0 -A 0 -T a  -F 'ch("baseBumpAndNormal_enable") && strcmp(chs("baseBumpAndNormal_type"), "bump") == 0' woodchips/baseBump_useTexture
+chadd -t 0 0 woodchips baseNormal_useTexture
+chkey -t 0 -v 0 -m 0 -a 0 -A 0 -T a  -F 'ch("baseBumpAndNormal_enable") && strcmp(chs("baseBumpAndNormal_type"), "normal") == 0' woodchips/baseNormal_useTexture
+chadd -t 0 0 woodchips shop_disable_displace_shader
+chkey -t 0 -v 0 -m 0 -a 0 -A 0 -T a  -F '!ch("dispInput_enable") && !ch("dispTex_enable") && !ch("dispNoise_enable")' woodchips/shop_disable_displace_shader
+chadd -t 0 0 woodchips vm_displacebound
+chkey -t 0 -v 0 -m 0 -a 0 -A 0 -T a  -F '1.01*ch("dispInput_enable")*ch("dispInput_max") + ch("dispTex_enable")*max(abs((1.0+ch("dispTex_offset"))*ch("dispTex_scale")), abs(ch("dispTex_offset")*ch("dispTex_scale"))) + ch("dispNoise_enable")*abs(ch("dispNoise_amp"))' woodchips/vm_displacebound
+chadd -t 0 0 woodchips speccolorr
+chkey -t 0 -v 0 -m 0 -a 0 -A 0 -T a  -F 'ch("basecolorr")' woodchips/speccolorr
+chadd -t 0 0 woodchips speccolorg
+chkey -t 0 -v 0 -m 0 -a 0 -A 0 -T a  -F 'ch("basecolorg")' woodchips/speccolorg
+chadd -t 0 0 woodchips speccolorb
+chkey -t 0 -v 0 -m 0 -a 0 -A 0 -T a  -F 'ch("basecolorb")' woodchips/speccolorb
+chblockend
+opparm woodchips specmodel ( ggx ) coatspecmodel ( ggx ) specular_tint ( specular_tint ) diffuse_folder_15 ( 0 0 0 0 0 0 ) folder7 ( 1 ) basecolor ( 1 1 1 ) albedomult ( 1 ) basecolor_usePointColor ( on ) basecolor_usePackedColor ( off ) frontface ( on ) folder4 ( 1 ) ior ( 1.5 ) rough ( 1 ) aniso ( 0 ) anisodir ( 0 ) folder12 ( 0 ) metallic ( 0 ) reflect ( 1 ) reflecttint ( 0 ) coat ( 0 ) coatrough ( 0 ) folder13 ( 0 ) transparency ( 0 ) transcolor ( 1 1 1 ) transdist ( 0.1 ) dispersion ( 0 ) priority ( 0 ) transcolor_usePointColor ( off ) folder8 ( 0 ) sss ( 0 ) ssscolor ( 1 1 1 ) sssmodel ( pbrsss ) sssdist ( 0.1 ) sssphase ( 0 ) ssscolor_usePointColor ( off ) folder11 ( 0 ) sheen ( 0 ) sheentint ( 0 ) folder9 ( 1 ) emitint ( 0 ) emitcolor ( 1 1 1 ) emitcolor_usePointColor ( off ) emitillum ( on ) folder15 ( 0 ) opac ( 1 ) opaccolor ( 1 1 1 ) opacpointalpha ( on ) opacpackedalpha ( off ) folder6 ( 0 ) fakecausticsenabled ( off ) fakecausticstransmit ( 1 ) fakecausticsshadow ( 1 ) fakecausticsopacity ( 0 ) folder17 ( 0 ) alphablendmode ( blend ) alphacutoff ( 0.5 ) folder54 ( 0 ) basecolor_useTexture ( on ) basecolor_texture ( '$HFS/houdini/pic/texture/wood001_basecolor.rat' ) basecolor_textureIntensity ( 1 ) basecolor_textureWrap ( repeat ) basecolor_textureColorSpace ( auto ) basecolor_useTextureAlpha ( off ) folder1 ( 0 ) ior_useTexture ( off ) ior_texture ( "" ) ior_monoChannel ( 0 ) ior_textureWrap ( repeat ) ior_textureColorSpace ( linear ) folder227 ( 0 ) rough_useTexture ( on ) rough_texture ( '$HFS/houdini/pic/texture/wood001_rough.rat' ) rough_monoChannel ( 0 ) rough_textureWrap ( repeat ) rough_textureColorSpace ( linear ) folder228 ( 0 ) aniso_useTexture ( off ) aniso_texture ( "" ) aniso_monoChannel ( 0 ) aniso_textureWrap ( repeat ) aniso_textureColorSpace ( linear ) folder229 ( 0 ) anisodir_useTexture ( off ) anisodir_texture ( "" ) anisodir_monoChannel ( 0 ) anisodir_textureWrap ( repeat ) anisodir_textureColorSpace ( linear ) anisodir_textureFilter ( point ) folder55 ( 0 ) metallic_useTexture ( off ) metallic_texture ( "" ) metallic_monoChannel ( 0 ) metallic_textureWrap ( repeat ) metallic_textureColorSpace ( linear ) folder16 ( 0 ) reflect_useTexture ( off ) reflect_texture ( "" ) reflect_monoChannel ( 0 ) reflect_textureWrap ( repeat ) reflect_textureColorSpace ( linear ) folder226 ( 0 ) reflecttint_useTexture ( off ) reflecttint_texture ( "" ) reflecttint_monoChannel ( 0 ) reflecttint_textureWrap ( repeat ) reflecttint_textureColorSpace ( linear ) folder233 ( 0 ) coat_useTexture ( off ) coat_texture ( "" ) coat_monoChannel ( 0 ) coat_textureWrap ( repeat ) coat_textureColorSpace ( linear ) folder234 ( 0 ) coatrough_useTexture ( off ) coatrough_texture ( "" ) coatrough_monoChannel ( 0 ) coatrough_textureWrap ( repeat ) coatrough_textureColorSpace ( linear ) folder2 ( 0 ) transparency_useTexture ( off ) transparency_texture ( "" ) transparency_monoChannel ( 0 ) transparency_textureWrap ( repeat ) transparency_textureColorSpace ( linear ) folder5 ( 0 ) transcolor_useTexture ( off ) transcolor_texture ( "" ) transcolor_textureIntensity ( 1 ) transcolor_textureWrap ( repeat ) transcolor_textureColorSpace ( auto ) folder5_1 ( 0 ) transdist_useTexture ( off ) transdist_texture ( "" ) transdist_monoChannel ( 0 ) transdist_textureWrap ( repeat ) transdist_textureColorSpace ( linear ) folder5_2 ( 0 ) dispersion_useTexture ( off ) dispersion_texture ( "" ) dispersion_monoChannel ( 0 ) dispersion_textureWrap ( repeat ) dispersion_textureColorSpace ( linear ) folder230 ( 0 ) sss_useTexture ( off ) sss_texture ( "" ) sss_monoChannel ( 0 ) sss_textureWrap ( repeat ) sss_textureColorSpace ( linear ) folder3 ( 0 ) sssdist_useTexture ( off ) sssdist_texture ( "" ) sssdist_monoChannel ( 0 ) sssdist_textureWrap ( repeat ) sssdist_textureColorSpace ( linear ) folder3_1 ( 0 ) ssscolor_useTexture ( off ) ssscolor_texture ( "" ) ssscolor_textureWrap ( repeat ) ssscolor_textureColorSpace ( linear ) folder231 ( 0 ) sheen_useTexture ( off ) sheen_texture ( "" ) sheen_monoChannel ( 0 ) sheen_textureWrap ( repeat ) sheen_textureColorSpace ( linear ) folder232 ( 0 ) sheentint_useTexture ( off ) sheentint_texture ( "" ) sheentint_monoChannel ( 0 ) sheentint_textureWrap ( repeat ) sheentint_textureColorSpace ( linear ) diffuse_folder_14_3 ( 0 ) emitcolor_useTexture ( off ) emitcolor_texture ( "" ) emitcolor_textureIntensity ( 1 ) emitcolor_textureWrap ( repeat ) emitcolor_textureColorSpace ( repeat ) folder14 ( 0 ) opaccolor_useTexture ( off ) opaccolor_texture ( "" ) opaccolor_textureWrap ( repeat ) opaccolor_textureIntensity ( 1 ) opaccolor_textureColorSpace ( repeat ) folder18 ( 0 ) occlusion_useTexture ( off ) occlusion_texture ( "" ) occlusion_textureWrap ( repeat ) occlusion_textureIntensity ( 1 ) occlusion_textureColorSpace ( auto ) folder235 ( 0 ) surface_textureFilter ( catrom ) surface_textureFilterWidth ( 1 ) roundedEdge_enable ( off ) roundedEdge_radius ( 0.01 ) roundedEdge_mode ( 0 ) shading_16 ( 0 0 ) baseBumpAndNormal_enable ( off ) baseBumpAndNormal_type ( normal ) baseBump_colorSpace ( linear ) baseBump_bumpScale ( 0.05 ) baseBump_bumpTexture ( "" ) baseBump_wrap ( repeat ) baseBump_filter ( gauss ) baseBump_filterWidth ( 1 ) baseBump_channel ( 0 ) baseBump_imagePlane ( "" ) baseNormal_colorspace ( linear ) baseNormal_vectorSpace ( uvtangent ) baseNormal_scale ( 1 ) baseNormal_texture ( "" ) baseNormal_wrap ( repeat ) baseNormal_filter ( gauss ) baseNormal_filterWidth ( 1 ) baseNormal_channel ( 0 ) baseNormal_imagePlane ( "" ) baseNormal_space ( 0 ) baseNormal_flipX ( off ) baseNormal_flipY ( off ) baseBump_useTexture ( baseBump_useTexture ) baseNormal_useTexture ( baseNormal_useTexture ) separateCoatNormals ( off ) coatBumpAndNormal_enable ( on ) coatBumpAndNormal_type ( normal ) coatBump_colorSpace ( linear ) coatBump_bumpScale ( 0.05 ) coatBump_bumpTexture ( "" ) coatBump_wrap ( repeat ) coatBump_filter ( gauss ) coatBump_filterWidth ( 1 ) coatBump_channel ( 0 ) coatBump_imagePlane ( "" ) coatNormal_colorspace ( linear ) coatNormal_vectorSpace ( uvtangent ) coatNormal_scale ( 1 ) coatNormal_texture ( "" ) coatNormal_wrap ( repeat ) coatNormal_filter ( gauss ) coatNormal_filterWidth ( 1 ) coatNormal_channel ( 0 ) coatNormal_imagePlane ( "" ) coatNormal_space ( 0 ) coatNormal_flipX ( off ) coatNormal_flipY ( off ) shop_disable_displace_shader ( shop_disable_displace_shader ) folder236 ( 0 ) vm_displacebound ( vm_displacebound ) vm_truedisplace ( on ) vm_bumpraydisplace ( on ) folder10 ( 0 ) dispInput_enable ( off ) dispInput_max ( 1 ) dispInput_vectorspace ( uvtangent ) folder237 ( 0 ) dispTex_enable ( on ) dispTex_type ( disp ) dispTex_colorSpace ( linear ) dispTex_vectorSpace ( uvtangent ) dispTex_channelOrder ( xyz ) dispTex_offset ( -0.5 ) dispTex_scale ( 0.05 ) dispTex_texture ( '$HFS/houdini/pic/texture/wood001_height.rat' ) dispTex_channel ( 0 ) dispTex_wrap ( repeat ) dispTex_filter ( gauss ) dispTex_filterWidth ( 1 ) folder238 ( 0 ) dispNoise_enable ( off ) dispNoise_type ( xnoise ) dispNoise_freq ( 10 10 10 ) dispNoise_offset ( 0 0 0 ) dispNoise_amp ( 1 ) dispNoise_rough ( 0.5 ) dispNoise_atten ( 1 ) dispNoise_turb ( 5 ) folder239 ( 0 ) difflabel ( diffuse ) refllabel ( reflect ) refractlabel ( refract ) coatlabel ( coat ) ssslabel ( sss ) folder0 ( 0 ) uvtrans ( 0 0 ) uvrot ( 0 ) uvscale ( 1 1 ) Cd ( 1 1 1 ) Alpha ( 1 ) layer ( "" ) direct ( 0 0 0 ) indirect ( 0 0 0 ) Ce ( 0 0 0 ) direct_emission ( 0 0 0 ) all_emission ( 0 0 0 ) all ( 0 0 0 ) indirect_emission ( 0 0 0 ) direct_comp ( "" ) indirect_comp ( "" ) all_comp ( "" ) direct_noshadow ( 0 0 0 ) direct_shadow ( 0 0 0 ) indirect_noshadow ( 0 0 0 ) indirect_shadow ( 0 0 0 ) level ( 0 ) diffuselevel ( 0 ) specularlevel ( 0 ) volumelevel ( 0 ) direct_samples ( 0 ) indirect_samples ( 0 ) nlights ( 0 ) direct_noshadow_comp ( "" ) indirect_noshadow_comp ( "" ) nddispersion ( 0 ) ndpriority ( 0 ) ndior ( 0 ) absorption ( 0 0 0 ) Oc ( 0 0 0 ) Cv ( 0 0 0 ) Th ( 0 0 0 ) Ab ( 0 0 0 ) Cu ( 0 0 0 ) Vd ( 0 0 0 ) Nt ( 0 0 0 ) Ds ( 0 0 0 ) pre_disp_P ( 0 0 0 ) pre_disp_utan ( 0 0 0 ) pre_disp_vtan ( 0 0 0 ) pre_disp_N ( 0 0 0 ) disp ( 0 ) vdisp ( 0 0 0 ) Dt ( 0 0 0 ) Vdt ( 0 0 0 ) baseN ( 0 0 0 ) coatN ( 0 0 0 ) speccolor ( speccolorr speccolorg speccolorb ) displayColor ( 1 1 1 ) st ( 0 0 ) displayOpacity ( 1 )
+chlock woodchips -*
+chautoscope woodchips -*
+opcomment -c 'Created from Gallery Entry: Wood Chips\n\nWood Chips' woodchips
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off -L off -M off -H on -E on woodchips
+opexprlanguage -s hscript woodchips
+opuserdata -n '___Version___' -v '' woodchips
+opuserdata -n '___toolcount___' -v '176' woodchips
+opuserdata -n '___toolid___' -v 'convertGallery' woodchips
+opuserdata -n '__inputgroup_Bump & Normals' -v 'collapsed' woodchips
+opuserdata -n '__inputgroup_Displacement' -v 'collapsed' woodchips
+opuserdata -n '__inputgroup_Opacity' -v 'collapsed' woodchips
+opuserdata -n '__inputgroup_Settings' -v 'collapsed' woodchips
+opuserdata -n '__inputgroup_Surface' -v 'collapsed' woodchips
+opuserdata -n '__inputgroup_Textures' -v 'collapsed' woodchips
 opcf ..
 
 # Node obj (/obj)
@@ -119,7 +233,7 @@ opuserdata -n '___Version___' -v '370' osm_filter1
 opadd -e -n blast blast1
 oplocate -x -0.16044900000000001 -y 12.8689 blast1
 opspareds "" blast1
-opparm -V 20.5.370 blast1 group ( 0-5 ) grouptype ( guess ) computenorms ( off ) negate ( on ) fillhole ( off ) removegrp ( off )
+opparm -V 20.5.370 blast1 group ( 0-100 ) grouptype ( guess ) computenorms ( off ) negate ( on ) fillhole ( off ) removegrp ( off )
 chlock blast1 -*
 chautoscope blast1 -*
 opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off blast1
@@ -145,7 +259,7 @@ opspareds "" matchsize1
 opparm matchsize1 group ( "" ) grouptype ( guess ) sepparm ( ) justifytarget ( auto ) doboundgroup ( off ) folder2 ( 0 ) sourcegroup ( "" ) sourcegrouptype ( guess ) refgroup ( "" ) refgrouptype ( guess ) folder1 ( 0 ) t ( 0 0 0 ) size ( 1 1 1 ) folder0 ( 0 ) dotranslate ( on ) justify_x ( center ) goal_x ( same ) offset_x ( 0 ) justify_y ( center ) goal_y ( same ) offset_y ( 0 ) justify_z ( center ) goal_z ( same ) offset_z ( 0 ) doscale ( off ) uniformscale ( on ) scale_axis ( min ) scale_x ( on ) scale_y ( on ) scale_z ( on ) restorexform ( off ) restoreattrib ( xform ) stashxform ( off ) stashattrib ( xform ) stashmerge ( replace )
 chlock matchsize1 -*
 chautoscope matchsize1 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off matchsize1
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b on matchsize1
 opexprlanguage -s hscript matchsize1
 opuserdata -n '___Version___' -v '' matchsize1
 
@@ -266,7 +380,7 @@ opuserdata -n '___Version___' -v '20.5.370' sort6
 opadd -e -n switch switch2
 oplocate -x -4.2666899999999996 -y 6.89147 switch2
 opspareds "" switch2
-opparm -V 20.5.370 switch2 input ( 4 )
+opparm -V 20.5.370 switch2 input ( 1 )
 chlock switch2 -*
 chautoscope switch2 -*
 opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off switch2
@@ -288,7 +402,7 @@ opuserdata -n '___Version___' -v '' polypath6
 opadd -e -n line line1
 oplocate -x 6.9419899999999997 -y 8.9405400000000004 line1
 opspareds "" line1
-opparm -V 20.5.370 line1 type ( poly ) origin ( 0 0 0 ) dir ( 0.9527452800668663 0 0.3037703594992531 ) dist ( 7.857512950897217 ) points ( 0 ) order ( 4 )
+opparm -V 20.5.370 line1 type ( poly ) origin ( 0 0 0 ) dir ( 0 0 1 ) dist ( 7.857512950897217 ) points ( 0 ) order ( 4 )
 chlock line1 -*
 chautoscope line1 -*
 opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off line1
@@ -299,7 +413,7 @@ opuserdata -n '___Version___' -v '20.5.370' line1
 opadd -e -n subnet billboard
 oplocate -x -4.2428400000000002 -y 0.27978700000000001 billboard
 opspareds '    parm {         name    "label1"         baseparm         label   "Input #1 Label"         export  all     }     parm {         name    "label2"         baseparm         label   "Input #2 Label"         export  all     }     parm {         name    "label3"         baseparm         label   "Input #3 Label"         export  all     }     parm {         name    "label4"         baseparm         label   "Input #4 Label"         export  all     }     parm {         name    "BoardFrameSize"         label   "BoardFrameSize"         type    float         default { "0.05" }         range   { 0.01! 0.2! }         parmtag { "script_callback_language" "python" }     }     parm {         name    "SupportSize"         label   "SupportSize"         type    float         default { "0.15" }         range   { 0.1! 0.5! }         parmtag { "script_callback_language" "python" }     }     parm {         name    "BillboardHeght"         label   "BillboardHeght"         type    integer         default { "0" }         range   { 0! 5! }         parmtag { "script_callback_language" "python" }     }     parm {         name    "BillboardBottomOffset"         label   "BillboardBottomOffset"         type    float         default { "0.4" }         range   { 0! 10 }         parmtag { "script_callback_language" "python" }     }     parm {         name    "BillboardFrontOffset"         label   "BillboardFrontOffset"         type    float         default { "0.4" }         range   { 0! 10 }         parmtag { "script_callback_language" "python" }     }     parm {         name    "SupportInterval"         label   "SupportInterval"         type    float         default { "3" }         range   { 1! 10 }         parmtag { "script_callback_language" "python" }     } ' billboard
-opparm -V 20.5.370 billboard label1 ( 'Sub-Network Input #1' ) label2 ( 'Sub-Network Input #2' ) label3 ( 'Sub-Network Input #3' ) label4 ( 'Sub-Network Input #4' ) BoardFrameSize ( 0.05 ) SupportSize ( 0.1 ) BillboardHeght ( 1 ) BillboardBottomOffset ( 0.5 ) BillboardFrontOffset ( 0.15 ) SupportInterval ( 3 )
+opparm -V 20.5.370 billboard label1 ( 'Sub-Network Input #1' ) label2 ( 'Sub-Network Input #2' ) label3 ( 'Sub-Network Input #3' ) label4 ( 'Sub-Network Input #4' ) BoardFrameSize ( 0.05 ) SupportSize ( 0.1 ) BillboardHeght ( 3 ) BillboardBottomOffset ( 0.5 ) BillboardFrontOffset ( 0.15 ) SupportInterval ( 3 )
 chlock billboard -*
 chautoscope billboard -*
 opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off billboard
@@ -349,25 +463,40 @@ nbsize -w 2.803 -h 4.74926 __netbox1
 nbset  -m off __netbox1
 nbcolor -c 0.52 0.52 0.52 __netbox1
 
+# Network Box __netbox7
+nbadd __netbox7
+nblocate -x 13.6377 -y -6.0682 __netbox7
+nbsize -w 4.27887 -h 6.9441 __netbox7
+nbset  -m off __netbox7
+nbcolor -c 0.52 0.52 0.52 __netbox7
+
+# Network Box __netbox8
+nbadd __netbox8
+nblocate -x 7.30948 -y -5.76966 __netbox8
+nbsize -w 4.72085 -h 6.64556 __netbox8
+nbset  -m off __netbox8
+nbcolor -c 0.52 0.52 0.52 __netbox8
+
 # Node polyextrude_height (Sop/polyextrude::2.0)
 opadd -e -n polyextrude::2.0 polyextrude_height
-oplocate -x 7.7094800000000001 -y 0.52590000000000003 polyextrude_height
+oplocate -x 7.7094800000000001 -y -0.66976800000000003 polyextrude_height
 opspareds "" polyextrude_height
 opparm polyextrude_height  thicknessramp ( 2 ) twistramp ( 2 )
 chblockbegin
 chadd -t 0 0 polyextrude_height dist
 chkey -t 0 -v 0.73299999999999998 -m 0 -a 0 -A 0 -T a  -F 'detail("../Dims", "BillboardHeights", ch("../BillboardHeght"))' polyextrude_height/dist
 chblockend
-opparm -V 20.5.370 polyextrude_height group ( "" ) splittype ( components ) usesplitgroup ( off ) splitgroup ( "" ) extrusionmode ( pointnormal ) ptnormalsrc ( attribute ) ptnormalattrib ( SignboardUp ) dist ( dist ) inset ( 0 ) twist ( 0 ) divs ( 1 ) spinetype ( straight ) stdswitcher ( 0 0 0 ) xformsection ( 0 ) xformfront ( off ) xformspace ( local ) rst ( srt ) xyz ( xyz ) translate ( 0 0 0 ) rotate ( 0 0 0 ) scale ( 1 1 1 ) shear ( 0 0 0 ) pivotxformsection ( 0 ) pivot ( 0 0 0 ) pivotrotate ( 0 0 0 ) prexformsection ( 0 ) prexform_rst ( srt ) prexform_xyz ( xyz ) prexform_translate ( 0 0 0 ) prexform_rotate ( 0 0 0 ) prexform_scale ( 1 1 1 ) prexform_shear ( 0 0 0 ) outputsection ( 0 ) outputfront ( on ) outputfrontgrp ( off ) frontgrp ( extrudeFront ) outputback ( off ) outputbackgrp ( off ) backgrp ( extrudeBack ) outputside ( on ) outputsidegrp ( off ) sidegrp ( extrudeSide ) outputfrontseamgrp ( off ) frontseamgrp ( extrudeFrontSeam ) outputbackseamgrp ( off ) backseamgrp ( extrudeBackSeam ) preservegroups ( on ) insettingsection ( 0 ) limitinset ( on ) commonlimit ( on ) normalsection ( 0 ) addvertexnomrals ( off ) cuspangle ( 60 ) cuspfront ( on ) cuspback ( on ) uvssection ( 0 ) genuvs ( on ) uvstyle ( proprtional ) uvscaling ( matchuv ) shapecontrolsection ( 0 ) frontmagnitude ( 1 ) backmagnitude ( 1 ) frontstiffness ( 0 ) backstiffness ( 0 ) interpolation ( rotatingframe ) spacing ( arclengthuniform ) externalspinesection ( 0 ) reversespinedirection ( off ) axialrotation ( 0 ) frontblend ( 0.1 ) backblend ( 0.1 ) thicknesssection ( 0 ) thicknessscale ( 1 ) usethicknessattrib ( on ) thicknessattrib ( thickness ) usethicknessramp ( on ) thicknessramp ( 2 ) twistsection ( 0 ) usetwistattrib ( on ) twistattrib ( twist ) usetwistramp ( on ) twistramp ( 2 ) twistscale ( 180 ) localattribs ( 0 ) uselocalzscaleattrib ( off ) localzscaleattrib ( zscale ) uselocalinsetscaleattrib ( off ) localinsetscaleattrib ( insetscale ) uselocaltwistattrib ( off ) localtwistscaleattrib ( twistscale ) uselocaldivsattrib ( off ) locadivscaleattrib ( divsscale ) localframeattribs ( 0 ) uselocalxattrib ( off ) localxattrib ( localx ) uselocalzattirb ( off ) localzattirb ( localz ) uselocalctrattrib ( off ) localctrattrib ( localctr ) thicknessramp1pos ( 0 ) thicknessramp1value ( 1 ) thicknessramp1interp ( catmull-rom ) thicknessramp2pos ( 1 ) thicknessramp2value ( 1 ) thicknessramp2interp ( catmull-rom ) twistramp1pos ( 0 ) twistramp1value ( 0.5 ) twistramp1interp ( catmull-rom ) twistramp2pos ( 1 ) twistramp2value ( 0.5 ) twistramp2interp ( catmull-rom )
+opparm -V 20.5.370 polyextrude_height group ( "" ) splittype ( components ) usesplitgroup ( off ) splitgroup ( "" ) extrusionmode ( pointnormal ) ptnormalsrc ( attribute ) ptnormalattrib ( SignboardUp ) dist ( dist ) inset ( 0 ) twist ( 0 ) divs ( 1 ) spinetype ( straight ) stdswitcher ( 0 0 0 ) xformsection ( 0 ) xformfront ( off ) xformspace ( local ) rst ( srt ) xyz ( xyz ) translate ( 0 0 0 ) rotate ( 0 0 0 ) scale ( 1 1 1 ) shear ( 0 0 0 ) pivotxformsection ( 0 ) pivot ( 0 0 0 ) pivotrotate ( 0 0 0 ) prexformsection ( 0 ) prexform_rst ( srt ) prexform_xyz ( xyz ) prexform_translate ( 0 0 0 ) prexform_rotate ( 0 0 0 ) prexform_scale ( 1 1 1 ) prexform_shear ( 0 0 0 ) outputsection ( 0 ) outputfront ( off ) outputfrontgrp ( off ) frontgrp ( extrudeFront ) outputback ( off ) outputbackgrp ( off ) backgrp ( extrudeBack ) outputside ( on ) outputsidegrp ( off ) sidegrp ( extrudeSide ) outputfrontseamgrp ( off ) frontseamgrp ( extrudeFrontSeam ) outputbackseamgrp ( off ) backseamgrp ( extrudeBackSeam ) preservegroups ( on ) insettingsection ( 0 ) limitinset ( on ) commonlimit ( on ) normalsection ( 0 ) addvertexnomrals ( off ) cuspangle ( 60 ) cuspfront ( on ) cuspback ( on ) uvssection ( 0 ) genuvs ( on ) uvstyle ( proprtional ) uvscaling ( matchuv ) shapecontrolsection ( 0 ) frontmagnitude ( 1 ) backmagnitude ( 1 ) frontstiffness ( 0 ) backstiffness ( 0 ) interpolation ( rotatingframe ) spacing ( arclengthuniform ) externalspinesection ( 0 ) reversespinedirection ( off ) axialrotation ( 0 ) frontblend ( 0.1 ) backblend ( 0.1 ) thicknesssection ( 0 ) thicknessscale ( 1 ) usethicknessattrib ( on ) thicknessattrib ( thickness ) usethicknessramp ( on ) thicknessramp ( 2 ) twistsection ( 0 ) usetwistattrib ( on ) twistattrib ( twist ) usetwistramp ( on ) twistramp ( 2 ) twistscale ( 180 ) localattribs ( 0 ) uselocalzscaleattrib ( off ) localzscaleattrib ( zscale ) uselocalinsetscaleattrib ( off ) localinsetscaleattrib ( insetscale ) uselocaltwistattrib ( off ) localtwistscaleattrib ( twistscale ) uselocaldivsattrib ( off ) locadivscaleattrib ( divsscale ) localframeattribs ( 0 ) uselocalxattrib ( off ) localxattrib ( localx ) uselocalzattirb ( off ) localzattirb ( localz ) uselocalctrattrib ( off ) localctrattrib ( localctr ) thicknessramp1pos ( 0 ) thicknessramp1value ( 1 ) thicknessramp1interp ( catmull-rom ) thicknessramp2pos ( 1 ) thicknessramp2value ( 1 ) thicknessramp2interp ( catmull-rom ) twistramp1pos ( 0 ) twistramp1value ( 0.5 ) twistramp1interp ( catmull-rom ) twistramp2pos ( 1 ) twistramp2value ( 0.5 ) twistramp2interp ( catmull-rom )
 chlock polyextrude_height -* +dist
 chautoscope polyextrude_height -*
 opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off polyextrude_height
+nbop __netbox8 add polyextrude_height
 opexprlanguage -s hscript polyextrude_height
 opuserdata -n '___Version___' -v '20.5.370' polyextrude_height
 
 # Node sweep3 (Sop/sweep::2.0)
 opadd -e -n sweep::2.0 sweep3
-oplocate -x -1.7346200000000001 -y -8.9867899999999992 sweep3
+oplocate -x -1.7346200000000001 -y -9.1148399999999992 sweep3
 opspareds "" sweep3
 opparm sweep3  scaleramp ( 2 )
 opparm -V 20.5.370 sweep3 curvegroup ( "" ) crosssectiongroup ( "" ) sepparm ( ) surface_folder ( 1 1 1 ) surfaceshape ( input ) surfacetype ( quads ) scale ( 1 ) cols ( 1 ) radius ( 0.1 ) width ( 0.1 ) reversecrosssections ( off ) stretcharoundturns ( on ) maxstretcharoundturns ( 10 ) endcaps_folder ( 0 ) endcaptype ( single ) capdivs ( 3 ) triangularpoles ( off ) capscale ( 1 ) caproundness ( 1 ) addendcapsgroup ( off ) endcapsgroup ( endcaps ) scale_folder ( 0 ) applyscale ( off ) scaleramp ( 2 ) rotation_folder ( 0 ) rOrd ( xyz ) applyroll ( on ) roll ( 0 ) fulltwists ( 0 ) incroll ( 0 ) rollper ( fulldistance ) rollattrib ( roll ) sepparmroll ( ) applyyaw ( off ) yaw ( 0 ) incyaw ( 0 ) yawper ( fulldistance ) yawattrib ( yaw ) sepparmyaw ( ) applypitch ( off ) pitch ( 0 ) incpitch ( 0 ) pitchper ( fulldistance ) pitchattrib ( pitch ) cross_sections_folder ( 0 ) copyorder ( each ) crosssectionattrib ( variant ) primtype ( auto ) unrollclosedrowcol ( off ) swaprowcol ( off ) closeifnocurveinput ( off ) up_folder ( 0 ) upvectortype ( y ) upvectoratstart ( on ) useendupvector ( off ) upvectorattrib ( N ) endupvectorattrib ( end_up ) upvector ( 0 1 0 ) endupvector ( 0 1 0 ) tangents_folder ( 0 ) tangenttype ( avgdir ) continuousclosed ( on ) extrapolateendtangents ( off ) transformbyattribs ( on ) uv_folder ( 0 ) computeuvs ( off ) overrideexistinguvs ( off ) lengthweighteduvs ( on ) normalizeu ( on ) normalizev ( off ) flipu ( on ) uvscale_folder ( 0 ) uvscale ( 1 1 ) usemeshedgelengths ( on ) propscalepercurve ( on ) uvseams_folder ( 0 ) wrapu ( on ) wrapv ( on ) attributes_folder ( 0 ) input_folder ( 0 ) attribsfrombackbone ( '* ^P ^N ^up ^pscale ^scale ^orient ^rot ^pivot ^trans ^transform' ) attribsfromcrosssection ( * ) output_folder ( 0 ) addptrow ( off ) ptrowattrib ( ptrow ) addptcol ( off ) ptcolattrib ( ptcol ) addprimrow ( off ) primrowattrib ( primrow ) addprimcol ( off ) primcolattrib ( primcol ) addcrosssectionnum ( off ) crosssectionnumattrib ( crossnum ) addcurvenum ( off ) curvenumattrib ( curvenum ) scaleramp1pos ( 0 ) scaleramp1value ( 1 ) scaleramp1interp ( linear ) scaleramp2pos ( 1 ) scaleramp2value ( 1 ) scaleramp2interp ( linear )
@@ -379,72 +508,77 @@ opuserdata -n '___Version___' -v '20.5.370' sweep3
 
 # Node attribwrangle3 (Sop/attribwrangle)
 opadd -e -n attribwrangle attribwrangle3
-oplocate -x 7.70648 -y -5.2775699999999999 attribwrangle3
+oplocate -x 7.70648 -y -5.5317600000000002 attribwrangle3
 opspareds "" attribwrangle3
 opparm attribwrangle3  bindings ( 0 ) groupbindings ( 0 )
-opparm attribwrangle3 folder0 ( 0 0 ) group ( "" ) grouptype ( guess ) class ( primitive ) vex_numcount ( 10 ) vex_threadjobsize ( 1024 ) snippet ( 'if( @group_Signboard )\n    s@component_type = "Signboard";\nelse\n    s@component_type = "Backside";' ) exportlist ( * ) vex_strict ( off ) autobind ( on ) bindings ( 0 ) groupautobind ( on ) groupbindings ( 0 ) vex_cwdpath ( . ) vex_outputmask ( * ) vex_updatenmls ( off ) vex_matchattrib ( id ) vex_inplace ( off ) vex_selectiongroup ( "" ) vex_precision ( auto )
+opparm attribwrangle3 folder0 ( 0 0 ) group ( "" ) grouptype ( guess ) class ( primitive ) vex_numcount ( 10 ) vex_threadjobsize ( 1024 ) snippet ( '//if( @group_Signboard )\n//    s@component_type = "Signboard";\n//else\n    s@component_type = "Backside";' ) exportlist ( * ) vex_strict ( off ) autobind ( on ) bindings ( 0 ) groupautobind ( on ) groupbindings ( 0 ) vex_cwdpath ( . ) vex_outputmask ( * ) vex_updatenmls ( off ) vex_matchattrib ( id ) vex_inplace ( off ) vex_selectiongroup ( "" ) vex_precision ( auto )
 chlock attribwrangle3 -*
 chautoscope attribwrangle3 -*
 opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off attribwrangle3
+nbop __netbox8 add attribwrangle3
 opexprlanguage -s hscript attribwrangle3
 opuserdata -n '___Version___' -v '' attribwrangle3
 
-# Node polyextrude_front_panel (Sop/polyextrude::2.0)
-opadd -e -n polyextrude::2.0 polyextrude_front_panel
-oplocate -x 7.7094800000000001 -y -1.52067 polyextrude_front_panel
-opspareds "" polyextrude_front_panel
-opparm polyextrude_front_panel  thicknessramp ( 2 ) twistramp ( 2 )
+# Node polyextrude_backside (Sop/polyextrude::2.0)
+opadd -e -n polyextrude::2.0 polyextrude_backside
+oplocate -x 7.7094800000000001 -y -1.7748600000000001 polyextrude_backside
+opspareds "" polyextrude_backside
+opparm polyextrude_backside  thicknessramp ( 2 ) twistramp ( 2 )
 chblockbegin
-chadd -t 0 0 polyextrude_front_panel dist
-chkey -t 0 -v 0.21199999999999999 -m 0 -a 0 -A 0 -T a  -F 'ch("../BillboardFrontOffset")' polyextrude_front_panel/dist
+chadd -t 0 0 polyextrude_backside dist
+chkey -t 0 -v 0.21199999999999999 -m 0 -a 0 -A 0 -T a  -F 'ch("../BillboardFrontOffset")' polyextrude_backside/dist
 chblockend
-opparm -V 20.5.370 polyextrude_front_panel group ( "" ) splittype ( components ) usesplitgroup ( off ) splitgroup ( "" ) extrusionmode ( primnormal ) ptnormalsrc ( precompute ) ptnormalattrib ( N ) dist ( dist ) inset ( 0 ) twist ( 0 ) divs ( 1 ) spinetype ( straight ) stdswitcher ( 0 0 0 ) xformsection ( 0 ) xformfront ( off ) xformspace ( local ) rst ( srt ) xyz ( xyz ) translate ( 0 0 0 ) rotate ( 0 0 0 ) scale ( 1 1 1 ) shear ( 0 0 0 ) pivotxformsection ( 0 ) pivot ( 0 0 0 ) pivotrotate ( 0 0 0 ) prexformsection ( 0 ) prexform_rst ( srt ) prexform_xyz ( xyz ) prexform_translate ( 0 0 0 ) prexform_rotate ( 0 0 0 ) prexform_scale ( 1 1 1 ) prexform_shear ( 0 0 0 ) outputsection ( 0 ) outputfront ( on ) outputfrontgrp ( on ) frontgrp ( Signboard ) outputback ( on ) outputbackgrp ( on ) backgrp ( extrudeBack ) outputside ( on ) outputsidegrp ( off ) sidegrp ( extrudeSide ) outputfrontseamgrp ( off ) frontseamgrp ( extrudeFrontSeam ) outputbackseamgrp ( off ) backseamgrp ( extrudeBackSeam ) preservegroups ( on ) insettingsection ( 0 ) limitinset ( on ) commonlimit ( on ) normalsection ( 0 ) addvertexnomrals ( off ) cuspangle ( 60 ) cuspfront ( on ) cuspback ( on ) uvssection ( 0 ) genuvs ( on ) uvstyle ( proprtional ) uvscaling ( matchuv ) shapecontrolsection ( 0 ) frontmagnitude ( 1 ) backmagnitude ( 1 ) frontstiffness ( 0 ) backstiffness ( 0 ) interpolation ( rotatingframe ) spacing ( arclengthuniform ) externalspinesection ( 0 ) reversespinedirection ( off ) axialrotation ( 0 ) frontblend ( 0.1 ) backblend ( 0.1 ) thicknesssection ( 0 ) thicknessscale ( 1 ) usethicknessattrib ( on ) thicknessattrib ( thickness ) usethicknessramp ( on ) thicknessramp ( 2 ) twistsection ( 0 ) usetwistattrib ( on ) twistattrib ( twist ) usetwistramp ( on ) twistramp ( 2 ) twistscale ( 180 ) localattribs ( 0 ) uselocalzscaleattrib ( off ) localzscaleattrib ( zscale ) uselocalinsetscaleattrib ( off ) localinsetscaleattrib ( insetscale ) uselocaltwistattrib ( off ) localtwistscaleattrib ( twistscale ) uselocaldivsattrib ( off ) locadivscaleattrib ( divsscale ) localframeattribs ( 0 ) uselocalxattrib ( off ) localxattrib ( localx ) uselocalzattirb ( off ) localzattirb ( localz ) uselocalctrattrib ( off ) localctrattrib ( localctr ) thicknessramp1pos ( 0 ) thicknessramp1value ( 1 ) thicknessramp1interp ( catmull-rom ) thicknessramp2pos ( 1 ) thicknessramp2value ( 1 ) thicknessramp2interp ( catmull-rom ) twistramp1pos ( 0 ) twistramp1value ( 0.5 ) twistramp1interp ( catmull-rom ) twistramp2pos ( 1 ) twistramp2value ( 0.5 ) twistramp2interp ( catmull-rom )
-chlock polyextrude_front_panel -* +dist
-chautoscope polyextrude_front_panel -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off polyextrude_front_panel
-opexprlanguage -s hscript polyextrude_front_panel
-opuserdata -n '___Version___' -v '20.5.370' polyextrude_front_panel
+opparm -V 20.5.370 polyextrude_backside group ( "" ) splittype ( components ) usesplitgroup ( off ) splitgroup ( "" ) extrusionmode ( primnormal ) ptnormalsrc ( precompute ) ptnormalattrib ( N ) dist ( dist ) inset ( 0 ) twist ( 0 ) divs ( 1 ) spinetype ( straight ) stdswitcher ( 0 0 0 ) xformsection ( 0 ) xformfront ( off ) xformspace ( local ) rst ( srt ) xyz ( xyz ) translate ( 0 0 0 ) rotate ( 0 0 0 ) scale ( 1 1 1 ) shear ( 0 0 0 ) pivotxformsection ( 0 ) pivot ( 0 0 0 ) pivotrotate ( 0 0 0 ) prexformsection ( 0 ) prexform_rst ( srt ) prexform_xyz ( xyz ) prexform_translate ( 0 0 0 ) prexform_rotate ( 0 0 0 ) prexform_scale ( 1 1 1 ) prexform_shear ( 0 0 0 ) outputsection ( 0 ) outputfront ( off ) outputfrontgrp ( off ) frontgrp ( "" ) outputback ( on ) outputbackgrp ( on ) backgrp ( extrudeBack ) outputside ( on ) outputsidegrp ( off ) sidegrp ( extrudeSide ) outputfrontseamgrp ( off ) frontseamgrp ( extrudeFrontSeam ) outputbackseamgrp ( off ) backseamgrp ( extrudeBackSeam ) preservegroups ( on ) insettingsection ( 0 ) limitinset ( on ) commonlimit ( on ) normalsection ( 0 ) addvertexnomrals ( off ) cuspangle ( 60 ) cuspfront ( on ) cuspback ( on ) uvssection ( 0 ) genuvs ( on ) uvstyle ( proprtional ) uvscaling ( matchuv ) shapecontrolsection ( 0 ) frontmagnitude ( 1 ) backmagnitude ( 1 ) frontstiffness ( 0 ) backstiffness ( 0 ) interpolation ( rotatingframe ) spacing ( arclengthuniform ) externalspinesection ( 0 ) reversespinedirection ( off ) axialrotation ( 0 ) frontblend ( 0.1 ) backblend ( 0.1 ) thicknesssection ( 0 ) thicknessscale ( 1 ) usethicknessattrib ( on ) thicknessattrib ( thickness ) usethicknessramp ( on ) thicknessramp ( 2 ) twistsection ( 0 ) usetwistattrib ( on ) twistattrib ( twist ) usetwistramp ( on ) twistramp ( 2 ) twistscale ( 180 ) localattribs ( 0 ) uselocalzscaleattrib ( off ) localzscaleattrib ( zscale ) uselocalinsetscaleattrib ( off ) localinsetscaleattrib ( insetscale ) uselocaltwistattrib ( off ) localtwistscaleattrib ( twistscale ) uselocaldivsattrib ( off ) locadivscaleattrib ( divsscale ) localframeattribs ( 0 ) uselocalxattrib ( off ) localxattrib ( localx ) uselocalzattirb ( off ) localzattirb ( localz ) uselocalctrattrib ( off ) localctrattrib ( localctr ) thicknessramp1pos ( 0 ) thicknessramp1value ( 1 ) thicknessramp1interp ( catmull-rom ) thicknessramp2pos ( 1 ) thicknessramp2value ( 1 ) thicknessramp2interp ( catmull-rom ) twistramp1pos ( 0 ) twistramp1value ( 0.5 ) twistramp1interp ( catmull-rom ) twistramp2pos ( 1 ) twistramp2value ( 0.5 ) twistramp2interp ( catmull-rom )
+chlock polyextrude_backside -* +dist
+chautoscope polyextrude_backside -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off polyextrude_backside
+nbop __netbox8 add polyextrude_backside
+opexprlanguage -s hscript polyextrude_backside
+opuserdata -n '___Version___' -v '20.5.370' polyextrude_backside
 
-# Node create_backdideframe (Sop/polyextrude::2.0)
-opadd -e -n polyextrude::2.0 create_backdideframe
-oplocate -x 7.7094800000000001 -y -2.6776800000000001 create_backdideframe
-opspareds "" create_backdideframe
-opparm create_backdideframe  thicknessramp ( 2 ) twistramp ( 2 )
+# Node create_backsideframe (Sop/polyextrude::2.0)
+opadd -e -n polyextrude::2.0 create_backsideframe
+oplocate -x 7.7094800000000001 -y -2.93187 create_backsideframe
+opspareds "" create_backsideframe
+opparm create_backsideframe  thicknessramp ( 2 ) twistramp ( 2 )
 chblockbegin
-chadd -t 0 0 create_backdideframe inset
-chkey -t 0 -v 0.029999999999999999 -m 0 -a 0 -A 0 -T a  -F 'ch("../BoardFrameSize")' create_backdideframe/inset
+chadd -t 0 0 create_backsideframe inset
+chkey -t 0 -v 0.050000000000000003 -m 0 -a 0 -A 0 -T a  -F 'ch("../BoardFrameSize")' create_backsideframe/inset
 chblockend
-opparm -V 20.5.370 create_backdideframe group ( extrudeBack ) splittype ( components ) usesplitgroup ( off ) splitgroup ( "" ) extrusionmode ( primnormal ) ptnormalsrc ( precompute ) ptnormalattrib ( N ) dist ( 0 ) inset ( inset ) twist ( 0 ) divs ( 1 ) spinetype ( straight ) stdswitcher ( 0 0 0 ) xformsection ( 0 ) xformfront ( off ) xformspace ( local ) rst ( srt ) xyz ( xyz ) translate ( 0 0 0 ) rotate ( 0 0 0 ) scale ( 1 1 1 ) shear ( 0 0 0 ) pivotxformsection ( 0 ) pivot ( 0 0 0 ) pivotrotate ( 0 0 0 ) prexformsection ( 0 ) prexform_rst ( srt ) prexform_xyz ( xyz ) prexform_translate ( 0 0 0 ) prexform_rotate ( 0 0 0 ) prexform_scale ( 1 1 1 ) prexform_shear ( 0 0 0 ) outputsection ( 0 ) outputfront ( on ) outputfrontgrp ( on ) frontgrp ( extrudeFront ) outputback ( off ) outputbackgrp ( on ) backgrp ( extrudeBack ) outputside ( on ) outputsidegrp ( off ) sidegrp ( extrudeSide ) outputfrontseamgrp ( off ) frontseamgrp ( extrudeFrontSeam ) outputbackseamgrp ( off ) backseamgrp ( extrudeBackSeam ) preservegroups ( on ) insettingsection ( 0 ) limitinset ( on ) commonlimit ( on ) normalsection ( 0 ) addvertexnomrals ( off ) cuspangle ( 60 ) cuspfront ( on ) cuspback ( on ) uvssection ( 0 ) genuvs ( on ) uvstyle ( proprtional ) uvscaling ( matchuv ) shapecontrolsection ( 0 ) frontmagnitude ( 1 ) backmagnitude ( 1 ) frontstiffness ( 0 ) backstiffness ( 0 ) interpolation ( rotatingframe ) spacing ( arclengthuniform ) externalspinesection ( 0 ) reversespinedirection ( off ) axialrotation ( 0 ) frontblend ( 0.1 ) backblend ( 0.1 ) thicknesssection ( 0 ) thicknessscale ( 1 ) usethicknessattrib ( on ) thicknessattrib ( thickness ) usethicknessramp ( on ) thicknessramp ( 2 ) twistsection ( 0 ) usetwistattrib ( on ) twistattrib ( twist ) usetwistramp ( on ) twistramp ( 2 ) twistscale ( 180 ) localattribs ( 0 ) uselocalzscaleattrib ( off ) localzscaleattrib ( zscale ) uselocalinsetscaleattrib ( off ) localinsetscaleattrib ( insetscale ) uselocaltwistattrib ( off ) localtwistscaleattrib ( twistscale ) uselocaldivsattrib ( off ) locadivscaleattrib ( divsscale ) localframeattribs ( 0 ) uselocalxattrib ( off ) localxattrib ( localx ) uselocalzattirb ( off ) localzattirb ( localz ) uselocalctrattrib ( off ) localctrattrib ( localctr ) thicknessramp1pos ( 0 ) thicknessramp1value ( 1 ) thicknessramp1interp ( catmull-rom ) thicknessramp2pos ( 1 ) thicknessramp2value ( 1 ) thicknessramp2interp ( catmull-rom ) twistramp1pos ( 0 ) twistramp1value ( 0.5 ) twistramp1interp ( catmull-rom ) twistramp2pos ( 1 ) twistramp2value ( 0.5 ) twistramp2interp ( catmull-rom )
-chlock create_backdideframe -* +inset
-chautoscope create_backdideframe -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off create_backdideframe
-opexprlanguage -s hscript create_backdideframe
-opuserdata -n '___Version___' -v '20.5.370' create_backdideframe
+opparm -V 20.5.370 create_backsideframe group ( extrudeBack ) splittype ( components ) usesplitgroup ( off ) splitgroup ( "" ) extrusionmode ( primnormal ) ptnormalsrc ( precompute ) ptnormalattrib ( N ) dist ( 0 ) inset ( inset ) twist ( 0 ) divs ( 1 ) spinetype ( straight ) stdswitcher ( 0 0 0 ) xformsection ( 0 ) xformfront ( off ) xformspace ( local ) rst ( srt ) xyz ( xyz ) translate ( 0 0 0 ) rotate ( 0 0 0 ) scale ( 1 1 1 ) shear ( 0 0 0 ) pivotxformsection ( 0 ) pivot ( 0 0 0 ) pivotrotate ( 0 0 0 ) prexformsection ( 0 ) prexform_rst ( srt ) prexform_xyz ( xyz ) prexform_translate ( 0 0 0 ) prexform_rotate ( 0 0 0 ) prexform_scale ( 1 1 1 ) prexform_shear ( 0 0 0 ) outputsection ( 0 ) outputfront ( on ) outputfrontgrp ( on ) frontgrp ( extrudeFront ) outputback ( off ) outputbackgrp ( off ) backgrp ( extrudeBack ) outputside ( on ) outputsidegrp ( off ) sidegrp ( extrudeSide ) outputfrontseamgrp ( off ) frontseamgrp ( extrudeFrontSeam ) outputbackseamgrp ( off ) backseamgrp ( extrudeBackSeam ) preservegroups ( on ) insettingsection ( 0 ) limitinset ( on ) commonlimit ( on ) normalsection ( 0 ) addvertexnomrals ( off ) cuspangle ( 60 ) cuspfront ( on ) cuspback ( on ) uvssection ( 0 ) genuvs ( on ) uvstyle ( proprtional ) uvscaling ( matchuv ) shapecontrolsection ( 0 ) frontmagnitude ( 1 ) backmagnitude ( 1 ) frontstiffness ( 0 ) backstiffness ( 0 ) interpolation ( rotatingframe ) spacing ( arclengthuniform ) externalspinesection ( 0 ) reversespinedirection ( off ) axialrotation ( 0 ) frontblend ( 0.1 ) backblend ( 0.1 ) thicknesssection ( 0 ) thicknessscale ( 1 ) usethicknessattrib ( on ) thicknessattrib ( thickness ) usethicknessramp ( on ) thicknessramp ( 2 ) twistsection ( 0 ) usetwistattrib ( on ) twistattrib ( twist ) usetwistramp ( on ) twistramp ( 2 ) twistscale ( 180 ) localattribs ( 0 ) uselocalzscaleattrib ( off ) localzscaleattrib ( zscale ) uselocalinsetscaleattrib ( off ) localinsetscaleattrib ( insetscale ) uselocaltwistattrib ( off ) localtwistscaleattrib ( twistscale ) uselocaldivsattrib ( off ) locadivscaleattrib ( divsscale ) localframeattribs ( 0 ) uselocalxattrib ( off ) localxattrib ( localx ) uselocalzattirb ( off ) localzattirb ( localz ) uselocalctrattrib ( off ) localctrattrib ( localctr ) thicknessramp1pos ( 0 ) thicknessramp1value ( 1 ) thicknessramp1interp ( catmull-rom ) thicknessramp2pos ( 1 ) thicknessramp2value ( 1 ) thicknessramp2interp ( catmull-rom ) twistramp1pos ( 0 ) twistramp1value ( 0.5 ) twistramp1interp ( catmull-rom ) twistramp2pos ( 1 ) twistramp2value ( 0.5 ) twistramp2interp ( catmull-rom )
+chlock create_backsideframe -* +inset
+chautoscope create_backsideframe -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off create_backsideframe
+nbop __netbox8 add create_backsideframe
+opexprlanguage -s hscript create_backsideframe
+opuserdata -n '___Version___' -v '20.5.370' create_backsideframe
 
 # Node dent_backsideframe (Sop/polyextrude::2.0)
 opadd -e -n polyextrude::2.0 dent_backsideframe
-oplocate -x 7.7094800000000001 -y -3.9206599999999998 dent_backsideframe
+oplocate -x 7.7094800000000001 -y -4.1748500000000002 dent_backsideframe
 opspareds "" dent_backsideframe
 opparm dent_backsideframe  thicknessramp ( 2 ) twistramp ( 2 )
 chblockbegin
 chadd -t 0 0 dent_backsideframe dist
 chkey -t 0 -v -0.050000000000000003 -m 0 -a 0 -A 0 -T a  -F '-ch("../BoardFrameSize")' dent_backsideframe/dist
 chblockend
-opparm -V 20.5.370 dent_backsideframe group ( extrudeBack ) splittype ( components ) usesplitgroup ( off ) splitgroup ( "" ) extrusionmode ( primnormal ) ptnormalsrc ( precompute ) ptnormalattrib ( N ) dist ( dist ) inset ( 0 ) twist ( 0 ) divs ( 1 ) spinetype ( straight ) stdswitcher ( 0 0 0 ) xformsection ( 0 ) xformfront ( off ) xformspace ( local ) rst ( srt ) xyz ( xyz ) translate ( 0 0 0 ) rotate ( 0 0 0 ) scale ( 1 1 1 ) shear ( 0 0 0 ) pivotxformsection ( 0 ) pivot ( 0 0 0 ) pivotrotate ( 0 0 0 ) prexformsection ( 0 ) prexform_rst ( srt ) prexform_xyz ( xyz ) prexform_translate ( 0 0 0 ) prexform_rotate ( 0 0 0 ) prexform_scale ( 1 1 1 ) prexform_shear ( 0 0 0 ) outputsection ( 0 ) outputfront ( on ) outputfrontgrp ( off ) frontgrp ( extrudeFront ) outputback ( off ) outputbackgrp ( off ) backgrp ( extrudeBack ) outputside ( on ) outputsidegrp ( off ) sidegrp ( extrudeSide ) outputfrontseamgrp ( off ) frontseamgrp ( extrudeFrontSeam ) outputbackseamgrp ( off ) backseamgrp ( extrudeBackSeam ) preservegroups ( on ) insettingsection ( 0 ) limitinset ( on ) commonlimit ( on ) normalsection ( 0 ) addvertexnomrals ( off ) cuspangle ( 60 ) cuspfront ( on ) cuspback ( on ) uvssection ( 0 ) genuvs ( on ) uvstyle ( proprtional ) uvscaling ( matchuv ) shapecontrolsection ( 0 ) frontmagnitude ( 1 ) backmagnitude ( 1 ) frontstiffness ( 0 ) backstiffness ( 0 ) interpolation ( rotatingframe ) spacing ( arclengthuniform ) externalspinesection ( 0 ) reversespinedirection ( off ) axialrotation ( 0 ) frontblend ( 0.1 ) backblend ( 0.1 ) thicknesssection ( 0 ) thicknessscale ( 1 ) usethicknessattrib ( on ) thicknessattrib ( thickness ) usethicknessramp ( on ) thicknessramp ( 2 ) twistsection ( 0 ) usetwistattrib ( on ) twistattrib ( twist ) usetwistramp ( on ) twistramp ( 2 ) twistscale ( 180 ) localattribs ( 0 ) uselocalzscaleattrib ( off ) localzscaleattrib ( zscale ) uselocalinsetscaleattrib ( off ) localinsetscaleattrib ( insetscale ) uselocaltwistattrib ( off ) localtwistscaleattrib ( twistscale ) uselocaldivsattrib ( off ) locadivscaleattrib ( divsscale ) localframeattribs ( 0 ) uselocalxattrib ( off ) localxattrib ( localx ) uselocalzattirb ( off ) localzattirb ( localz ) uselocalctrattrib ( off ) localctrattrib ( localctr ) thicknessramp1pos ( 0 ) thicknessramp1value ( 1 ) thicknessramp1interp ( catmull-rom ) thicknessramp2pos ( 1 ) thicknessramp2value ( 1 ) thicknessramp2interp ( catmull-rom ) twistramp1pos ( 0 ) twistramp1value ( 0.5 ) twistramp1interp ( catmull-rom ) twistramp2pos ( 1 ) twistramp2value ( 0.5 ) twistramp2interp ( catmull-rom )
+opparm -V 20.5.370 dent_backsideframe group ( extrudeFront ) splittype ( components ) usesplitgroup ( off ) splitgroup ( "" ) extrusionmode ( primnormal ) ptnormalsrc ( precompute ) ptnormalattrib ( N ) dist ( dist ) inset ( 0 ) twist ( 0 ) divs ( 1 ) spinetype ( straight ) stdswitcher ( 0 0 0 ) xformsection ( 0 ) xformfront ( off ) xformspace ( local ) rst ( srt ) xyz ( xyz ) translate ( 0 0 0 ) rotate ( 0 0 0 ) scale ( 1 1 1 ) shear ( 0 0 0 ) pivotxformsection ( 0 ) pivot ( 0 0 0 ) pivotrotate ( 0 0 0 ) prexformsection ( 0 ) prexform_rst ( srt ) prexform_xyz ( xyz ) prexform_translate ( 0 0 0 ) prexform_rotate ( 0 0 0 ) prexform_scale ( 1 1 1 ) prexform_shear ( 0 0 0 ) outputsection ( 0 ) outputfront ( on ) outputfrontgrp ( off ) frontgrp ( extrudeFront ) outputback ( off ) outputbackgrp ( off ) backgrp ( extrudeBack ) outputside ( on ) outputsidegrp ( off ) sidegrp ( extrudeSide ) outputfrontseamgrp ( off ) frontseamgrp ( extrudeFrontSeam ) outputbackseamgrp ( off ) backseamgrp ( extrudeBackSeam ) preservegroups ( on ) insettingsection ( 0 ) limitinset ( on ) commonlimit ( on ) normalsection ( 0 ) addvertexnomrals ( off ) cuspangle ( 60 ) cuspfront ( on ) cuspback ( on ) uvssection ( 0 ) genuvs ( on ) uvstyle ( proprtional ) uvscaling ( matchuv ) shapecontrolsection ( 0 ) frontmagnitude ( 1 ) backmagnitude ( 1 ) frontstiffness ( 0 ) backstiffness ( 0 ) interpolation ( rotatingframe ) spacing ( arclengthuniform ) externalspinesection ( 0 ) reversespinedirection ( off ) axialrotation ( 0 ) frontblend ( 0.1 ) backblend ( 0.1 ) thicknesssection ( 0 ) thicknessscale ( 1 ) usethicknessattrib ( on ) thicknessattrib ( thickness ) usethicknessramp ( on ) thicknessramp ( 2 ) twistsection ( 0 ) usetwistattrib ( on ) twistattrib ( twist ) usetwistramp ( on ) twistramp ( 2 ) twistscale ( 180 ) localattribs ( 0 ) uselocalzscaleattrib ( off ) localzscaleattrib ( zscale ) uselocalinsetscaleattrib ( off ) localinsetscaleattrib ( insetscale ) uselocaltwistattrib ( off ) localtwistscaleattrib ( twistscale ) uselocaldivsattrib ( off ) locadivscaleattrib ( divsscale ) localframeattribs ( 0 ) uselocalxattrib ( off ) localxattrib ( localx ) uselocalzattirb ( off ) localzattirb ( localz ) uselocalctrattrib ( off ) localctrattrib ( localctr ) thicknessramp1pos ( 0 ) thicknessramp1value ( 1 ) thicknessramp1interp ( catmull-rom ) thicknessramp2pos ( 1 ) thicknessramp2value ( 1 ) thicknessramp2interp ( catmull-rom ) twistramp1pos ( 0 ) twistramp1value ( 0.5 ) twistramp1interp ( catmull-rom ) twistramp2pos ( 1 ) twistramp2value ( 0.5 ) twistramp2interp ( catmull-rom )
 chlock dent_backsideframe -* +dist
 chautoscope dent_backsideframe -*
 opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off dent_backsideframe
+nbop __netbox8 add dent_backsideframe
 opexprlanguage -s hscript dent_backsideframe
 opuserdata -n '___Version___' -v '20.5.370' dent_backsideframe
 
 # Node reverse_to_face_outside (Sop/reverse)
 opadd -e -n reverse reverse_to_face_outside
-oplocate -x 7.7094800000000001 -y -0.52705000000000002 reverse_to_face_outside
+oplocate -x 7.7094800000000001 -y 0.37590000000000001 reverse_to_face_outside
 opspareds "" reverse_to_face_outside
 opparm -V 20.5.370 reverse_to_face_outside group ( "" ) vtxsort ( reverseu ) vtxuoff ( 0 ) vtxvoff ( 0 )
 chlock reverse_to_face_outside -*
 chautoscope reverse_to_face_outside -*
 opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off reverse_to_face_outside
+nbop __netbox8 add reverse_to_face_outside
 opexprlanguage -s hscript reverse_to_face_outside
 opuserdata -n '___Version___' -v '20.5.370' reverse_to_face_outside
 
@@ -460,31 +594,20 @@ opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on
 opexprlanguage -s hscript add_signboear_up_vector_attrib
 opuserdata -n '___Version___' -v '' add_signboear_up_vector_attrib
 
-# Node normal1 (Sop/normal)
-opadd -e -n normal normal1
-oplocate -x 7.7094800000000001 -y -6.8362499999999997 normal1
-opspareds "" normal1
-opparm -V 20.5.370 normal1 group ( "" ) grouptype ( guess ) overridenormal ( off ) normalattrib ( N ) construct ( 0 ) docompute ( on ) type ( typevertex ) cuspangle ( 30 ) method ( 1 ) origifzero ( on ) modify ( 0 ) normalize ( off ) reverse ( off )
-chlock normal1 -*
-chautoscope normal1 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off normal1
-opexprlanguage -s hscript normal1
-opuserdata -n '___Version___' -v '20.5.370' normal1
-
 # Node merge2 (Sop/merge)
 opadd -e -n merge merge2
-oplocate -x 3.3368799999999998 -y -16.9008 merge2
+oplocate -x 3.3368799999999998 -y -18.070499999999999 merge2
 opspareds "" merge2
 opparm -V 20.5.370 merge2
 chlock merge2 -*
 chautoscope merge2 -*
-opset -d on -r on -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off merge2
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off merge2
 opexprlanguage -s hscript merge2
 opuserdata -n '___Version___' -v '20.5.370' merge2
 
 # Node gen_diagonal_frame (Sop/attribwrangle)
 opadd -e -n attribwrangle gen_diagonal_frame
-oplocate -x -1.7376199999999999 -y -4.69977 gen_diagonal_frame
+oplocate -x -1.7376199999999999 -y -4.6549800000000001 gen_diagonal_frame
 opspareds "" gen_diagonal_frame
 opparm gen_diagonal_frame  bindings ( 0 ) groupbindings ( 0 )
 opparm gen_diagonal_frame folder0 ( 0 0 ) group ( "" ) grouptype ( guess ) class ( detail ) vex_numcount ( 10 ) vex_threadjobsize ( 1024 ) snippet ( 'int numprims = @numprim;\nint numpoints = npoints(0);\nint points_per_prim = numpoints / numprims;\n\n//printf( "%d, %d\\n", numprims, numpoints);\n\nfor( int i=0; i<points_per_prim; ++i )\n{\n    int newprim = addprim(0, "polyline");\n    //int pts[];\n    for( int j=0; j<=numprims; ++j)\n    {\n        addvertex( 0, newprim, points_per_prim*(j%numprims)+i );\n        //append(pts, points_per_prim*j+i);\n    }\n//    printf("%d\\n", pts);\n}\n\nreturn;\nfor( int i=0; i<points_per_prim; ++i )\n{\n    vector  pt0 = point(0, "P", points_per_prim*(0)+i ),\n            pt1 = point(0, "P", points_per_prim*(numprims-1)+i );\n   \n    int newpt = addpoint(0, 0.5*(pt0+pt1) );\n    \n    int newprim = addprim(0, "polyline");\n    addvertex( 0, newprim, points_per_prim+i );\n    addvertex( 0, newprim, newpt );\n//    printf("%d\\n", pts);\n}' ) exportlist ( * ) vex_strict ( off ) autobind ( on ) bindings ( 0 ) groupautobind ( on ) groupbindings ( 0 ) vex_cwdpath ( . ) vex_outputmask ( * ) vex_updatenmls ( off ) vex_matchattrib ( id ) vex_inplace ( off ) vex_selectiongroup ( "" ) vex_precision ( auto )
@@ -552,7 +675,7 @@ opuserdata -n '___Version___' -v '20.5.370' polyexpand2d1
 
 # Node transform1 (Sop/xform)
 opadd -e -n xform transform1
-oplocate -x -0.445824 -y -0.65166999999999997 transform1
+oplocate -x -0.081305699999999995 -y -0.22755800000000001 transform1
 opspareds "" transform1
 chblockbegin
 chadd -t 0 0 transform1 ty
@@ -568,7 +691,7 @@ opuserdata -n '___Version___' -v '20.5.370' transform1
 
 # Node polyextrude4 (Sop/polyextrude::2.0)
 opadd -e -n polyextrude::2.0 polyextrude4
-oplocate -x -3.5129800000000002 -y -0.65166999999999997 polyextrude4
+oplocate -x -3.4971299999999998 -y -0.22755800000000001 polyextrude4
 opspareds "" polyextrude4
 opparm polyextrude4  thicknessramp ( 2 ) twistramp ( 2 )
 opparm -V 20.5.370 polyextrude4 group ( "" ) splittype ( components ) usesplitgroup ( off ) splitgroup ( "" ) extrusionmode ( primnormal ) ptnormalsrc ( precompute ) ptnormalattrib ( N ) dist ( -0.661 ) inset ( 0 ) twist ( 0 ) divs ( 1 ) spinetype ( straight ) stdswitcher ( 0 0 0 ) xformsection ( 0 ) xformfront ( off ) xformspace ( local ) rst ( srt ) xyz ( xyz ) translate ( 0 0 0 ) rotate ( 0 0 0 ) scale ( 1 1 1 ) shear ( 0 0 0 ) pivotxformsection ( 0 ) pivot ( 0 0 0 ) pivotrotate ( 0 0 0 ) prexformsection ( 0 ) prexform_rst ( srt ) prexform_xyz ( xyz ) prexform_translate ( 0 0 0 ) prexform_rotate ( 0 0 0 ) prexform_scale ( 1 1 1 ) prexform_shear ( 0 0 0 ) outputsection ( 0 ) outputfront ( on ) outputfrontgrp ( off ) frontgrp ( extrudeFront ) outputback ( off ) outputbackgrp ( off ) backgrp ( extrudeBack ) outputside ( off ) outputsidegrp ( off ) sidegrp ( extrudeSide ) outputfrontseamgrp ( on ) frontseamgrp ( extrudeFrontSeam ) outputbackseamgrp ( off ) backseamgrp ( extrudeBackSeam ) preservegroups ( on ) insettingsection ( 0 ) limitinset ( on ) commonlimit ( on ) normalsection ( 0 ) addvertexnomrals ( off ) cuspangle ( 60 ) cuspfront ( on ) cuspback ( on ) uvssection ( 0 ) genuvs ( on ) uvstyle ( proprtional ) uvscaling ( matchuv ) shapecontrolsection ( 0 ) frontmagnitude ( 1 ) backmagnitude ( 1 ) frontstiffness ( 0 ) backstiffness ( 0 ) interpolation ( rotatingframe ) spacing ( arclengthuniform ) externalspinesection ( 0 ) reversespinedirection ( off ) axialrotation ( 0 ) frontblend ( 0.1 ) backblend ( 0.1 ) thicknesssection ( 0 ) thicknessscale ( 1 ) usethicknessattrib ( on ) thicknessattrib ( thickness ) usethicknessramp ( on ) thicknessramp ( 2 ) twistsection ( 0 ) usetwistattrib ( on ) twistattrib ( twist ) usetwistramp ( on ) twistramp ( 2 ) twistscale ( 180 ) localattribs ( 0 ) uselocalzscaleattrib ( off ) localzscaleattrib ( zscale ) uselocalinsetscaleattrib ( off ) localinsetscaleattrib ( insetscale ) uselocaltwistattrib ( off ) localtwistscaleattrib ( twistscale ) uselocaldivsattrib ( off ) locadivscaleattrib ( divsscale ) localframeattribs ( 0 ) uselocalxattrib ( off ) localxattrib ( localx ) uselocalzattirb ( off ) localzattirb ( localz ) uselocalctrattrib ( off ) localctrattrib ( localctr ) thicknessramp1pos ( 0 ) thicknessramp1value ( 1 ) thicknessramp1interp ( catmull-rom ) thicknessramp2pos ( 1 ) thicknessramp2value ( 1 ) thicknessramp2interp ( catmull-rom ) twistramp1pos ( 0 ) twistramp1value ( 0.5 ) twistramp1interp ( catmull-rom ) twistramp2pos ( 1 ) twistramp2value ( 0.5 ) twistramp2interp ( catmull-rom )
@@ -581,7 +704,7 @@ opuserdata -n '___Version___' -v '20.5.370' polyextrude4
 
 # Node blast4 (Sop/blast)
 opadd -e -n blast blast4
-oplocate -x -3.5129800000000002 -y -1.39394 blast4
+oplocate -x -3.4971299999999998 -y -0.96982800000000002 blast4
 opspareds "" blast4
 opparm -V 20.5.370 blast4 group ( extrudeFrontSeam ) grouptype ( guess ) computenorms ( off ) negate ( on ) fillhole ( off ) removegrp ( off )
 chlock blast4 -*
@@ -593,7 +716,7 @@ opuserdata -n '___Version___' -v '20.5.370' blast4
 
 # Node sort3 (Sop/sort)
 opadd -e -n sort sort3
-oplocate -x -3.5129800000000002 -y -2.21502 sort3
+oplocate -x -3.4971299999999998 -y -1.79091 sort3
 opspareds "" sort3
 opparm -V 20.5.370 sort3 pointsfolder ( 0 ) ptgroup ( "" ) ptsort ( none ) pointseed ( 0 ) pointoffset ( 0 ) pointprox ( 0 0 0 ) pointobjpath ( "" ) pointdir ( 0 1 0 ) pointexpr ( 0 ) pointattrib ( "" ) pointattribcomp ( 0 ) pointreverse ( on ) primitivesfolder ( 0 ) primgroup ( "" ) primsort ( none ) primseed ( 0 ) primoffset ( 0 ) primprox ( 0 0 0 ) primobjpath ( "" ) primdir ( 0 1 0 ) primexpr ( 0 ) primattrib ( "" ) primattribcomp ( 0 ) primreverse ( off ) vertexprimorder ( on )
 chlock sort3 -*
@@ -605,7 +728,7 @@ opuserdata -n '___Version___' -v '20.5.370' sort3
 
 # Node merge1 (Sop/merge)
 opadd -e -n merge merge1
-oplocate -x -1.73577 -y -3.7762500000000001 merge1
+oplocate -x -1.73577 -y -3.55505 merge1
 opspareds "" merge1
 opparm -V 20.5.370 merge1
 chlock merge1 -*
@@ -617,7 +740,7 @@ opuserdata -n '___Version___' -v '20.5.370' merge1
 
 # Node normal2 (Sop/normal)
 opadd -e -n normal normal2
-oplocate -x -1.7346200000000001 -y -13.790900000000001 normal2
+oplocate -x -1.7346200000000001 -y -13.934799999999999 normal2
 opspareds "" normal2
 opparm -V 20.5.370 normal2 group ( "" ) grouptype ( guess ) overridenormal ( off ) normalattrib ( N ) construct ( 0 ) docompute ( on ) type ( typevertex ) cuspangle ( 60 ) method ( 1 ) origifzero ( on ) modify ( 0 ) normalize ( off ) reverse ( off )
 chlock normal2 -*
@@ -629,7 +752,7 @@ opuserdata -n '___Version___' -v '20.5.370' normal2
 
 # Node split_to_linesgments (Sop/polypath)
 opadd -e -n polypath split_to_linesgments
-oplocate -x -1.7346200000000001 -y -6.9466700000000001 split_to_linesgments
+oplocate -x -1.7346200000000001 -y -7.10642 split_to_linesgments
 opspareds "" split_to_linesgments
 opparm split_to_linesgments connectends ( off ) maxendptdist ( 0.01 ) connectonlytoends ( on ) closeloops ( off )
 chlock split_to_linesgments -*
@@ -653,7 +776,7 @@ opuserdata -n '___Version___' -v '20.5.370' facet1
 
 # Node clean1 (Sop/clean)
 opadd -e -n clean clean1
-oplocate -x -1.7346200000000001 -y -10.2669 clean1
+oplocate -x -1.7346200000000001 -y -10.4108 clean1
 opspareds "" clean1
 opparm clean1 fusepts ( off ) fusedist ( 0.001 ) deldegengeo ( on ) degentol ( 0.001 ) removeunusedgrp ( on ) orientpoly ( off ) reversewinding ( off ) fixoverlap ( off ) deleteoverlap ( on ) delunusedpts ( on ) dodelattribs ( off ) delattribs ( * ) dodelgroups ( off ) delgroups ( * ) delnans ( on ) make_manifold ( off ) delete_small ( on ) prim_count ( 3 )
 chlock clean1 -*
@@ -665,7 +788,7 @@ opuserdata -n '___Version___' -v '' clean1
 
 # Node facet2 (Sop/facet)
 opadd -e -n facet facet2
-oplocate -x -1.7346200000000001 -y -12.355499999999999 facet2
+oplocate -x -1.7346200000000001 -y -12.4994 facet2
 opspareds "" facet2
 opparm -V 20.5.370 facet2 group ( "" ) grouptype ( guess ) prenml ( off ) unit ( off ) unique ( off ) cons ( none ) dist ( 0.001 ) accurate ( on ) inline ( on ) inlinedist ( 0.001 ) orientPolys ( off ) cusp ( off ) angle ( 20 ) remove ( off ) mkplanar ( off ) postnml ( off ) reversenml ( off )
 chlock facet2 -*
@@ -677,7 +800,7 @@ opuserdata -n '___Version___' -v '20.5.370' facet2
 
 # Node fuse1 (Sop/fuse::2.0)
 opadd -e -n fuse::2.0 fuse1
-oplocate -x -1.7346200000000001 -y -11.374499999999999 fuse1
+oplocate -x -1.7346200000000001 -y -11.5184 fuse1
 opspareds "" fuse1
 opparm fuse1  numpointattribs ( 0 ) numgroups ( 0 )
 opparm -V 20.5.370 fuse1 querygroup ( "" ) usetargetgroup ( off ) targetgroup ( "" ) modifyboth ( off ) posattrib ( P ) snapgroup ( 0 ) snaptype ( distancesnap ) algorithm ( lowest ) usetol3d ( on ) tol3d ( 0.001 ) targetptattrib ( snap_to ) targetclass ( point ) usepositionsnapmethod ( on ) positionsnapmethod ( average ) positionsnapweightname ( weight ) useradiusattrib ( off ) radiusattrib ( pscale ) usematchattrib ( off ) matchattrib ( name ) matchtype ( match ) matchtol ( 0 ) gridtype ( spacing ) gridspacing ( 0.1 0.1 0.1 ) gridlines ( 10 10 10 ) gridpow2 ( 3 3 3 ) gridoffset ( 0 0 0 ) gridround ( nearest ) usegridtol ( on ) gridtol ( 10 ) consolidategroup ( 0 ) consolidatesnappedpoints ( on ) keepconsolidatedpoints ( off ) deldegen ( on ) deldegenpoints ( on ) delunusedpoints ( off ) outputgroup ( 0 ) recomputenml ( on ) createsnappedgroup ( off ) snappedgroupname ( snapped_points ) createsnappedattrib ( off ) snappedattribname ( snapped_to ) numpointattribs ( 0 ) numgroups ( 0 )
@@ -690,7 +813,7 @@ opuserdata -n '___Version___' -v '20.5.370' fuse1
 
 # Node set_component_type (Sop/attribwrangle)
 opadd -e -n attribwrangle set_component_type
-oplocate -x -1.7376199999999999 -y -14.7342 set_component_type
+oplocate -x -1.7376199999999999 -y -14.8781 set_component_type
 opspareds "" set_component_type
 opparm set_component_type  bindings ( 0 ) groupbindings ( 0 )
 opparm set_component_type folder0 ( 0 0 ) group ( "" ) grouptype ( guess ) class ( primitive ) vex_numcount ( 10 ) vex_threadjobsize ( 1024 ) snippet ( 's@component_type = "Support";' ) exportlist ( * ) vex_strict ( off ) autobind ( on ) bindings ( 0 ) groupautobind ( on ) groupbindings ( 0 ) vex_cwdpath ( . ) vex_outputmask ( * ) vex_updatenmls ( off ) vex_matchattrib ( id ) vex_inplace ( off ) vex_selectiongroup ( "" ) vex_precision ( auto )
@@ -706,17 +829,17 @@ opadd -e -n attribwrangle check_cwccw
 oplocate -x 0.26480599999999999 -y 6.5071899999999996 check_cwccw
 opspareds "" check_cwccw
 opparm check_cwccw  bindings ( 0 ) groupbindings ( 0 )
-opparm check_cwccw folder0 ( 0 0 ) group ( "" ) grouptype ( guess ) class ( detail ) vex_numcount ( 10 ) vex_threadjobsize ( 1024 ) snippet ( 'i@is_loop = (vertexpoint(0, 0) == vertexpoint(0, nvertices(0)-1));\n//printf( "isloop? %d\\n", @is_loop );\n \n\nint numPoints = npoints(0);\nfloat accum = 0.0;\n\nfor( int i=0; i<numPoints; ++i )\n{\n    vector p1 = point(0,"P",i);\n    vector p2 = point(0,"P", (i+1)%numPoints );\n    float area = p1.x*p2.z - p2.x*p1.z;\n    \n    accum += p1.x*p2.z - p2.x*p1.z; \n    //printf("%d: area=%f\\n", i, area );\n}\n\n//printf( "point ccw? %s (signed area=%f)\\n", (accum>0.0 ? "CW" : "CCW"), accum );\n\ni@is_clockwise = accum>0.0;' ) exportlist ( * ) vex_strict ( off ) autobind ( on ) bindings ( 0 ) groupautobind ( on ) groupbindings ( 0 ) vex_cwdpath ( . ) vex_outputmask ( * ) vex_updatenmls ( off ) vex_matchattrib ( id ) vex_inplace ( off ) vex_selectiongroup ( "" ) vex_precision ( auto )
+opparm check_cwccw folder0 ( 0 0 ) group ( "" ) grouptype ( guess ) class ( detail ) vex_numcount ( 10 ) vex_threadjobsize ( 1024 ) snippet ( 'i@is_loop = (vertexpoint(0, 0) == vertexpoint(0, nvertices(0)-1));\n//printf( "isloop? %d\\n", @is_loop );\n \n\nint numPoints = npoints(0);\nfloat accum = 0.0;\n\nfor( int i=0; i<numPoints; ++i )\n{\n    vector p1 = point(0,"P",i);\n    vector p2 = point(0,"P", (i+1)%numPoints );\n    float area = p1.x*p2.z - p2.x*p1.z;\n    \n    accum += p1.x*p2.z - p2.x*p1.z; \n    //printf("%d: area=%f\\n", i, area );\n}\n\n//printf( "point ccw? %s (signed area=%f)\\n", (accum>0.0 ? "CW" : "CCW"), accum );\n\nf@signed_area = accum;' ) exportlist ( * ) vex_strict ( off ) autobind ( on ) bindings ( 0 ) groupautobind ( on ) groupbindings ( 0 ) vex_cwdpath ( . ) vex_outputmask ( * ) vex_updatenmls ( off ) vex_matchattrib ( id ) vex_inplace ( off ) vex_selectiongroup ( "" ) vex_precision ( auto )
 chlock check_cwccw -*
 chautoscope check_cwccw -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b on check_cwccw
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off check_cwccw
 nbop __netbox6 add check_cwccw
 opexprlanguage -s hscript check_cwccw
 opuserdata -n '___Version___' -v '' check_cwccw
 
 # Node sort7 (Sop/sort)
 opadd -e -n sort sort7
-oplocate -x -3.5129800000000002 -y -2.8787199999999999 sort7
+oplocate -x -3.4971299999999998 -y -2.5985900000000002 sort7
 opspareds "" sort7
 chblockbegin
 chadd -t 0 0 sort7 pointoffset
@@ -732,7 +855,7 @@ opuserdata -n '___Version___' -v '20.5.370' sort7
 
 # Node resample_joints (Sop/resample)
 opadd -e -n resample resample_joints
-oplocate -x -1.7346200000000001 -y 1.81366 resample_joints
+oplocate -x -1.7346200000000001 -y 2.3639600000000001 resample_joints
 opspareds "" resample_joints
 chblockbegin
 chadd -t 0 0 resample_joints length
@@ -748,7 +871,7 @@ opuserdata -n '___Version___' -v '20.5.370' resample_joints
 
 # Node remove_duplicated_points (Sop/fuse::2.0)
 opadd -e -n fuse::2.0 remove_duplicated_points
-oplocate -x -1.7346200000000001 -y 0.76144000000000001 remove_duplicated_points
+oplocate -x -1.7346200000000001 -y 0.74432699999999996 remove_duplicated_points
 opspareds "" remove_duplicated_points
 opparm remove_duplicated_points  numpointattribs ( 0 ) numgroups ( 0 )
 opparm -V 20.5.370 remove_duplicated_points querygroup ( "" ) usetargetgroup ( off ) targetgroup ( "" ) modifyboth ( off ) posattrib ( P ) snapgroup ( 0 ) snaptype ( distancesnap ) algorithm ( lowest ) usetol3d ( on ) tol3d ( 0.001 ) targetptattrib ( snap_to ) targetclass ( point ) usepositionsnapmethod ( on ) positionsnapmethod ( average ) positionsnapweightname ( weight ) useradiusattrib ( off ) radiusattrib ( pscale ) usematchattrib ( off ) matchattrib ( name ) matchtype ( match ) matchtol ( 0 ) gridtype ( spacing ) gridspacing ( 0.1 0.1 0.1 ) gridlines ( 10 10 10 ) gridpow2 ( 3 3 3 ) gridoffset ( 0 0 0 ) gridround ( nearest ) usegridtol ( on ) gridtol ( 10 ) consolidategroup ( 0 ) consolidatesnappedpoints ( on ) keepconsolidatedpoints ( off ) deldegen ( on ) deldegenpoints ( on ) delunusedpoints ( off ) outputgroup ( 0 ) recomputenml ( off ) createsnappedgroup ( off ) snappedgroupname ( snapped_points ) createsnappedattrib ( off ) snappedattribname ( snapped_to ) numpointattribs ( 0 ) numgroups ( 0 )
@@ -766,7 +889,7 @@ opspareds "" sort8
 opparm -V 20.5.370 sort8 pointsfolder ( 0 ) ptgroup ( "" ) ptsort ( none ) pointseed ( 0 ) pointoffset ( 0 ) pointprox ( 0 0 0 ) pointobjpath ( "" ) pointdir ( 0 1 0 ) pointexpr ( 0 ) pointattrib ( "" ) pointattribcomp ( 0 ) pointreverse ( on ) primitivesfolder ( 0 ) primgroup ( "" ) primsort ( none ) primseed ( 0 ) primoffset ( 0 ) primprox ( 0 0 0 ) primobjpath ( "" ) primdir ( 0 1 0 ) primexpr ( 0 ) primattrib ( "" ) primattribcomp ( 0 ) primreverse ( off ) vertexprimorder ( on )
 chlock sort8 -*
 chautoscope sort8 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b on sort8
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off sort8
 nbop __netbox6 add sort8
 opexprlanguage -s hscript sort8
 opuserdata -n '___Version___' -v '20.5.370' sort8
@@ -778,19 +901,19 @@ opspareds "" make_path_clockwise
 opparm make_path_clockwise  tests ( 1 )
 chblockbegin
 chadd -t 0 0 make_path_clockwise expr1
-chkey -t 0 -v 1 -m 0 -a 0 -A 0 -T a  -F 'detail(0,"is_clockwise",0)' make_path_clockwise/expr1
+chkey -t 0 -v 1 -m 0 -a 0 -A 0 -T a  -F 'detail(0,"signed_area",0)>=0' make_path_clockwise/expr1
 chblockend
 opparm -V 20.5.370 make_path_clockwise mergecondition ( all ) testinput ( first ) tests ( 1 ) enable1 ( on ) type1 ( expr ) expr1 ( expr1 ) attribtype1 ( all ) attribowner1 ( detail ) attributes1 ( is_clockwise ) attribvaltype1 ( flt ) attribfloatcomp1 ( equal ) attribstringcomp1 ( equal ) attribval1 ( 0 ) attribsval1 ( "" ) counttype1 ( points ) countgroup1 ( "" ) countcomp1 ( equal ) countval1 ( 0 ) hasinputtype1 ( wired )
 chlock make_path_clockwise -* +expr1
 chautoscope make_path_clockwise -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b on make_path_clockwise
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off make_path_clockwise
 nbop __netbox6 add make_path_clockwise
 opexprlanguage -s hscript make_path_clockwise
 opuserdata -n '___Version___' -v '20.5.370' make_path_clockwise
 
 # Node remove_poiint_normal (Sop/attribwrangle)
 opadd -e -n attribwrangle remove_poiint_normal
-oplocate -x -1.7376199999999999 -y -7.8804999999999996 remove_poiint_normal
+oplocate -x -1.7376199999999999 -y -8.0402500000000003 remove_poiint_normal
 opspareds "" remove_poiint_normal
 opparm remove_poiint_normal  bindings ( 0 ) groupbindings ( 0 )
 opparm remove_poiint_normal folder0 ( 0 0 ) group ( "" ) grouptype ( guess ) class ( point ) vex_numcount ( 10 ) vex_threadjobsize ( 1024 ) snippet ( 'removepointattrib(0, "N");' ) exportlist ( * ) vex_strict ( off ) autobind ( on ) bindings ( 0 ) groupautobind ( on ) groupbindings ( 0 ) vex_cwdpath ( . ) vex_outputmask ( * ) vex_updatenmls ( off ) vex_matchattrib ( id ) vex_inplace ( off ) vex_selectiongroup ( "" ) vex_precision ( auto )
@@ -808,14 +931,14 @@ opspareds "" polypath7
 opparm polypath7 connectends ( off ) maxendptdist ( 0.01 ) connectonlytoends ( on ) closeloops ( off )
 chlock polypath7 -*
 chautoscope polypath7 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b on polypath7
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off polypath7
 nbop __netbox6 add polypath7
 opexprlanguage -s hscript polypath7
 opuserdata -n '___Version___' -v '' polypath7
 
 # Node fuse4 (Sop/fuse::2.0)
 opadd -e -n fuse::2.0 fuse4
-oplocate -x -1.7346200000000001 -y -6.0429199999999996 fuse4
+oplocate -x -1.7346200000000001 -y -6.2026700000000003 fuse4
 opspareds "" fuse4
 opparm fuse4  numpointattribs ( 0 ) numgroups ( 0 )
 opparm -V 20.5.370 fuse4 querygroup ( "" ) usetargetgroup ( off ) targetgroup ( "" ) modifyboth ( off ) posattrib ( P ) snapgroup ( 0 ) snaptype ( distancesnap ) algorithm ( lowest ) usetol3d ( on ) tol3d ( 0.001 ) targetptattrib ( snap_to ) targetclass ( point ) usepositionsnapmethod ( on ) positionsnapmethod ( average ) positionsnapweightname ( weight ) useradiusattrib ( off ) radiusattrib ( pscale ) usematchattrib ( off ) matchattrib ( name ) matchtype ( match ) matchtol ( 0 ) gridtype ( spacing ) gridspacing ( 0.1 0.1 0.1 ) gridlines ( 10 10 10 ) gridpow2 ( 3 3 3 ) gridoffset ( 0 0 0 ) gridround ( nearest ) usegridtol ( on ) gridtol ( 10 ) consolidategroup ( 0 ) consolidatesnappedpoints ( on ) keepconsolidatedpoints ( off ) deldegen ( on ) deldegenpoints ( on ) delunusedpoints ( off ) outputgroup ( 0 ) recomputenml ( on ) createsnappedgroup ( off ) snappedgroupname ( snapped_points ) createsnappedattrib ( off ) snappedattribname ( snapped_to ) numpointattribs ( 0 ) numgroups ( 0 )
@@ -828,12 +951,12 @@ opuserdata -n '___Version___' -v '20.5.370' fuse4
 
 # Node output0 (Sop/output)
 opadd -e -n output output0
-oplocate -x 3.3380299999999998 -y -18.6602 output0
+oplocate -x 3.3380299999999998 -y -19.829899999999999 output0
 opspareds "" output0
 opparm -V 20.5.370 output0 outputidx ( 0 )
 chlock output0 -*
 chautoscope output0 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off output0
+opset -d on -r on -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off output0
 opexprlanguage -s hscript output0
 opuserdata -n '___Version___' -v '20.5.370' output0
 
@@ -852,7 +975,7 @@ opuserdata -n '___Version___' -v '' Dims
 
 # Node transform4 (Sop/xform)
 opadd -e -n xform transform4
-oplocate -x 7.7094800000000001 -y -10.9442 transform4
+oplocate -x 11.283799999999999 -y -12.3889 transform4
 opspareds "" transform4
 chblockbegin
 chadd -t 0 0 transform4 ty
@@ -865,36 +988,186 @@ opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on
 opexprlanguage -s hscript transform4
 opuserdata -n '___Version___' -v '20.5.370' transform4
 
-# Node uvtexture1 (Sop/texture)
-opadd -e -n texture uvtexture1
-oplocate -x 7.7094800000000001 -y -8.2184000000000008 uvtexture1
-opspareds "" uvtexture1
-chblockbegin
-chadd -t 0 0 uvtexture1 su
-chkey -t 0 -v 1 -m 0 -a 0 -A 0 -T a  -F '1/detail("../Dims", "BillboardHeights", ch("../BillboardHeght"))' uvtexture1/su
-chadd -t 0 0 uvtexture1 sv
-chkey -t 0 -v 1 -m 0 -a 0 -A 0 -T a  -F '1.0/detail("../Dims", "BillboardHeights", ch("../BillboardHeght"))' uvtexture1/sv
-chblockend
-opparm -V 20.5.370 uvtexture1 uvattrib ( uv ) group ( Signboard ) type ( face ) axis ( y ) campath ( "" ) coord ( vertex ) s ( su sv 1 ) offset ( 0 0 0 ) angle ( 0 ) fixseams ( off )
-chlock uvtexture1 -*
-chautoscope uvtexture1 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off uvtexture1
-opexprlanguage -s hscript uvtexture1
-opuserdata -n '___Version___' -v '20.5.370' uvtexture1
-
 # Node material2 (Sop/material)
 opadd -e -n material material2
-oplocate -x 7.7094800000000001 -y -9.68825 material2
+oplocate -x 11.283799999999999 -y -10.601699999999999 material2
 opspareds "" material2
 opparm material2  num_materials ( 1 ) num_local1 ( 0 )
-opparm -V 20.5.370 material2 style ( primitive ) uselabels ( uselabels ) createstylesheets ( off ) fullpath ( on ) num_materials ( 1 ) group1 ( 5 ) shop_materialpath1 ( /mat/metalgrate ) localvar1 ( off ) mergeoverride1 ( off ) num_local1 ( 0 )
+opparm -V 20.5.370 material2 style ( primitive ) uselabels ( uselabels ) createstylesheets ( off ) fullpath ( on ) num_materials ( 1 ) group1 ( '@component_type=Signboard_*' ) shop_materialpath1 ( /mat/metalgrate ) localvar1 ( off ) mergeoverride1 ( off ) num_local1 ( 0 )
 chlock material2 -*
 chautoscope material2 -*
-opset -d off -r off -h on -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off material2
+opset -d off -r off -h on -f off -y off -t off -l off -s off -u off -F on -c on -e on -b on material2
 opexprlanguage -s hscript material2
 opuserdata -n '___Version___' -v '20.5.370' material2
 opuserdata -n '___toolcount___' -v '2' material2
 opuserdata -n '___toolid___' -v 'assign_material' material2
+
+# Node resample1 (Sop/resample)
+opadd -e -n resample resample1
+oplocate -x 14.037699999999999 -y 0.37590000000000001 resample1
+opspareds "" resample1
+chblockbegin
+chadd -t 0 0 resample1 length
+chkey -t 0 -v 4 -m 0 -a 0 -A 0 -T a  -F 'detail("../Dims", "BillboardHeights", ch("../BillboardHeght")) * (1 + sqrt(5))/2' resample1/length
+chblockend
+opparm -V 20.5.370 resample1 group ( "" ) maintainprimorder ( on ) lod ( 1 ) edge ( on ) method ( dist ) measure ( arc ) dolength ( on ) length ( length ) dosegs ( off ) segs ( 10 ) useattribs ( on ) allequal ( on ) last ( off ) randomshift ( off ) onlypoints ( off ) treatpolysas ( straight ) outputsubdpoly ( off ) doptdistattr ( off ) ptdistattr ( ptdist ) dotangentattr ( off ) tangentattr ( tangentu ) docurveuattr ( off ) curveuattr ( curveu ) docurvenumattr ( off ) curvenumattr ( curvenum )
+chlock resample1 -*
+chautoscope resample1 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off resample1
+nbop __netbox7 add resample1
+opexprlanguage -s hscript resample1
+opuserdata -n '___Version___' -v '20.5.370' resample1
+
+# Node polyextrude_height1 (Sop/polyextrude::2.0)
+opadd -e -n polyextrude::2.0 polyextrude_height1
+oplocate -x 14.037699999999999 -y -2.3808199999999999 polyextrude_height1
+opspareds "" polyextrude_height1
+opparm polyextrude_height1  thicknessramp ( 2 ) twistramp ( 2 )
+chblockbegin
+chadd -t 0 0 polyextrude_height1 dist
+chkey -t 0 -v 0.73299999999999998 -m 0 -a 0 -A 0 -T a  -F 'detail("../Dims", "BillboardHeights", ch("../BillboardHeght"))' polyextrude_height1/dist
+chblockend
+opparm -V 20.5.370 polyextrude_height1 group ( "" ) splittype ( components ) usesplitgroup ( off ) splitgroup ( "" ) extrusionmode ( pointnormal ) ptnormalsrc ( attribute ) ptnormalattrib ( SignboardUp ) dist ( dist ) inset ( 0 ) twist ( 0 ) divs ( 1 ) spinetype ( straight ) stdswitcher ( 0 0 0 ) xformsection ( 0 ) xformfront ( off ) xformspace ( local ) rst ( srt ) xyz ( xyz ) translate ( 0 0 0 ) rotate ( 0 0 0 ) scale ( 1 1 1 ) shear ( 0 0 0 ) pivotxformsection ( 0 ) pivot ( 0 0 0 ) pivotrotate ( 0 0 0 ) prexformsection ( 0 ) prexform_rst ( srt ) prexform_xyz ( xyz ) prexform_translate ( 0 0 0 ) prexform_rotate ( 0 0 0 ) prexform_scale ( 1 1 1 ) prexform_shear ( 0 0 0 ) outputsection ( 0 ) outputfront ( on ) outputfrontgrp ( off ) frontgrp ( extrudeFront ) outputback ( off ) outputbackgrp ( off ) backgrp ( extrudeBack ) outputside ( on ) outputsidegrp ( off ) sidegrp ( extrudeSide ) outputfrontseamgrp ( off ) frontseamgrp ( extrudeFrontSeam ) outputbackseamgrp ( off ) backseamgrp ( extrudeBackSeam ) preservegroups ( on ) insettingsection ( 0 ) limitinset ( on ) commonlimit ( on ) normalsection ( 0 ) addvertexnomrals ( off ) cuspangle ( 60 ) cuspfront ( on ) cuspback ( on ) uvssection ( 0 ) genuvs ( on ) uvstyle ( proprtional ) uvscaling ( matchuv ) shapecontrolsection ( 0 ) frontmagnitude ( 1 ) backmagnitude ( 1 ) frontstiffness ( 0 ) backstiffness ( 0 ) interpolation ( rotatingframe ) spacing ( arclengthuniform ) externalspinesection ( 0 ) reversespinedirection ( off ) axialrotation ( 0 ) frontblend ( 0.1 ) backblend ( 0.1 ) thicknesssection ( 0 ) thicknessscale ( 1 ) usethicknessattrib ( on ) thicknessattrib ( thickness ) usethicknessramp ( on ) thicknessramp ( 2 ) twistsection ( 0 ) usetwistattrib ( on ) twistattrib ( twist ) usetwistramp ( on ) twistramp ( 2 ) twistscale ( 180 ) localattribs ( 0 ) uselocalzscaleattrib ( off ) localzscaleattrib ( zscale ) uselocalinsetscaleattrib ( off ) localinsetscaleattrib ( insetscale ) uselocaltwistattrib ( off ) localtwistscaleattrib ( twistscale ) uselocaldivsattrib ( off ) locadivscaleattrib ( divsscale ) localframeattribs ( 0 ) uselocalxattrib ( off ) localxattrib ( localx ) uselocalzattirb ( off ) localzattirb ( localz ) uselocalctrattrib ( off ) localctrattrib ( localctr ) thicknessramp1pos ( 0 ) thicknessramp1value ( 1 ) thicknessramp1interp ( catmull-rom ) thicknessramp2pos ( 1 ) thicknessramp2value ( 1 ) thicknessramp2interp ( catmull-rom ) twistramp1pos ( 0 ) twistramp1value ( 0.5 ) twistramp1interp ( catmull-rom ) twistramp2pos ( 1 ) twistramp2value ( 0.5 ) twistramp2interp ( catmull-rom )
+chlock polyextrude_height1 -* +dist
+chautoscope polyextrude_height1 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off polyextrude_height1
+nbop __netbox7 add polyextrude_height1
+opexprlanguage -s hscript polyextrude_height1
+opuserdata -n '___Version___' -v '20.5.370' polyextrude_height1
+
+# Node reverse_to_face_outside1 (Sop/reverse)
+opadd -e -n reverse reverse_to_face_outside1
+oplocate -x 14.037699999999999 -y -1.45953 reverse_to_face_outside1
+opspareds "" reverse_to_face_outside1
+opparm -V 20.5.370 reverse_to_face_outside1 group ( "" ) vtxsort ( reverseu ) vtxuoff ( 0 ) vtxvoff ( 0 )
+chlock reverse_to_face_outside1 -*
+chautoscope reverse_to_face_outside1 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off reverse_to_face_outside1
+nbop __netbox7 add reverse_to_face_outside1
+opexprlanguage -s hscript reverse_to_face_outside1
+opuserdata -n '___Version___' -v '20.5.370' reverse_to_face_outside1
+
+# Node polyextrude_front_panel1 (Sop/polyextrude::2.0)
+opadd -e -n polyextrude::2.0 polyextrude_front_panel1
+oplocate -x 14.037699999999999 -y -3.29209 polyextrude_front_panel1
+opspareds "" polyextrude_front_panel1
+opparm polyextrude_front_panel1  thicknessramp ( 2 ) twistramp ( 2 )
+chblockbegin
+chadd -t 0 0 polyextrude_front_panel1 dist
+chkey -t 0 -v 0.21199999999999999 -m 0 -a 0 -A 0 -T a  -F 'ch("../BillboardFrontOffset")' polyextrude_front_panel1/dist
+chblockend
+opparm -V 20.5.370 polyextrude_front_panel1 group ( "" ) splittype ( components ) usesplitgroup ( off ) splitgroup ( "" ) extrusionmode ( primnormal ) ptnormalsrc ( precompute ) ptnormalattrib ( N ) dist ( dist ) inset ( 0 ) twist ( 0 ) divs ( 1 ) spinetype ( straight ) stdswitcher ( 0 0 0 ) xformsection ( 0 ) xformfront ( off ) xformspace ( local ) rst ( srt ) xyz ( xyz ) translate ( 0 0 0 ) rotate ( 0 0 0 ) scale ( 1 1 1 ) shear ( 0 0 0 ) pivotxformsection ( 0 ) pivot ( 0 0 0 ) pivotrotate ( 0 0 0 ) prexformsection ( 0 ) prexform_rst ( srt ) prexform_xyz ( xyz ) prexform_translate ( 0 0 0 ) prexform_rotate ( 0 0 0 ) prexform_scale ( 1 1 1 ) prexform_shear ( 0 0 0 ) outputsection ( 0 ) outputfront ( on ) outputfrontgrp ( off ) frontgrp ( "" ) outputback ( off ) outputbackgrp ( off ) backgrp ( extrudeBack ) outputside ( off ) outputsidegrp ( off ) sidegrp ( extrudeSide ) outputfrontseamgrp ( off ) frontseamgrp ( extrudeFrontSeam ) outputbackseamgrp ( off ) backseamgrp ( extrudeBackSeam ) preservegroups ( on ) insettingsection ( 0 ) limitinset ( on ) commonlimit ( on ) normalsection ( 0 ) addvertexnomrals ( off ) cuspangle ( 60 ) cuspfront ( on ) cuspback ( on ) uvssection ( 0 ) genuvs ( on ) uvstyle ( proprtional ) uvscaling ( matchuv ) shapecontrolsection ( 0 ) frontmagnitude ( 1 ) backmagnitude ( 1 ) frontstiffness ( 0 ) backstiffness ( 0 ) interpolation ( rotatingframe ) spacing ( arclengthuniform ) externalspinesection ( 0 ) reversespinedirection ( off ) axialrotation ( 0 ) frontblend ( 0.1 ) backblend ( 0.1 ) thicknesssection ( 0 ) thicknessscale ( 1 ) usethicknessattrib ( on ) thicknessattrib ( thickness ) usethicknessramp ( on ) thicknessramp ( 2 ) twistsection ( 0 ) usetwistattrib ( on ) twistattrib ( twist ) usetwistramp ( on ) twistramp ( 2 ) twistscale ( 180 ) localattribs ( 0 ) uselocalzscaleattrib ( off ) localzscaleattrib ( zscale ) uselocalinsetscaleattrib ( off ) localinsetscaleattrib ( insetscale ) uselocaltwistattrib ( off ) localtwistscaleattrib ( twistscale ) uselocaldivsattrib ( off ) locadivscaleattrib ( divsscale ) localframeattribs ( 0 ) uselocalxattrib ( off ) localxattrib ( localx ) uselocalzattirb ( off ) localzattirb ( localz ) uselocalctrattrib ( off ) localctrattrib ( localctr ) thicknessramp1pos ( 0 ) thicknessramp1value ( 1 ) thicknessramp1interp ( catmull-rom ) thicknessramp2pos ( 1 ) thicknessramp2value ( 1 ) thicknessramp2interp ( catmull-rom ) twistramp1pos ( 0 ) twistramp1value ( 0.5 ) twistramp1interp ( catmull-rom ) twistramp2pos ( 1 ) twistramp2value ( 0.5 ) twistramp2interp ( catmull-rom )
+chlock polyextrude_front_panel1 -* +dist
+chautoscope polyextrude_front_panel1 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off polyextrude_front_panel1
+nbop __netbox7 add polyextrude_front_panel1
+opexprlanguage -s hscript polyextrude_front_panel1
+opuserdata -n '___Version___' -v '20.5.370' polyextrude_front_panel1
+
+# Node polypath_connect_close_end_points (Sop/polypath)
+opadd -e -n polypath polypath_connect_close_end_points
+oplocate -x 14.037699999999999 -y -0.53877600000000003 polypath_connect_close_end_points
+opspareds "" polypath_connect_close_end_points
+opparm polypath_connect_close_end_points connectends ( on ) maxendptdist ( 0.01 ) connectonlytoends ( on ) closeloops ( off )
+chlock polypath_connect_close_end_points -*
+chautoscope polypath_connect_close_end_points -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off polypath_connect_close_end_points
+nbop __netbox7 add polypath_connect_close_end_points
+opexprlanguage -s hscript polypath_connect_close_end_points
+opuserdata -n '___Version___' -v '' polypath_connect_close_end_points
+
+# Node polypath_connect_close_end_points1 (Sop/polypath)
+opadd -e -n polypath polypath_connect_close_end_points1
+oplocate -x -1.7346200000000001 -y 1.5858399999999999 polypath_connect_close_end_points1
+opspareds "" polypath_connect_close_end_points1
+opparm polypath_connect_close_end_points1 connectends ( on ) maxendptdist ( 0.01 ) connectonlytoends ( on ) closeloops ( off )
+chlock polypath_connect_close_end_points1 -*
+chautoscope polypath_connect_close_end_points1 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off polypath_connect_close_end_points1
+nbop __netbox4 add polypath_connect_close_end_points1
+opexprlanguage -s hscript polypath_connect_close_end_points1
+opuserdata -n '___Version___' -v '' polypath_connect_close_end_points1
+
+# Node uvtexture2 (Sop/texture)
+opadd -e -n texture uvtexture2
+oplocate -x 14.037699999999999 -y -5.5707800000000001 uvtexture2
+opspareds "" uvtexture2
+chblockbegin
+chadd -t 0 0 uvtexture2 su
+chkey -t 0 -v 1 -m 0 -a 0 -A 0 -T a  -F '1/detail("../Dims", "BillboardHeights", ch("../BillboardHeght"))' uvtexture2/su
+chadd -t 0 0 uvtexture2 sv
+chkey -t 0 -v 1 -m 0 -a 0 -A 0 -T a  -F '1.0/detail("../Dims", "BillboardHeights", ch("../BillboardHeght"))' uvtexture2/sv
+chblockend
+opparm -V 20.5.370 uvtexture2 uvattrib ( uv ) group ( "" ) type ( face ) axis ( y ) campath ( "" ) coord ( vertex ) s ( su sv 1 ) offset ( 0 0 0 ) angle ( 0 ) fixseams ( off )
+chlock uvtexture2 -* +su +sv
+chautoscope uvtexture2 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off uvtexture2
+nbop __netbox7 add uvtexture2
+opexprlanguage -s hscript uvtexture2
+opuserdata -n '___Version___' -v '20.5.370' uvtexture2
+
+# Node attribwrangle6 (Sop/attribwrangle)
+opadd -e -n attribwrangle attribwrangle6
+oplocate -x 14.034700000000001 -y -4.3193099999999998 attribwrangle6
+opspareds "" attribwrangle6
+opparm attribwrangle6  bindings ( 0 ) groupbindings ( 0 )
+opparm attribwrangle6 folder0 ( 0 0 ) group ( "" ) grouptype ( guess ) class ( primitive ) vex_numcount ( 10 ) vex_threadjobsize ( 1024 ) snippet ( 's@component_type = "Signboard_" + itoa(@primnum);\n' ) exportlist ( * ) vex_strict ( off ) autobind ( on ) bindings ( 0 ) groupautobind ( on ) groupbindings ( 0 ) vex_cwdpath ( . ) vex_outputmask ( * ) vex_updatenmls ( off ) vex_matchattrib ( id ) vex_inplace ( off ) vex_selectiongroup ( "" ) vex_precision ( auto )
+chlock attribwrangle6 -*
+chautoscope attribwrangle6 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off attribwrangle6
+nbop __netbox7 add attribwrangle6
+opexprlanguage -s hscript attribwrangle6
+opuserdata -n '___Version___' -v '' attribwrangle6
+
+# Node merge3 (Sop/merge)
+opadd -e -n merge merge3
+oplocate -x 11.2827 -y -7.4903899999999997 merge3
+opspareds "" merge3
+opparm -V 20.5.370 merge3
+chlock merge3 -*
+chautoscope merge3 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off merge3
+opexprlanguage -s hscript merge3
+opuserdata -n '___Version___' -v '20.5.370' merge3
+
+# Node fuse5 (Sop/fuse::2.0)
+opadd -e -n fuse::2.0 fuse5
+oplocate -x 11.283799999999999 -y -8.4725900000000003 fuse5
+opspareds "" fuse5
+opparm fuse5  numpointattribs ( 0 ) numgroups ( 0 )
+opparm -V 20.5.370 fuse5 querygroup ( "" ) usetargetgroup ( off ) targetgroup ( "" ) modifyboth ( off ) posattrib ( P ) snapgroup ( 0 ) snaptype ( distancesnap ) algorithm ( lowest ) usetol3d ( on ) tol3d ( 0.001 ) targetptattrib ( snap_to ) targetclass ( point ) usepositionsnapmethod ( on ) positionsnapmethod ( average ) positionsnapweightname ( weight ) useradiusattrib ( off ) radiusattrib ( pscale ) usematchattrib ( off ) matchattrib ( name ) matchtype ( match ) matchtol ( 0 ) gridtype ( spacing ) gridspacing ( 0.1 0.1 0.1 ) gridlines ( 10 10 10 ) gridpow2 ( 3 3 3 ) gridoffset ( 0 0 0 ) gridround ( nearest ) usegridtol ( on ) gridtol ( 10 ) consolidategroup ( 0 ) consolidatesnappedpoints ( on ) keepconsolidatedpoints ( off ) deldegen ( on ) deldegenpoints ( on ) delunusedpoints ( off ) outputgroup ( 0 ) recomputenml ( on ) createsnappedgroup ( off ) snappedgroupname ( snapped_points ) createsnappedattrib ( off ) snappedattribname ( snapped_to ) numpointattribs ( 0 ) numgroups ( 0 )
+chlock fuse5 -*
+chautoscope fuse5 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off fuse5
+opexprlanguage -s hscript fuse5
+opuserdata -n '___Version___' -v '20.5.370' fuse5
+
+# Node attribrandomize1 (Sop/attribrandomize)
+opadd -e -n attribrandomize attribrandomize1
+oplocate -x 11.2804 -y -11.451700000000001 attribrandomize1
+opspareds "" attribrandomize1
+opparm attribrandomize1  ramp ( 3 ) values ( 4 )
+chblockbegin
+chadd -t 0 0 attribrandomize1 value0
+chkey -t 0 -v 0 -m 0 -a 0 -A 0 -T a  -F fff attribrandomize1/value0
+chblockend
+opparm attribrandomize1 group ( '@component_type=Signboard_*' ) grouptype ( guess ) class ( primitive ) name ( shop_materialpath ) operation ( set ) scale ( 1 ) folder0 ( 1 1 ) distribution ( discrete ) dimensions ( 3 ) allsame ( off ) constvalue ( 0 0 0 0 ) valuea ( 0 0 0 0 ) valueb ( 1 1 1 1 ) probvalueb ( 0.5 ) min ( 0 0 0 0 ) max ( 1 1 1 1 ) mindiscrete ( 0 0 0 0 ) maxdiscrete ( 9 9 9 9 ) stepsize ( 1 1 1 1 ) median ( 0 0 0 0 ) onesidedmedian ( 1 1 1 1 ) medianattrib ( "" ) stddev ( 1 1 1 1 ) onesidedstddev ( 0.2 0.2 0.2 0.2 ) usefit0to ( off ) fit0to ( 0 ) usefit1to ( off ) fit1to ( 1 ) ramp ( 3 ) useminlimit ( off ) minlimit ( -100 -100 -100 -100 ) useonesidedmin ( off ) onesidedmin ( 0.1 0.1 0.1 0.1 ) usemaxlimit ( off ) maxlimit ( 100 100 100 100 ) useconeangle ( off ) coneangle ( 30 ) usepowerbias ( off ) powerbias ( 0 ) direction ( 1 0 0 0 ) directionattrib ( "" ) folder ( 0 ) valuetype ( string ) values ( 4 ) normalize ( off ) visualize ( off ) nvisualizepts ( 10000 ) usefractionattrib ( off ) fractionattrib ( fraction ) seed ( 9918 ) useseedattrib ( off ) seedattrib ( id ) ramp1pos ( 0 ) ramp1value ( 0 ) ramp1interp ( monotonecubic ) ramp2pos ( 0.5 ) ramp2value ( 0.5 ) ramp2interp ( monotonecubic ) ramp3pos ( 1 ) ramp3value ( 1 ) ramp3interp ( monotonecubic ) strvalue0 ( /mat/metalgrate ) value0 ( value0 ) weight0 ( 1 ) strvalue1 ( /mat/goldpaint/ ) value1 ( 0 ) weight1 ( 1 ) strvalue2 ( /mat/metalgrate/ ) value2 ( 0 ) weight2 ( 1 ) strvalue3 ( /mat/woodchips/ ) value3 ( 0 ) weight3 ( 1 )
+chlock attribrandomize1 -*
+chautoscope attribrandomize1 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off attribrandomize1
+opexprlanguage -s hscript attribrandomize1
+opuserdata -n '___Version___' -v '' attribrandomize1
+
+# Node normal1 (Sop/normal)
+opadd -e -n normal normal1
+oplocate -x 11.283799999999999 -y -9.6016700000000004 normal1
+opspareds "" normal1
+opparm -V 20.5.370 normal1 group ( "" ) grouptype ( guess ) overridenormal ( off ) normalattrib ( N ) construct ( 0 ) docompute ( on ) type ( typevertex ) cuspangle ( 30 ) method ( 1 ) origifzero ( on ) modify ( 0 ) normalize ( off ) reverse ( off )
+chlock normal1 -*
+chautoscope normal1 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off normal1
+opexprlanguage -s hscript normal1
+opuserdata -n '___Version___' -v '20.5.370' normal1
 
 # Sticky Note __stickynote1
 python -c 'hou.pwd().createStickyNote("__stickynote1")'
@@ -903,10 +1176,10 @@ python -c 'hou.pwd().findStickyNote("__stickynote1").setText("・PolyExctrudeの
 python -c 'hou.pwd().findStickyNote("__stickynote1").setTextSize(0)'
 python -c 'hou.pwd().findStickyNote("__stickynote1").setTextColor(hou.Color((0, 0, 0)))'
 python -c 'hou.pwd().findStickyNote("__stickynote1").setDrawBackground(True)'
-python -c 'hou.pwd().findStickyNote("__stickynote1").setPosition(hou.Vector2(13.8027, -3.27443))'
+python -c 'hou.pwd().findStickyNote("__stickynote1").setPosition(hou.Vector2(20.7041, -3.43875))'
 python -c 'hou.pwd().findStickyNote("__stickynote1").setSize(hou.Vector2(10.476, 3.35823))'
 python -c 'hou.pwd().findStickyNote("__stickynote1").setMinimized(False)'
-oporder -e polyextrude_height sweep3 attribwrangle3 polyextrude_front_panel create_backdideframe dent_backsideframe reverse_to_face_outside add_signboear_up_vector_attrib normal1 merge2 gen_diagonal_frame grid3 blast3 attribwrangle5 polyexpand2d1 transform1 polyextrude4 blast4 sort3 merge1 normal2 split_to_linesgments facet1 clean1 facet2 fuse1 set_component_type check_cwccw sort7 resample_joints remove_duplicated_points sort8 make_path_clockwise remove_poiint_normal polypath7 fuse4 output0 Dims transform4 uvtexture1 material2 
+oporder -e polyextrude_height sweep3 attribwrangle3 polyextrude_backside create_backsideframe dent_backsideframe reverse_to_face_outside add_signboear_up_vector_attrib merge2 gen_diagonal_frame grid3 blast3 attribwrangle5 polyexpand2d1 transform1 polyextrude4 blast4 sort3 merge1 normal2 split_to_linesgments facet1 clean1 facet2 fuse1 set_component_type check_cwccw sort7 resample_joints remove_duplicated_points sort8 make_path_clockwise remove_poiint_normal polypath7 fuse4 output0 Dims transform4 material2 resample1 polyextrude_height1 reverse_to_face_outside1 polyextrude_front_panel1 polypath_connect_close_end_points polypath_connect_close_end_points1 uvtexture2 attribwrangle6 merge3 fuse5 attribrandomize1 normal1 
 opcf ..
 
 # Node foreach_end1 (Sop/block_end)
@@ -962,7 +1235,7 @@ opspareds "" transform1
 opparm -V 20.5.370 transform1 group ( "" ) grouptype ( guess ) xOrd ( srt ) rOrd ( xyz ) t ( 497.4136682958922 0 1057.1817198934193 ) r ( 0 0 0 ) s ( 1 1 1 ) shear ( 0 0 0 ) scale ( 1 ) parmgroup_pivotxform ( 0 ) p ( 0 0 0 ) pr ( 0 0 0 ) parmgroup_prexform ( 0 ) prexform_xOrd ( srt ) prexform_rOrd ( xyz ) prexform_t ( 0 0 0 ) prexform_r ( 0 0 0 ) prexform_s ( 1 1 1 ) prexform_shear ( 0 0 0 ) movecentroid ( 0 ) movepivot ( 0 ) attribs ( * ) updatenmls ( off ) updateaffectednmls ( on ) vlength ( on ) invertxform ( off ) addattrib ( off ) outputattrib ( xform ) outputmerge ( post )
 chlock transform1 -*
 chautoscope transform1 -* +tx +ty +tz +rx +ry +rz +sx +sy +sz
-opset -d off -r off -h off -f off -y off -t on -l off -s off -u off -F on -c on -e on -b off transform1
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off transform1
 opexprlanguage -s hscript transform1
 opuserdata -n '___Version___' -v '20.5.370' transform1
 
@@ -973,7 +1246,7 @@ opspareds "" null1
 opparm -V 20.5.370 null1 copyinput ( on ) cacheinput ( off )
 chlock null1 -*
 chautoscope null1 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off null1
+opset -d on -r on -h off -f off -y off -t on -l off -s off -u off -F on -c on -e on -b off null1
 opexprlanguage -s hscript null1
 opuserdata -n '___Version___' -v '20.5.370' null1
 
@@ -984,7 +1257,7 @@ opspareds "" blast2
 opparm -V 20.5.370 blast2 group ( '@component_type=="Backside"' ) grouptype ( guess ) computenorms ( off ) negate ( on ) fillhole ( off ) removegrp ( off )
 chlock blast2 -*
 chautoscope blast2 -*
-opset -d on -r on -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b on blast2
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b on blast2
 opexprlanguage -s hscript blast2
 opuserdata -n '___Version___' -v '20.5.370' blast2
 
@@ -993,10 +1266,10 @@ opadd -e -n attribwrangle check_cwccw
 oplocate -x -4.2458499999999999 -y 3.80775 check_cwccw
 opspareds "" check_cwccw
 opparm check_cwccw  bindings ( 0 ) groupbindings ( 0 )
-opparm check_cwccw folder0 ( 0 0 ) group ( "" ) grouptype ( guess ) class ( detail ) vex_numcount ( 10 ) vex_threadjobsize ( 1024 ) snippet ( 'i@is_loop = (vertexpoint(0, 0) == vertexpoint(0, nvertices(0)-1));\n//printf( "isloop? %d\\n", @is_loop );\n \n\nint numPoints = npoints(0);\nfloat accum = 0.0;\n\nfor( int i=0; i<numPoints; ++i )\n{\n    vector p1 = point(0,"P",i);\n    vector p2 = point(0,"P", (i+1)%numPoints );\n    float area = p1.x*p2.z - p2.x*p1.z;\n    \n    accum += p1.x*p2.z - p2.x*p1.z; \n    //printf("%d: area=%f\\n", i, area );\n}\n\n//printf( "point ccw? %s (signed area=%f)\\n", (accum>0.0 ? "CW" : "CCW"), accum );\n\ni@is_clockwise = accum>0.0;' ) exportlist ( * ) vex_strict ( off ) autobind ( on ) bindings ( 0 ) groupautobind ( on ) groupbindings ( 0 ) vex_cwdpath ( . ) vex_outputmask ( * ) vex_updatenmls ( off ) vex_matchattrib ( id ) vex_inplace ( off ) vex_selectiongroup ( "" ) vex_precision ( auto )
+opparm check_cwccw folder0 ( 0 0 ) group ( "" ) grouptype ( guess ) class ( detail ) vex_numcount ( 10 ) vex_threadjobsize ( 1024 ) snippet ( 'i@is_loop = (vertexpoint(0, 0) == vertexpoint(0, nvertices(0)-1));\n//printf( "isloop? %d\\n", @is_loop );\n \n\nint numPoints = npoints(0);\nfloat accum = 0.0;\n\nfor( int i=0; i<numPoints; ++i )\n{\n    vector p1 = point(0,"P",i);\n    vector p2 = point(0,"P", (i+1)%numPoints );\n    float area = p1.x*p2.z - p2.x*p1.z;\n    \n    accum += p1.x*p2.z - p2.x*p1.z; \n    //printf("%d: area=%f\\n", i, area );\n}\n\n//printf( "point ccw? %s (signed area=%f)\\n", (accum>0.0 ? "CW" : "CCW"), accum );\n\nf@signed_area = accum;' ) exportlist ( * ) vex_strict ( off ) autobind ( on ) bindings ( 0 ) groupautobind ( on ) groupbindings ( 0 ) vex_cwdpath ( . ) vex_outputmask ( * ) vex_updatenmls ( off ) vex_matchattrib ( id ) vex_inplace ( off ) vex_selectiongroup ( "" ) vex_precision ( auto )
 chlock check_cwccw -*
 chautoscope check_cwccw -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off check_cwccw
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b on check_cwccw
 nbop __netbox6 add check_cwccw
 opexprlanguage -s hscript check_cwccw
 opuserdata -n '___Version___' -v '' check_cwccw
@@ -1008,7 +1281,7 @@ opspareds "" sort8
 opparm -V 20.5.370 sort8 pointsfolder ( 0 ) ptgroup ( "" ) ptsort ( none ) pointseed ( 0 ) pointoffset ( 0 ) pointprox ( 0 0 0 ) pointobjpath ( "" ) pointdir ( 0 1 0 ) pointexpr ( 0 ) pointattrib ( "" ) pointattribcomp ( 0 ) pointreverse ( on ) primitivesfolder ( 0 ) primgroup ( "" ) primsort ( none ) primseed ( 0 ) primoffset ( 0 ) primprox ( 0 0 0 ) primobjpath ( "" ) primdir ( 0 1 0 ) primexpr ( 0 ) primattrib ( "" ) primattribcomp ( 0 ) primreverse ( off ) vertexprimorder ( on )
 chlock sort8 -*
 chautoscope sort8 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off sort8
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b on sort8
 nbop __netbox6 add sort8
 opexprlanguage -s hscript sort8
 opuserdata -n '___Version___' -v '20.5.370' sort8
@@ -1020,24 +1293,24 @@ opspareds "" make_path_clockwise
 opparm make_path_clockwise  tests ( 1 )
 chblockbegin
 chadd -t 0 0 make_path_clockwise expr1
-chkey -t 0 -v 1 -m 0 -a 0 -A 0 -T a  -F 'detail(0,"is_clockwise",0)' make_path_clockwise/expr1
+chkey -t 0 -v 1 -m 0 -a 0 -A 0 -T a  -F 'detail(0,"signed_area",0)>=0' make_path_clockwise/expr1
 chblockend
 opparm -V 20.5.370 make_path_clockwise mergecondition ( all ) testinput ( first ) tests ( 1 ) enable1 ( on ) type1 ( expr ) expr1 ( expr1 ) attribtype1 ( all ) attribowner1 ( detail ) attributes1 ( is_clockwise ) attribvaltype1 ( flt ) attribfloatcomp1 ( equal ) attribstringcomp1 ( equal ) attribval1 ( 0 ) attribsval1 ( "" ) counttype1 ( points ) countgroup1 ( "" ) countcomp1 ( equal ) countval1 ( 0 ) hasinputtype1 ( wired )
 chlock make_path_clockwise -* +expr1
 chautoscope make_path_clockwise -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off make_path_clockwise
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b on make_path_clockwise
 nbop __netbox6 add make_path_clockwise
 opexprlanguage -s hscript make_path_clockwise
 opuserdata -n '___Version___' -v '20.5.370' make_path_clockwise
 
 # Node polypath7 (Sop/polypath)
 opadd -e -n polypath polypath7
-oplocate -x -5.3330399999999996 -y 2.3712599999999999 polypath7
+oplocate -x -5.3330399999999996 -y 2.38497 polypath7
 opspareds "" polypath7
 opparm polypath7 connectends ( off ) maxendptdist ( 0.01 ) connectonlytoends ( on ) closeloops ( off )
 chlock polypath7 -*
 chautoscope polypath7 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off polypath7
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b on polypath7
 nbop __netbox6 add polypath7
 opexprlanguage -s hscript polypath7
 opuserdata -n '___Version___' -v '' polypath7
@@ -1078,6 +1351,7 @@ opuserdata -n '___Version___' -v '20.5.370' copnet1
 oporder -e comp1 copnet1 
 opcf ..
 opcf mat
+oporder -e metalgrate bricks goldpaint woodchips 
 opcf ..
 
 # Node stage (/stage)
@@ -1136,16 +1410,15 @@ opwire -n line1 -4 switch2
 opwire -n add2 -0 polypath6
 opwire -n make_path_clockwise -0 billboard
 opcf billboard
-opwire -n add_signboear_up_vector_attrib -0 polyextrude_height
+opwire -n reverse_to_face_outside -0 polyextrude_height
 opwire -n remove_poiint_normal -0 sweep3
 opwire -n facet1 -1 sweep3
 opwire -n dent_backsideframe -0 attribwrangle3
-opwire -n reverse_to_face_outside -0 polyextrude_front_panel
-opwire -n polyextrude_front_panel -0 create_backdideframe
-opwire -n create_backdideframe -0 dent_backsideframe
-opwire -n polyextrude_height -0 reverse_to_face_outside
+opwire -n polyextrude_height -0 polyextrude_backside
+opwire -n polyextrude_backside -0 create_backsideframe
+opwire -n create_backsideframe -0 dent_backsideframe
+opwire -n add_signboear_up_vector_attrib -0 reverse_to_face_outside
 opwire -n make_path_clockwise -0 add_signboear_up_vector_attrib
-opwire -n attribwrangle3 -0 normal1
 opwire -n set_component_type -0 merge2
 opwire -n transform4 -1 merge2
 opwire -n merge1 -0 gen_diagonal_frame
@@ -1168,7 +1441,7 @@ opwire -n normal2 -0 set_component_type
 opwire -n -i 0 -0 check_cwccw
 opwire -n sort3 -0 sort7
 opwire -n make_path_clockwise -0 resample_joints
-opwire -n resample_joints -0 remove_duplicated_points
+opwire -n polypath_connect_close_end_points1 -0 remove_duplicated_points
 opwire -n check_cwccw -0 sort8
 opwire -n polypath7 -0 make_path_clockwise
 opwire -n check_cwccw -1 make_path_clockwise
@@ -1176,9 +1449,21 @@ opwire -n split_to_linesgments -0 remove_poiint_normal
 opwire -n sort8 -0 polypath7
 opwire -n gen_diagonal_frame -0 fuse4
 opwire -n merge2 -0 output0
-opwire -n material2 -0 transform4
-opwire -n normal1 -0 uvtexture1
-opwire -n uvtexture1 -0 material2
+opwire -n attribrandomize1 -0 transform4
+opwire -n normal1 -0 material2
+opwire -n add_signboear_up_vector_attrib -0 resample1
+opwire -n reverse_to_face_outside1 -0 polyextrude_height1
+opwire -n polypath_connect_close_end_points -0 reverse_to_face_outside1
+opwire -n polyextrude_height1 -0 polyextrude_front_panel1
+opwire -n resample1 -0 polypath_connect_close_end_points
+opwire -n resample_joints -0 polypath_connect_close_end_points1
+opwire -n attribwrangle6 -0 uvtexture2
+opwire -n polyextrude_front_panel1 -0 attribwrangle6
+opwire -n attribwrangle3 -0 merge3
+opwire -n uvtexture2 -1 merge3
+opwire -n merge3 -0 fuse5
+opwire -n material2 -0 attribrandomize1
+opwire -n fuse5 -0 normal1
 opcf ..
 opwire -n billboard -0 foreach_end1
 opwire -n switch2 -0 foreach_begin1
