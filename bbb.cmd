@@ -25,21 +25,21 @@ opcf test_stair
 
 # Network Box __netbox1
 nbadd __netbox1
-nblocate -x -4.35472 -y -5.03797 __netbox1
+nblocate -x -27.8972 -y -5.16517 __netbox1
 nbsize -w 9.95358 -h 10.5815 __netbox1
 nbset  -m off __netbox1
 nbcolor -c 0.52 0.52 0.52 __netbox1
 
 # Network Box __netbox2
 nbadd __netbox2
-nblocate -x 8.92013 -y -4.21537 __netbox2
-nbsize -w 8.85682 -h 9.41214 __netbox2
+nblocate -x -10.7708 -y -11.1662 __netbox2
+nbsize -w 28.8378 -h 16.3629 __netbox2
 nbset  -m off __netbox2
 nbcolor -c 0.52 0.52 0.52 __netbox2
 
 # Node extrude_along_normal (Sop/polyextrude::2.0)
 opadd -e -n polyextrude::2.0 extrude_along_normal
-oplocate -x -1.1643399999999999 -y -0.024125899999999999 extrude_along_normal
+oplocate -x -24.706800000000001 -y -0.15132100000000001 extrude_along_normal
 opspareds "" extrude_along_normal
 opparm extrude_along_normal  thicknessramp ( 2 ) twistramp ( 2 )
 opparm -V 20.5.370 extrude_along_normal group ( "" ) splittype ( components ) usesplitgroup ( off ) splitgroup ( "" ) extrusionmode ( pointnormal ) ptnormalsrc ( attribute ) ptnormalattrib ( N_ ) dist ( 1 ) inset ( 0 ) twist ( 0 ) divs ( 1 ) spinetype ( straight ) stdswitcher ( 0 0 0 ) xformsection ( 0 ) xformfront ( off ) xformspace ( global ) rst ( srt ) xyz ( xyz ) translate ( 1 1 1 ) rotate ( 0 0 0 ) scale ( 1 1 1 ) shear ( 0 0 0 ) pivotxformsection ( 0 ) pivot ( 0 0 0 ) pivotrotate ( 0 0 0 ) prexformsection ( 0 ) prexform_rst ( srt ) prexform_xyz ( xyz ) prexform_translate ( 0 0 0 ) prexform_rotate ( 0 0 0 ) prexform_scale ( 1 1 1 ) prexform_shear ( 0 0 0 ) outputsection ( 0 ) outputfront ( on ) outputfrontgrp ( off ) frontgrp ( extrudeFront ) outputback ( off ) outputbackgrp ( off ) backgrp ( extrudeBack ) outputside ( on ) outputsidegrp ( off ) sidegrp ( extrudeSide ) outputfrontseamgrp ( off ) frontseamgrp ( extrudeFrontSeam ) outputbackseamgrp ( off ) backseamgrp ( extrudeBackSeam ) preservegroups ( on ) insettingsection ( 0 ) limitinset ( on ) commonlimit ( on ) normalsection ( 0 ) addvertexnomrals ( off ) cuspangle ( 60 ) cuspfront ( on ) cuspback ( on ) uvssection ( 0 ) genuvs ( on ) uvstyle ( proprtional ) uvscaling ( matchuv ) shapecontrolsection ( 0 ) frontmagnitude ( 1 ) backmagnitude ( 1 ) frontstiffness ( 0 ) backstiffness ( 0 ) interpolation ( rotatingframe ) spacing ( arclengthuniform ) externalspinesection ( 0 ) reversespinedirection ( off ) axialrotation ( 0 ) frontblend ( 0.1 ) backblend ( 0.1 ) thicknesssection ( 0 ) thicknessscale ( 1 ) usethicknessattrib ( on ) thicknessattrib ( thickness ) usethicknessramp ( on ) thicknessramp ( 2 ) twistsection ( 0 ) usetwistattrib ( on ) twistattrib ( twist ) usetwistramp ( on ) twistramp ( 2 ) twistscale ( 180 ) localattribs ( 0 ) uselocalzscaleattrib ( off ) localzscaleattrib ( zscale ) uselocalinsetscaleattrib ( off ) localinsetscaleattrib ( insetscale ) uselocaltwistattrib ( off ) localtwistscaleattrib ( twistscale ) uselocaldivsattrib ( off ) locadivscaleattrib ( divsscale ) localframeattribs ( 0 ) uselocalxattrib ( off ) localxattrib ( localx ) uselocalzattirb ( off ) localzattirb ( localz ) uselocalctrattrib ( off ) localctrattrib ( localctr ) thicknessramp1pos ( 0 ) thicknessramp1value ( 1 ) thicknessramp1interp ( catmull-rom ) thicknessramp2pos ( 1 ) thicknessramp2value ( 1 ) thicknessramp2interp ( catmull-rom ) twistramp1pos ( 0 ) twistramp1value ( 0.5 ) twistramp1interp ( catmull-rom ) twistramp2pos ( 1 ) twistramp2value ( 0.5 ) twistramp2interp ( catmull-rom )
@@ -52,7 +52,7 @@ opuserdata -n '___Version___' -v '20.5.370' extrude_along_normal
 
 # Node create_y_up_normal_attribute (Sop/attribcreate::2.0)
 opadd -e -n attribcreate::2.0 create_y_up_normal_attribute
-oplocate -x -1.1677900000000001 -y 1.1926600000000001 create_y_up_normal_attribute
+oplocate -x -24.7103 -y 1.0654600000000001 create_y_up_normal_attribute
 opspareds "" create_y_up_normal_attribute
 opparm create_y_up_normal_attribute  numattr ( 1 )
 opparm -V 20.5.370 create_y_up_normal_attribute group ( "" ) grouptype ( guess ) encodenames ( off ) numattr ( 1 ) enable1 ( on ) name1 ( N_ ) existing1 ( better ) createvarmap1 ( off ) varname1 ( "" ) class1 ( point ) savetoinfo1 ( off ) type1 ( vector ) typeinfo1 ( guess ) precision1 ( auto ) size1 ( 1 ) default1v ( 0 1 0 0 ) writevalues1 ( on ) uselocal1 ( on ) value1v ( 0 1 0 0 ) string1 ( "" ) numattr_spacerparm1 ( )
@@ -65,7 +65,7 @@ opuserdata -n '___Version___' -v '20.5.370' create_y_up_normal_attribute
 
 # Node polyextrude1 (Sop/polyextrude::2.0)
 opadd -e -n polyextrude::2.0 polyextrude1
-oplocate -x -2.1433599999999999 -y -1.1639900000000001 polyextrude1
+oplocate -x -25.6859 -y -1.2911900000000001 polyextrude1
 opspareds "" polyextrude1
 opparm polyextrude1  thicknessramp ( 2 ) twistramp ( 2 )
 opparm -V 20.5.370 polyextrude1 group ( "" ) splittype ( components ) usesplitgroup ( off ) splitgroup ( "" ) extrusionmode ( primnormal ) ptnormalsrc ( precompute ) ptnormalattrib ( N ) dist ( 0.673 ) inset ( 0 ) twist ( 0 ) divs ( 1 ) spinetype ( straight ) stdswitcher ( 0 0 0 ) xformsection ( 0 ) xformfront ( off ) xformspace ( local ) rst ( srt ) xyz ( xyz ) translate ( 0 0 0 ) rotate ( 0 0 0 ) scale ( 1 1 1 ) shear ( 0 0 0 ) pivotxformsection ( 0 ) pivot ( 0 0 0 ) pivotrotate ( 0 0 0 ) prexformsection ( 0 ) prexform_rst ( srt ) prexform_xyz ( xyz ) prexform_translate ( 0 0 0 ) prexform_rotate ( 0 0 0 ) prexform_scale ( 1 1 1 ) prexform_shear ( 0 0 0 ) outputsection ( 0 ) outputfront ( on ) outputfrontgrp ( off ) frontgrp ( extrudeFront ) outputback ( off ) outputbackgrp ( off ) backgrp ( extrudeBack ) outputside ( on ) outputsidegrp ( off ) sidegrp ( extrudeSide ) outputfrontseamgrp ( off ) frontseamgrp ( extrudeFrontSeam ) outputbackseamgrp ( off ) backseamgrp ( extrudeBackSeam ) preservegroups ( on ) insettingsection ( 0 ) limitinset ( on ) commonlimit ( on ) normalsection ( 0 ) addvertexnomrals ( off ) cuspangle ( 60 ) cuspfront ( on ) cuspback ( on ) uvssection ( 0 ) genuvs ( on ) uvstyle ( proprtional ) uvscaling ( matchuv ) shapecontrolsection ( 0 ) frontmagnitude ( 1 ) backmagnitude ( 1 ) frontstiffness ( 0 ) backstiffness ( 0 ) interpolation ( rotatingframe ) spacing ( arclengthuniform ) externalspinesection ( 0 ) reversespinedirection ( off ) axialrotation ( 0 ) frontblend ( 0.1 ) backblend ( 0.1 ) thicknesssection ( 0 ) thicknessscale ( 1 ) usethicknessattrib ( on ) thicknessattrib ( thickness ) usethicknessramp ( on ) thicknessramp ( 2 ) twistsection ( 0 ) usetwistattrib ( on ) twistattrib ( twist ) usetwistramp ( on ) twistramp ( 2 ) twistscale ( 180 ) localattribs ( 0 ) uselocalzscaleattrib ( off ) localzscaleattrib ( zscale ) uselocalinsetscaleattrib ( off ) localinsetscaleattrib ( insetscale ) uselocaltwistattrib ( off ) localtwistscaleattrib ( twistscale ) uselocaldivsattrib ( off ) locadivscaleattrib ( divsscale ) localframeattribs ( 0 ) uselocalxattrib ( off ) localxattrib ( localx ) uselocalzattirb ( off ) localzattirb ( localz ) uselocalctrattrib ( off ) localctrattrib ( localctr ) thicknessramp1pos ( 0 ) thicknessramp1value ( 1 ) thicknessramp1interp ( catmull-rom ) thicknessramp2pos ( 1 ) thicknessramp2value ( 1 ) thicknessramp2interp ( catmull-rom ) twistramp1pos ( 0 ) twistramp1value ( 0.5 ) twistramp1interp ( catmull-rom ) twistramp2pos ( 1 ) twistramp2value ( 0.5 ) twistramp2interp ( catmull-rom )
@@ -78,7 +78,7 @@ opuserdata -n '___Version___' -v '20.5.370' polyextrude1
 
 # Node polyextrude2 (Sop/polyextrude::2.0)
 opadd -e -n polyextrude::2.0 polyextrude2
-oplocate -x 0.38810899999999998 -y -1.1639900000000001 polyextrude2
+oplocate -x -23.154399999999999 -y -1.2911900000000001 polyextrude2
 opspareds "" polyextrude2
 opparm polyextrude2  thicknessramp ( 2 ) twistramp ( 2 )
 opparm -V 20.5.370 polyextrude2 group ( "" ) splittype ( components ) usesplitgroup ( off ) splitgroup ( "" ) extrusionmode ( primnormal ) ptnormalsrc ( precompute ) ptnormalattrib ( N ) dist ( -0.108 ) inset ( 0 ) twist ( 0 ) divs ( 1 ) spinetype ( straight ) stdswitcher ( 0 0 0 ) xformsection ( 0 ) xformfront ( off ) xformspace ( local ) rst ( srt ) xyz ( xyz ) translate ( 0 0 0 ) rotate ( 0 0 0 ) scale ( 1 1 1 ) shear ( 0 0 0 ) pivotxformsection ( 0 ) pivot ( 0 0 0 ) pivotrotate ( 0 0 0 ) prexformsection ( 0 ) prexform_rst ( srt ) prexform_xyz ( xyz ) prexform_translate ( 0 0 0 ) prexform_rotate ( 0 0 0 ) prexform_scale ( 1 1 1 ) prexform_shear ( 0 0 0 ) outputsection ( 0 ) outputfront ( on ) outputfrontgrp ( off ) frontgrp ( extrudeFront ) outputback ( off ) outputbackgrp ( off ) backgrp ( extrudeBack ) outputside ( on ) outputsidegrp ( off ) sidegrp ( extrudeSide ) outputfrontseamgrp ( off ) frontseamgrp ( extrudeFrontSeam ) outputbackseamgrp ( off ) backseamgrp ( extrudeBackSeam ) preservegroups ( on ) insettingsection ( 0 ) limitinset ( on ) commonlimit ( on ) normalsection ( 0 ) addvertexnomrals ( off ) cuspangle ( 60 ) cuspfront ( on ) cuspback ( on ) uvssection ( 0 ) genuvs ( on ) uvstyle ( proprtional ) uvscaling ( matchuv ) shapecontrolsection ( 0 ) frontmagnitude ( 1 ) backmagnitude ( 1 ) frontstiffness ( 0 ) backstiffness ( 0 ) interpolation ( rotatingframe ) spacing ( arclengthuniform ) externalspinesection ( 0 ) reversespinedirection ( off ) axialrotation ( 0 ) frontblend ( 0.1 ) backblend ( 0.1 ) thicknesssection ( 0 ) thicknessscale ( 1 ) usethicknessattrib ( on ) thicknessattrib ( thickness ) usethicknessramp ( on ) thicknessramp ( 2 ) twistsection ( 0 ) usetwistattrib ( on ) twistattrib ( twist ) usetwistramp ( on ) twistramp ( 2 ) twistscale ( 180 ) localattribs ( 0 ) uselocalzscaleattrib ( off ) localzscaleattrib ( zscale ) uselocalinsetscaleattrib ( off ) localinsetscaleattrib ( insetscale ) uselocaltwistattrib ( off ) localtwistscaleattrib ( twistscale ) uselocaldivsattrib ( off ) locadivscaleattrib ( divsscale ) localframeattribs ( 0 ) uselocalxattrib ( off ) localxattrib ( localx ) uselocalzattirb ( off ) localzattirb ( localz ) uselocalctrattrib ( off ) localctrattrib ( localctr ) thicknessramp1pos ( 0 ) thicknessramp1value ( 1 ) thicknessramp1interp ( catmull-rom ) thicknessramp2pos ( 1 ) thicknessramp2value ( 1 ) thicknessramp2interp ( catmull-rom ) twistramp1pos ( 0 ) twistramp1value ( 0.5 ) twistramp1interp ( catmull-rom ) twistramp2pos ( 1 ) twistramp2value ( 0.5 ) twistramp2interp ( catmull-rom )
@@ -91,7 +91,7 @@ opuserdata -n '___Version___' -v '20.5.370' polyextrude2
 
 # Node reverse1 (Sop/reverse)
 opadd -e -n reverse reverse1
-oplocate -x 0.38810899999999998 -y -2.0800700000000001 reverse1
+oplocate -x -23.154399999999999 -y -2.2072699999999998 reverse1
 opspareds "" reverse1
 opparm -V 20.5.370 reverse1 group ( "" ) vtxsort ( reverseu ) vtxuoff ( 0 ) vtxvoff ( 0 )
 chlock reverse1 -*
@@ -103,7 +103,7 @@ opuserdata -n '___Version___' -v '20.5.370' reverse1
 
 # Node merge1 (Sop/merge)
 opadd -e -n merge merge1
-oplocate -x -0.94304600000000005 -y -3.2492399999999999 merge1
+oplocate -x -24.485600000000002 -y -3.3764400000000001 merge1
 opspareds "" merge1
 opparm -V 20.5.370 merge1
 chlock merge1 -*
@@ -115,7 +115,7 @@ opuserdata -n '___Version___' -v '20.5.370' merge1
 
 # Node wall (Sop/box)
 opadd -e -n box wall
-oplocate -x -3.95472 -y -3.2523900000000001 wall
+oplocate -x -27.497199999999999 -y -3.3795899999999999 wall
 opspareds "" wall
 opparm -V 20.5.370 wall type ( polymesh ) surftype ( quads ) consolidatepts ( on ) size ( 2.9962007999420166 6 1.5405474305152893 ) t ( 0.9981003999710083 3 0.7542568147182465 ) r ( 0 0 0 ) scale ( 1 ) divrate ( 2 2 2 ) orderrate ( 4 4 4 ) dodivs ( off ) divs ( 3 3 3 ) rebar ( off ) orientedbbox ( off ) vertexnormals ( off )
 chlock wall -*
@@ -127,7 +127,7 @@ opuserdata -n '___Version___' -v '20.5.370' wall
 
 # Node boolean1 (Sop/boolean::2.0)
 opadd -e -n boolean::2.0 boolean1
-oplocate -x -1.7461800000000001 -y -4.8379700000000003 boolean1
+oplocate -x -25.288699999999999 -y -4.9651699999999996 boolean1
 opspareds "" boolean1
 opparm -V 20.5.370 boolean1 inputa ( 0 ) agroup ( "" ) asurface ( solid ) resolvea ( on ) inputb ( 0 ) bgroup ( "" ) bsurface ( solid ) resolveb ( on ) output ( 0 ) booleanop ( subtract ) subtractchoices ( aminusb ) shatterchoices ( apieces ) opencurvesonly ( on ) generateaaseams ( on ) generatebbseams ( on ) generateabseams ( on ) adepth ( 1 1000 ) bdepth ( 1 1000 ) windingop ( arange ) mergenbrs ( off ) detriangulate ( all ) removeinlinepoints ( on ) uniqueseams ( off ) correctnormals ( on ) useaxapolys ( off ) axapolys ( axapolys ) useaxbpolys ( off ) axbpolys ( axbpolys ) useaxalist ( off ) axalist ( axalist ) useaxblist ( off ) axblist ( axblist ) collapsetinyedges ( on ) lengththreshold ( 1e-5 ) outputprimgroups ( 0 ) useapolys ( off ) apolys ( apolys ) useainsideb ( off ) ainsideb ( ainsideb ) useaoutsideb ( off ) aoutsideb ( aoutsideb ) usebpolys ( off ) bpolys ( bpolys ) usebinsidea ( off ) binsidea ( binsidea ) useboutsidea ( off ) boutsidea ( boutsidea ) useaboverlap ( off ) aboverlap ( aboverlap ) useaonlypieces ( off ) aonlypieces ( apieces ) usebonlypieces ( off ) bonlypieces ( bpieces ) useabpieces ( off ) abpieces ( abpieces ) usereversedpolys ( off ) reversedpolys ( reversed ) outputedgegroups ( 0 ) useaaseamedges ( off ) aaseamedges ( aseams ) usebbseamedges ( off ) bbseamedges ( bseams ) useabseamedges ( off ) abseamedges ( abseams )
 chlock boolean1 -*
@@ -139,7 +139,7 @@ opuserdata -n '___Version___' -v '20.5.370' boolean1
 
 # Node slope_outline1 (Sop/add)
 opadd -e -n add slope_outline1
-oplocate -x 2.3407200000000001 -y 5.0434799999999997 slope_outline1
+oplocate -x -21.201799999999999 -y 4.9162800000000004 slope_outline1
 opspareds "" slope_outline1
 opparm slope_outline1  points ( 8 ) prims ( 1 )
 opparm -V 20.5.370 slope_outline1 stdswitcher ( 0 0 0 ) keep ( off ) points ( 8 ) remove ( off ) switcher ( 1 1 ) prims ( 1 ) group ( "" ) add ( all ) inc ( 2 ) attrname ( "" ) closedall ( off ) addparticlesystem ( off ) particlegroup ( "" ) appendunusedtoparticlesystem ( off ) prim0 ( "" ) closed0 ( off ) usept0 ( on ) pt0 ( -1 0 0 ) weight0 ( 1 ) usept1 ( on ) pt1 ( 0 0 0 ) weight1 ( 1 ) usept2 ( on ) pt2 ( 1.5 1.5 0 ) weight2 ( 1 ) usept3 ( on ) pt3 ( 2.5 1.5 0 ) weight3 ( 1 ) usept4 ( on ) pt4 ( 2.5 1.5 1.5 ) weight4 ( 1 ) usept5 ( on ) pt5 ( 1.5 1.5 1.5 ) weight5 ( 1 ) usept6 ( on ) pt6 ( 0 3 1.5 ) weight6 ( 1 ) usept7 ( on ) pt7 ( -1 3 1.5 ) weight7 ( 1 )
@@ -152,7 +152,7 @@ opuserdata -n '___Version___' -v '20.5.370' slope_outline1
 
 # Node transform1 (Sop/xform)
 opadd -e -n xform transform1
-oplocate -x 3.1988599999999998 -y 4.2426000000000004 transform1
+oplocate -x -20.343599999999999 -y 4.1154000000000002 transform1
 opspareds "" transform1
 opparm -V 20.5.370 transform1 group ( "" ) grouptype ( guess ) xOrd ( srt ) rOrd ( xyz ) t ( 0 3 0 ) r ( 0 0 0 ) s ( 1 1 1 ) shear ( 0 0 0 ) scale ( 1 ) parmgroup_pivotxform ( 0 ) p ( 0 0 0 ) pr ( 0 0 0 ) parmgroup_prexform ( 0 ) prexform_xOrd ( srt ) prexform_rOrd ( xyz ) prexform_t ( 0 0 0 ) prexform_r ( 0 0 0 ) prexform_s ( 1 1 1 ) prexform_shear ( 0 0 0 ) movecentroid ( 0 ) movepivot ( 0 ) attribs ( * ) updatenmls ( off ) updateaffectednmls ( on ) vlength ( on ) invertxform ( off ) addattrib ( off ) outputattrib ( xform ) outputmerge ( post )
 chlock transform1 -*
@@ -164,7 +164,7 @@ opuserdata -n '___Version___' -v '20.5.370' transform1
 
 # Node merge2 (Sop/merge)
 opadd -e -n merge merge2
-oplocate -x 2.3395700000000001 -y 3.41682 merge2
+oplocate -x -21.2029 -y 3.2896200000000002 merge2
 opspareds "" merge2
 opparm -V 20.5.370 merge2
 chlock merge2 -*
@@ -176,7 +176,7 @@ opuserdata -n '___Version___' -v '20.5.370' merge2
 
 # Node join1 (Sop/join)
 opadd -e -n join join1
-oplocate -x 2.3407200000000001 -y 2.35968 join1
+oplocate -x -21.201799999999999 -y 2.2324799999999998 join1
 opspareds "" join1
 opparm -V 20.5.370 join1 group ( "" ) blend ( off ) tolerance ( 1 ) bias ( 0.5 ) knotmult ( off ) proximity ( on ) dir ( ujoin ) joinop ( all ) inc ( 1 ) loop ( off ) prim ( off ) onlyconnected ( off )
 chlock join1 -*
@@ -186,67 +186,9 @@ nbop __netbox1 add join1
 opexprlanguage -s hscript join1
 opuserdata -n '___Version___' -v '20.5.370' join1
 
-# Node add1 (Sop/add)
-opadd -e -n add add1
-oplocate -x 23.445399999999999 -y -1.21241 add1
-opspareds "" add1
-opparm add1  points ( 5 ) prims ( 1 )
-opparm -V 20.5.370 add1 stdswitcher ( 0 0 0 ) keep ( off ) points ( 5 ) remove ( off ) switcher ( 1 1 ) prims ( 1 ) group ( "" ) add ( all ) inc ( 2 ) attrname ( "" ) closedall ( off ) addparticlesystem ( off ) particlegroup ( "" ) appendunusedtoparticlesystem ( off ) prim0 ( "" ) closed0 ( off ) usept0 ( on ) pt0 ( 0.04693397265933452 0 -1.1211090683937073 ) weight0 ( 1 ) usept1 ( on ) pt1 ( 0.9179575431140821 0.4228181838989258 -0.981203481554985 ) weight1 ( 1 ) usept2 ( on ) pt2 ( 1.0031775944334043 0.9870059490203857 -0.28903056876137057 ) weight2 ( 1 ) usept3 ( on ) pt3 ( 2.2936745248307218 0.8086819052696228 0.34 ) weight3 ( 1 ) usept4 ( on ) pt4 ( 3.0282336070248252 0.8 0.34291172815371995 ) weight4 ( 1 )
-chlock add1 -*
-chautoscope add1 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b on add1
-opexprlanguage -s hscript add1
-opuserdata -n '___Version___' -v '20.5.370' add1
-
-# Node polyextrude3 (Sop/polyextrude::2.0)
-opadd -e -n polyextrude::2.0 polyextrude3
-oplocate -x 22.831900000000001 -y -6.5576999999999996 polyextrude3
-opspareds "" polyextrude3
-opparm polyextrude3  thicknessramp ( 2 ) twistramp ( 2 )
-opparm -V 20.5.370 polyextrude3 group ( "" ) splittype ( components ) usesplitgroup ( off ) splitgroup ( "" ) extrusionmode ( pointnormal ) ptnormalsrc ( attribute ) ptnormalattrib ( N ) dist ( 0.645 ) inset ( 0 ) twist ( 0 ) divs ( 1 ) spinetype ( straight ) stdswitcher ( 0 0 0 ) xformsection ( 0 ) xformfront ( off ) xformspace ( local ) rst ( srt ) xyz ( xyz ) translate ( 0 0 0 ) rotate ( 0 0 0 ) scale ( 1 1 1 ) shear ( 0 0 0 ) pivotxformsection ( 0 ) pivot ( 0 0 0 ) pivotrotate ( 0 0 0 ) prexformsection ( 0 ) prexform_rst ( srt ) prexform_xyz ( xyz ) prexform_translate ( 0 0 0 ) prexform_rotate ( 0 0 0 ) prexform_scale ( 1 1 1 ) prexform_shear ( 0 0 0 ) outputsection ( 0 ) outputfront ( on ) outputfrontgrp ( off ) frontgrp ( extrudeFront ) outputback ( off ) outputbackgrp ( off ) backgrp ( extrudeBack ) outputside ( on ) outputsidegrp ( off ) sidegrp ( extrudeSide ) outputfrontseamgrp ( off ) frontseamgrp ( extrudeFrontSeam ) outputbackseamgrp ( off ) backseamgrp ( extrudeBackSeam ) preservegroups ( on ) insettingsection ( 0 ) limitinset ( on ) commonlimit ( on ) normalsection ( 0 ) addvertexnomrals ( off ) cuspangle ( 60 ) cuspfront ( on ) cuspback ( on ) uvssection ( 0 ) genuvs ( on ) uvstyle ( proprtional ) uvscaling ( matchuv ) shapecontrolsection ( 0 ) frontmagnitude ( 1 ) backmagnitude ( 1 ) frontstiffness ( 0 ) backstiffness ( 0 ) interpolation ( rotatingframe ) spacing ( arclengthuniform ) externalspinesection ( 1 ) reversespinedirection ( off ) axialrotation ( 0 ) frontblend ( 0.1 ) backblend ( 0.1 ) thicknesssection ( 0 ) thicknessscale ( 1 ) usethicknessattrib ( on ) thicknessattrib ( thickness ) usethicknessramp ( on ) thicknessramp ( 2 ) twistsection ( 0 ) usetwistattrib ( on ) twistattrib ( twist ) usetwistramp ( on ) twistramp ( 2 ) twistscale ( 180 ) localattribs ( 0 ) uselocalzscaleattrib ( off ) localzscaleattrib ( zscale ) uselocalinsetscaleattrib ( off ) localinsetscaleattrib ( insetscale ) uselocaltwistattrib ( off ) localtwistscaleattrib ( twistscale ) uselocaldivsattrib ( off ) locadivscaleattrib ( divsscale ) localframeattribs ( 0 ) uselocalxattrib ( off ) localxattrib ( localx ) uselocalzattirb ( off ) localzattirb ( localz ) uselocalctrattrib ( off ) localctrattrib ( localctr ) thicknessramp1pos ( 0 ) thicknessramp1value ( 1 ) thicknessramp1interp ( catmull-rom ) thicknessramp2pos ( 1 ) thicknessramp2value ( 1 ) thicknessramp2interp ( catmull-rom ) twistramp1pos ( 0 ) twistramp1value ( 0.5 ) twistramp1interp ( catmull-rom ) twistramp2pos ( 1 ) twistramp2value ( 0.5 ) twistramp2interp ( catmull-rom )
-chlock polyextrude3 -*
-chautoscope polyextrude3 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b on polyextrude3
-opexprlanguage -s hscript polyextrude3
-opuserdata -n '___Version___' -v '20.5.370' polyextrude3
-
-# Node attribwrangle2 (Sop/attribwrangle)
-opadd -e -n attribwrangle attribwrangle2
-oplocate -x 23.227699999999999 -y -4.9045399999999999 attribwrangle2
-opspareds "" attribwrangle2
-opparm attribwrangle2  bindings ( 0 ) groupbindings ( 0 )
-opparm attribwrangle2 folder0 ( 0 0 ) group ( "" ) grouptype ( guess ) class ( detail ) vex_numcount ( 10 ) vex_threadjobsize ( 1024 ) snippet ( 'vector2 edge_bisects[];\n\n\nfor( int i=0; i<@numpt-1; ++i )\n{\n//printf("%d\\n", @numpt);\n    //int i_prev = (i-1) % @numpt;\n    int i_next = (i+1) % @numpt;\n    \n    //vector p_prev = point(0,"P", i_prev);\n    vector p_curr = point(0,"P", i);\n    vector p_next = point(0,"P", i_next);\n    \n    vector v_next = p_next - p_curr;\n    vector2 b_next = set(v_next.z, -v_next.x);\n\n    //printf( "%f\\n", p );\n    append( edge_bisects, normalize(set(v_next.z, -v_next.x)) );\n}\n\n\n\nsetpointattrib(0, "N", 0, set(edge_bisects[0].x, 0, edge_bisects[0].y) );\nsetpointattrib(0, "N", @numpt-1, set(edge_bisects[@numpt-2].x, 0, edge_bisects[@numpt-2].y) );\nfor( int i=1; i<@numpt-1; ++i )\n{\n    vector2 n = normalize(edge_bisects[i] + edge_bisects[i-1]);\n    setpointattrib(0, "N", i, set(n.x, 0, n.y) );\n}\n\n\n\n// DIRECTIONS\n//vector dir_next = normalize( @P - point(0, \'P\', pt_next) );\n//vector dir_prev = normalize( @P - point(0, \'P\', pt_prev) );\n//vector dir_avg  = normalize(dir_next + dir_prev);\n\n\n//vector2 d_next = normalize( @P - point(0, \'P\', pt_next) );\n//vector2 n_curr = set(@P.z, -@P.x);\n\n\n\n// NORMALS\n//v@N = normalize(set(dir_avg.x, 0, dir_avg.z));' ) exportlist ( * ) vex_strict ( off ) autobind ( on ) bindings ( 0 ) groupautobind ( on ) groupbindings ( 0 ) vex_cwdpath ( . ) vex_outputmask ( * ) vex_updatenmls ( off ) vex_matchattrib ( id ) vex_inplace ( off ) vex_selectiongroup ( "" ) vex_precision ( auto )
-chlock attribwrangle2 -*
-chautoscope attribwrangle2 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b on attribwrangle2
-opexprlanguage -s hscript attribwrangle2
-opuserdata -n '___Version___' -v '' attribwrangle2
-
-# Node transform2 (Sop/xform)
-opadd -e -n xform transform2
-oplocate -x 23.639700000000001 -y -3.7674500000000002 transform2
-opspareds "" transform2
-opparm -V 20.5.370 transform2 group ( "" ) grouptype ( guess ) xOrd ( srt ) rOrd ( xyz ) t ( 0 0 0 ) r ( 0 0 0 ) s ( 1 0 1 ) shear ( 0 0 0 ) scale ( 1 ) parmgroup_pivotxform ( 0 ) p ( 0 0 0 ) pr ( 0 0 0 ) parmgroup_prexform ( 0 ) prexform_xOrd ( srt ) prexform_rOrd ( xyz ) prexform_t ( 0 0 0 ) prexform_r ( 0 0 0 ) prexform_s ( 1 1 1 ) prexform_shear ( 0 0 0 ) movecentroid ( 0 ) movepivot ( 0 ) attribs ( * ) updatenmls ( off ) updateaffectednmls ( on ) vlength ( on ) invertxform ( off ) addattrib ( off ) outputattrib ( xform ) outputmerge ( post )
-chlock transform2 -*
-chautoscope transform2 -* +tx +ty +tz +rx +ry +rz +sx +sy +sz
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b on transform2
-opexprlanguage -s hscript transform2
-opuserdata -n '___Version___' -v '20.5.370' transform2
-
-# Node resample1 (Sop/resample)
-opadd -e -n resample resample1
-oplocate -x 23.639700000000001 -y -2.3299699999999999 resample1
-opspareds "" resample1
-opparm -V 20.5.370 resample1 group ( "" ) maintainprimorder ( off ) lod ( 1 ) edge ( off ) method ( dist ) measure ( arc ) dolength ( on ) length ( 0.1 ) dosegs ( off ) segs ( 10 ) useattribs ( on ) allequal ( on ) last ( off ) randomshift ( off ) onlypoints ( off ) treatpolysas ( straight ) outputsubdpoly ( off ) doptdistattr ( off ) ptdistattr ( ptdist ) dotangentattr ( off ) tangentattr ( tangentu ) docurveuattr ( off ) curveuattr ( curveu ) docurvenumattr ( off ) curvenumattr ( curvenum )
-chlock resample1 -*
-chautoscope resample1 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b on resample1
-opexprlanguage -s hscript resample1
-opuserdata -n '___Version___' -v '20.5.370' resample1
-
 # Node extrudevolume2 (Sop/extrudevolume)
 opadd -e -n extrudevolume extrudevolume2
-oplocate -x 2.9761299999999999 -y 0.490703 extrudevolume2
+oplocate -x -20.566400000000002 -y 0.363508 extrudevolume2
 opspareds "" extrudevolume2
 opparm extrudevolume2 depth ( 1 ) basenormal ( 0 1 0 ) flat ( on ) labelparm ( 'Base Extension (Second Output)' ) basepadding ( 0.1 ) baselift ( 1 ) folder0 ( 0 ) outputtopgrp ( on ) topgrp ( extrudeTop ) outputbasegrp ( on ) basegrp ( extrudeBase ) outputsidegrp ( on ) sidegrp ( extrudeSide ) outputtopseamgrp ( on ) topseamgrp ( extrudeTopSeam ) outputbaseseamgrp ( on ) baseseamgrp ( extrudeBaseSeam )
 chlock extrudevolume2 -*
@@ -258,7 +200,7 @@ opuserdata -n '___Version___' -v '' extrudevolume2
 
 # Node blast1 (Sop/blast)
 opadd -e -n blast blast1
-oplocate -x 3.4666999999999999 -y -0.995452 blast1
+oplocate -x -20.075800000000001 -y -1.1226499999999999 blast1
 opspareds "" blast1
 opparm -V 20.5.370 blast1 group ( "" ) grouptype ( guess ) computenorms ( off ) negate ( on ) fillhole ( off ) removegrp ( off )
 chlock blast1 -*
@@ -270,13 +212,13 @@ opuserdata -n '___Version___' -v '20.5.370' blast1
 
 # Node Straight1 (Sop/Straight)
 opadd -e -n Straight Straight1
-oplocate -x 9.3301499999999997 -y 4.5990700000000002 Straight1
+oplocate -x -3.0758700000000001 -y 5.2063600000000001 Straight1
 opspareds "" Straight1
 chblockbegin
 chadd -t 0 0 Straight1 Width
 chkey -t 0 -v 1 -m 0 -a 0 -A 0 -T a  -F 'ch("../Params/Width")' Straight1/Width
 chadd -t 0 0 Straight1 Elevation
-chkey -t 0 -v 0 -m 0 -a 0 -A 0 -T a  -F 'ch("../Params/Elevation")' Straight1/Elevation
+chkey -t 0 -v 0 -m 0 -a 0 -A 0 -T a  -F '0.5 * ch("../Params/Elevation")' Straight1/Elevation
 chblockend
 opparm Straight1 Length ( 2 ) Width ( Width ) Elevation ( Elevation )
 chlock Straight1 -*
@@ -288,7 +230,7 @@ opuserdata -n '___Version___' -v '' Straight1
 
 # Node Elbow1 (Sop/Elbow)
 opadd -e -n Elbow Elbow1
-oplocate -x 11.6989 -y 2.7558500000000001 Elbow1
+oplocate -x -5.7654800000000002 -y 4.8089899999999997 Elbow1
 opspareds "" Elbow1
 chblockbegin
 chadd -t 0 0 Elbow1 Width
@@ -304,49 +246,11 @@ nbop __netbox2 add Elbow1
 opexprlanguage -s hscript Elbow1
 opuserdata -n '___Version___' -v '' Elbow1
 
-# Node blast2 (Sop/blast)
-opadd -e -n blast blast2
-oplocate -x 9.3201300000000007 -y 3.5990700000000002 blast2
-opspareds "" blast2
-opparm -V 20.5.370 blast2 group ( end ) grouptype ( guess ) computenorms ( off ) negate ( on ) fillhole ( off ) removegrp ( off )
-chlock blast2 -*
-chautoscope blast2 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off blast2
-nbop __netbox2 add blast2
-opexprlanguage -s hscript blast2
-opuserdata -n '___Version___' -v '20.5.370' blast2
-
-# Node attribwrangle1 (Sop/attribwrangle)
-opadd -e -n attribwrangle attribwrangle1
-oplocate -x 11.083600000000001 -y 1.60747 attribwrangle1
-opspareds "" attribwrangle1
-opparm attribwrangle1  bindings ( 0 ) groupbindings ( 0 )
-opparm attribwrangle1 folder0 ( 0 0 ) group ( "" ) grouptype ( guess ) class ( point ) vex_numcount ( 10 ) vex_threadjobsize ( 1024 ) snippet ( 'vector pos = point(1,"P",0);\n@P += pos;' ) exportlist ( * ) vex_strict ( off ) autobind ( on ) bindings ( 0 ) groupautobind ( on ) groupbindings ( 0 ) vex_cwdpath ( . ) vex_outputmask ( * ) vex_updatenmls ( off ) vex_matchattrib ( id ) vex_inplace ( off ) vex_selectiongroup ( "" ) vex_precision ( auto )
-chlock attribwrangle1 -*
-chautoscope attribwrangle1 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off attribwrangle1
-nbop __netbox2 add attribwrangle1
-opexprlanguage -s hscript attribwrangle1
-opuserdata -n '___Version___' -v '' attribwrangle1
-
-# Node attribwrangle3 (Sop/attribwrangle)
-opadd -e -n attribwrangle attribwrangle3
-oplocate -x 9.3171300000000006 -y 2.7548499999999998 attribwrangle3
-opspareds "" attribwrangle3
-opparm attribwrangle3  bindings ( 0 ) groupbindings ( 0 )
-opparm attribwrangle3 folder0 ( 0 0 ) group ( "" ) grouptype ( guess ) class ( point ) vex_numcount ( 10 ) vex_threadjobsize ( 1024 ) snippet ( 'v@forward={1,0,0};' ) exportlist ( * ) vex_strict ( off ) autobind ( on ) bindings ( 0 ) groupautobind ( on ) groupbindings ( 0 ) vex_cwdpath ( . ) vex_outputmask ( * ) vex_updatenmls ( off ) vex_matchattrib ( id ) vex_inplace ( off ) vex_selectiongroup ( "" ) vex_precision ( auto )
-chlock attribwrangle3 -*
-chautoscope attribwrangle3 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off attribwrangle3
-nbop __netbox2 add attribwrangle3
-opexprlanguage -s hscript attribwrangle3
-opuserdata -n '___Version___' -v '' attribwrangle3
-
 # Node Params (Sop/null)
 opadd -e -n null Params
-oplocate -x 12.1829 -y 4.5940700000000003 Params
-opspareds '    parm {         name    "copyinput"         baseparm         label   "Copy Input (Note: Input will be still cooked if disabled)"         export  none     }     parm {         name    "cacheinput"         baseparm         label   "Cache Input"         export  none     }     parm {         name    "NumFloors"         label   "NumFloors"         type    integer         default { "1" }         range   { 0! 10 }         parmtag { "script_callback_language" "python" }     }     parm {         name    "Width"         label   "Width"         type    float         default { "1" }         range   { 0! 10 }         parmtag { "script_callback_language" "python" }     }     parm {         name    "Elevation"         label   "Elevation"         type    float         default { "2.5" }         range   { 0! 10 }         parmtag { "script_callback_language" "python" }     }     parm {         name    "CornerType"         label   "CornerType"         type    ordinal         default { "0" }         menu {             ""  "Rect"             ""  "Arc"         }         parmtag { "script_callback_language" "python" }     } ' Params
-opparm -V 20.5.370 Params copyinput ( on ) cacheinput ( off ) NumFloors ( 1 ) Width ( 1 ) Elevation ( 2.5 ) CornerType ( "" )
+oplocate -x 0.86543700000000001 -y 4.57613 Params
+opspareds '    parm {         name    "copyinput"         baseparm         label   "Copy Input (Note: Input will be still cooked if disabled)"         export  none     }     parm {         name    "cacheinput"         baseparm         label   "Cache Input"         export  none     }     parm {         name    "NumFloors"         label   "NumFloors"         type    integer         default { "1" }         range   { 0 10 }         parmtag { "script_callback_language" "python" }     }     parm {         name    "Width"         label   "Width"         type    float         default { "1" }         range   { 0! 10 }         parmtag { "script_callback_language" "python" }     }     parm {         name    "Elevation"         label   "Elevation"         type    float         default { "2.5" }         range   { 0! 10 }         parmtag { "script_callback_language" "python" }     }     parm {         name    "CornerType"         label   "CornerType"         type    ordinal         default { "0" }         menu {             ""  "Rect"             ""  "Arc"         }         parmtag { "script_callback_language" "python" }     }     parm {         name    "GroundFloor"         label   "GroundFloor"         type    integer         default { "0" }         range   { 0 10 }         parmtag { "script_callback_language" "python" }     } ' Params
+opparm -V 20.5.370 Params copyinput ( on ) cacheinput ( off ) NumFloors ( 7 ) Width ( 1.3 ) Elevation ( 3 ) CornerType ( "" ) GroundFloor ( 0 )
 chlock Params -*
 chautoscope Params -*
 opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off Params
@@ -356,10 +260,10 @@ opuserdata -n '___Version___' -v '20.5.370' Params
 
 # Node add2 (Sop/add)
 opadd -e -n add add2
-oplocate -x 9.4874500000000008 -y -0.42715999999999998 add2
+oplocate -x -8.0291399999999999 -y -7.3048299999999999 add2
 opspareds "" add2
 opparm add2  points ( 0 ) prims ( 1 )
-opparm -V 20.5.370 add2 stdswitcher ( 1 1 1 ) keep ( off ) points ( 0 ) remove ( off ) switcher ( 1 1 ) prims ( 1 ) group ( rightside ) add ( all ) inc ( 2 ) attrname ( "" ) closedall ( off ) addparticlesystem ( off ) particlegroup ( "" ) appendunusedtoparticlesystem ( off ) prim0 ( "" ) closed0 ( off )
+opparm -V 20.5.370 add2 stdswitcher ( 1 1 1 ) keep ( off ) points ( 0 ) remove ( on ) switcher ( 1 1 ) prims ( 1 ) group ( rightside ) add ( all ) inc ( 2 ) attrname ( "" ) closedall ( off ) addparticlesystem ( off ) particlegroup ( "" ) appendunusedtoparticlesystem ( off ) prim0 ( "" ) closed0 ( off )
 chlock add2 -*
 chautoscope add2 -*
 opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off add2
@@ -367,24 +271,12 @@ nbop __netbox2 add add2
 opexprlanguage -s hscript add2
 opuserdata -n '___Version___' -v '20.5.370' add2
 
-# Node merge3 (Sop/merge)
-opadd -e -n merge merge3
-oplocate -x 9.9641800000000007 -y 0.63499000000000005 merge3
-opspareds "" merge3
-opparm -V 20.5.370 merge3
-chlock merge3 -*
-chautoscope merge3 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off merge3
-nbop __netbox2 add merge3
-opexprlanguage -s hscript merge3
-opuserdata -n '___Version___' -v '20.5.370' merge3
-
 # Node add3 (Sop/add)
 opadd -e -n add add3
-oplocate -x 11.2714 -y -0.42715999999999998 add3
+oplocate -x -10.2743 -y -7.3048299999999999 add3
 opspareds "" add3
 opparm add3  points ( 0 ) prims ( 1 )
-opparm -V 20.5.370 add3 stdswitcher ( 1 1 1 ) keep ( off ) points ( 0 ) remove ( off ) switcher ( 1 1 ) prims ( 1 ) group ( leftside ) add ( all ) inc ( 2 ) attrname ( "" ) closedall ( off ) addparticlesystem ( off ) particlegroup ( "" ) appendunusedtoparticlesystem ( off ) prim0 ( "" ) closed0 ( off )
+opparm -V 20.5.370 add3 stdswitcher ( 1 1 1 ) keep ( off ) points ( 0 ) remove ( on ) switcher ( 1 1 ) prims ( 1 ) group ( leftside ) add ( all ) inc ( 2 ) attrname ( "" ) closedall ( off ) addparticlesystem ( off ) particlegroup ( "" ) appendunusedtoparticlesystem ( off ) prim0 ( "" ) closed0 ( off )
 chlock add3 -*
 chautoscope add3 -*
 opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off add3
@@ -394,31 +286,19 @@ opuserdata -n '___Version___' -v '20.5.370' add3
 
 # Node extrudevolume1 (Sop/extrudevolume)
 opadd -e -n extrudevolume extrudevolume1
-oplocate -x 11.2714 -y -2.6147300000000002 extrudevolume1
+oplocate -x -2.3823099999999999 -y -9.3402700000000003 extrudevolume1
 opspareds "" extrudevolume1
 opparm extrudevolume1 depth ( 1 ) basenormal ( 0 1 0 ) flat ( on ) labelparm ( 'Base Extension (Second Output)' ) basepadding ( 0.1 ) baselift ( 1 ) folder0 ( 0 ) outputtopgrp ( on ) topgrp ( extrudeTop ) outputbasegrp ( on ) basegrp ( extrudeBase ) outputsidegrp ( on ) sidegrp ( extrudeSide ) outputtopseamgrp ( on ) topseamgrp ( extrudeTopSeam ) outputbaseseamgrp ( on ) baseseamgrp ( extrudeBaseSeam )
 chlock extrudevolume1 -*
 chautoscope extrudevolume1 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off extrudevolume1
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b on extrudevolume1
 nbop __netbox2 add extrudevolume1
 opexprlanguage -s hscript extrudevolume1
 opuserdata -n '___Version___' -v '' extrudevolume1
 
-# Node add4 (Sop/add)
-opadd -e -n add add4
-oplocate -x 6.5172999999999996 -y 2.35968 add4
-opspareds "" add4
-opparm add4  points ( 3 ) prims ( 1 )
-opparm -V 20.5.370 add4 stdswitcher ( 0 0 0 ) keep ( off ) points ( 3 ) remove ( off ) switcher ( 1 1 ) prims ( 1 ) group ( "" ) add ( all ) inc ( 2 ) attrname ( "" ) closedall ( on ) addparticlesystem ( off ) particlegroup ( "" ) appendunusedtoparticlesystem ( off ) prim0 ( "" ) closed0 ( off ) usept0 ( on ) pt0 ( 0 0 0 ) weight0 ( 1 ) usept1 ( on ) pt1 ( 1 0 0 ) weight1 ( 1 ) usept2 ( on ) pt2 ( 1 0 1 ) weight2 ( 1 )
-chlock add4 -*
-chautoscope add4 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off add4
-opexprlanguage -s hscript add4
-opuserdata -n '___Version___' -v '20.5.370' add4
-
 # Node extrudevolume3 (Sop/extrudevolume)
 opadd -e -n extrudevolume extrudevolume3
-oplocate -x 9.4874500000000008 -y -1.8755200000000001 extrudevolume3
+oplocate -x -8.0291399999999999 -y -9.3048300000000008 extrudevolume3
 opspareds "" extrudevolume3
 opparm extrudevolume3 depth ( 1 ) basenormal ( 0 1 0 ) flat ( on ) labelparm ( 'Base Extension (Second Output)' ) basepadding ( 0.1 ) baselift ( 1 ) folder0 ( 0 ) outputtopgrp ( off ) topgrp ( extrudeTop ) outputbasegrp ( off ) basegrp ( extrudeBase ) outputsidegrp ( off ) sidegrp ( extrudeSide ) outputtopseamgrp ( off ) topseamgrp ( extrudeTopSeam ) outputbaseseamgrp ( off ) baseseamgrp ( extrudeBaseSeam )
 chlock extrudevolume3 -*
@@ -430,32 +310,32 @@ opuserdata -n '___Version___' -v '' extrudevolume3
 
 # Node polyextrude4 (Sop/polyextrude::2.0)
 opadd -e -n polyextrude::2.0 polyextrude4
-oplocate -x 15.917 -y -2.4271600000000002 polyextrude4
+oplocate -x 2.26329 -y -9.1526999999999994 polyextrude4
 opspareds "" polyextrude4
 opparm polyextrude4  thicknessramp ( 2 ) twistramp ( 2 )
 opparm -V 20.5.370 polyextrude4 group ( "" ) splittype ( components ) usesplitgroup ( off ) splitgroup ( "" ) extrusionmode ( primnormal ) ptnormalsrc ( precompute ) ptnormalattrib ( N ) dist ( 0.805 ) inset ( 0 ) twist ( 0 ) divs ( 1 ) spinetype ( straight ) stdswitcher ( 0 0 0 ) xformsection ( 0 ) xformfront ( off ) xformspace ( local ) rst ( srt ) xyz ( xyz ) translate ( 0 0 0 ) rotate ( 0 0 0 ) scale ( 1 1 1 ) shear ( 0 0 0 ) pivotxformsection ( 0 ) pivot ( 0 0 0 ) pivotrotate ( 0 0 0 ) prexformsection ( 0 ) prexform_rst ( srt ) prexform_xyz ( xyz ) prexform_translate ( 0 0 0 ) prexform_rotate ( 0 0 0 ) prexform_scale ( 1 1 1 ) prexform_shear ( 0 0 0 ) outputsection ( 0 ) outputfront ( on ) outputfrontgrp ( off ) frontgrp ( extrudeFront ) outputback ( off ) outputbackgrp ( off ) backgrp ( extrudeBack ) outputside ( on ) outputsidegrp ( off ) sidegrp ( extrudeSide ) outputfrontseamgrp ( off ) frontseamgrp ( extrudeFrontSeam ) outputbackseamgrp ( off ) backseamgrp ( extrudeBackSeam ) preservegroups ( on ) insettingsection ( 0 ) limitinset ( on ) commonlimit ( on ) normalsection ( 0 ) addvertexnomrals ( off ) cuspangle ( 60 ) cuspfront ( on ) cuspback ( on ) uvssection ( 0 ) genuvs ( on ) uvstyle ( proprtional ) uvscaling ( matchuv ) shapecontrolsection ( 0 ) frontmagnitude ( 1 ) backmagnitude ( 1 ) frontstiffness ( 0 ) backstiffness ( 0 ) interpolation ( rotatingframe ) spacing ( arclengthuniform ) externalspinesection ( 0 ) reversespinedirection ( off ) axialrotation ( 0 ) frontblend ( 0.1 ) backblend ( 0.1 ) thicknesssection ( 0 ) thicknessscale ( 1 ) usethicknessattrib ( on ) thicknessattrib ( thickness ) usethicknessramp ( on ) thicknessramp ( 2 ) twistsection ( 0 ) usetwistattrib ( on ) twistattrib ( twist ) usetwistramp ( on ) twistramp ( 2 ) twistscale ( 180 ) localattribs ( 0 ) uselocalzscaleattrib ( off ) localzscaleattrib ( zscale ) uselocalinsetscaleattrib ( off ) localinsetscaleattrib ( insetscale ) uselocaltwistattrib ( off ) localtwistscaleattrib ( twistscale ) uselocaldivsattrib ( off ) locadivscaleattrib ( divsscale ) localframeattribs ( 0 ) uselocalxattrib ( off ) localxattrib ( localx ) uselocalzattirb ( off ) localzattirb ( localz ) uselocalctrattrib ( off ) localctrattrib ( localctr ) thicknessramp1pos ( 0 ) thicknessramp1value ( 1 ) thicknessramp1interp ( catmull-rom ) thicknessramp2pos ( 1 ) thicknessramp2value ( 1 ) thicknessramp2interp ( catmull-rom ) twistramp1pos ( 0 ) twistramp1value ( 0.5 ) twistramp1interp ( catmull-rom ) twistramp2pos ( 1 ) twistramp2value ( 0.5 ) twistramp2interp ( catmull-rom )
 chlock polyextrude4 -*
 chautoscope polyextrude4 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off polyextrude4
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b on polyextrude4
 nbop __netbox2 add polyextrude4
 opexprlanguage -s hscript polyextrude4
 opuserdata -n '___Version___' -v '20.5.370' polyextrude4
 
 # Node blast3 (Sop/blast)
 opadd -e -n blast blast3
-oplocate -x 14.3443 -y -0.41108 blast3
+oplocate -x -0.222216 -y -8.8481199999999998 blast3
 opspareds "" blast3
 opparm -V 20.5.370 blast3 group ( extrudeSide ) grouptype ( guess ) computenorms ( off ) negate ( on ) fillhole ( off ) removegrp ( off )
 chlock blast3 -*
 chautoscope blast3 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off blast3
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b on blast3
 nbop __netbox2 add blast3
 opexprlanguage -s hscript blast3
 opuserdata -n '___Version___' -v '20.5.370' blast3
 
 # Node fuse1 (Sop/fuse::2.0)
 opadd -e -n fuse::2.0 fuse1
-oplocate -x 11.2714 -y -1.42716 fuse1
+oplocate -x -10.2743 -y -8.3048300000000008 fuse1
 opspareds "" fuse1
 opparm fuse1  numpointattribs ( 0 ) numgroups ( 0 )
 opparm -V 20.5.370 fuse1 querygroup ( "" ) usetargetgroup ( off ) targetgroup ( "" ) modifyboth ( off ) posattrib ( P ) snapgroup ( 0 ) snaptype ( distancesnap ) algorithm ( lowest ) usetol3d ( on ) tol3d ( 0.001 ) targetptattrib ( snap_to ) targetclass ( point ) usepositionsnapmethod ( on ) positionsnapmethod ( average ) positionsnapweightname ( weight ) useradiusattrib ( off ) radiusattrib ( pscale ) usematchattrib ( off ) matchattrib ( name ) matchtype ( match ) matchtol ( 0 ) gridtype ( spacing ) gridspacing ( 0.1 0.1 0.1 ) gridlines ( 10 10 10 ) gridpow2 ( 3 3 3 ) gridoffset ( 0 0 0 ) gridround ( nearest ) usegridtol ( on ) gridtol ( 10 ) consolidategroup ( 0 ) consolidatesnappedpoints ( on ) keepconsolidatedpoints ( off ) deldegen ( on ) deldegenpoints ( on ) delunusedpoints ( off ) outputgroup ( 0 ) recomputenml ( on ) createsnappedgroup ( off ) snappedgroupname ( snapped_points ) createsnappedattrib ( off ) snappedattribname ( snapped_to ) numpointattribs ( 0 ) numgroups ( 0 )
@@ -466,31 +346,441 @@ nbop __netbox2 add fuse1
 opexprlanguage -s hscript fuse1
 opuserdata -n '___Version___' -v '20.5.370' fuse1
 
-# Node add5 (Sop/add)
-opadd -e -n add add5
-oplocate -x 13.5108 -y 2.7558500000000001 add5
-opspareds "" add5
-opparm add5  points ( 0 ) prims ( 1 )
-opparm -V 20.5.370 add5 stdswitcher ( 1 1 1 ) keep ( off ) points ( 0 ) remove ( off ) switcher ( 1 1 ) prims ( 1 ) group ( 'leftside rightside' ) add ( all ) inc ( 2 ) attrname ( "" ) closedall ( on ) addparticlesystem ( off ) particlegroup ( "" ) appendunusedtoparticlesystem ( off ) prim0 ( "" ) closed0 ( on )
-chlock add5 -*
-chautoscope add5 -*
-opset -d on -r on -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off add5
-nbop __netbox2 add add5
-opexprlanguage -s hscript add5
-opuserdata -n '___Version___' -v '20.5.370' add5
+# Node Landing (Sop/Straight)
+opadd -e -n Straight Landing
+oplocate -x -8.4355799999999999 -y 4.5811299999999999 Landing
+opspareds "" Landing
+chblockbegin
+chadd -t 0 0 Landing Length
+chkey -t 0 -v 2 -m 0 -a 0 -A 0 -T a  -F 'ch("../Params/Width")' Landing/Length
+chadd -t 0 0 Landing Width
+chkey -t 0 -v 1 -m 0 -a 0 -A 0 -T a  -F 'ch("../Params/Width")' Landing/Width
+chblockend
+opparm Landing Length ( Length ) Width ( Width ) Elevation ( 0 )
+chlock Landing -*
+chautoscope Landing -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off Landing
+nbop __netbox2 add Landing
+opexprlanguage -s hscript Landing
+opuserdata -n '___Version___' -v '' Landing
 
-# Node sort1 (Sop/sort)
-opadd -e -n sort sort1
-oplocate -x 13.5108 -y 3.48902 sort1
-opspareds "" sort1
-opparm -V 20.5.370 sort1 pointsfolder ( 0 ) ptgroup ( rightside ) ptsort ( none ) pointseed ( 0 ) pointoffset ( 0 ) pointprox ( 0 0 0 ) pointobjpath ( "" ) pointdir ( 0 1 0 ) pointexpr ( 0 ) pointattrib ( "" ) pointattribcomp ( 0 ) pointreverse ( on ) primitivesfolder ( 0 ) primgroup ( "" ) primsort ( none ) primseed ( 0 ) primoffset ( 0 ) primprox ( 0 0 0 ) primobjpath ( "" ) primdir ( 0 1 0 ) primexpr ( 0 ) primattrib ( "" ) primattribcomp ( 0 ) primreverse ( off ) vertexprimorder ( on )
-chlock sort1 -*
-chautoscope sort1 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off sort1
-nbop __netbox2 add sort1
-opexprlanguage -s hscript sort1
-opuserdata -n '___Version___' -v '20.5.370' sort1
-oporder -e extrude_along_normal create_y_up_normal_attribute polyextrude1 polyextrude2 reverse1 merge1 wall boolean1 slope_outline1 transform1 merge2 join1 add1 polyextrude3 attribwrangle2 transform2 resample1 extrudevolume2 blast1 Straight1 Elbow1 blast2 attribwrangle1 attribwrangle3 Params add2 merge3 add3 extrudevolume1 add4 extrudevolume3 polyextrude4 blast3 fuse1 add5 sort1 
+# Node merge4 (Sop/merge)
+opadd -e -n merge merge4
+oplocate -x -8.0472300000000008 -y -1.1176600000000001 merge4
+opspareds "" merge4
+opparm -V 20.5.370 merge4
+chlock merge4 -*
+chautoscope merge4 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off merge4
+nbop __netbox2 add merge4
+opexprlanguage -s hscript merge4
+opuserdata -n '___Version___' -v '20.5.370' merge4
+
+# Node blast4 (Sop/blast)
+opadd -e -n blast blast4
+oplocate -x -6.67971 -y 3.08562 blast4
+opspareds "" blast4
+opparm -V 20.5.370 blast4 group ( end ) grouptype ( guess ) computenorms ( off ) negate ( on ) fillhole ( off ) removegrp ( off )
+chlock blast4 -*
+chautoscope blast4 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off blast4
+nbop __netbox2 add blast4
+opexprlanguage -s hscript blast4
+opuserdata -n '___Version___' -v '20.5.370' blast4
+
+# Node attribwrangle4 (Sop/attribwrangle)
+opadd -e -n attribwrangle attribwrangle4
+oplocate -x -6.6827100000000002 -y 2.0687199999999999 attribwrangle4
+opspareds "" attribwrangle4
+opparm attribwrangle4  bindings ( 0 ) groupbindings ( 0 )
+opparm attribwrangle4 folder0 ( 0 0 ) group ( "" ) grouptype ( guess ) class ( point ) vex_numcount ( 10 ) vex_threadjobsize ( 1024 ) snippet ( 'vector pos = point(1,"P",0);\n@P += pos;' ) exportlist ( * ) vex_strict ( off ) autobind ( on ) bindings ( 0 ) groupautobind ( on ) groupbindings ( 0 ) vex_cwdpath ( . ) vex_outputmask ( * ) vex_updatenmls ( off ) vex_matchattrib ( id ) vex_inplace ( off ) vex_selectiongroup ( "" ) vex_precision ( auto )
+chlock attribwrangle4 -*
+chautoscope attribwrangle4 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off attribwrangle4
+nbop __netbox2 add attribwrangle4
+opexprlanguage -s hscript attribwrangle4
+opuserdata -n '___Version___' -v '' attribwrangle4
+
+# Node blast5 (Sop/blast)
+opadd -e -n blast blast5
+oplocate -x -4.9484300000000001 -y 1.1729700000000001 blast5
+opspareds "" blast5
+opparm -V 20.5.370 blast5 group ( end ) grouptype ( guess ) computenorms ( off ) negate ( on ) fillhole ( off ) removegrp ( off )
+chlock blast5 -*
+chautoscope blast5 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off blast5
+nbop __netbox2 add blast5
+opexprlanguage -s hscript blast5
+opuserdata -n '___Version___' -v '20.5.370' blast5
+
+# Node attribwrangle5 (Sop/attribwrangle)
+opadd -e -n attribwrangle attribwrangle5
+oplocate -x -5.50291 -y -0.038209699999999999 attribwrangle5
+opspareds "" attribwrangle5
+opparm attribwrangle5  bindings ( 0 ) groupbindings ( 0 )
+opparm attribwrangle5 folder0 ( 0 0 ) group ( "" ) grouptype ( guess ) class ( point ) vex_numcount ( 10 ) vex_threadjobsize ( 1024 ) snippet ( 'vector pos = point(1,"P",0);\n@P += pos;' ) exportlist ( * ) vex_strict ( off ) autobind ( on ) bindings ( 0 ) groupautobind ( on ) groupbindings ( 0 ) vex_cwdpath ( . ) vex_outputmask ( * ) vex_updatenmls ( off ) vex_matchattrib ( id ) vex_inplace ( off ) vex_selectiongroup ( "" ) vex_precision ( auto )
+chlock attribwrangle5 -*
+chautoscope attribwrangle5 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off attribwrangle5
+nbop __netbox2 add attribwrangle5
+opexprlanguage -s hscript attribwrangle5
+opuserdata -n '___Version___' -v '' attribwrangle5
+
+# Node entrance_slope (Sop/null)
+opadd -e -n null entrance_slope
+oplocate -x -8.0291399999999999 -y -2.24796 entrance_slope
+opspareds "" entrance_slope
+opparm -V 20.5.370 entrance_slope copyinput ( on ) cacheinput ( off )
+chlock entrance_slope -*
+chautoscope entrance_slope -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off entrance_slope
+nbop __netbox2 add entrance_slope
+opexprlanguage -s hscript entrance_slope
+opuserdata -n '___Version___' -v '20.5.370' entrance_slope
+
+# Node slope (Sop/null)
+opadd -e -n null slope
+oplocate -x -1.73116 -y -5.18567 slope
+opspareds "" slope
+opparm -V 20.5.370 slope copyinput ( on ) cacheinput ( off )
+chlock slope -*
+chautoscope slope -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off slope
+nbop __netbox2 add slope
+opexprlanguage -s hscript slope
+opuserdata -n '___Version___' -v '20.5.370' slope
+
+# Node transform3 (Sop/xform)
+opadd -e -n xform transform3
+oplocate -x -2.1716000000000002 -y 2.30864 transform3
+opspareds "" transform3
+opparm -V 20.5.370 transform3 group ( "" ) grouptype ( guess ) xOrd ( srt ) rOrd ( xyz ) t ( 0 0 0 ) r ( 0 270 0 ) s ( 1 1 1 ) shear ( 0 0 0 ) scale ( 1 ) parmgroup_pivotxform ( 0 ) p ( 0 0 0 ) pr ( 0 0 0 ) parmgroup_prexform ( 0 ) prexform_xOrd ( srt ) prexform_rOrd ( xyz ) prexform_t ( 0 0 0 ) prexform_r ( 0 0 0 ) prexform_s ( 1 1 1 ) prexform_shear ( 0 0 0 ) movecentroid ( 0 ) movepivot ( 0 ) attribs ( * ) updatenmls ( off ) updateaffectednmls ( on ) vlength ( on ) invertxform ( off ) addattrib ( off ) outputattrib ( xform ) outputmerge ( post )
+chlock transform3 -*
+chautoscope transform3 -* +tx +ty +tz +rx +ry +rz +sx +sy +sz
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off transform3
+nbop __netbox2 add transform3
+opexprlanguage -s hscript transform3
+opuserdata -n '___Version___' -v '20.5.370' transform3
+
+# Node matchsize2 (Sop/matchsize)
+opadd -e -n matchsize matchsize2
+oplocate -x -2.1716000000000002 -y 1.30864 matchsize2
+opspareds "" matchsize2
+opparm matchsize2 group ( "" ) grouptype ( guess ) sepparm ( ) justifytarget ( auto ) doboundgroup ( off ) folder2 ( 0 ) sourcegroup ( "" ) sourcegrouptype ( guess ) refgroup ( "" ) refgrouptype ( guess ) folder1 ( 0 ) t ( 0 0 0 ) size ( 1 1 1 ) folder0 ( 0 ) dotranslate ( on ) justify_x ( max ) goal_x ( same ) offset_x ( 0 ) justify_y ( none ) goal_y ( same ) offset_y ( 0 ) justify_z ( center ) goal_z ( same ) offset_z ( 0 ) doscale ( off ) uniformscale ( on ) scale_axis ( min ) scale_x ( on ) scale_y ( on ) scale_z ( on ) restorexform ( off ) restoreattrib ( xform ) stashxform ( off ) stashattrib ( xform ) stashmerge ( replace )
+chlock matchsize2 -*
+chautoscope matchsize2 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off matchsize2
+nbop __netbox2 add matchsize2
+opexprlanguage -s hscript matchsize2
+opuserdata -n '___Version___' -v '' matchsize2
+
+# Node blast6 (Sop/blast)
+opadd -e -n blast blast6
+oplocate -x -0.94882100000000003 -y 0.131857 blast6
+opspareds "" blast6
+opparm -V 20.5.370 blast6 group ( end ) grouptype ( guess ) computenorms ( off ) negate ( on ) fillhole ( off ) removegrp ( off )
+chlock blast6 -*
+chautoscope blast6 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off blast6
+nbop __netbox2 add blast6
+opexprlanguage -s hscript blast6
+opuserdata -n '___Version___' -v '20.5.370' blast6
+
+# Node attribwrangle6 (Sop/attribwrangle)
+opadd -e -n attribwrangle attribwrangle6
+oplocate -x -0.14677899999999999 -y -1.00634 attribwrangle6
+opspareds "" attribwrangle6
+opparm attribwrangle6  bindings ( 0 ) groupbindings ( 0 )
+opparm attribwrangle6 folder0 ( 0 0 ) group ( "" ) grouptype ( guess ) class ( point ) vex_numcount ( 10 ) vex_threadjobsize ( 1024 ) snippet ( 'vector pos = point(1,"P",0);\n@P += pos;' ) exportlist ( * ) vex_strict ( off ) autobind ( on ) bindings ( 0 ) groupautobind ( on ) groupbindings ( 0 ) vex_cwdpath ( . ) vex_outputmask ( * ) vex_updatenmls ( off ) vex_matchattrib ( id ) vex_inplace ( off ) vex_selectiongroup ( "" ) vex_precision ( auto )
+chlock attribwrangle6 -*
+chautoscope attribwrangle6 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off attribwrangle6
+nbop __netbox2 add attribwrangle6
+opexprlanguage -s hscript attribwrangle6
+opuserdata -n '___Version___' -v '' attribwrangle6
+
+# Node merge5 (Sop/merge)
+opadd -e -n merge merge5
+oplocate -x -1.73231 -y -4.0273899999999996 merge5
+opspareds "" merge5
+opparm -V 20.5.370 merge5
+chlock merge5 -*
+chautoscope merge5 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off merge5
+nbop __netbox2 add merge5
+opexprlanguage -s hscript merge5
+opuserdata -n '___Version___' -v '20.5.370' merge5
+
+# Node blast7 (Sop/blast)
+opadd -e -n blast blast7
+oplocate -x 0.66392499999999999 -y -1.9012 blast7
+opspareds "" blast7
+opparm -V 20.5.370 blast7 group ( end ) grouptype ( guess ) computenorms ( off ) negate ( on ) fillhole ( off ) removegrp ( off )
+chlock blast7 -*
+chautoscope blast7 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off blast7
+nbop __netbox2 add blast7
+opexprlanguage -s hscript blast7
+opuserdata -n '___Version___' -v '20.5.370' blast7
+
+# Node attribwrangle7 (Sop/attribwrangle)
+opadd -e -n attribwrangle attribwrangle7
+oplocate -x 0.22353999999999999 -y -2.9261499999999998 attribwrangle7
+opspareds "" attribwrangle7
+opparm attribwrangle7  bindings ( 0 ) groupbindings ( 0 )
+opparm attribwrangle7 folder0 ( 0 0 ) group ( "" ) grouptype ( guess ) class ( point ) vex_numcount ( 10 ) vex_threadjobsize ( 1024 ) snippet ( 'vector pos = point(1,"P",0);\n@P += pos;' ) exportlist ( * ) vex_strict ( off ) autobind ( on ) bindings ( 0 ) groupautobind ( on ) groupbindings ( 0 ) vex_cwdpath ( . ) vex_outputmask ( * ) vex_updatenmls ( off ) vex_matchattrib ( id ) vex_inplace ( off ) vex_selectiongroup ( "" ) vex_precision ( auto )
+chlock attribwrangle7 -*
+chautoscope attribwrangle7 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off attribwrangle7
+nbop __netbox2 add attribwrangle7
+opexprlanguage -s hscript attribwrangle7
+opuserdata -n '___Version___' -v '' attribwrangle7
+
+# Node foreach_end1 (Sop/block_end)
+opadd -e -n block_end foreach_end1
+oplocate -x 6.9033800000000003 -y -3.9514900000000002 foreach_end1
+opspareds "" foreach_end1
+chblockbegin
+chadd -t 0 0 foreach_end1 iterations
+chkey -t 0 -v 3 -m 0 -a 0 -A 0 -T a  -F 'ch("../Params/NumFloors")-1' foreach_end1/iterations
+chadd -t 0 0 foreach_end1 startvalue
+chkey -t 0 -v 0 -m 0 -a 0 -A 0 -T a  -F '-ch("../Params/GroundFloor")' foreach_end1/startvalue
+chblockend
+opparm -V 20.5.370 foreach_end1 itermethod ( count ) method ( merge ) iterations ( iterations ) startvalue ( startvalue ) increment ( 1 ) class ( point ) useattrib ( on ) attrib ( "" ) usemaxiter ( off ) maxiter ( 10 ) blockpath ( ../foreach_begin1 ) templatepath ( ../foreach_begin1 ) resetcookpass ( 0 ) dosinglepass ( off ) singlepass ( 0 ) stopcondition ( 0 ) multithread ( off )
+chlock foreach_end1 -*
+chautoscope foreach_end1 -*
+opcolor -c 0.75 0.40000000596046448 0 foreach_end1
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F off -c on -e on -b off foreach_end1
+nbop __netbox2 add foreach_end1
+opexprlanguage -s hscript foreach_end1
+opuserdata -n '___Version___' -v '20.5.370' foreach_end1
+
+# Node foreach_begin1 (Sop/block_begin)
+opadd -e -n block_begin foreach_begin1
+oplocate -x 6.9033800000000003 -y 1.58185 foreach_begin1
+opspareds "" foreach_begin1
+opparm -V 20.5.370 foreach_begin1 method ( input ) blockpath ( ../foreach_end1 ) resetcookpass ( 0 ) createmetablock ( 0 ) label1 ( 'iteration, numiterations, value, ivalue' )
+chlock foreach_begin1 -*
+chautoscope foreach_begin1 -*
+opcolor -c 0.75 0.40000000596046448 0 foreach_begin1
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F off -c on -e on -b off foreach_begin1
+opexprlanguage -s hscript foreach_begin1
+opuserdata -n '___Version___' -v '20.5.370' foreach_begin1
+
+# Node foreach_count1 (Sop/block_begin)
+opadd -e -n block_begin foreach_count1
+oplocate -x 9.9033800000000003 -y 1.58185 foreach_count1
+opspareds "" foreach_count1
+opparm -V 20.5.370 foreach_count1 method ( metadata ) blockpath ( ../foreach_end1 ) resetcookpass ( 0 ) createmetablock ( 0 ) label1 ( 'iteration, numiterations, value, ivalue' )
+chlock foreach_count1 -*
+chautoscope foreach_count1 -*
+opcolor -c 0.75 0.40000000596046448 0 foreach_count1
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F off -c on -e on -b off foreach_count1
+opexprlanguage -s hscript foreach_count1
+opuserdata -n '___Version___' -v '20.5.370' foreach_count1
+
+# Node null1 (Sop/null)
+opadd -e -n null null1
+oplocate -x 6.7480200000000004 -y -5.0613099999999998 null1
+opspareds "" null1
+opparm -V 20.5.370 null1 copyinput ( on ) cacheinput ( off )
+chlock null1 -*
+chautoscope null1 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off null1
+nbop __netbox2 add null1
+opexprlanguage -s hscript null1
+opuserdata -n '___Version___' -v '20.5.370' null1
+
+# Node copytopoints1 (Sop/copytopoints::2.0)
+opadd -e -n copytopoints::2.0 copytopoints1
+oplocate -x 6.9017799999999996 -y -2.3781599999999998 copytopoints1
+opspareds "" copytopoints1
+opparm copytopoints1  targetattribs ( 3 )
+opparm -V 20.5.370 copytopoints1 sourcegroup ( "" ) sourcegrouptype ( guess ) targetgroup ( "" ) useidattrib ( off ) idattrib ( name ) pack ( off ) pivot ( centroid ) viewportlod ( full ) transform ( on ) useimplicitn ( on ) resettargetattribs ( 0 ) targetattribs ( 3 ) useapply1 ( on ) applyto1 ( points ) applymethod1 ( copy ) applyattribs1 ( *,^v,^Alpha,^N,^up,^pscale,^scale,^orient,^rot,^pivot,^trans,^transform ) useapply2 ( on ) applyto2 ( points ) applymethod2 ( mult ) applyattribs2 ( Alpha ) useapply3 ( on ) applyto3 ( points ) applymethod3 ( add ) applyattribs3 ( v )
+chlock copytopoints1 -*
+chautoscope copytopoints1 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off copytopoints1
+nbop __netbox2 add copytopoints1
+opexprlanguage -s hscript copytopoints1
+opuserdata -n '___Version___' -v '20.5.370' copytopoints1
+
+# Node add1 (Sop/add)
+opadd -e -n add add1
+oplocate -x 6.9017799999999996 -y 2.8339500000000002 add1
+opspareds "" add1
+opparm add1  points ( 1 ) prims ( 1 )
+opparm -V 20.5.370 add1 stdswitcher ( 0 0 0 ) keep ( off ) points ( 1 ) remove ( off ) switcher ( 0 0 ) prims ( 1 ) group ( "" ) add ( all ) inc ( 2 ) attrname ( "" ) closedall ( off ) addparticlesystem ( off ) particlegroup ( "" ) appendunusedtoparticlesystem ( off ) prim0 ( "" ) closed0 ( off ) usept0 ( on ) pt0 ( 0 0 0 ) weight0 ( 1 )
+chlock add1 -*
+chautoscope add1 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off add1
+nbop __netbox2 add add1
+opexprlanguage -s hscript add1
+opuserdata -n '___Version___' -v '20.5.370' add1
+
+# Node transform4 (Sop/xform)
+opadd -e -n xform transform4
+oplocate -x 8.1594999999999995 -y -0.82189999999999996 transform4
+opspareds "" transform4
+chblockbegin
+chadd -t 0 0 transform4 ty
+chkey -t 0 -v 0 -m 0 -a 0 -A 0 -T a  -F 'detail("../foreach_count1/", "value", 0) * ch("../Params/Elevation")' transform4/ty
+chblockend
+opparm -V 20.5.370 transform4 group ( "" ) grouptype ( guess ) xOrd ( srt ) rOrd ( xyz ) t ( 0 ty 0 ) r ( 0 0 0 ) s ( 1 1 1 ) shear ( 0 0 0 ) scale ( 1 ) parmgroup_pivotxform ( 0 ) p ( 0 0 0 ) pr ( 0 0 0 ) parmgroup_prexform ( 0 ) prexform_xOrd ( srt ) prexform_rOrd ( xyz ) prexform_t ( 0 0 0 ) prexform_r ( 0 0 0 ) prexform_s ( 1 1 1 ) prexform_shear ( 0 0 0 ) movecentroid ( 0 ) movepivot ( 0 ) attribs ( * ) updatenmls ( off ) updateaffectednmls ( on ) vlength ( on ) invertxform ( off ) addattrib ( off ) outputattrib ( xform ) outputmerge ( post )
+chlock transform4 -*
+chautoscope transform4 -* +tx +ty +tz +rx +ry +rz +sx +sy +sz
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off transform4
+nbop __netbox2 add transform4
+opexprlanguage -s hscript transform4
+opuserdata -n '___Version___' -v '20.5.370' transform4
+
+# Node matchsize1 (Sop/matchsize)
+opadd -e -n matchsize matchsize1
+oplocate -x 8.1594999999999995 -y 0.36367500000000003 matchsize1
+opspareds "" matchsize1
+opparm matchsize1 group ( "" ) grouptype ( guess ) sepparm ( ) justifytarget ( auto ) doboundgroup ( off ) folder2 ( 0 ) sourcegroup ( "" ) sourcegrouptype ( guess ) refgroup ( "" ) refgrouptype ( guess ) folder1 ( 0 ) t ( 0 0 0 ) size ( 1 1 1 ) folder0 ( 0 ) dotranslate ( on ) justify_x ( none ) goal_x ( same ) offset_x ( 0 ) justify_y ( none ) goal_y ( same ) offset_y ( 0 ) justify_z ( max ) goal_z ( same ) offset_z ( 0 ) doscale ( off ) uniformscale ( on ) scale_axis ( min ) scale_x ( on ) scale_y ( on ) scale_z ( on ) restorexform ( off ) restoreattrib ( xform ) stashxform ( off ) stashattrib ( xform ) stashmerge ( replace )
+chlock matchsize1 -*
+chautoscope matchsize1 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off matchsize1
+nbop __netbox2 add matchsize1
+opexprlanguage -s hscript matchsize1
+opuserdata -n '___Version___' -v '' matchsize1
+
+# Node transform5 (Sop/xform)
+opadd -e -n xform transform5
+oplocate -x 10.4877 -y -0.82189999999999996 transform5
+opspareds "" transform5
+chblockbegin
+chadd -t 0 0 transform5 ty
+chkey -t 0 -v 0 -m 0 -a 0 -A 0 -T a  -F '(detail("../foreach_count1/", "value", 0)+0.5) * ch("../Params/Elevation")' transform5/ty
+chblockend
+opparm -V 20.5.370 transform5 group ( "" ) grouptype ( guess ) xOrd ( srt ) rOrd ( xyz ) t ( 0 ty 0 ) r ( 0 180 0 ) s ( 1 1 1 ) shear ( 0 0 0 ) scale ( 1 ) parmgroup_pivotxform ( 0 ) p ( 0 0 0 ) pr ( 0 0 0 ) parmgroup_prexform ( 0 ) prexform_xOrd ( srt ) prexform_rOrd ( xyz ) prexform_t ( 0 0 0 ) prexform_r ( 0 0 0 ) prexform_s ( 1 1 1 ) prexform_shear ( 0 0 0 ) movecentroid ( 0 ) movepivot ( 0 ) attribs ( * ) updatenmls ( off ) updateaffectednmls ( on ) vlength ( on ) invertxform ( off ) addattrib ( off ) outputattrib ( xform ) outputmerge ( post )
+chlock transform5 -*
+chautoscope transform5 -* +tx +ty +tz +rx +ry +rz +sx +sy +sz
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off transform5
+nbop __netbox2 add transform5
+opexprlanguage -s hscript transform5
+opuserdata -n '___Version___' -v '20.5.370' transform5
+
+# Node matchsize3 (Sop/matchsize)
+opadd -e -n matchsize matchsize3
+oplocate -x 10.4877 -y 0.36367500000000003 matchsize3
+opspareds "" matchsize3
+opparm matchsize3 group ( "" ) grouptype ( guess ) sepparm ( ) justifytarget ( auto ) doboundgroup ( off ) folder2 ( 0 ) sourcegroup ( "" ) sourcegrouptype ( guess ) refgroup ( "" ) refgrouptype ( guess ) folder1 ( 0 ) t ( 0 0 0 ) size ( 1 1 1 ) folder0 ( 0 ) dotranslate ( on ) justify_x ( min ) goal_x ( same ) offset_x ( 0 ) justify_y ( none ) goal_y ( same ) offset_y ( 0 ) justify_z ( max ) goal_z ( same ) offset_z ( 0 ) doscale ( off ) uniformscale ( on ) scale_axis ( min ) scale_x ( on ) scale_y ( on ) scale_z ( on ) restorexform ( off ) restoreattrib ( xform ) stashxform ( off ) stashattrib ( xform ) stashmerge ( replace )
+chlock matchsize3 -*
+chautoscope matchsize3 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off matchsize3
+nbop __netbox2 add matchsize3
+opexprlanguage -s hscript matchsize3
+opuserdata -n '___Version___' -v '' matchsize3
+
+# Node transform6 (Sop/xform)
+opadd -e -n xform transform6
+oplocate -x -8.4355799999999999 -y 3.7631199999999998 transform6
+opspareds "" transform6
+opparm -V 20.5.370 transform6 group ( "" ) grouptype ( guess ) xOrd ( srt ) rOrd ( xyz ) t ( 0 0 0 ) r ( 0 180 0 ) s ( 1 1 1 ) shear ( 0 0 0 ) scale ( 1 ) parmgroup_pivotxform ( 0 ) p ( 0 0 0 ) pr ( 0 0 0 ) parmgroup_prexform ( 0 ) prexform_xOrd ( srt ) prexform_rOrd ( xyz ) prexform_t ( 0 0 0 ) prexform_r ( 0 0 0 ) prexform_s ( 1 1 1 ) prexform_shear ( 0 0 0 ) movecentroid ( 0 ) movepivot ( 0 ) attribs ( * ) updatenmls ( off ) updateaffectednmls ( on ) vlength ( on ) invertxform ( off ) addattrib ( off ) outputattrib ( xform ) outputmerge ( post )
+chlock transform6 -*
+chautoscope transform6 -* +tx +ty +tz +rx +ry +rz +sx +sy +sz
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off transform6
+nbop __netbox2 add transform6
+opexprlanguage -s hscript transform6
+opuserdata -n '___Version___' -v '20.5.370' transform6
+
+# Node transform7 (Sop/xform)
+opadd -e -n xform transform7
+oplocate -x -3.0758700000000001 -y 4.2574800000000002 transform7
+opspareds "" transform7
+opparm -V 20.5.370 transform7 group ( "" ) grouptype ( guess ) xOrd ( srt ) rOrd ( xyz ) t ( 0 0 0 ) r ( 0 180 0 ) s ( 1 1 1 ) shear ( 0 0 0 ) scale ( 1 ) parmgroup_pivotxform ( 0 ) p ( 0 0 0 ) pr ( 0 0 0 ) parmgroup_prexform ( 0 ) prexform_xOrd ( srt ) prexform_rOrd ( xyz ) prexform_t ( 0 0 0 ) prexform_r ( 0 0 0 ) prexform_s ( 1 1 1 ) prexform_shear ( 0 0 0 ) movecentroid ( 0 ) movepivot ( 0 ) attribs ( * ) updatenmls ( off ) updateaffectednmls ( on ) vlength ( on ) invertxform ( off ) addattrib ( off ) outputattrib ( xform ) outputmerge ( post )
+chlock transform7 -*
+chautoscope transform7 -* +tx +ty +tz +rx +ry +rz +sx +sy +sz
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off transform7
+nbop __netbox2 add transform7
+opexprlanguage -s hscript transform7
+opuserdata -n '___Version___' -v '20.5.370' transform7
+
+# Node transform8 (Sop/xform)
+opadd -e -n xform transform8
+oplocate -x -5.7654800000000002 -y 4.0702100000000003 transform8
+opspareds "" transform8
+opparm -V 20.5.370 transform8 group ( "" ) grouptype ( guess ) xOrd ( srt ) rOrd ( xyz ) t ( 0 0 0 ) r ( 0 180 0 ) s ( 1 1 1 ) shear ( 0 0 0 ) scale ( 1 ) parmgroup_pivotxform ( 0 ) p ( 0 0 0 ) pr ( 0 0 0 ) parmgroup_prexform ( 0 ) prexform_xOrd ( srt ) prexform_rOrd ( xyz ) prexform_t ( 0 0 0 ) prexform_r ( 0 0 0 ) prexform_s ( 1 1 1 ) prexform_shear ( 0 0 0 ) movecentroid ( 0 ) movepivot ( 0 ) attribs ( * ) updatenmls ( off ) updateaffectednmls ( on ) vlength ( on ) invertxform ( off ) addattrib ( off ) outputattrib ( xform ) outputmerge ( post )
+chlock transform8 -*
+chautoscope transform8 -* +tx +ty +tz +rx +ry +rz +sx +sy +sz
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off transform8
+nbop __netbox2 add transform8
+opexprlanguage -s hscript transform8
+opuserdata -n '___Version___' -v '20.5.370' transform8
+
+# Node merge6 (Sop/merge)
+opadd -e -n merge merge6
+oplocate -x 9.0883299999999991 -y -1.63168 merge6
+opspareds "" merge6
+opparm -V 20.5.370 merge6
+chlock merge6 -*
+chautoscope merge6 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off merge6
+nbop __netbox2 add merge6
+opexprlanguage -s hscript merge6
+opuserdata -n '___Version___' -v '20.5.370' merge6
+
+# Node extrudevolume4 (Sop/extrudevolume)
+opadd -e -n extrudevolume extrudevolume4
+oplocate -x -10.2743 -y -9.4910399999999999 extrudevolume4
+opspareds "" extrudevolume4
+opparm extrudevolume4 depth ( 1 ) basenormal ( 0 1 0 ) flat ( on ) labelparm ( 'Base Extension (Second Output)' ) basepadding ( 0.1 ) baselift ( 1 ) folder0 ( 0 ) outputtopgrp ( off ) topgrp ( extrudeTop ) outputbasegrp ( off ) basegrp ( extrudeBase ) outputsidegrp ( off ) sidegrp ( extrudeSide ) outputtopseamgrp ( off ) topseamgrp ( extrudeTopSeam ) outputbaseseamgrp ( off ) baseseamgrp ( extrudeBaseSeam )
+chlock extrudevolume4 -*
+chautoscope extrudevolume4 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off extrudevolume4
+nbop __netbox2 add extrudevolume4
+opexprlanguage -s hscript extrudevolume4
+opuserdata -n '___Version___' -v '' extrudevolume4
+
+# Node merge7 (Sop/merge)
+opadd -e -n merge merge7
+oplocate -x -6.6891100000000003 -y -10.6652 merge7
+opspareds "" merge7
+opparm -V 20.5.370 merge7
+chlock merge7 -*
+chautoscope merge7 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off merge7
+nbop __netbox2 add merge7
+opexprlanguage -s hscript merge7
+opuserdata -n '___Version___' -v '20.5.370' merge7
+
+# Node fuse2 (Sop/fuse::2.0)
+opadd -e -n fuse::2.0 fuse2
+oplocate -x -8.0237300000000005 -y -8.3048300000000008 fuse2
+opspareds "" fuse2
+opparm fuse2  numpointattribs ( 0 ) numgroups ( 0 )
+opparm -V 20.5.370 fuse2 querygroup ( "" ) usetargetgroup ( off ) targetgroup ( "" ) modifyboth ( off ) posattrib ( P ) snapgroup ( 0 ) snaptype ( distancesnap ) algorithm ( lowest ) usetol3d ( on ) tol3d ( 0.001 ) targetptattrib ( snap_to ) targetclass ( point ) usepositionsnapmethod ( on ) positionsnapmethod ( average ) positionsnapweightname ( weight ) useradiusattrib ( off ) radiusattrib ( pscale ) usematchattrib ( off ) matchattrib ( name ) matchtype ( match ) matchtol ( 0 ) gridtype ( spacing ) gridspacing ( 0.1 0.1 0.1 ) gridlines ( 10 10 10 ) gridpow2 ( 3 3 3 ) gridoffset ( 0 0 0 ) gridround ( nearest ) usegridtol ( on ) gridtol ( 10 ) consolidategroup ( 0 ) consolidatesnappedpoints ( on ) keepconsolidatedpoints ( off ) deldegen ( on ) deldegenpoints ( on ) delunusedpoints ( off ) outputgroup ( 0 ) recomputenml ( on ) createsnappedgroup ( off ) snappedgroupname ( snapped_points ) createsnappedattrib ( off ) snappedattribname ( snapped_to ) numpointattribs ( 0 ) numgroups ( 0 )
+chlock fuse2 -*
+chautoscope fuse2 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off fuse2
+nbop __netbox2 add fuse2
+opexprlanguage -s hscript fuse2
+opuserdata -n '___Version___' -v '20.5.370' fuse2
+
+# Node boolean2 (Sop/boolean::2.0)
+opadd -e -n boolean::2.0 boolean2
+oplocate -x -6.6867900000000002 -y -11.6928 boolean2
+opspareds "" boolean2
+opparm -V 20.5.370 boolean2 inputa ( 0 ) agroup ( "" ) asurface ( surface ) resolvea ( on ) inputb ( 0 ) bgroup ( "" ) bsurface ( surface ) resolveb ( on ) output ( 0 ) booleanop ( union ) subtractchoices ( aminusb ) shatterchoices ( apieces ) opencurvesonly ( on ) generateaaseams ( on ) generatebbseams ( on ) generateabseams ( on ) adepth ( 1 1000 ) bdepth ( 1 1000 ) windingop ( arange ) mergenbrs ( off ) detriangulate ( all ) removeinlinepoints ( on ) uniqueseams ( off ) correctnormals ( on ) useaxapolys ( off ) axapolys ( axapolys ) useaxbpolys ( off ) axbpolys ( axbpolys ) useaxalist ( off ) axalist ( axalist ) useaxblist ( off ) axblist ( axblist ) collapsetinyedges ( on ) lengththreshold ( 1e-5 ) outputprimgroups ( 0 ) useapolys ( off ) apolys ( apolys ) useainsideb ( off ) ainsideb ( ainsideb ) useaoutsideb ( off ) aoutsideb ( aoutsideb ) usebpolys ( off ) bpolys ( bpolys ) usebinsidea ( off ) binsidea ( binsidea ) useboutsidea ( off ) boutsidea ( boutsidea ) useaboverlap ( off ) aboverlap ( aboverlap ) useaonlypieces ( off ) aonlypieces ( apieces ) usebonlypieces ( off ) bonlypieces ( bpieces ) useabpieces ( off ) abpieces ( abpieces ) usereversedpolys ( off ) reversedpolys ( reversed ) outputedgegroups ( 0 ) useaaseamedges ( off ) aaseamedges ( aseams ) usebbseamedges ( off ) bbseamedges ( bseams ) useabseamedges ( off ) abseamedges ( abseams )
+chlock boolean2 -*
+chautoscope boolean2 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off boolean2
+opexprlanguage -s hscript boolean2
+opuserdata -n '___Version___' -v '20.5.370' boolean2
+
+# Node polyextrude5 (Sop/polyextrude::2.0)
+opadd -e -n polyextrude::2.0 polyextrude5
+oplocate -x -6.4549500000000002 -y -12.6928 polyextrude5
+opspareds "" polyextrude5
+opparm polyextrude5  thicknessramp ( 2 ) twistramp ( 2 )
+opparm -V 20.5.370 polyextrude5 group ( "" ) splittype ( components ) usesplitgroup ( off ) splitgroup ( "" ) extrusionmode ( primnormal ) ptnormalsrc ( precompute ) ptnormalattrib ( N ) dist ( 0.172 ) inset ( 0 ) twist ( 0 ) divs ( 1 ) spinetype ( straight ) stdswitcher ( 0 0 0 ) xformsection ( 0 ) xformfront ( off ) xformspace ( local ) rst ( srt ) xyz ( xyz ) translate ( 0 0 0 ) rotate ( 0 0 0 ) scale ( 1 1 1 ) shear ( 0 0 0 ) pivotxformsection ( 0 ) pivot ( 0 0 0 ) pivotrotate ( 0 0 0 ) prexformsection ( 0 ) prexform_rst ( srt ) prexform_xyz ( xyz ) prexform_translate ( 0 0 0 ) prexform_rotate ( 0 0 0 ) prexform_scale ( 1 1 1 ) prexform_shear ( 0 0 0 ) outputsection ( 0 ) outputfront ( on ) outputfrontgrp ( off ) frontgrp ( extrudeFront ) outputback ( on ) outputbackgrp ( off ) backgrp ( extrudeBack ) outputside ( on ) outputsidegrp ( off ) sidegrp ( extrudeSide ) outputfrontseamgrp ( off ) frontseamgrp ( extrudeFrontSeam ) outputbackseamgrp ( off ) backseamgrp ( extrudeBackSeam ) preservegroups ( on ) insettingsection ( 0 ) limitinset ( on ) commonlimit ( on ) normalsection ( 0 ) addvertexnomrals ( off ) cuspangle ( 60 ) cuspfront ( on ) cuspback ( on ) uvssection ( 0 ) genuvs ( on ) uvstyle ( proprtional ) uvscaling ( matchuv ) shapecontrolsection ( 0 ) frontmagnitude ( 1 ) backmagnitude ( 1 ) frontstiffness ( 0 ) backstiffness ( 0 ) interpolation ( rotatingframe ) spacing ( arclengthuniform ) externalspinesection ( 0 ) reversespinedirection ( off ) axialrotation ( 0 ) frontblend ( 0.1 ) backblend ( 0.1 ) thicknesssection ( 0 ) thicknessscale ( 1 ) usethicknessattrib ( on ) thicknessattrib ( thickness ) usethicknessramp ( on ) thicknessramp ( 2 ) twistsection ( 0 ) usetwistattrib ( on ) twistattrib ( twist ) usetwistramp ( on ) twistramp ( 2 ) twistscale ( 180 ) localattribs ( 0 ) uselocalzscaleattrib ( off ) localzscaleattrib ( zscale ) uselocalinsetscaleattrib ( off ) localinsetscaleattrib ( insetscale ) uselocaltwistattrib ( off ) localtwistscaleattrib ( twistscale ) uselocaldivsattrib ( off ) locadivscaleattrib ( divsscale ) localframeattribs ( 0 ) uselocalxattrib ( off ) localxattrib ( localx ) uselocalzattirb ( off ) localzattirb ( localz ) uselocalctrattrib ( off ) localctrattrib ( localctr ) thicknessramp1pos ( 0 ) thicknessramp1value ( 1 ) thicknessramp1interp ( catmull-rom ) thicknessramp2pos ( 1 ) thicknessramp2value ( 1 ) thicknessramp2interp ( catmull-rom ) twistramp1pos ( 0 ) twistramp1value ( 0.5 ) twistramp1interp ( catmull-rom ) twistramp2pos ( 1 ) twistramp2value ( 0.5 ) twistramp2interp ( catmull-rom )
+chlock polyextrude5 -*
+chautoscope polyextrude5 -*
+opset -d on -r on -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off polyextrude5
+opexprlanguage -s hscript polyextrude5
+opuserdata -n '___Version___' -v '20.5.370' polyextrude5
+oporder -e extrude_along_normal create_y_up_normal_attribute polyextrude1 polyextrude2 reverse1 merge1 wall boolean1 slope_outline1 transform1 merge2 join1 extrudevolume2 blast1 Straight1 Elbow1 Params add2 add3 extrudevolume1 extrudevolume3 polyextrude4 blast3 fuse1 Landing merge4 blast4 attribwrangle4 blast5 attribwrangle5 entrance_slope slope transform3 matchsize2 blast6 attribwrangle6 merge5 blast7 attribwrangle7 foreach_end1 foreach_begin1 foreach_count1 null1 copytopoints1 add1 transform4 matchsize1 transform5 matchsize3 transform6 transform7 transform8 merge6 extrudevolume4 merge7 fuse2 boolean2 polyextrude5 
 opcf ..
 opcf ..
 
@@ -595,27 +885,57 @@ opwire -n slope_outline1 -0 transform1
 opwire -n slope_outline1 -0 merge2
 opwire -n transform1 -1 merge2
 opwire -n merge2 -0 join1
-opwire -n attribwrangle2 -0 polyextrude3
-opwire -n transform2 -0 attribwrangle2
-opwire -n resample1 -0 transform2
-opwire -n add1 -0 resample1
 opwire -n join1 -0 extrudevolume2
 opwire -n extrudevolume2 -0 blast1
-opwire -n Straight1 -0 blast2
-opwire -n Elbow1 -0 attribwrangle1
-opwire -n attribwrangle3 -1 attribwrangle1
-opwire -n blast2 -0 attribwrangle3
-opwire -n merge3 -0 add2
-opwire -n Straight1 -0 merge3
-opwire -n attribwrangle1 -1 merge3
-opwire -n merge3 -0 add3
-opwire -n fuse1 -0 extrudevolume1
-opwire -n add2 -0 extrudevolume3
+opwire -n null1 -0 add2
+opwire -n fuse2 -0 extrudevolume3
 opwire -n blast3 -0 polyextrude4
 opwire -n extrudevolume1 -0 blast3
 opwire -n add3 -0 fuse1
-opwire -n sort1 -0 add5
-opwire -n Straight1 -0 sort1
+opwire -n transform6 -0 merge4
+opwire -n attribwrangle4 -1 merge4
+opwire -n attribwrangle5 -2 merge4
+opwire -n transform6 -0 blast4
+opwire -n transform7 -0 attribwrangle4
+opwire -n blast4 -1 attribwrangle4
+opwire -n attribwrangle4 -0 blast5
+opwire -n transform8 -0 attribwrangle5
+opwire -n blast5 -1 attribwrangle5
+opwire -n merge4 -0 entrance_slope
+opwire -n merge5 -0 slope
+opwire -n transform8 -0 transform3
+opwire -n transform3 -0 matchsize2
+opwire -n matchsize2 -0 blast6
+opwire -n transform7 -0 attribwrangle6
+opwire -n blast6 -1 attribwrangle6
+opwire -n matchsize2 -0 merge5
+opwire -n attribwrangle6 -1 merge5
+opwire -n attribwrangle7 -2 merge5
+opwire -n attribwrangle6 -0 blast7
+opwire -n transform8 -0 attribwrangle7
+opwire -n blast7 -1 attribwrangle7
+opwire -n copytopoints1 -0 foreach_end1
+opwire -n add1 -0 foreach_begin1
+opwire -n foreach_end1 -0 null1
+opwire -n merge6 -0 copytopoints1
+opwire -n foreach_begin1 -1 copytopoints1
+opwire -n matchsize1 -0 transform4
+opwire -n slope -0 matchsize1
+opwire -n foreach_count1 -1 matchsize1
+opwire -n matchsize3 -0 transform5
+opwire -n slope -0 matchsize3
+opwire -n foreach_count1 -1 matchsize3
+opwire -n Landing -0 transform6
+opwire -n Straight1 -0 transform7
+opwire -n Elbow1 -0 transform8
+opwire -n transform4 -0 merge6
+opwire -n transform5 -1 merge6
+opwire -n fuse1 -0 extrudevolume4
+opwire -n extrudevolume4 -0 merge7
+opwire -n extrudevolume3 -1 merge7
+opwire -n add2 -0 fuse2
+opwire -n merge7 -0 boolean2
+opwire -n boolean2 -0 polyextrude5
 opcf ..
 opcf ..
 opcf out
