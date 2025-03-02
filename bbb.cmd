@@ -18,7 +18,7 @@ opset -S on test_stair
 opparm -V 20.5.370 test_stair stdswitcher ( 0 0 0 ) xOrd ( srt ) rOrd ( xyz ) t ( 0 0 0 ) r ( 0 0 0 ) s ( 1 1 1 ) p ( 0 0 0 ) pr ( 0 0 0 ) scale ( 1 ) pre_xform ( clean ) keeppos ( off ) childcomp ( off ) constraints_on ( off ) constraints_path ( "" ) lookatpath ( "" ) lookupobjpath ( "" ) lookup ( on ) pathobjpath ( "" ) roll ( 0 ) pos ( 0 ) uparmtype ( arc ) pathorient ( 1 ) up ( 0 1 0 ) bank ( 0 ) shop_materialpath ( "" ) shop_materialopts ( override ) tdisplay ( off ) display ( 1 ) use_dcolor ( off ) dcolor ( 1 1 1 ) picking ( on ) pickscript ( "" ) caching ( on ) vport_shadeopen ( off ) vport_displayassubdiv ( off ) vport_onionskin ( off ) stdswitcher4 ( 0 0 0 ) viewportlod ( full ) vm_rendervisibility ( * ) vm_rendersubd ( off ) vm_subdstyle ( mantra_catclark ) vm_subdgroup ( "" ) vm_osd_quality ( 1 ) vm_osd_vtxinterp ( 2 ) vm_osd_fvarinterp ( 4 ) folder0 ( 0 0 0 0 ) categories ( "" ) reflectmask ( * ) refractmask ( * ) lightmask ( * ) lightcategories ( * ) vm_lpetag ( "" ) vm_volumefilter ( box ) vm_volumefilterwidth ( 1 ) vm_matte ( off ) vm_rayshade ( off ) geo_velocityblur ( off ) geo_accelattribute ( accel ) vm_shadingquality ( 1 ) vm_flatness ( 0.05 ) vm_raypredice ( 0 ) vm_curvesurface ( off ) vm_rmbackface ( off ) shop_geometrypath ( "" ) vm_forcegeometry ( on ) vm_rendersubdcurves ( off ) vm_renderpoints ( 2 ) vm_renderpointsas ( 0 ) vm_usenforpoints ( off ) vm_pointscale ( 1 ) vm_pscalediameter ( off ) vm_metavolume ( off ) vm_coving ( 1 ) vm_materialoverride ( compact ) vm_overridedetail ( off ) vm_procuseroottransform ( on )
 chlock test_stair -*
 chautoscope test_stair -* +tx +ty +tz +rx +ry +rz +sx +sy +sz
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off -x off test_stair
+opset -d on -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off -x off test_stair
 opexprlanguage -s hscript test_stair
 opuserdata -n '___Version___' -v '20.5.370' test_stair
 opcf test_stair
@@ -32,8 +32,8 @@ nbcolor -c 0.52 0.52 0.52 __netbox1
 
 # Network Box __netbox2
 nbadd __netbox2
-nblocate -x -16.5246 -y -13.1457 __netbox2
-nbsize -w 34.5916 -h 18.8021 __netbox2
+nblocate -x -16.5246 -y -15.002 __netbox2
+nbsize -w 34.5916 -h 20.6584 __netbox2
 nbset  -m off __netbox2
 nbcolor -c 0.52 0.52 0.52 __netbox2
 
@@ -1890,305 +1890,19 @@ opset -S on test_fence
 opparm -V 20.5.370 test_fence stdswitcher ( 0 0 0 ) xOrd ( srt ) rOrd ( xyz ) t ( 0 0 0 ) r ( 0 0 0 ) s ( 1 1 1 ) p ( 0 0 0 ) pr ( 0 0 0 ) scale ( 1 ) pre_xform ( clean ) keeppos ( off ) childcomp ( off ) constraints_on ( off ) constraints_path ( "" ) lookatpath ( "" ) lookupobjpath ( "" ) lookup ( on ) pathobjpath ( "" ) roll ( 0 ) pos ( 0 ) uparmtype ( arc ) pathorient ( 1 ) up ( 0 1 0 ) bank ( 0 ) shop_materialpath ( "" ) shop_materialopts ( override ) tdisplay ( off ) display ( 1 ) use_dcolor ( off ) dcolor ( 1 1 1 ) picking ( on ) pickscript ( "" ) caching ( on ) vport_shadeopen ( off ) vport_displayassubdiv ( off ) vport_onionskin ( off ) stdswitcher4 ( 0 0 0 ) viewportlod ( full ) vm_rendervisibility ( * ) vm_rendersubd ( off ) vm_subdstyle ( mantra_catclark ) vm_subdgroup ( "" ) vm_osd_quality ( 1 ) vm_osd_vtxinterp ( 2 ) vm_osd_fvarinterp ( 4 ) folder0 ( 0 0 0 0 ) categories ( "" ) reflectmask ( * ) refractmask ( * ) lightmask ( * ) lightcategories ( * ) vm_lpetag ( "" ) vm_volumefilter ( box ) vm_volumefilterwidth ( 1 ) vm_matte ( off ) vm_rayshade ( off ) geo_velocityblur ( off ) geo_accelattribute ( accel ) vm_shadingquality ( 1 ) vm_flatness ( 0.05 ) vm_raypredice ( 0 ) vm_curvesurface ( off ) vm_rmbackface ( off ) shop_geometrypath ( "" ) vm_forcegeometry ( on ) vm_rendersubdcurves ( off ) vm_renderpoints ( 2 ) vm_renderpointsas ( 0 ) vm_usenforpoints ( off ) vm_pointscale ( 1 ) vm_pscalediameter ( off ) vm_metavolume ( off ) vm_coving ( 1 ) vm_materialoverride ( compact ) vm_overridedetail ( off ) vm_procuseroottransform ( on )
 chlock test_fence -*
 chautoscope test_fence -* +tx +ty +tz +rx +ry +rz +sx +sy +sz
-opset -d on -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off -x off test_fence
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off -x off test_fence
 opexprlanguage -s hscript test_fence
 opuserdata -n '___Version___' -v '20.5.370' test_fence
 opcf test_fence
 
-# Network Box __netbox1
-nbadd __netbox1
-nblocate -x 4.4265 -y -9.14864 __netbox1
-nbsize -w 16.353 -h 14.5708 __netbox1
-nbset  -m off __netbox1
-nbcolor -c 0.52 0.52 0.52 __netbox1
-
-# Node curve1 (Sop/curve::2.0)
-opadd -e -n curve::2.0 curve1
-oplocate -x -1.8144 -y 3.13645 curve1
-opspareds "" curve1
-opparm curve1  targetorients ( 0 )
-opparm -V 2 curve1 group ( "" ) sepparm3 ( ) outputtype ( nurbs ) order ( 4 ) convertcurves ( off ) sepparm ( ) mode ( BUTTONS_curve_mode_draw ) interpmethod ( smoothcurvature ) enablebezierops ( off ) operations ( "" ) delete ( 0 ) fuse ( 0 ) cut ( 0 ) join ( 0 ) deleteseg ( 0 ) makecorner ( 0 ) makesmooth ( 0 ) makebalanced ( 0 ) contract ( 0 ) expand ( 0 ) straightenseg ( 0 ) close ( 0 ) createroundedcorners ( 0 ) removeroundedcorners ( 0 ) makeauto ( 0 ) makemanual ( 0 ) reverse ( 0 ) sepparm4 ( ) sepparm5 ( ) reset ( 0 ) snaponclose ( on ) maintainpoint ( off ) approxendtangents ( off ) caching ( 0 ) stashgeo ( "" ) savedstashgeo ( 'geometry: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' ) parmpoints ( geometry:f05TSmJbKwALZmlsZXZlcnNpb24mACsBCDIwLjUuMzcwJgErAghoYXNpbmRleCYCMSsDCnBvaW50Y291bnQmAxEFKwQLdmVydGV4Y291bnQmBBEAKwUOcHJpbWl0aXZlY291bnQmBREAKwYEaW5mbyYGeysHCGhvc3RuYW1lJgcrCA9ERVNLVE9QLU9SMUtPVjImCCsJBGRhdGUmCSsKEzIwMjUtMDMtMDIgMjM6NDA6MTgmCisLBmFydGlzdCYLKwwFbWFzYXQmDCsNCHNvZnR3YXJlJg0rDhBIb3VkaW5pIDIwLjUuMzcwJg4rDwZib3VuZHMmD0AZBgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACsQEWF0dHJpYnV0ZV9zdW1tYXJ5JhAn8s4BICAgIDMyIHBvaW50IGF0dHJpYnV0ZXM6CWFkZHB0cywgbWFpbnRhaW5wb2ludCwgaGFuZGxlcDBwb3MsIHRyYW5zbGF0ZSwgUCwgc29mdHRyYW5zZm9ybXJhZCwgYWN0aXZlcHJpbSwgb3B0eXBlLCBwaXZvdHJvdGF0ZSwgaGFuZGxlcDFwb3MsIHJvdW5kY29ybmVycHRzLCBzb2Z0dHJhbnNmb3JtLCBoYW5kbGVwMnBvcywgcm90YXRlLCBhdXRvYmV6aWVyLCBhY3RpdmVwb2ludHMsIG91dHB1dHR5cGUsIHBsYW5lbm1sLCBzY2FsZSwgYXV0b3B0cywgcGxhbmVvcmlnLCBjb25zdHJhaW5zdHJhaWdodGVuLCBhcHByb3hlbmR0YW5nZW50cywgcm91bmRjb3JuZXJyYWRpdXMsIHNlZ21lbnRiZXppZXJjbG9zZSwgaW50ZXJwbWV0aG9kLCBjb3JuZXJwdHMsIHBpdm90dHJhbnNsYXRlLCBzbW9vdGhwdHMsIGNvbnZlcnRjdXJ2ZXMsIGhhbmRsZXB0cywgb3JkZXIKICAgICAxIGdsb2JhbCBhdHRyaWJ1dGVzOgl2YXJtYXAKfSsRCHRvcG9sb2d5JhFbKxIIcG9pbnRyZWYmElsrEwdpbmRpY2VzJhNAEgBdXSsUCmF0dHJpYnV0ZXMmFFsrFQ9wb2ludGF0dHJpYnV0ZXMmFVtbWysWBXNjb3BlJhYrFwZwdWJsaWMmFysYBHR5cGUmGCsZB251bWVyaWMmGSsaBG5hbWUmGisb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cnB0cyAtPiBST1VORENPUk5FUlBUUyZkK2UqY29uc3RyYWluc3RyYWlnaHRlbiAtPiBDT05TVFJBSU5TVFJBSUdIVEVOJmUrZhxpbnRlcnBtZXRob2QgLT4gSU5URVJQTUVUSE9EJmYrZx5jb252ZXJ0Y3VydmVzIC0+IENPTlZFUlRDVVJWRVMmZytoHnNvZnR0cmFuc2Zvcm0gLT4gU09GVFRSQU5TRk9STSZoK2kkc29mdHRyYW5zZm9ybXJhZCAtPiBTT0ZUVFJBTlNGT1JNUkFEJmkrahZ0cmFuc2xhdGUgLT4gVFJBTlNMQVRFJmoraxByb3RhdGUgLT4gUk9UQVRFJmsrbA5zY2FsZSAtPiBTQ0FMRSZsK20gcGl2b3R0cmFuc2xhdGUgLT4gUElWT1RUUkFOU0xBVEUmbStuGnBpdm90cm90YXRlIC0+IFBJVk9UUk9UQVRFJm4rbxZoYW5kbGVwdHMgLT4gSEFORExFUFRTJm8rcBpoYW5kbGVwMHBvcyAtPiBIQU5ETEVQMFBPUyZwK3EaaGFuZGxlcDFwb3MgLT4gSEFORExFUDFQT1MmcStyGmhhbmRsZXAycG9zIC0+IEhBTkRMRVAyUE9TJnIrcxZwbGFuZW9yaWcgLT4gUExBTkVPUklHJnMrdBRwbGFuZW5tbCAtPiBQTEFORU5NTCZ0K3UYYXV0b2JlemllciAtPiBBVVRPQkVaSUVSJnUrdihzZWdtZW50YmV6aWVyY2xvc2UgLT4gU0VHTUVOVEJFWklFUkNMT1NFJnZdJhNbJiARHyYhJiomJhIABCYnW0AQAQEAAABdJihAEx8AAAAAAQAAAAIAAAADAAAABAAAAAUAAAAGAAAABwAAAAgAAAAJAAAACgAAAAsAAAAMAAAADQAAAA4AAAAPAAAAEAAAABEAAAASAAAAEwAAABQAAAAVAAAAFgAAABcAAAAYAAAAGQAAABoAAAAbAAAAHAAAAB0AAAAeAAAAXV1dXV0rdwpwcmltaXRpdmVzJndbXScFaW5kZXhbJw5pbnRlZ2VyZW50cmllc3t9Jw1zdHJpbmdlbnRyaWVze30nEWludGVnZXJrZXllbnRpcmVze30nEHN0cmluZ2tleWVudHJpZXN7fV0nDWluZGV4cG9zaXRpb24UZgAAAAAAAABd ) stashid ( ; ) ninputprimscached ( 0 ) softtransform ( off ) softtransformrad ( 0.5 ) output ( 0 ) outputcornerpts ( off ) cornerptsgroup ( corner_points ) outputsmoothpts ( off ) smoothptsgroup ( smooth_points ) outputautopts ( off ) autoptsgroup ( auto_points ) outputname ( off ) name ( '$OS' ) nameattrib ( name ) outputxaxis ( off ) xaxisname ( out ) outputyaxis ( off ) yaxisname ( up ) outputzaxis ( off ) zaxisname ( tangent ) outputorient ( off ) orientname ( orient ) tangenttype ( avgdir ) aligntangent ( on ) targetorients ( 0 ) curoperation ( 0 ) optype ( appendpoint ) activepoints ( "" ) translate ( 0 0 0 ) rotate ( 0 0 0 ) scale ( 1 1 1 ) addpts ( "" ) activeprim ( 0 ) cornerpts ( "" ) smoothpts ( * ) autopts ( "" ) pivottransformfolder ( 0 ) pivottranslate ( 0 0 0 ) pivotrotate ( 0 0 0 ) pivotfixed ( off ) roundedcornersfolder ( 0 ) viewroundcorners ( on ) roundcornerpts ( "" ) roundcornerradius ( 0 ) bakeroundcorners ( 0 ) showroundcornerwidget ( on ) showroundcornerlabels ( on ) editedgeops ( 0 ) planeorig ( 0 0 0 ) planenml ( 0 1 0 ) constrainstraighten ( off ) handleparmsfolder ( 0 ) handlepts ( -1 -1 -1 ) handlep0pos ( -1 0 0 ) handlep1pos ( 0 0 0 ) handlep2pos ( 1 0 0 )
-chlock curve1 -*
-chautoscope curve1 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off curve1
-opexprlanguage -s hscript curve1
-opuserdata -n '___Version___' -v '2' curve1
-opuserdata -n '___toolcount___' -v '1' curve1
-opuserdata -n '___toolid___' -v 'sop_curve' curve1
-
-# Node resample1 (Sop/resample)
-opadd -e -n resample resample1
-oplocate -x -1.8144 -y 2.0188000000000001 resample1
-opspareds "" resample1
-opparm -V 20.5.370 resample1 group ( "" ) maintainprimorder ( off ) lod ( 1 ) edge ( off ) method ( dist ) measure ( arc ) dolength ( on ) length ( 0.5 ) dosegs ( off ) segs ( 10 ) useattribs ( on ) allequal ( on ) last ( off ) randomshift ( off ) onlypoints ( off ) treatpolysas ( straight ) outputsubdpoly ( off ) doptdistattr ( off ) ptdistattr ( ptdist ) dotangentattr ( off ) tangentattr ( tangentu ) docurveuattr ( off ) curveuattr ( curveu ) docurvenumattr ( off ) curvenumattr ( curvenum )
-chlock resample1 -*
-chautoscope resample1 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off resample1
-opexprlanguage -s hscript resample1
-opuserdata -n '___Version___' -v '20.5.370' resample1
-
-# Node tube1 (Sop/tube)
-opadd -e -n tube tube1
-oplocate -x 0.065428799999999995 -y -2.4433199999999999 tube1
-opspareds '    parm {         name    "type"         baseparm         label   "Primitive Type"         export  all     }     parm {         name    "surftype"         baseparm         label   "Connectivity"         export  none     }     parm {         name    "orient"         baseparm         label   "Orientation"         export  all     }     parm {         name    "cap"         baseparm         label   "End Caps"         export  all     }     parm {         name    "consolidatepts"         baseparm         label   "Consolidate Corner Points"         export  none     }     parm {         name    "vertexnormals"         baseparm         label   "Add Vertex Normals"         export  none     }     parm {         name    "t"         baseparm         label   "Center"         export  none     }     parm {         name    "r"         baseparm         label   "Rotate"         export  none     }     parm {         name    "rad"         baseparm         label   "Radius"         export  all     }     parm {         name    "radscale"         baseparm         label   "Radius Scale"         export  all     }     parm {         name    "height"         baseparm         label   "Height"         export  all     }     parm {         name    "rows"         baseparm         label   "Rows"         export  all     }     parm {         name    "cols"         baseparm         label   "Columns"         export  all     }     parm {         name    "orderu"         baseparm         label   "U Order"         export  none     }     parm {         name    "orderv"         baseparm         label   "V Order"         export  none     }     parm {         name    "imperfect"         baseparm         label   "Imperfect"         export  none     }     parm {         name    "spare_input1"         label   "Spare Input 1"         type    oppath         default { "" }         help    "Refer to this in expressions as -2, such as: npoints(-2)"         parmtag { "cook_dependent" "1" }         parmtag { "opfilter" "!!SOP!!" }         parmtag { "oprelative" "." }     } ' tube1
-chblockbegin
-chadd -t 0 0 tube1 rad1
-chkey -t 0 -v 0 -m 0 -a 0 -A 0 -T a  -F 'point(-2,0,"width",0)' tube1/rad1
-chadd -t 0 0 tube1 height
-chkey -t 0 -v 1 -m 0 -a 0 -A 0 -T a  -F 'ch("../Param/Height")' tube1/height
-chblockend
-opparm -V 20.5.370 tube1 type ( poly ) surftype ( quads ) orient ( y ) cap ( off ) consolidatepts ( on ) vertexnormals ( off ) t ( 0 0 0 ) r ( 0 0 0 ) rad ( rad1 0.01 ) radscale ( 1 ) height ( height ) rows ( 2 ) cols ( 12 ) orderu ( 4 ) orderv ( 2 ) imperfect ( on ) spare_input1 ( ../foreach_begin1/ )
-chlock tube1 -*
-chautoscope tube1 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off tube1
-opexprlanguage -s hscript tube1
-opuserdata -n '___Version___' -v '20.5.370' tube1
-
-# Node matchsize1 (Sop/matchsize)
-opadd -e -n matchsize matchsize1
-oplocate -x 0.065428799999999995 -y -3.2739099999999999 matchsize1
-opspareds "" matchsize1
-opparm matchsize1 group ( "" ) grouptype ( guess ) sepparm ( ) justifytarget ( auto ) doboundgroup ( off ) folder2 ( 0 ) sourcegroup ( "" ) sourcegrouptype ( guess ) refgroup ( "" ) refgrouptype ( guess ) folder1 ( 0 ) t ( 0 0 0 ) size ( 1 1 1 ) folder0 ( 0 ) dotranslate ( on ) justify_x ( center ) goal_x ( same ) offset_x ( 0 ) justify_y ( min ) goal_y ( same ) offset_y ( 0 ) justify_z ( center ) goal_z ( same ) offset_z ( 0 ) doscale ( off ) uniformscale ( on ) scale_axis ( min ) scale_x ( on ) scale_y ( on ) scale_z ( on ) restorexform ( off ) restoreattrib ( xform ) stashxform ( off ) stashattrib ( xform ) stashmerge ( replace )
-chlock matchsize1 -*
-chautoscope matchsize1 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off matchsize1
-opexprlanguage -s hscript matchsize1
-opuserdata -n '___Version___' -v '' matchsize1
-
-# Node Param (Sop/null)
-opadd -e -n null Param
-oplocate -x -3.4178700000000002 -y 3.8818600000000001 Param
-opspareds '    parm {         name    "copyinput"         baseparm         label   "Copy Input (Note: Input will be still cooked if disabled)"         export  none     }     parm {         name    "cacheinput"         baseparm         label   "Cache Input"         export  none     }     parm {         name    "Height"         label   "Height"         type    float         default { "0.5" }         range   { 0 10 }         parmtag { "script_callback_language" "python" }     } ' Param
-opparm -V 20.5.370 Param copyinput ( on ) cacheinput ( off ) Height ( 0.53 )
-chlock Param -*
-chautoscope Param -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off Param
-opexprlanguage -s hscript Param
-opuserdata -n '___Version___' -v '20.5.370' Param
-
-# Node copytopoints1 (Sop/copytopoints::2.0)
-opadd -e -n copytopoints::2.0 copytopoints1
-oplocate -x -1.8144 -y -4.4645000000000001 copytopoints1
-opspareds "" copytopoints1
-opparm copytopoints1  targetattribs ( 3 )
-opparm -V 20.5.370 copytopoints1 sourcegroup ( "" ) sourcegrouptype ( guess ) targetgroup ( "" ) useidattrib ( off ) idattrib ( name ) pack ( off ) pivot ( centroid ) viewportlod ( full ) transform ( on ) useimplicitn ( on ) resettargetattribs ( 0 ) targetattribs ( 3 ) useapply1 ( on ) applyto1 ( points ) applymethod1 ( copy ) applyattribs1 ( *,^v,^Alpha,^N,^up,^pscale,^scale,^orient,^rot,^pivot,^trans,^transform ) useapply2 ( on ) applyto2 ( points ) applymethod2 ( mult ) applyattribs2 ( Alpha ) useapply3 ( on ) applyto3 ( points ) applymethod3 ( add ) applyattribs3 ( v )
-chlock copytopoints1 -*
-chautoscope copytopoints1 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off copytopoints1
-opexprlanguage -s hscript copytopoints1
-opuserdata -n '___Version___' -v '20.5.370' copytopoints1
-
-# Node attribwrangle1 (Sop/attribwrangle)
-opadd -e -n attribwrangle attribwrangle1
-oplocate -x -1.7673399999999999 -y 0.97889800000000005 attribwrangle1
-opspareds "" attribwrangle1
-opparm attribwrangle1  bindings ( 0 ) groupbindings ( 0 )
-opparm attribwrangle1 folder0 ( 0 0 ) group ( "" ) grouptype ( guess ) class ( point ) vex_numcount ( 10 ) vex_threadjobsize ( 1024 ) snippet ( 'f@width=0.2;\n\n@group_main=1;' ) exportlist ( * ) vex_strict ( off ) autobind ( on ) bindings ( 0 ) groupautobind ( on ) groupbindings ( 0 ) vex_cwdpath ( . ) vex_outputmask ( * ) vex_updatenmls ( off ) vex_matchattrib ( id ) vex_inplace ( off ) vex_selectiongroup ( "" ) vex_precision ( auto )
-chlock attribwrangle1 -*
-chautoscope attribwrangle1 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off attribwrangle1
-opexprlanguage -s hscript attribwrangle1
-opuserdata -n '___Version___' -v '' attribwrangle1
-
-# Node foreach_end1 (Sop/block_end)
-opadd -e -n block_end foreach_end1
-oplocate -x -1.8127899999999999 -y -5.9628500000000004 foreach_end1
-opspareds "" foreach_end1
-opparm -V 20.5.370 foreach_end1 itermethod ( pieces ) method ( merge ) iterations ( 10 ) startvalue ( 1 ) increment ( 1 ) class ( point ) useattrib ( off ) attrib ( "" ) usemaxiter ( off ) maxiter ( 10 ) blockpath ( ../foreach_begin1 ) templatepath ( ../foreach_begin1 ) resetcookpass ( 0 ) dosinglepass ( off ) singlepass ( 0 ) stopcondition ( 0 ) multithread ( off )
-chlock foreach_end1 -*
-chautoscope foreach_end1 -*
-opcolor -c 0.75 0.40000000596046448 0 foreach_end1
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F off -c on -e on -b off foreach_end1
-opexprlanguage -s hscript foreach_end1
-opuserdata -n '___Version___' -v '20.5.370' foreach_end1
-
-# Node foreach_begin1 (Sop/block_begin)
-opadd -e -n block_begin foreach_begin1
-oplocate -x -1.8127899999999999 -y -1.3539099999999999 foreach_begin1
-opspareds "" foreach_begin1
-opparm -V 20.5.370 foreach_begin1 method ( piece ) blockpath ( ../foreach_end1 ) resetcookpass ( 0 ) createmetablock ( 0 ) label1 ( 'iteration, numiterations, value, ivalue' )
-chlock foreach_begin1 -*
-chautoscope foreach_begin1 -*
-opcolor -c 0.75 0.40000000596046448 0 foreach_begin1
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F off -c on -e on -b off foreach_begin1
-opexprlanguage -s hscript foreach_begin1
-opuserdata -n '___Version___' -v '20.5.370' foreach_begin1
-
-# Node resample2 (Sop/resample)
-opadd -e -n resample resample2
-oplocate -x -1.76434 -y 0.025659999999999999 resample2
-opspareds "" resample2
-opparm -V 20.5.370 resample2 group ( "" ) maintainprimorder ( off ) lod ( 1 ) edge ( on ) method ( dist ) measure ( chord ) dolength ( on ) length ( 0.534 ) dosegs ( off ) segs ( 10 ) useattribs ( on ) allequal ( on ) last ( off ) randomshift ( off ) onlypoints ( off ) treatpolysas ( straight ) outputsubdpoly ( off ) doptdistattr ( off ) ptdistattr ( ptdist ) dotangentattr ( off ) tangentattr ( tangentu ) docurveuattr ( off ) curveuattr ( curveu ) docurvenumattr ( off ) curvenumattr ( curvenum )
-chlock resample2 -*
-chautoscope resample2 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off resample2
-opexprlanguage -s hscript resample2
-opuserdata -n '___Version___' -v '20.5.370' resample2
-
-# Node curve2 (Sop/curve::2.0)
-opadd -e -n curve::2.0 curve2
-oplocate -x 6.0862699999999998 -y 4.9221300000000001 curve2
-opspareds "" curve2
-opparm curve2  targetorients ( 0 )
-opparm -V 2 curve2 group ( "" ) sepparm3 ( ) outputtype ( polygon ) order ( 4 ) convertcurves ( off ) sepparm ( ) mode ( BUTTONS_curve_mode_draw ) interpmethod ( smoothcurvature ) enablebezierops ( off ) operations ( "" ) delete ( 0 ) fuse ( 0 ) cut ( 0 ) join ( 0 ) deleteseg ( 0 ) makecorner ( 0 ) makesmooth ( 0 ) makebalanced ( 0 ) contract ( 0 ) expand ( 0 ) straightenseg ( 0 ) close ( 0 ) createroundedcorners ( 0 ) removeroundedcorners ( 0 ) makeauto ( 0 ) makemanual ( 0 ) reverse ( 0 ) sepparm4 ( ) sepparm5 ( ) reset ( 0 ) snaponclose ( on ) maintainpoint ( off ) approxendtangents ( off ) caching ( 0 ) stashgeo ( "" ) savedstashgeo ( 'geometry:f05TSmJbKwALZmlsZXZlcnNpb24mACsBCDIwLjUuMzcwJgErAghoYXNpbmRleCYCMSsDCnBvaW50Y291bnQmAxEFKwQLdmVydGV4Y291bnQmBBEFKwUOcHJpbWl0aXZlY291bnQmBREBKwYEaW5mbyYGeysHCGhvc3RuYW1lJgcrCA9ERVNLVE9QLU9SMUtPVjImCCsJBGRhdGUmCSsKEzIwMjUtMDMtMDIgMjM6NDA6MTgmCisLBmFydGlzdCYLKwwFbWFzYXQmDCsNCHNvZnR3YXJlJg0rDhBIb3VkaW5pIDIwLjUuMzcwJg4rDwZib3VuZHMmD0AZBk9iosDcc5o+AAAAAAAAAAAI2Ii/2UvBPysQEXByaW1jb3VudF9zdW1tYXJ5JhAnFCAgICAgICAgICAxIFBvbHlnb24KKxERYXR0cmlidXRlX3N1bW1hcnkmESdIICAgICAxIHBvaW50IGF0dHJpYnV0ZXM6CVAKICAgICAxIGdsb2JhbCBhdHRyaWJ1dGVzOglfX3JvdW5kZWRjb3JuZXJwdHMKKxINZ3JvdXBfc3VtbWFyeSYSJyEgICAgIDEgcG9pbnQgZ3JvdXBzOgkJX19hdXRvX3B0cwp9KxMIdG9wb2xvZ3kmE1srFAhwb2ludHJlZiYUWysVB2luZGljZXMmFUASBQAAAQACAAMABABdXSsWCmF0dHJpYnV0ZXMmFlsrFw9wb2ludGF0dHJpYnV0ZXMmF1tbWysYBXNjb3BlJhgrGQZwdWJsaWMmGSsaBHR5cGUmGisbB251bWVyaWMmGyscBG5hbWUmHCsdAVAmHSseB29wdGlvbnMmHnsmGnsmGisfBnN0cmluZyYfKyAFdmFsdWUmICshBXBvaW50JiF9fV1bKyIEc2l6ZSYiEQMrIwdzdG9yYWdlJiMrJAhmcHJlYWwzMiYkKyUIZGVmYXVsdHMmJVsmIhEBJiMrJghmcHJlYWw2NCYmKycGdmFsdWVzJidAGgEAAAAAAAAAAF0mJ1smIhEDJiMmJCsoCHBhZ2VzaXplJigSAAQrKQtyYXdwYWdlZGF0YSYpQBkP+k1wPgAAAAAI2Ii/3HOaPgAAAADoMgQ/CPkFwAAAAADN7jG/T2KiwAAAAACBprw9up+KwAAAAADZS8E/XV1dXSsqEGdsb2JhbGF0dHJpYnV0ZXMmKltbWyYYJhkmGiYfJhwrKxJfX3JvdW5kZWRjb3JuZXJwdHMmKyYee31dWyYiEQEmIyssBWludDMyJiwrLQdzdHJpbmdzJi1bXSYVWyYiEQEmIyYsJigSAAQrLhFjb25zdGFudHBhZ2VmbGFncyYuW0AQAQEAAABdJilAEwH/////XV1dXV0rLwpwcmltaXRpdmVzJi9bW1smGiswA2NfciYwXVsrMQNzX3YmMREAKzIDbl9wJjIRASszA25fdiYzQBEBBV1dXSs0C3BvaW50Z3JvdXBzJjRbW1smHCs1Cl9fYXV0b19wdHMmNV1bKzYJc2VsZWN0aW9uJjZbKzcJdW5vcmRlcmVkJjdbKzgCaTgmOEARBQAAAAAAXV1dXV0nBWluZGV4WycOaW50ZWdlcmVudHJpZXN7fScNc3RyaW5nZW50cmllc3t9JxFpbnRlZ2Vya2V5ZW50aXJlc3t9JxBzdHJpbmdrZXllbnRyaWVze31dJw1pbmRleHBvc2l0aW9uFGYAAAAAAAAAXQ==' ) parmpoints ( 'geometry:f05TSmJbKwALZmlsZXZlcnNpb24mACsBCDIwLjUuMzcwJgErAghoYXNpbmRleCYCMSsDCnBvaW50Y291bnQmAxEEKwQLdmVydGV4Y291bnQmBBEAKwUOcHJpbWl0aXZlY291bnQmBREAKwYEaW5mbyYGeysHCGhvc3RuYW1lJgcrCA9ERVNLVE9QLU9SMUtPVjImCCsJBGRhdGUmCSsKEzIwMjUtMDMtMDIgMjM6NDA6MTgmCisLBmFydGlzdCYLKwwFbWFzYXQmDCsNCHNvZnR3YXJlJg0rDhBIb3VkaW5pIDIwLjUuMzcwJg4rDwZib3VuZHMmD0AZBgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACsQEWF0dHJpYnV0ZV9zdW1tYXJ5JhAn8s4BICAgIDMyIHBvaW50IGF0dHJpYnV0ZXM6CWFkZHB0cywgbWFpbnRhaW5wb2ludCwgaGFuZGxlcDBwb3MsIHRyYW5zbGF0ZSwgUCwgc29mdHRyYW5zZm9ybXJhZCwgYWN0aXZlcHJpbSwgb3B0eXBlLCBwaXZvdHJvdGF0ZSwgaGFuZGxlcDFwb3MsIHJvdW5kY29ybmVycHRzLCBzb2Z0dHJhbnNmb3JtLCBoYW5kbGVwMnBvcywgcm90YXRlLCBhdXRvYmV6aWVyLCBhY3RpdmVwb2ludHMsIG91dHB1dHR5cGUsIHBsYW5lbm1sLCBzY2FsZSwgYXV0b3B0cywgcGxhbmVvcmlnLCBjb25zdHJhaW5zdHJhaWdodGVuLCBhcHByb3hlbmR0YW5nZW50cywgcm91bmRjb3JuZXJyYWRpdXMsIHNlZ21lbnRiZXppZXJjbG9zZSwgaW50ZXJwbWV0aG9kLCBjb3JuZXJwdHMsIHBpdm90dHJhbnNsYXRlLCBzbW9vdGhwdHMsIGNvbnZlcnRjdXJ2ZXMsIGhhbmRsZXB0cywgb3JkZXIKICAgICAxIGdsb2JhbCBhdHRyaWJ1dGVzOgl2YXJtYXAKfSsRCHRvcG9sb2d5JhFbKxIIcG9pbnRyZWYmElsrEwdpbmRpY2VzJhNAEgBdXSsUCmF0dHJpYnV0ZXMmFFsrFQ9wb2ludGF0dHJpYnV0ZXMmFVtbWysWBXNjb3BlJhYrFwZwdWJsaWMmFysYBHR5cGUmGCsZB251bWVyaWMmGSsaBG5hbWUmGisb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b2Z0dHJhbnNmb3JtIC0+IFNPRlRUUkFOU0ZPUk0mZytoJHNvZnR0cmFuc2Zvcm1yYWQgLT4gU09GVFRSQU5TRk9STVJBRCZoK2kWdHJhbnNsYXRlIC0+IFRSQU5TTEFURSZpK2oQcm90YXRlIC0+IFJPVEFURSZqK2sOc2NhbGUgLT4gU0NBTEUmaytsIHBpdm90dHJhbnNsYXRlIC0+IFBJVk9UVFJBTlNMQVRFJmwrbRpwaXZvdHJvdGF0ZSAtPiBQSVZPVFJPVEFURSZtK24WaGFuZGxlcHRzIC0+IEhBTkRMRVBUUyZuK28aaGFuZGxlcDBwb3MgLT4gSEFORExFUDBQT1MmbytwGmhhbmRsZXAxcG9zIC0+IEhBTkRMRVAxUE9TJnArcRpoYW5kbGVwMnBvcyAtPiBIQU5ETEVQMlBPUyZxK3IWcGxhbmVvcmlnIC0+IFBMQU5FT1JJRyZyK3MUcGxhbmVubWwgLT4gUExBTkVOTUwmcyt0GGF1dG9iZXppZXIgLT4gQVVUT0JFWklFUiZ0K3Uoc2VnbWVudGJlemllcmNsb3NlIC0+IFNFR01FTlRCRVpJRVJDTE9TRSZ1XSYTWyYgER8mISYqJiYSAAQmJ1tAEAEBAAAAXSYoQBMfAAAAAAEAAAACAAAAAwAAAAQAAAAFAAAABgAAAAcAAAAIAAAACQAAAAoAAAALAAAADAAAAA0AAAAOAAAADwAAABAAAAARAAAAEgAAABMAAAAUAAAAFQAAABYAAAAXAAAAGAAAABkAAAAaAAAAGwAAABwAAAAdAAAAHgAAAF1dXV1dK3YKcHJpbWl0aXZlcyZ2W10nBWluZGV4WycOaW50ZWdlcmVudHJpZXN7fScNc3RyaW5nZW50cmllc3t9JxFpbnRlZ2Vya2V5ZW50aXJlc3t9JxBzdHJpbmdrZXllbnRyaWVze31dJw1pbmRleHBvc2l0aW9uFGYAAAAAAAAAXQ==' ) stashid ( ; ) ninputprimscached ( 0 ) softtransform ( off ) softtransformrad ( 0.5 ) output ( 0 ) outputcornerpts ( off ) cornerptsgroup ( corner_points ) outputsmoothpts ( off ) smoothptsgroup ( smooth_points ) outputautopts ( off ) autoptsgroup ( auto_points ) outputname ( off ) name ( '$OS' ) nameattrib ( name ) outputxaxis ( off ) xaxisname ( out ) outputyaxis ( off ) yaxisname ( up ) outputzaxis ( off ) zaxisname ( tangent ) outputorient ( off ) orientname ( orient ) tangenttype ( avgdir ) aligntangent ( on ) targetorients ( 0 ) curoperation ( 0 ) optype ( appendpoint ) activepoints ( "" ) translate ( 0 0 0 ) rotate ( 0 0 0 ) scale ( 1 1 1 ) addpts ( "" ) activeprim ( 0 ) cornerpts ( "" ) smoothpts ( * ) autopts ( "" ) pivottransformfolder ( 0 ) pivottranslate ( 0 0 0 ) pivotrotate ( 0 0 0 ) pivotfixed ( off ) roundedcornersfolder ( 0 ) viewroundcorners ( on ) roundcornerpts ( "" ) roundcornerradius ( 0 ) bakeroundcorners ( 0 ) showroundcornerwidget ( on ) showroundcornerlabels ( on ) editedgeops ( 0 ) planeorig ( 0 0 0 ) planenml ( 0 1 0 ) constrainstraighten ( off ) handleparmsfolder ( 0 ) handlepts ( -1 -1 -1 ) handlep0pos ( -1 0 0 ) handlep1pos ( 0 0 0 ) handlep2pos ( 1 0 0 )
-chlock curve2 -*
-chautoscope curve2 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off curve2
-nbop __netbox1 add curve2
-opexprlanguage -s hscript curve2
-opuserdata -n '___Version___' -v '2' curve2
-opuserdata -n '___toolcount___' -v '1' curve2
-opuserdata -n '___toolid___' -v 'sop_curve' curve2
-
-# Node resample3 (Sop/resample)
-opadd -e -n resample resample3
-oplocate -x 6.1608200000000002 -y 3.6263299999999998 resample3
-opspareds "" resample3
-opparm -V 20.5.370 resample3 group ( "" ) maintainprimorder ( off ) lod ( 1 ) edge ( on ) method ( dist ) measure ( arc ) dolength ( on ) length ( 1.06 ) dosegs ( off ) segs ( 10 ) useattribs ( on ) allequal ( on ) last ( off ) randomshift ( off ) onlypoints ( off ) treatpolysas ( straight ) outputsubdpoly ( off ) doptdistattr ( off ) ptdistattr ( ptdist ) dotangentattr ( off ) tangentattr ( tangentu ) docurveuattr ( off ) curveuattr ( curveu ) docurvenumattr ( off ) curvenumattr ( curvenum )
-chlock resample3 -*
-chautoscope resample3 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off resample3
-nbop __netbox1 add resample3
-opexprlanguage -s hscript resample3
-opuserdata -n '___Version___' -v '20.5.370' resample3
-
-# Node group1 (Sop/groupcreate)
-opadd -e -n groupcreate group1
-oplocate -x 7.4404899999999996 -y 2.65456 group1
-opspareds "" group1
-opparm -V 20.5.370 group1 groupname ( old_points ) grouptype ( point ) mergeop ( replace ) folder0 ( 0 ) groupbase ( on ) basegroup ( "" ) ordered ( off ) geotype ( all ) switcher3 ( 0 ) groupbounding ( off ) boundtype ( usebbox ) size ( 1 1 1 ) t ( 0 0 0 ) initbounds ( 0 ) includenotwhollycontained ( off ) iso ( 0 ) invertvolume ( off ) switcher4 ( 0 ) groupnormal ( off ) camerapath ( "" ) nonplanar ( off ) nonplanartol ( 0.001 ) dir ( 0 0 1 ) angle ( 180 ) oppositenormals ( off ) switcher5 ( 0 ) groupedges ( off ) dominedgeangle ( off ) minedgeangle ( 20 ) domaxedgeangle ( off ) maxedgeangle ( 20 ) edgeanglebetweenedges ( off ) dominedgelen ( off ) minedgelen ( 0 ) domaxedgelen ( off ) maxedgelen ( 0 ) dodepth ( off ) edgestep ( 0 ) edgeptgrp ( 0 ) unshared ( off ) boundarygroups ( off ) switcher6 ( 0 ) grouprandom ( off ) globalseed ( 1 ) useseedattrib ( off ) seedattrib ( id ) percent ( 50 )
-chlock group1 -*
-chautoscope group1 -*
-opset -d off -r off -h on -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off group1
-nbop __netbox1 add group1
-opexprlanguage -s hscript group1
-opuserdata -n '___Version___' -v '20.5.370' group1
-
-# Node grouptransfer1 (Sop/grouptransfer)
-opadd -e -n grouptransfer grouptransfer1
-oplocate -x 5.7537200000000004 -y 0.53758099999999998 grouptransfer1
-opspareds "" grouptransfer1
-opparm -V 20.5.370 grouptransfer1 primitives ( on ) primgroups ( "" ) primnameprefix ( "" ) points ( on ) pointgroups ( "" ) pointnameprefix ( "" ) edges ( on ) edgegroups ( "" ) edgenameprefix ( "" ) groupnameconflict ( skipgroup ) threshold ( on ) thresholddist ( 0.001 ) keepifempty ( on )
-chlock grouptransfer1 -*
-chautoscope grouptransfer1 -*
-opset -d off -r off -h on -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off grouptransfer1
-nbop __netbox1 add grouptransfer1
-opexprlanguage -s hscript grouptransfer1
-opuserdata -n '___Version___' -v '20.5.370' grouptransfer1
-
-# Node resample4 (Sop/resample)
-opadd -e -n resample resample4
-oplocate -x 10.6736 -y 3.41214 resample4
-opspareds "" resample4
-opparm -V 20.5.370 resample4 group ( "" ) maintainprimorder ( off ) lod ( 1 ) edge ( on ) method ( dist ) measure ( arc ) dolength ( on ) length ( 1.06 ) dosegs ( off ) segs ( 10 ) useattribs ( on ) allequal ( on ) last ( off ) randomshift ( off ) onlypoints ( off ) treatpolysas ( straight ) outputsubdpoly ( off ) doptdistattr ( off ) ptdistattr ( ptdist ) dotangentattr ( off ) tangentattr ( tangentu ) docurveuattr ( off ) curveuattr ( curveu ) docurvenumattr ( off ) curvenumattr ( curvenum )
-chlock resample4 -*
-chautoscope resample4 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off resample4
-nbop __netbox1 add resample4
-opexprlanguage -s hscript resample4
-opuserdata -n '___Version___' -v '20.5.370' resample4
-
-# Node attribcreate1 (Sop/attribcreate::2.0)
-opadd -e -n attribcreate::2.0 attribcreate1
-oplocate -x 13.7559 -y 3.41214 attribcreate1
-opspareds "" attribcreate1
-opparm attribcreate1  numattr ( 1 )
-opparm -V 20.5.370 attribcreate1 group ( "" ) grouptype ( guess ) encodenames ( off ) numattr ( 1 ) enable1 ( on ) name1 ( type ) existing1 ( better ) createvarmap1 ( off ) varname1 ( "" ) class1 ( point ) savetoinfo1 ( off ) type1 ( index ) typeinfo1 ( guess ) precision1 ( auto ) size1 ( 1 ) default1v ( 0 0 0 0 ) writevalues1 ( on ) uselocal1 ( on ) value1v ( 0 0 0 0 ) string1 ( main ) numattr_spacerparm1 ( )
-chlock attribcreate1 -*
-chautoscope attribcreate1 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off attribcreate1
-nbop __netbox1 add attribcreate1
-opexprlanguage -s hscript attribcreate1
-opuserdata -n '___Version___' -v '20.5.370' attribcreate1
-
-# Node attribtransfer1 (Sop/attribtransfer)
-opadd -e -n attribtransfer attribtransfer1
-oplocate -x 11.835900000000001 -y 2.3164799999999999 attribtransfer1
-opspareds "" attribtransfer1
-opparm -V 20.5.370 attribtransfer1 srcgroups ( "" ) srcgrouptype ( primitive ) dstgroups ( "" ) dstgrouptype ( primitive ) cardswitcher ( 1 1 ) detailattribs ( off ) detailattriblist ( "" ) primitiveattribs ( on ) primattriblist ( "" ) pointattribs ( on ) pointattriblist ( type ) vertexattribs ( off ) vertexattriblist ( "" ) copyvariable ( on ) matchpattrib ( off ) kernel ( elendt ) kernelradius ( 10 ) maxsamplecount ( 1 ) threshold ( on ) thresholddist ( 0 ) blendwidth ( 0 ) uniformbias ( 0.5 )
-chlock attribtransfer1 -*
-chautoscope attribtransfer1 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off attribtransfer1
-nbop __netbox1 add attribtransfer1
-opexprlanguage -s hscript attribtransfer1
-opuserdata -n '___Version___' -v '20.5.370' attribtransfer1
-
-# Node delete1 (Sop/delete)
-opadd -e -n delete delete1
-oplocate -x 5.7537200000000004 -y -0.46261200000000002 delete1
-opspareds "" delete1
-chblockbegin
-chadd -t 0 0 delete1 rangeend
-chkey -t 0 -v 0 -m 0 -a 0 -A 0 -T a  -F '$N' delete1/rangeend
-chblockend
-opparm -V 20.5.370 delete1 group ( old_points ) label0 ( 'Warning: Group Is NOT Filtered by Geometry Type' ) negate ( dele ) entity ( point ) geotype ( all ) stdswitcher ( 0 0 0 0 0 ) affectnumber ( on ) groupop ( pattern ) filter ( 1 ) pattern ( !* ) range ( 0 rangeend ) select ( 1 2 ) affectvolume ( off ) boundtype ( usebbox ) size ( 1 1 1 ) t ( 0 0 0 ) affectnormal ( off ) dir ( 0 0 1 ) angle ( 180 ) camerapath ( "" ) affectdegenerate ( off ) degenerate ( off ) zaf ( off ) doopen ( off ) tol ( 0.001 ) userandom ( off ) globalseed ( 1 ) useseedattrib ( off ) seedattrib ( id ) percent ( 50 ) removegrp ( on ) keeppoints ( off )
-chlock delete1 -*
-chautoscope delete1 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off delete1
-nbop __netbox1 add delete1
-opexprlanguage -s hscript delete1
-opuserdata -n '___Version___' -v '20.5.370' delete1
-
-# Node blast1 (Sop/blast)
-opadd -e -n blast blast1
-oplocate -x 13.902699999999999 -y 0.72824500000000003 blast1
-opspareds "" blast1
-opparm -V 20.5.370 blast1 group ( '@type=main' ) grouptype ( points ) computenorms ( off ) negate ( on ) fillhole ( off ) removegrp ( off )
-chlock blast1 -*
-chautoscope blast1 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off blast1
-nbop __netbox1 add blast1
-opexprlanguage -s hscript blast1
-opuserdata -n '___Version___' -v '20.5.370' blast1
-
-# Node blast2 (Sop/blast)
-opadd -e -n blast blast2
-oplocate -x 11.839399999999999 -y 0.85059700000000005 blast2
-opspareds "" blast2
-opparm -V 20.5.370 blast2 group ( '@type=main' ) grouptype ( points ) computenorms ( off ) negate ( off ) fillhole ( off ) removegrp ( off )
-chlock blast2 -*
-chautoscope blast2 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off blast2
-nbop __netbox1 add blast2
-opexprlanguage -s hscript blast2
-opuserdata -n '___Version___' -v '20.5.370' blast2
-
-# Node resample5 (Sop/resample)
-opadd -e -n resample resample5
-oplocate -x 5.3811900000000001 -y 1.69102 resample5
-opspareds "" resample5
-opparm -V 20.5.370 resample5 group ( "" ) maintainprimorder ( off ) lod ( 1 ) edge ( on ) method ( dist ) measure ( arc ) dolength ( on ) length ( 0.47 ) dosegs ( off ) segs ( 10 ) useattribs ( on ) allequal ( on ) last ( off ) randomshift ( off ) onlypoints ( off ) treatpolysas ( straight ) outputsubdpoly ( off ) doptdistattr ( off ) ptdistattr ( ptdist ) dotangentattr ( off ) tangentattr ( tangentu ) docurveuattr ( off ) curveuattr ( curveu ) docurvenumattr ( off ) curvenumattr ( curvenum )
-chlock resample5 -*
-chautoscope resample5 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off resample5
-nbop __netbox1 add resample5
-opexprlanguage -s hscript resample5
-opuserdata -n '___Version___' -v '20.5.370' resample5
-
-# Node curve3 (Sop/curve::2.0)
-opadd -e -n curve::2.0 curve3
-oplocate -x 8.0865600000000004 -y 0.53758099999999998 curve3
-opspareds "" curve3
-opparm curve3  targetorients ( 0 )
-opparm -V 2 curve3 group ( "" ) sepparm3 ( ) outputtype ( polygon ) order ( 4 ) convertcurves ( off ) sepparm ( ) mode ( BUTTONS_curve_mode_select ) interpmethod ( smoothcurvature ) enablebezierops ( off ) operations ( "" ) delete ( 0 ) fuse ( 0 ) cut ( 0 ) join ( 0 ) deleteseg ( 0 ) makecorner ( 0 ) makesmooth ( 0 ) makebalanced ( 0 ) contract ( 0 ) expand ( 0 ) straightenseg ( 0 ) close ( 0 ) createroundedcorners ( 0 ) removeroundedcorners ( 0 ) makeauto ( 0 ) makemanual ( 0 ) reverse ( 0 ) sepparm4 ( ) sepparm5 ( ) reset ( 0 ) snaponclose ( on ) maintainpoint ( off ) approxendtangents ( off ) caching ( 0 ) stashgeo ( "" ) savedstashgeo ( 'geometry:f05TSmJbKwALZmlsZXZlcnNpb24mACsBCDIwLjUuMzcwJgErAghoYXNpbmRleCYCMSsDCnBvaW50Y291bnQmAxEFKwQLdmVydGV4Y291bnQmBBEFKwUOcHJpbWl0aXZlY291bnQmBREBKwYEaW5mbyYGeysHCGhvc3RuYW1lJgcrCA9ERVNLVE9QLU9SMUtPVjImCCsJBGRhdGUmCSsKEzIwMjUtMDMtMDIgMjM6NDA6MTgmCisLBmFydGlzdCYLKwwFbWFzYXQmDCsNCHNvZnR3YXJlJg0rDhBIb3VkaW5pIDIwLjUuMzcwJg4rDwZib3VuZHMmD0AZBncOzMCK8fc/AAAAAAAAAACYA46/dsPfPysQEXByaW1jb3VudF9zdW1tYXJ5JhAnFCAgICAgICAgICAxIFBvbHlnb24KKxERYXR0cmlidXRlX3N1bW1hcnkmESdIICAgICAxIHBvaW50IGF0dHJpYnV0ZXM6CVAKICAgICAxIGdsb2JhbCBhdHRyaWJ1dGVzOglfX3JvdW5kZWRjb3JuZXJwdHMKKxINZ3JvdXBfc3VtbWFyeSYSJyEgICAgIDEgcG9pbnQgZ3JvdXBzOgkJX19hdXRvX3B0cwp9KxMIdG9wb2xvZ3kmE1srFAhwb2ludHJlZiYUWysVB2luZGljZXMmFUASBQAAAQACAAMABABdXSsWCmF0dHJpYnV0ZXMmFlsrFw9wb2ludGF0dHJpYnV0ZXMmF1tbWysYBXNjb3BlJhgrGQZwdWJsaWMmGSsaBHR5cGUmGisbB251bWVyaWMmGyscBG5hbWUmHCsdAVAmHSseB29wdGlvbnMmHnsmGnsmGisfBnN0cmluZyYfKyAFdmFsdWUmICshBXBvaW50JiF9fV1bKyIEc2l6ZSYiEQMrIwdzdG9yYWdlJiMrJAhmcHJlYWwzMiYkKyUIZGVmYXVsdHMmJVsmIhEBJiMrJghmcHJlYWw2NCYmKycGdmFsdWVzJidAGgEAAAAAAAAAAF0mJ1smIhEDJiMmJCsoCHBhZ2VzaXplJigSAAQrKQtyYXdwYWdlZGF0YSYpQBkPivH3PwAAAADIFEG/wBChPAAAAAAgqRM/XDlYwAAAAACYA46/lAV8wAAAAAAIJ70/dw7MwAAAAAB2w98/XV1dXSsqEGdsb2JhbGF0dHJpYnV0ZXMmKltbWyYYJhkmGiYfJhwrKxJfX3JvdW5kZWRjb3JuZXJwdHMmKyYee31dWyYiEQEmIyssBWludDMyJiwrLQdzdHJpbmdzJi1bXSYVWyYiEQEmIyYsJigSAAQrLhFjb25zdGFudHBhZ2VmbGFncyYuW0AQAQEAAABdJilAEwH/////XV1dXV0rLwpwcmltaXRpdmVzJi9bW1smGiswA2NfciYwXVsrMQNzX3YmMREAKzIDbl9wJjIRASszA25fdiYzQBEBBV1dXSs0C3BvaW50Z3JvdXBzJjRbW1smHCs1Cl9fYXV0b19wdHMmNV1bKzYJc2VsZWN0aW9uJjZbKzcJdW5vcmRlcmVkJjdbKzgCaTgmOEARBQAAAAAAXV1dXV0nBWluZGV4WycOaW50ZWdlcmVudHJpZXN7fScNc3RyaW5nZW50cmllc3t9JxFpbnRlZ2Vya2V5ZW50aXJlc3t9JxBzdHJpbmdrZXllbnRyaWVze31dJw1pbmRleHBvc2l0aW9uFGYAAAAAAAAAXQ==' ) parmpoints ( 'geometry:f05TSmJbKwALZmlsZXZlcnNpb24mACsBCDIwLjUuMzcwJgErAghoYXNpbmRleCYCMSsDCnBvaW50Y291bnQmAxEMKwQLdmVydGV4Y291bnQmBBEAKwUOcHJpbWl0aXZlY291bnQmBREAKwYEaW5mbyYGeysHCGhvc3RuYW1lJgcrCA9ERVNLVE9QLU9SMUtPVjImCCsJBGRhdGUmCSsKEzIwMjUtMDMtMDIgMjM6NDA6MTgmCisLBmFydGlzdCYLKwwFbWFzYXQmDCsNCHNvZnR3YXJlJg0rDhBIb3VkaW5pIDIwLjUuMzcwJg4rDwZib3VuZHMmD0AZBgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACsQEWF0dHJpYnV0ZV9zdW1tYXJ5JhAn8s4BICAgIDMyIHBvaW50IGF0dHJpYnV0ZXM6CWFkZHB0cywgbWFpbnRhaW5wb2ludCwgaGFuZGxlcDBwb3MsIHRyYW5zbGF0ZSwgUCwgc29mdHRyYW5zZm9ybXJhZCwgYWN0aXZlcHJpbSwgb3B0eXBlLCBwaXZvdHJvdGF0ZSwgaGFuZGxlcDFwb3MsIHJvdW5kY29ybmVycHRzLCBzb2Z0dHJhbnNmb3JtLCBoYW5kbGVwMnBvcywgcm90YXRlLCBhdXRvYmV6aWVyLCBhY3RpdmVwb2ludHMsIG91dHB1dHR5cGUsIHBsYW5lbm1sLCBzY2FsZSwgYXV0b3B0cywgcGxhbmVvcmlnLCBjb25zdHJhaW5zdHJhaWdodGVuLCBhcHByb3hlbmR0YW5nZW50cywgcm91bmRjb3JuZXJyYWRpdXMsIHNlZ21lbnRiZXppZXJjbG9zZSwgaW50ZXJwbWV0aG9kLCBjb3JuZXJwdHMsIHBpdm90dHJhbnNsYXRlLCBzbW9vdGhwdHMsIGNvbnZlcnRjdXJ2ZXMsIGhhbmRsZXB0cywgb3JkZXIKICAgICAxIGdsb2JhbCBhdHRyaWJ1dGVzOgl2YXJtYXAKfSsRCHRvcG9sb2d5JhFbKxIIcG9pbnRyZWYmElsrEwdpbmRpY2VzJhNAEgBdXSsUCmF0dHJpYnV0ZXMmFFsrFQ9wb2ludGF0dHJpYnV0ZXMmFVtbWysWBXNjb3BlJhYrFwZwdWJsaWMmFysYBHR5cGUmGCsZB251bWVyaWMmGSsaBG5hbWUmGisb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LT4gQUNUSVZFUFJJTSZgK2EebWFpbnRhaW5wb2ludCAtPiBNQUlOVEFJTlBPSU5UJmErYiZhcHByb3hlbmR0YW5nZW50cyAtPiBBUFBST1hFTkRUQU5HRU5UUyZiK2MYb3V0cHV0dHlwZSAtPiBPVVRQVVRUWVBFJmMrZA5vcmRlciAtPiBPUkRFUiZkK2Umcm91bmRjb3JuZXJyYWRpdXMgLT4gUk9VTkRDT1JORVJSQURJVVMmZStmFmNvcm5lcnB0cyAtPiBDT1JORVJQVFMmZitnFnNtb290aHB0cyAtPiBTTU9PVEhQVFMmZytoEmF1dG9wdHMgLT4gQVVUT1BUUyZoK2kgcm91bmRjb3JuZXJwdHMgLT4gUk9VTkRDT1JORVJQVFMmaStqKmNvbnN0cmFpbnN0cmFpZ2h0ZW4gLT4gQ09OU1RSQUlOU1RSQUlHSFRFTiZqK2scaW50ZXJwbWV0aG9kIC0+IElOVEVSUE1FVEhPRCZrK2weY29udmVydGN1cnZlcyAtPiBDT05WRVJUQ1VSVkVTJmwrbR5zb2Z0dHJhbnNmb3JtIC0+IFNPRlRUUkFOU0ZPUk0mbStuJHNvZnR0cmFuc2Zvcm1yYWQgLT4gU09GVFRSQU5TRk9STVJBRCZuK28WdHJhbnNsYXRlIC0+IFRSQU5TTEFURSZvK3AQcm90YXRlIC0+IFJPVEFURSZwK3EOc2NhbGUgLT4gU0NBTEUmcStyIHBpdm90dHJhbnNsYXRlIC0+IFBJVk9UVFJBTlNMQVRFJnIrcxpwaXZvdHJvdGF0ZSAtPiBQSVZPVFJPVEFURSZzK3QWaGFuZGxlcHRzIC0+IEhBTkRMRVBUUyZ0K3UaaGFuZGxlcDBwb3MgLT4gSEFORExFUDBQT1MmdSt2GmhhbmRsZXAxcG9zIC0+IEhBTkRMRVAxUE9TJnYrdxpoYW5kbGVwMnBvcyAtPiBIQU5ETEVQMlBPUyZ3K3gWcGxhbmVvcmlnIC0+IFBMQU5FT1JJRyZ4K3kUcGxhbmVubWwgLT4gUExBTkVOTUwmeSt6GGF1dG9iZXppZXIgLT4gQVVUT0JFWklFUiZ6K3soc2VnbWVudGJlemllcmNsb3NlIC0+IFNFR01FTlRCRVpJRVJDTE9TRSZ7XSYTWyYgER8mISYqJiYSAAQmJ1tAEAEBAAAAXSYoQBMfAAAAAAEAAAACAAAAAwAAAAQAAAAFAAAABgAAAAcAAAAIAAAACQAAAAoAAAALAAAADAAAAA0AAAAOAAAADwAAABAAAAARAAAAEgAAABMAAAAUAAAAFQAAABYAAAAXAAAAGAAAABkAAAAaAAAAGwAAABwAAAAdAAAAHgAAAF1dXV1dK3wKcHJpbWl0aXZlcyZ8W10nBWluZGV4WycOaW50ZWdlcmVudHJpZXN7fScNc3RyaW5nZW50cmllc3t9JxFpbnRlZ2Vya2V5ZW50aXJlc3t9JxBzdHJpbmdrZXllbnRyaWVze31dJw1pbmRleHBvc2l0aW9uFGYAAAAAAAAAXQ==' ) stashid ( ; ) ninputprimscached ( 0 ) softtransform ( off ) softtransformrad ( 0.5 ) output ( 0 ) outputcornerpts ( off ) cornerptsgroup ( corner_points ) outputsmoothpts ( off ) smoothptsgroup ( smooth_points ) outputautopts ( off ) autoptsgroup ( auto_points ) outputname ( off ) name ( '$OS' ) nameattrib ( name ) outputxaxis ( off ) xaxisname ( out ) outputyaxis ( off ) yaxisname ( up ) outputzaxis ( off ) zaxisname ( tangent ) outputorient ( off ) orientname ( orient ) tangenttype ( avgdir ) aligntangent ( on ) targetorients ( 0 ) curoperation ( 0 ) optype ( transform ) activepoints ( 2 ) translate ( 0 0 0 ) rotate ( 0 0 0 ) scale ( 1 1 1 ) addpts ( "" ) activeprim ( 1 ) cornerpts ( "" ) smoothpts ( * ) autopts ( "" ) pivottransformfolder ( 0 ) pivottranslate ( -3.3785009384155273 0 -1.1094846725463867 ) pivotrotate ( 0 0 0 ) pivotfixed ( off ) roundedcornersfolder ( 0 ) viewroundcorners ( on ) roundcornerpts ( "" ) roundcornerradius ( 0 ) bakeroundcorners ( 0 ) showroundcornerwidget ( on ) showroundcornerlabels ( on ) editedgeops ( 0 ) planeorig ( 0 0 0 ) planenml ( 0 1 0 ) constrainstraighten ( off ) handleparmsfolder ( 0 ) handlepts ( -1 -1 -1 ) handlep0pos ( -1 0 0 ) handlep1pos ( 0 0 0 ) handlep2pos ( 1 0 0 )
-chlock curve3 -*
-chautoscope curve3 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off curve3
-nbop __netbox1 add curve3
-opexprlanguage -s hscript curve3
-opuserdata -n '___Version___' -v '2' curve3
-opuserdata -n '___toolcount___' -v '1' curve3
-opuserdata -n '___toolid___' -v 'sop_curve' curve3
-
 # Node subnet1 (Sop/subnet)
 opadd -e -n subnet subnet1
-oplocate -x 8.0865600000000004 -y -3.06033 subnet1
+oplocate -x 5.5348300000000004 -y 1.22767 subnet1
 opspareds '    parm {         name    "label1"         baseparm         label   "Input #1 Label"         export  all     }     parm {         name    "label2"         baseparm         label   "Input #2 Label"         export  all     }     parm {         name    "label3"         baseparm         label   "Input #3 Label"         export  all     }     parm {         name    "label4"         baseparm         label   "Input #4 Label"         export  all     }     parm {         name    "PrimaryWidth"         label   "PrimaryWidth"         type    float         default { "0.05" }         range   { 0 10 }         parmtag { "script_callback_language" "python" }     }     parm {         name    "SecondaryWidth"         label   "SecondaryWidth"         type    float         default { "0.025" }         range   { 0 10 }         parmtag { "script_callback_language" "python" }     }     parm {         name    "BottomHeight"         label   "BottomHeight"         type    float         default { "0.15" }         range   { 0 10 }         parmtag { "script_callback_language" "python" }     }     parm {         name    "Height"         label   "Height"         type    float         default { "1" }         range   { 0 10 }         parmtag { "script_callback_language" "python" }     }     parm {         name    "PrimaryInterval"         label   "PrimaryInterval"         type    float         default { "1.5" }         range   { 0 10 }         parmtag { "script_callback_language" "python" }     }     parm {         name    "SecondaryInterval"         label   "SecondaryInterval"         type    float         default { "0.15" }         range   { 0 10 }         parmtag { "script_callback_language" "python" }     } ' subnet1
 opparm -V 20.5.370 subnet1 label1 ( 'Sub-Network Input #1' ) label2 ( 'Sub-Network Input #2' ) label3 ( 'Sub-Network Input #3' ) label4 ( 'Sub-Network Input #4' ) PrimaryWidth ( 0.05 ) SecondaryWidth ( 0.025 ) BottomHeight ( 0.37 ) Height ( 1.31 ) PrimaryInterval ( 1.83 ) SecondaryInterval ( 0.15 )
 chlock subnet1 -*
 chautoscope subnet1 -*
 opset -d on -r on -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off subnet1
-nbop __netbox1 add subnet1
 opexprlanguage -s hscript subnet1
 opuserdata -n '___Version___' -v '20.5.370' subnet1
 opcf subnet1
@@ -2599,170 +2313,27 @@ opcf ..
 
 # Node resample6 (Sop/resample)
 opadd -e -n resample resample6
-oplocate -x 8.0865600000000004 -y -0.93074800000000002 resample6
+oplocate -x 5.5348300000000004 -y 2.4795099999999999 resample6
 opspareds "" resample6
 opparm -V 20.5.370 resample6 group ( "" ) maintainprimorder ( off ) lod ( 1 ) edge ( off ) method ( dist ) measure ( arc ) dolength ( on ) length ( 0.6 ) dosegs ( off ) segs ( 10 ) useattribs ( on ) allequal ( on ) last ( off ) randomshift ( off ) onlypoints ( off ) treatpolysas ( straight ) outputsubdpoly ( off ) doptdistattr ( off ) ptdistattr ( ptdist ) dotangentattr ( off ) tangentattr ( tangentu ) docurveuattr ( off ) curveuattr ( curveu ) docurvenumattr ( off ) curvenumattr ( curvenum )
 chlock resample6 -*
 chautoscope resample6 -*
 opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off resample6
-nbop __netbox1 add resample6
 opexprlanguage -s hscript resample6
 opuserdata -n '___Version___' -v '20.5.370' resample6
 
-# Node curve4 (Sop/curve::2.0)
-opadd -e -n curve::2.0 curve4
-oplocate -x 10.6736 -y 0.039435499999999998 curve4
-opspareds "" curve4
-opparm curve4  targetorients ( 0 )
-opparm -V 2 curve4 group ( "" ) sepparm3 ( ) outputtype ( nurbs ) order ( 4 ) convertcurves ( off ) sepparm ( ) mode ( BUTTONS_curve_mode_draw ) interpmethod ( smoothcurvature ) enablebezierops ( off ) operations ( "" ) delete ( 0 ) fuse ( 0 ) cut ( 0 ) join ( 0 ) deleteseg ( 0 ) makecorner ( 0 ) makesmooth ( 0 ) makebalanced ( 0 ) contract ( 0 ) expand ( 0 ) straightenseg ( 0 ) close ( 0 ) createroundedcorners ( 0 ) removeroundedcorners ( 0 ) makeauto ( 0 ) makemanual ( 0 ) reverse ( 0 ) sepparm4 ( ) sepparm5 ( ) reset ( 0 ) snaponclose ( on ) maintainpoint ( off ) approxendtangents ( off ) caching ( 0 ) stashgeo ( "" ) savedstashgeo ( 'geometry:f05TSmJbKwALZmlsZXZlcnNpb24mACsBCDIwLjUuMzcwJgErAghoYXNpbmRleCYCMSsDCnBvaW50Y291bnQmAxEHKwQLdmVydGV4Y291bnQmBBEHKwUOcHJpbWl0aXZlY291bnQmBREBKwYEaW5mbyYGeysHCGhvc3RuYW1lJgcrCA9ERVNLVE9QLU9SMUtPVjImCCsJBGRhdGUmCSsKEzIwMjUtMDMtMDIgMjM6NDA6MTgmCisLBmFydGlzdCYLKwwFbWFzYXQmDCsNCHNvZnR3YXJlJg0rDhBIb3VkaW5pIDIwLjUuMzcwJg4rDwZib3VuZHMmD0AZBpDNocCNHZw/AAAAAAAAAABTA5e/KJUYQCsQEXByaW1jb3VudF9zdW1tYXJ5JhAnGCAgICAgICAgICAxIE5VUkJTIEN1cnZlCisREWF0dHJpYnV0ZV9zdW1tYXJ5JhEnSCAgICAgMSBwb2ludCBhdHRyaWJ1dGVzOglQCiAgICAgMSBnbG9iYWwgYXR0cmlidXRlczoJX19yb3VuZGVkY29ybmVycHRzCisSDWdyb3VwX3N1bW1hcnkmEichICAgICAxIHBvaW50IGdyb3VwczoJCV9fYXV0b19wdHMKfSsTCHRvcG9sb2d5JhNbKxQIcG9pbnRyZWYmFFsrFQdpbmRpY2VzJhVAEgcAAAEAAgADAAQABQAGAF1dKxYKYXR0cmlidXRlcyYWWysXD3BvaW50YXR0cmlidXRlcyYXW1tbKxgFc2NvcGUmGCsZBnB1YmxpYyYZKxoEdHlwZSYaKxsHbnVtZXJpYyYbKxwEbmFtZSYcKx0BUCYdKx4Hb3B0aW9ucyYeeyYaeyYaKx8Gc3RyaW5nJh8rIAV2YWx1ZSYgKyEFcG9pbnQmIX19XVsrIgRzaXplJiIRAysjB3N0b3JhZ2UmIyskCGZwcmVhbDMyJiQrJQhkZWZhdWx0cyYlWyYiEQEmIysmCGZwcmVhbDY0JiYrJwZ2YWx1ZXMmJ0AaAQAAAAAAAAAAXSYnWyYiEQMmIyYkKygIcGFnZXNpemUmKBIABCspC3Jhd3BhZ2VkYXRhJilAGRXnIzc/AAAAAFMDl7+NHZw/AAAAAErTWT/W0RC/AAAAAIEG5z9QYgnAAAAAAGAJZj8fB5bAAAAAAIt9lr6QzaHAAAAAANzGAkDCFyrAAAAAACiVGEBdXV1dKyoQZ2xvYmFsYXR0cmlidXRlcyYqW1tbJhgmGSYaJh8mHCsrEl9fcm91bmRlZGNvcm5lcnB0cyYrJh57fV1bJiIRASYjKywFaW50MzImLCstB3N0cmluZ3MmLVtdJhVbJiIRASYjJiwmKBIABCsuEWNvbnN0YW50cGFnZWZsYWdzJi5bQBABAQAAAF0mKUATAf////9dXV1dXSsvCnByaW1pdGl2ZXMmL1tbWyYaKzAJTlVSQkN1cnZlJjBdWysxBnZlcnRleCYxQBIHAAABAAIAAwAEAAUABgArMgZjbG9zZWQmMjArMwViYXNpcyYzWyYaKzQFTlVSQlMmNCs1BW9yZGVyJjURBCs2EGVuZGludGVycG9sYXRpb24mNjErNwVrbm90cyY3QBoLAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADQPwAAAAAAAOA/AAAAAAAA6D8AAAAAAADwPwAAAAAAAPA/AAAAAAAA8D8AAAAAAADwP11dXV0rOAtwb2ludGdyb3VwcyY4W1tbJhwrOQpfX2F1dG9fcHRzJjldWys6CXNlbGVjdGlvbiY6Wys7CXVub3JkZXJlZCY7Wys8Amk4JjxAEQcAAAAAAAAAXV1dXV0nBWluZGV4WycOaW50ZWdlcmVudHJpZXN7fScNc3RyaW5nZW50cmllc3t9JxFpbnRlZ2Vya2V5ZW50aXJlc3t9JxBzdHJpbmdrZXllbnRyaWVze31dJw1pbmRleHBvc2l0aW9uFGYAAAAAAAAAXQ==' ) parmpoints ( 'geometry:f05TSmJbKwALZmlsZXZlcnNpb24mACsBCDIwLjUuMzcwJgErAghoYXNpbmRleCYCMSsDCnBvaW50Y291bnQmAxEEKwQLdmVydGV4Y291bnQmBBEAKwUOcHJpbWl0aXZlY291bnQmBREAKwYEaW5mbyYGeysHCGhvc3RuYW1lJgcrCA9ERVNLVE9QLU9SMUtPVjImCCsJBGRhdGUmCSsKEzIwMjUtMDMtMDIgMjM6NDA6MTgmCisLBmFydGlzdCYLKwwFbWFzYXQmDCsNCHNvZnR3YXJlJg0rDhBIb3VkaW5pIDIwLjUuMzcwJg4rDwZib3VuZHMmD0AZBgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACsQEWF0dHJpYnV0ZV9zdW1tYXJ5JhAn8s4BICAgIDMyIHBvaW50IGF0dHJpYnV0ZXM6CWFkZHB0cywgbWFpbnRhaW5wb2ludCwgaGFuZGxlcDBwb3MsIHRyYW5zbGF0ZSwgUCwgc29mdHRyYW5zZm9ybXJhZCwgYWN0aXZlcHJpbSwgb3B0eXBlLCBwaXZvdHJvdGF0ZSwgaGFuZGxlcDFwb3MsIHJvdW5kY29ybmVycHRzLCBzb2Z0dHJhbnNmb3JtLCBoYW5kbGVwMnBvcywgcm90YXRlLCBhdXRvYmV6aWVyLCBhY3RpdmVwb2ludHMsIG91dHB1dHR5cGUsIHBsYW5lbm1sLCBzY2FsZSwgYXV0b3B0cywgcGxhbmVvcmlnLCBjb25zdHJhaW5zdHJhaWdodGVuLCBhcHByb3hlbmR0YW5nZW50cywgcm91bmRjb3JuZXJyYWRpdXMsIHNlZ21lbnRiZXppZXJjbG9zZSwgaW50ZXJwbWV0aG9kLCBjb3JuZXJwdHMsIHBpdm90dHJhbnNsYXRlLCBzbW9vdGhwdHMsIGNvbnZlcnRjdXJ2ZXMsIGhhbmRsZXB0cywgb3JkZXIKICAgICAxIGdsb2JhbCBhdHRyaWJ1dGVzOgl2YXJtYXAKfSsRCHRvcG9sb2d5JhFbKxIIcG9pbnRyZWYmElsrEwdpbmRpY2VzJhNAEgBdXSsUCmF0dHJpYnV0ZXMmFFsrFQ9wb2ludGF0dHJpYnV0ZXMmFVtbWysWBXNjb3BlJhYrFwZwdWJsaWMmFysYBHR5cGUmGCsZB251bWVyaWMmGSsaBG5hbWUmGisb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UkFJR0hURU4mZCtlHGludGVycG1ldGhvZCAtPiBJTlRFUlBNRVRIT0QmZStmHmNvbnZlcnRjdXJ2ZXMgLT4gQ09OVkVSVENVUlZFUyZmK2cec29mdHRyYW5zZm9ybSAtPiBTT0ZUVFJBTlNGT1JNJmcraCRzb2Z0dHJhbnNmb3JtcmFkIC0+IFNPRlRUUkFOU0ZPUk1SQUQmaCtpFnRyYW5zbGF0ZSAtPiBUUkFOU0xBVEUmaStqEHJvdGF0ZSAtPiBST1RBVEUmaitrDnNjYWxlIC0+IFNDQUxFJmsrbCBwaXZvdHRyYW5zbGF0ZSAtPiBQSVZPVFRSQU5TTEFURSZsK20acGl2b3Ryb3RhdGUgLT4gUElWT1RST1RBVEUmbStuFmhhbmRsZXB0cyAtPiBIQU5ETEVQVFMmbitvGmhhbmRsZXAwcG9zIC0+IEhBTkRMRVAwUE9TJm8rcBpoYW5kbGVwMXBvcyAtPiBIQU5ETEVQMVBPUyZwK3EaaGFuZGxlcDJwb3MgLT4gSEFORExFUDJQT1MmcStyFnBsYW5lb3JpZyAtPiBQTEFORU9SSUcmcitzFHBsYW5lbm1sIC0+IFBMQU5FTk1MJnMrdBhhdXRvYmV6aWVyIC0+IEFVVE9CRVpJRVImdCt1KHNlZ21lbnRiZXppZXJjbG9zZSAtPiBTRUdNRU5UQkVaSUVSQ0xPU0UmdV0mE1smIBEfJiEmKiYmEgAEJidbQBABAQAAAF0mKEATHwAAAAABAAAAAgAAAAMAAAAEAAAABQAAAAYAAAAHAAAACAAAAAkAAAAKAAAACwAAAAwAAAANAAAADgAAAA8AAAAQAAAAEQAAABIAAAATAAAAFAAAABUAAAAWAAAAFwAAABgAAAAZAAAAGgAAABsAAAAcAAAAHQAAAB4AAABdXV1dXSt2CnByaW1pdGl2ZXMmdltdJwVpbmRleFsnDmludGVnZXJlbnRyaWVze30nDXN0cmluZ2VudHJpZXN7fScRaW50ZWdlcmtleWVudGlyZXN7fScQc3RyaW5na2V5ZW50cmllc3t9XScNaW5kZXhwb3NpdGlvbhRmAAAAAAAAAF0=' ) stashid ( ; ) ninputprimscached ( 0 ) softtransform ( off ) softtransformrad ( 0.5 ) output ( 0 ) outputcornerpts ( off ) cornerptsgroup ( corner_points ) outputsmoothpts ( off ) smoothptsgroup ( smooth_points ) outputautopts ( off ) autoptsgroup ( auto_points ) outputname ( off ) name ( '$OS' ) nameattrib ( name ) outputxaxis ( off ) xaxisname ( out ) outputyaxis ( off ) yaxisname ( up ) outputzaxis ( off ) zaxisname ( tangent ) outputorient ( off ) orientname ( orient ) tangenttype ( avgdir ) aligntangent ( on ) targetorients ( 0 ) curoperation ( 0 ) optype ( appendpoint ) activepoints ( "" ) translate ( 0 0 0 ) rotate ( 0 0 0 ) scale ( 1 1 1 ) addpts ( "" ) activeprim ( 0 ) cornerpts ( "" ) smoothpts ( * ) autopts ( "" ) pivottransformfolder ( 0 ) pivottranslate ( 0 0 0 ) pivotrotate ( 0 0 0 ) pivotfixed ( off ) roundedcornersfolder ( 0 ) viewroundcorners ( on ) roundcornerpts ( "" ) roundcornerradius ( 0 ) bakeroundcorners ( 0 ) showroundcornerwidget ( on ) showroundcornerlabels ( on ) editedgeops ( 0 ) planeorig ( 0 0 0 ) planenml ( 0 1 0 ) constrainstraighten ( off ) handleparmsfolder ( 0 ) handlepts ( -1 -1 -1 ) handlep0pos ( -1 0 0 ) handlep1pos ( 0 0 0 ) handlep2pos ( 1 0 0 )
-chlock curve4 -*
-chautoscope curve4 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off curve4
-nbop __netbox1 add curve4
-opexprlanguage -s hscript curve4
-opuserdata -n '___Version___' -v '2' curve4
-opuserdata -n '___toolcount___' -v '1' curve4
-opuserdata -n '___toolid___' -v 'sop_curve' curve4
-oporder -e curve1 resample1 tube1 matchsize1 Param copytopoints1 attribwrangle1 foreach_end1 foreach_begin1 resample2 curve2 resample3 group1 grouptransfer1 resample4 attribcreate1 attribtransfer1 delete1 blast1 blast2 resample5 curve3 subnet1 resample6 curve4 
-opcf ..
-
-# Node test_cut_footprint (Object/geo)
-opadd -e -n geo test_cut_footprint
-oplocate -x -5.9386999999999999 -y 0.78854100000000005 test_cut_footprint
-opspareds '    group {         name    "stdswitcher4"         label   "Transform"         grouptag { "sidefx::switcher" "stdswitcher" }          parm {             name    "xOrd"             baseparm             label   "Transform Order"             joinnext             export  none         }         parm {             name    "rOrd"             baseparm             label   "Rotate Order"             nolabel             export  none         }         parm {             name    "t"             baseparm             label   "Translate"             export  all         }         parm {             name    "r"             baseparm             label   "Rotate"             export  all         }         parm {             name    "s"             baseparm             label   "Scale"             export  none         }         parm {             name    "p"             baseparm             label   "Pivot Translate"             export  none         }         parm {             name    "pr"             baseparm             label   "Pivot Rotate"             export  none         }         parm {             name    "scale"             baseparm             label   "Uniform Scale"             export  none         }         parm {             name    "pre_xform"             baseparm             label   "Modify Pre-Transform"             export  none         }         parm {             name    "keeppos"             baseparm             label   "Keep Position When Parenting"             export  none         }         parm {             name    "childcomp"             baseparm             label   "Child Compensation"             export  none         }         parm {             name    "constraints_on"             baseparm             label   "Enable Constraints"             export  none         }         parm {             name    "constraints_path"             baseparm             label   "Constraints"             export  none         }         parm {             name    "lookatpath"             baseparm             label   "Look At"             invisible             export  none         }         parm {             name    "lookupobjpath"             baseparm             label   "Look Up Object"             invisible             export  none         }         parm {             name    "lookup"             baseparm             label   "Look At Up Vector"             invisible             export  none         }         parm {             name    "pathobjpath"             baseparm             label   "Path Object"             invisible             export  none         }         parm {             name    "roll"             baseparm             label   "Roll"             invisible             export  none         }         parm {             name    "pos"             baseparm             label   "Position"             invisible             export  none         }         parm {             name    "uparmtype"             baseparm             label   "Parameterization"             invisible             export  none         }         parm {             name    "pathorient"             baseparm             label   "Orient Along Path"             invisible             export  none         }         parm {             name    "up"             baseparm             label   "Orient Up Vector"             invisible             export  none         }         parm {             name    "bank"             baseparm             label   "Auto-Bank factor"             invisible             export  none         }     }      group {         name    "stdswitcher4_1"         label   "Render"          parm {             name    "shop_materialpath"             baseparm             label   "Material"             export  none         }         parm {             name    "shop_materialopts"             baseparm             label   "Options"             invisible             export  none         }         parm {             name    "tdisplay"             baseparm             label   "Display"             joinnext             export  none         }         parm {             name    "display"             baseparm             label   "Display"             export  none         }         parm {             name    "viewportlod"             label   "Display As"             type    ordinal             default { "full" }             help    "Choose how the object\'s geometry should be rendered in the viewport"             menu {                 "full"      "Full Geometry"                 "points"    "Point Cloud"                 "box"       "Bounding Box"                 "centroid"  "Centroid"                 "hidden"    "Hidden"                 "subd"      "Subdivision Surface / Curves"             }             parmtag { "spare_category" "Render" }         }         parm {             name    "vm_rendervisibility"             label   "Render Visibility"             type    string             default { "*" }             menureplace {                 "*"                             "Visible to all"                 "primary"                       "Visible only to primary rays"                 "primary|shadow"                "Visible only to primary and shadow rays"                 "-primary"                      "Invisible to primary rays (Phantom)"                 "-diffuse"                      "Invisible to diffuse rays"                 "-diffuse&-reflect&-refract"    "Invisible to secondary rays"                 ""                              "Invisible (Unrenderable)"             }             parmtag { "mantra_class" "object" }             parmtag { "mantra_name" "rendervisibility" }             parmtag { "spare_category" "Render" }         }         parm {             name    "vm_rendersubd"             label   "Render Polygons As Subdivision (Mantra)"             type    toggle             default { "0" }             parmtag { "mantra_class" "object" }             parmtag { "mantra_name" "rendersubd" }             parmtag { "spare_category" "Geometry" }         }         parm {             name    "vm_subdstyle"             label   "Subdivision Style"             type    string             default { "mantra_catclark" }             hidewhen "{ vm_rendersubd == 0 }"             menu {                 "mantra_catclark"   "Mantra Catmull-Clark"                 "osd_catclark"      "OpenSubdiv Catmull-Clark"             }             parmtag { "mantra_class" "object" }             parmtag { "mantra_name" "subdstyle" }             parmtag { "spare_category" "Geometry" }         }         parm {             name    "vm_subdgroup"             label   "Subdivision Group"             type    string             default { "" }             hidewhen "{ vm_rendersubd == 0 }"             parmtag { "mantra_class" "object" }             parmtag { "mantra_name" "subdgroup" }             parmtag { "spare_category" "Geometry" }         }         parm {             name    "vm_osd_quality"             label   "Open Subdiv Quality"             type    float             default { "1" }             hidewhen "{ vm_rendersubd == 0 vm_subdstyle != osd_catclark }"             range   { 0 10 }             parmtag { "mantra_class" "object" }             parmtag { "mantra_name" "osd_quality" }             parmtag { "spare_category" "Geometry" }         }         parm {             name    "vm_osd_vtxinterp"             label   "OSD Vtx Interp"             type    integer             default { "2" }             hidewhen "{ vm_rendersubd == 0 vm_subdstyle != osd_catclark }"             menu {                 "0" "No vertex interpolation"                 "1" "Edges only"                 "2" "Edges and Corners"             }             range   { 0 10 }             parmtag { "mantra_class" "object" }             parmtag { "mantra_name" "osd_vtxinterp" }             parmtag { "spare_category" "Geometry" }         }         parm {             name    "vm_osd_fvarinterp"             label   "OSD FVar Interp"             type    integer             default { "4" }             hidewhen "{ vm_rendersubd == 0 vm_subdstyle != osd_catclark }"             menu {                 "0" "Smooth everywhere"                 "1" "Sharpen corners only"                 "2" "Sharpen edges and corners"                 "3" "Sharpen edges and propagated corners"                 "4" "Sharpen all boundaries"                 "5" "Bilinear interpolation"             }             range   { 0 10 }             parmtag { "mantra_class" "object" }             parmtag { "mantra_name" "osd_fvarinterp" }             parmtag { "spare_category" "Geometry" }         }         group {             name    "folder0"             label   "Shading"              parm {                 name    "categories"                 label   "Categories"                 type    string                 default { "" }                 help    "A list of tags which can be used to select the object"                 parmtag { "spare_category" "Shading" }             }             parm {                 name    "reflectmask"                 label   "Reflection Mask"                 type    oplist                 default { "*" }                 help    "Objects that will be reflected on this object."                 parmtag { "opexpand" "1" }                 parmtag { "opfilter" "!!OBJ/GEOMETRY!!" }                 parmtag { "oprelative" "/obj" }                 parmtag { "spare_category" "Shading" }             }             parm {                 name    "refractmask"                 label   "Refraction Mask"                 type    oplist                 default { "*" }                 help    "Objects that will be refracted on this object."                 parmtag { "opexpand" "1" }                 parmtag { "opfilter" "!!OBJ/GEOMETRY!!" }                 parmtag { "oprelative" "/obj" }                 parmtag { "spare_category" "Shading" }             }             parm {                 name    "lightmask"                 label   "Light Mask"                 type    oplist                 default { "*" }                 help    "Lights that illuminate this object."                 parmtag { "opexpand" "1" }                 parmtag { "opfilter" "!!OBJ/LIGHT!!" }                 parmtag { "oprelative" "/obj" }                 parmtag { "spare_category" "Shading" }             }             parm {                 name    "lightcategories"                 label   "Light Selection"                 type    string                 default { "*" }                 parmtag { "spare_category" "Shading" }             }             parm {                 name    "vm_lpetag"                 label   "LPE Tag"                 type    string                 default { "" }                 parmtag { "mantra_class" "object" }                 parmtag { "mantra_name" "lpetag" }                 parmtag { "spare_category" "Shading" }             }             parm {                 name    "vm_volumefilter"                 label   "Volume Filter"                 type    string                 default { "box" }                 menu {                     "box"       "Box Filter"                     "gaussian"  "Gaussian"                     "bartlett"  "Bartlett (triangle)"                     "catrom"    "Catmull-Rom"                     "hanning"   "Hanning"                     "blackman"  "Blackman"                     "sinc"      "Sinc (sharpening)"                 }                 parmtag { "mantra_class" "object" }                 parmtag { "mantra_name" "filter" }                 parmtag { "spare_category" "Shading" }             }             parm {                 name    "vm_volumefilterwidth"                 label   "Volume Filter Width"                 type    float                 default { "1" }                 range   { 0.001 5 }                 parmtag { "mantra_class" "object" }                 parmtag { "mantra_name" "filterwidth" }                 parmtag { "spare_category" "Shading" }             }             parm {                 name    "vm_matte"                 label   "Matte shading"                 type    toggle                 default { "0" }                 parmtag { "mantra_class" "object" }                 parmtag { "mantra_name" "matte" }                 parmtag { "spare_category" "Shading" }             }             parm {                 name    "vm_rayshade"                 label   "Raytrace Shading"                 type    toggle                 default { "0" }                 parmtag { "mantra_class" "object" }                 parmtag { "mantra_name" "rayshade" }                 parmtag { "spare_category" "Shading" }             }         }          group {             name    "folder0_1"             label   "Sampling"              parm {                 name    "geo_velocityblur"                 label   "Geometry Velocity Blur"                 type    ordinal                 default { "off" }                 disablewhen "{ allowmotionblur == 0 }"                 menu {                     "off"       "No Velocity Blur"                     "on"        "Velocity Blur"                     "accelblur" "Acceleration Blur"                 }             }             parm {                 name    "geo_accelattribute"                 label   "Acceleration Attribute"                 type    string                 default { "accel" }                 hidewhen "{ geo_velocityblur != accelblur }"                 parmtag { "spare_category" "Sampling" }             }         }          group {             name    "folder0_2"             label   "Dicing"              parm {                 name    "vm_shadingquality"                 label   "Shading Quality"                 type    float                 default { "1" }                 range   { 0 10 }                 parmtag { "mantra_class" "object" }                 parmtag { "mantra_name" "shadingquality" }                 parmtag { "spare_category" "Dicing" }             }             parm {                 name    "vm_flatness"                 label   "Dicing Flatness"                 type    float                 default { "0.05" }                 range   { 0 1 }                 parmtag { "mantra_class" "object" }                 parmtag { "mantra_name" "flatness" }                 parmtag { "spare_category" "Dicing" }             }             parm {                 name    "vm_raypredice"                 label   "Ray Predicing"                 type    integer                 default { "0" }                 menu {                     "0" "Disable Predicing"                     "1" "Full Predicing"                     "2" "Precompute Bounds"                 }                 range   { 0 10 }                 parmtag { "mantra_class" "object" }                 parmtag { "mantra_name" "raypredice" }                 parmtag { "spare_category" "Dicing" }             }             parm {                 name    "vm_curvesurface"                 label   "Shade Curves As Surfaces"                 type    toggle                 default { "0" }                 parmtag { "mantra_class" "object" }                 parmtag { "mantra_name" "curvesurface" }                 parmtag { "spare_category" "Dicing" }             }         }          group {             name    "folder0_3"             label   "Geometry"              parm {                 name    "vm_rmbackface"                 label   "Backface Removal"                 type    toggle                 default { "0" }                 parmtag { "mantra_class" "object" }                 parmtag { "mantra_name" "rmbackface" }                 parmtag { "spare_category" "Geometry" }             }             parm {                 name    "shop_geometrypath"                 label   "Procedural Shader"                 type    oppath                 default { "" }                 parmtag { "opfilter" "!!SHOP/GEOMETRY!!" }                 parmtag { "oprelative" "." }                 parmtag { "spare_category" "Geometry" }             }             parm {                 name    "vm_forcegeometry"                 label   "Force Procedural Geometry Output"                 type    toggle                 default { "1" }                 parmtag { "spare_category" "Geometry" }             }             parm {                 name    "vm_rendersubdcurves"                 label   "Render Polygon Curves As Subdivision (Mantra)"                 type    toggle                 default { "0" }                 parmtag { "mantra_class" "object" }                 parmtag { "mantra_name" "rendersubdcurves" }                 parmtag { "spare_category" "Geometry" }             }             parm {                 name    "vm_renderpoints"                 label   "Render As Points (Mantra)"                 type    integer                 default { "2" }                 menu {                     "0" "No Point Rendering"                     "1" "Render Only Points"                     "2" "Render Unconnected Points"                 }                 range   { 0 10 }                 parmtag { "mantra_class" "object" }                 parmtag { "mantra_name" "renderpoints" }                 parmtag { "spare_category" "Geometry" }             }             parm {                 name    "vm_renderpointsas"                 label   "Render Points As (Mantra)"                 type    integer                 default { "0" }                 disablewhen "{ vm_renderpoints == 0 }"                 menu {                     "0" "Spheres"                     "1" "Circles"                 }                 range   { 0 10 }                 parmtag { "mantra_class" "object" }                 parmtag { "mantra_name" "renderpointsas" }                 parmtag { "spare_category" "Geometry" }             }             parm {                 name    "vm_usenforpoints"                 label   "Use N For Point Rendering"                 type    toggle                 default { "0" }                 disablewhen "{ vm_renderpoints == 0 }"                 parmtag { "mantra_class" "object" }                 parmtag { "mantra_name" "usenforpoints" }                 parmtag { "spare_category" "Geometry" }             }             parm {                 name    "vm_pointscale"                 label   "Point Scale"                 type    float                 default { "1" }                 disablewhen "{ vm_renderpoints == 0 }"                 range   { 0! 10 }                 parmtag { "mantra_class" "object" }                 parmtag { "mantra_name" "pointscale" }                 parmtag { "spare_category" "Geometry" }             }             parm {                 name    "vm_pscalediameter"                 label   "Treat Point Scale as Diameter Instead of Radius"                 type    toggle                 default { "0" }                 parmtag { "mantra_class" "object" }                 parmtag { "mantra_name" "pscalediameter" }                 parmtag { "spare_category" "Geometry" }             }             parm {                 name    "vm_metavolume"                 label   "Metaballs as Volume"                 type    toggle                 default { "0" }                 parmtag { "mantra_class" "object" }                 parmtag { "mantra_name" "metavolume" }                 parmtag { "spare_category" "Geometry" }             }             parm {                 name    "vm_coving"                 label   "Coving"                 type    integer                 default { "1" }                 menu {                     "0" "Disable Coving"                     "1" "Coving for displacement/sub-d"                     "2" "Coving for all primitives"                 }                 range   { 0 10 }                 parmtag { "mantra_class" "object" }                 parmtag { "mantra_name" "coving" }                 parmtag { "spare_category" "Geometry" }             }             parm {                 name    "vm_materialoverride"                 label   "Material Override"                 type    string                 default { "compact" }                 menu {                     "none"      "Disabled"                     "full"      "Evaluate for Each Primitve/Point"                     "compact"   "Evaluate Once"                 }                 parmtag { "spare_category" "Geometry" }             }             parm {                 name    "vm_overridedetail"                 label   "Ignore Geometry Attribute Shaders"                 type    toggle                 default { "0" }                 parmtag { "mantra_class" "object" }                 parmtag { "mantra_name" "overridedetail" }                 parmtag { "spare_category" "Geometry" }             }             parm {                 name    "vm_procuseroottransform"                 label   "Proc Use Root Transform"                 type    toggle                 default { "1" }                 parmtag { "mantra_class" "object" }                 parmtag { "mantra_name" "procuseroottransform" }                 parmtag { "spare_category" "Geometry" }             }         }      }      group {         name    "stdswitcher4_2"         label   "Misc"          parm {             name    "use_dcolor"             baseparm             label   "Set Wireframe Color"             export  none         }         parm {             name    "dcolor"             baseparm             label   "Wireframe Color"             export  none         }         parm {             name    "picking"             baseparm             label   "Viewport Selecting Enabled"             export  none         }         parm {             name    "pickscript"             baseparm             label   "Select Script"             export  none         }         parm {             name    "caching"             baseparm             label   "Cache Object Transform"             export  none         }         parm {             name    "vport_shadeopen"             baseparm             label   "Shade Open Curves In Viewport"             export  none         }         parm {             name    "vport_displayassubdiv"             baseparm             label   "Display as Subdivision in Viewport"             invisible             export  none         }         parm {             name    "vport_onionskin"             baseparm             label   "Onion Skinning"             export  none         }     }  ' test_cut_footprint
-opset -S on test_cut_footprint
-opparm -V 20.5.370 test_cut_footprint stdswitcher ( 0 0 0 ) xOrd ( srt ) rOrd ( xyz ) t ( 0 0 0 ) r ( 0 0 0 ) s ( 1 1 1 ) p ( 0 0 0 ) pr ( 0 0 0 ) scale ( 1 ) pre_xform ( clean ) keeppos ( off ) childcomp ( off ) constraints_on ( off ) constraints_path ( "" ) lookatpath ( "" ) lookupobjpath ( "" ) lookup ( on ) pathobjpath ( "" ) roll ( 0 ) pos ( 0 ) uparmtype ( arc ) pathorient ( 1 ) up ( 0 1 0 ) bank ( 0 ) shop_materialpath ( "" ) shop_materialopts ( override ) tdisplay ( off ) display ( 1 ) use_dcolor ( off ) dcolor ( 1 1 1 ) picking ( on ) pickscript ( "" ) caching ( on ) vport_shadeopen ( off ) vport_displayassubdiv ( off ) vport_onionskin ( off ) stdswitcher4 ( 0 0 0 ) viewportlod ( full ) vm_rendervisibility ( * ) vm_rendersubd ( off ) vm_subdstyle ( mantra_catclark ) vm_subdgroup ( "" ) vm_osd_quality ( 1 ) vm_osd_vtxinterp ( 2 ) vm_osd_fvarinterp ( 4 ) folder0 ( 0 0 0 0 ) categories ( "" ) reflectmask ( * ) refractmask ( * ) lightmask ( * ) lightcategories ( * ) vm_lpetag ( "" ) vm_volumefilter ( box ) vm_volumefilterwidth ( 1 ) vm_matte ( off ) vm_rayshade ( off ) geo_velocityblur ( off ) geo_accelattribute ( accel ) vm_shadingquality ( 1 ) vm_flatness ( 0.05 ) vm_raypredice ( 0 ) vm_curvesurface ( off ) vm_rmbackface ( off ) shop_geometrypath ( "" ) vm_forcegeometry ( on ) vm_rendersubdcurves ( off ) vm_renderpoints ( 2 ) vm_renderpointsas ( 0 ) vm_usenforpoints ( off ) vm_pointscale ( 1 ) vm_pscalediameter ( off ) vm_metavolume ( off ) vm_coving ( 1 ) vm_materialoverride ( compact ) vm_overridedetail ( off ) vm_procuseroottransform ( on )
-chlock test_cut_footprint -*
-chautoscope test_cut_footprint -* +tx +ty +tz +rx +ry +rz +sx +sy +sz
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off -x off test_cut_footprint
-opexprlanguage -s hscript test_cut_footprint
-opuserdata -n '___Version___' -v '20.5.370' test_cut_footprint
-opcf test_cut_footprint
-
 # Node add1 (Sop/add)
 opadd -e -n add add1
-oplocate -x -5.3197000000000001 -y 3.1944599999999999 add1
+oplocate -x 5.5348300000000004 -y 3.66351 add1
 opspareds "" add1
-opparm add1  points ( 4 ) prims ( 1 )
-opparm -V 20.5.370 add1 stdswitcher ( 1 1 1 ) keep ( off ) points ( 4 ) remove ( off ) switcher ( 1 1 ) prims ( 1 ) group ( "" ) add ( all ) inc ( 2 ) attrname ( "" ) closedall ( on ) addparticlesystem ( off ) particlegroup ( "" ) appendunusedtoparticlesystem ( off ) prim0 ( "" ) closed0 ( off ) usept0 ( on ) pt0 ( 0 0 0 ) weight0 ( 1 ) usept1 ( on ) pt1 ( 10 0 0 ) weight1 ( 1 ) usept2 ( on ) pt2 ( 10 0 10 ) weight2 ( 1 ) usept3 ( on ) pt3 ( 0 0 10 ) weight3 ( 1 )
+opparm add1  points ( 3 ) prims ( 1 )
+opparm -V 20.5.370 add1 stdswitcher ( 1 1 1 ) keep ( off ) points ( 3 ) remove ( off ) switcher ( 1 1 ) prims ( 1 ) group ( "" ) add ( all ) inc ( 2 ) attrname ( "" ) closedall ( off ) addparticlesystem ( off ) particlegroup ( "" ) appendunusedtoparticlesystem ( off ) prim0 ( "" ) closed0 ( off ) usept0 ( on ) pt0 ( 0 0 0 ) weight0 ( 1 ) usept1 ( on ) pt1 ( 5 0 5 ) weight1 ( 1 ) usept2 ( on ) pt2 ( 0 0 5 ) weight2 ( 1 )
 chlock add1 -*
 chautoscope add1 -*
 opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off add1
 opexprlanguage -s hscript add1
 opuserdata -n '___Version___' -v '20.5.370' add1
-
-# Node polypath1 (Sop/polypath)
-opadd -e -n polypath polypath1
-oplocate -x -5.0954600000000001 -y -0.0149888 polypath1
-opspareds "" polypath1
-opparm polypath1 connectends ( off ) maxendptdist ( 0.01 ) connectonlytoends ( on ) closeloops ( off )
-chlock polypath1 -*
-chautoscope polypath1 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off polypath1
-opexprlanguage -s hscript polypath1
-opuserdata -n '___Version___' -v '' polypath1
-
-# Node box1 (Sop/box)
-opadd -e -n box box1
-oplocate -x -2.0728800000000001 -y 3.05898 box1
-opspareds "" box1
-opparm -V 20.5.370 box1 type ( polymesh ) surftype ( quads ) consolidatepts ( on ) size ( 7.8 1 7.3 ) t ( 0 0 0 ) r ( 0 0 0 ) scale ( 1 ) divrate ( 2 2 2 ) orderrate ( 4 4 4 ) dodivs ( off ) divs ( 3 3 3 ) rebar ( off ) orientedbbox ( off ) vertexnormals ( off )
-chlock box1 -*
-chautoscope box1 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off box1
-opexprlanguage -s hscript box1
-opuserdata -n '___Version___' -v '20.5.370' box1
-
-# Node boolean1 (Sop/boolean::2.0)
-opadd -e -n boolean::2.0 boolean1
-oplocate -x -5.0954600000000001 -y 1.1365799999999999 boolean1
-opspareds "" boolean1
-opparm -V 20.5.370 boolean1 inputa ( 0 ) agroup ( "" ) asurface ( surface ) resolvea ( on ) inputb ( 0 ) bgroup ( "" ) bsurface ( solid ) resolveb ( on ) output ( 0 ) booleanop ( subtract ) subtractchoices ( aminusb ) shatterchoices ( apieces ) opencurvesonly ( on ) generateaaseams ( on ) generatebbseams ( on ) generateabseams ( on ) adepth ( 1 1000 ) bdepth ( 1 1000 ) windingop ( arange ) mergenbrs ( off ) detriangulate ( all ) removeinlinepoints ( on ) uniqueseams ( off ) correctnormals ( on ) useaxapolys ( off ) axapolys ( axapolys ) useaxbpolys ( off ) axbpolys ( axbpolys ) useaxalist ( off ) axalist ( axalist ) useaxblist ( off ) axblist ( axblist ) collapsetinyedges ( on ) lengththreshold ( 1e-5 ) outputprimgroups ( 0 ) useapolys ( off ) apolys ( apolys ) useainsideb ( off ) ainsideb ( ainsideb ) useaoutsideb ( off ) aoutsideb ( aoutsideb ) usebpolys ( off ) bpolys ( bpolys ) usebinsidea ( off ) binsidea ( binsidea ) useboutsidea ( off ) boutsidea ( boutsidea ) useaboverlap ( off ) aboverlap ( aboverlap ) useaonlypieces ( off ) aonlypieces ( apieces ) usebonlypieces ( off ) bonlypieces ( bpieces ) useabpieces ( off ) abpieces ( abpieces ) usereversedpolys ( off ) reversedpolys ( reversed ) outputedgegroups ( 0 ) useaaseamedges ( off ) aaseamedges ( aseams ) usebbseamedges ( off ) bbseamedges ( bseams ) useabseamedges ( off ) abseamedges ( abseams )
-chlock boolean1 -*
-chautoscope boolean1 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off boolean1
-opexprlanguage -s hscript boolean1
-opuserdata -n '___Version___' -v '20.5.370' boolean1
-
-# Node transform1 (Sop/xform)
-opadd -e -n xform transform1
-oplocate -x -2.5030000000000001 -y 2.05898 transform1
-opspareds "" transform1
-opparm -V 20.5.370 transform1 group ( "" ) grouptype ( guess ) xOrd ( srt ) rOrd ( xyz ) t ( 2.82404762506485 0 5.0261518359184265 ) r ( 0 0 0 ) s ( 1 1 1 ) shear ( 0 0 0 ) scale ( 1 ) parmgroup_pivotxform ( 0 ) p ( 0 0 0 ) pr ( 0 0 0 ) parmgroup_prexform ( 0 ) prexform_xOrd ( srt ) prexform_rOrd ( xyz ) prexform_t ( 0 0 0 ) prexform_r ( 0 0 0 ) prexform_s ( 1 1 1 ) prexform_shear ( 0 0 0 ) movecentroid ( 0 ) movepivot ( 0 ) attribs ( * ) updatenmls ( off ) updateaffectednmls ( on ) vlength ( on ) invertxform ( off ) addattrib ( off ) outputattrib ( xform ) outputmerge ( post )
-chlock transform1 -*
-chautoscope transform1 -* +tx +ty +tz +rx +ry +rz +sx +sy +sz
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off transform1
-opexprlanguage -s hscript transform1
-opuserdata -n '___Version___' -v '20.5.370' transform1
-
-# Node building_generator1 (labs::Sop/building_generator::4.0)
-opadd -e -n labs::building_generator::4.0 building_generator1
-oplocate -x -11.138500000000001 -y 1.4903599999999999 building_generator1
-opspareds "" building_generator1
-opparm building_generator1  mpFloorOverrides ( 0 )
-opparm -V 370 building_generator1 fd_visualize ( 0 ) bColorFloors ( off ) fd_initialize ( 0 ) fFloorHeight ( 2.55 ) iSeed ( 1223 ) bExperimentalLedges ( off ) bScaleModules ( on ) snapinputgeo ( off ) fd_primary ( 1 ) fd_wallface ( 0 ) sFacadePattern ( "" ) bFacadeCorner ( off ) sConvexCornerID ( "" "" ) sConcaveCornerID ( "" "" ) fd_secondary ( 1 ) fd_topledge ( 0 ) bTopLedge ( off ) fTopLedgeHeight ( 0.35 ) sTopLedgePattern ( "" ) bTopLedgeCorner ( off ) sTopLedgeConvexCorner ( "" "" ) sTopLedgeConcaveCorner ( "" "" ) fd_bottomledge ( 0 ) bBottomLedge ( off ) fBottomLedgeHeight ( 0.2 ) sBottomLedgePattern ( "" ) bBottomLedgeCorner ( on ) sBottomLedgeConvexCorner ( "" "" ) sBottomLedgeConcaveCorner ( "" "" ) fd_sideslop ( 0 ) sSideSlopID ( "" ) fd_customization ( 0 ) mpFloorOverrides ( 0 )
-chlock building_generator1 -*
-chautoscope building_generator1 -*
-opset -d on -r on -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off building_generator1
-opexprlanguage -s hscript building_generator1
-opuserdata -n '___Version___' -v '370' building_generator1
-
-# Node polyextrude1 (Sop/polyextrude::2.0)
-opadd -e -n polyextrude::2.0 polyextrude1
-oplocate -x -10.7752 -y 5.2414399999999999 polyextrude1
-opspareds "" polyextrude1
-opparm polyextrude1  thicknessramp ( 2 ) twistramp ( 2 )
-opparm -V 20.5.370 polyextrude1 group ( "" ) splittype ( components ) usesplitgroup ( off ) splitgroup ( "" ) extrusionmode ( primnormal ) ptnormalsrc ( precompute ) ptnormalattrib ( N ) dist ( 7 ) inset ( 0 ) twist ( 0 ) divs ( 1 ) spinetype ( straight ) stdswitcher ( 0 0 0 ) xformsection ( 0 ) xformfront ( off ) xformspace ( local ) rst ( srt ) xyz ( xyz ) translate ( 0 0 0 ) rotate ( 0 0 0 ) scale ( 1 1 1 ) shear ( 0 0 0 ) pivotxformsection ( 0 ) pivot ( 0 0 0 ) pivotrotate ( 0 0 0 ) prexformsection ( 0 ) prexform_rst ( srt ) prexform_xyz ( xyz ) prexform_translate ( 0 0 0 ) prexform_rotate ( 0 0 0 ) prexform_scale ( 1 1 1 ) prexform_shear ( 0 0 0 ) outputsection ( 0 ) outputfront ( on ) outputfrontgrp ( off ) frontgrp ( extrudeFront ) outputback ( on ) outputbackgrp ( off ) backgrp ( extrudeBack ) outputside ( on ) outputsidegrp ( off ) sidegrp ( extrudeSide ) outputfrontseamgrp ( off ) frontseamgrp ( extrudeFrontSeam ) outputbackseamgrp ( off ) backseamgrp ( extrudeBackSeam ) preservegroups ( on ) insettingsection ( 0 ) limitinset ( on ) commonlimit ( on ) normalsection ( 0 ) addvertexnomrals ( off ) cuspangle ( 60 ) cuspfront ( on ) cuspback ( on ) uvssection ( 0 ) genuvs ( on ) uvstyle ( proprtional ) uvscaling ( matchuv ) shapecontrolsection ( 0 ) frontmagnitude ( 1 ) backmagnitude ( 1 ) frontstiffness ( 0 ) backstiffness ( 0 ) interpolation ( rotatingframe ) spacing ( arclengthuniform ) externalspinesection ( 0 ) reversespinedirection ( off ) axialrotation ( 0 ) frontblend ( 0.1 ) backblend ( 0.1 ) thicknesssection ( 0 ) thicknessscale ( 1 ) usethicknessattrib ( on ) thicknessattrib ( thickness ) usethicknessramp ( on ) thicknessramp ( 2 ) twistsection ( 0 ) usetwistattrib ( on ) twistattrib ( twist ) usetwistramp ( on ) twistramp ( 2 ) twistscale ( 180 ) localattribs ( 0 ) uselocalzscaleattrib ( off ) localzscaleattrib ( zscale ) uselocalinsetscaleattrib ( off ) localinsetscaleattrib ( insetscale ) uselocaltwistattrib ( off ) localtwistscaleattrib ( twistscale ) uselocaldivsattrib ( off ) locadivscaleattrib ( divsscale ) localframeattribs ( 0 ) uselocalxattrib ( off ) localxattrib ( localx ) uselocalzattirb ( off ) localzattirb ( localz ) uselocalctrattrib ( off ) localctrattrib ( localctr ) thicknessramp1pos ( 0 ) thicknessramp1value ( 1 ) thicknessramp1interp ( catmull-rom ) thicknessramp2pos ( 1 ) thicknessramp2value ( 1 ) thicknessramp2interp ( catmull-rom ) twistramp1pos ( 0 ) twistramp1value ( 0.5 ) twistramp1interp ( catmull-rom ) twistramp2pos ( 1 ) twistramp2value ( 0.5 ) twistramp2interp ( catmull-rom )
-chlock polyextrude1 -*
-chautoscope polyextrude1 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off polyextrude1
-opexprlanguage -s hscript polyextrude1
-opuserdata -n '___Version___' -v '20.5.370' polyextrude1
-
-# Node boolean2 (Sop/boolean::2.0)
-opadd -e -n boolean::2.0 boolean2
-oplocate -x -11.138500000000001 -y 2.8892699999999998 boolean2
-opspareds "" boolean2
-opparm -V 20.5.370 boolean2 inputa ( 0 ) agroup ( "" ) asurface ( solid ) resolvea ( on ) inputb ( 0 ) bgroup ( "" ) bsurface ( solid ) resolveb ( on ) output ( 0 ) booleanop ( subtract ) subtractchoices ( aminusb ) shatterchoices ( apieces ) opencurvesonly ( on ) generateaaseams ( on ) generatebbseams ( on ) generateabseams ( on ) adepth ( 1 1000 ) bdepth ( 1 1000 ) windingop ( arange ) mergenbrs ( off ) detriangulate ( all ) removeinlinepoints ( on ) uniqueseams ( off ) correctnormals ( on ) useaxapolys ( off ) axapolys ( axapolys ) useaxbpolys ( off ) axbpolys ( axbpolys ) useaxalist ( off ) axalist ( axalist ) useaxblist ( off ) axblist ( axblist ) collapsetinyedges ( on ) lengththreshold ( 1e-5 ) outputprimgroups ( 0 ) useapolys ( off ) apolys ( apolys ) useainsideb ( off ) ainsideb ( ainsideb ) useaoutsideb ( off ) aoutsideb ( aoutsideb ) usebpolys ( off ) bpolys ( bpolys ) usebinsidea ( off ) binsidea ( binsidea ) useboutsidea ( off ) boutsidea ( boutsidea ) useaboverlap ( off ) aboverlap ( aboverlap ) useaonlypieces ( off ) aonlypieces ( apieces ) usebonlypieces ( off ) bonlypieces ( bpieces ) useabpieces ( off ) abpieces ( abpieces ) usereversedpolys ( off ) reversedpolys ( reversed ) outputedgegroups ( 0 ) useaaseamedges ( off ) aaseamedges ( aseams ) usebbseamedges ( off ) bbseamedges ( bseams ) useabseamedges ( off ) abseamedges ( abseams )
-chlock boolean2 -*
-chautoscope boolean2 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off boolean2
-opexprlanguage -s hscript boolean2
-opuserdata -n '___Version___' -v '20.5.370' boolean2
-
-# Node box2 (Sop/box)
-opadd -e -n box box2
-oplocate -x -6.7187200000000002 -y 5.8267100000000003 box2
-opspareds "" box2
-opparm -V 20.5.370 box2 type ( polymesh ) surftype ( quads ) consolidatepts ( on ) size ( 1 7.15 1 ) t ( 0 0 0 ) r ( 0 0 0 ) scale ( 1 ) divrate ( 2 2 2 ) orderrate ( 4 4 4 ) dodivs ( off ) divs ( 3 3 3 ) rebar ( off ) orientedbbox ( off ) vertexnormals ( off )
-chlock box2 -*
-chautoscope box2 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off box2
-opexprlanguage -s hscript box2
-opuserdata -n '___Version___' -v '20.5.370' box2
-
-# Node transform2 (Sop/xform)
-opadd -e -n xform transform2
-oplocate -x -7.26363 -y 3.8267099999999998 transform2
-opspareds "" transform2
-opparm -V 20.5.370 transform2 group ( "" ) grouptype ( guess ) xOrd ( srt ) rOrd ( xyz ) t ( 0 0 0 ) r ( 0 0 0 ) s ( 13 1 14 ) shear ( 0 0 0 ) scale ( 1 ) parmgroup_pivotxform ( 0 ) p ( 0 0 0 ) pr ( 0 0 0 ) parmgroup_prexform ( 0 ) prexform_xOrd ( srt ) prexform_rOrd ( xyz ) prexform_t ( 0 0 0 ) prexform_r ( 0 0 0 ) prexform_s ( 1 1 1 ) prexform_shear ( 0 0 0 ) movecentroid ( 0 ) movepivot ( 0 ) attribs ( * ) updatenmls ( off ) updateaffectednmls ( on ) vlength ( on ) invertxform ( off ) addattrib ( off ) outputattrib ( xform ) outputmerge ( post )
-chlock transform2 -*
-chautoscope transform2 -* +tx +ty +tz +rx +ry +rz +sx +sy +sz
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off transform2
-opexprlanguage -s hscript transform2
-opuserdata -n '___Version___' -v '20.5.370' transform2
-
-# Node matchsize1 (Sop/matchsize)
-opadd -e -n matchsize matchsize1
-oplocate -x -6.9160500000000003 -y 4.8267100000000003 matchsize1
-opspareds "" matchsize1
-opparm matchsize1 group ( "" ) grouptype ( guess ) sepparm ( ) justifytarget ( auto ) doboundgroup ( off ) folder2 ( 0 ) sourcegroup ( "" ) sourcegrouptype ( guess ) refgroup ( "" ) refgrouptype ( guess ) folder1 ( 0 ) t ( 0 0 0 ) size ( 1 1 1 ) folder0 ( 0 ) dotranslate ( on ) justify_x ( center ) goal_x ( same ) offset_x ( 0 ) justify_y ( min ) goal_y ( same ) offset_y ( 0 ) justify_z ( center ) goal_z ( same ) offset_z ( 0 ) doscale ( off ) uniformscale ( on ) scale_axis ( min ) scale_x ( on ) scale_y ( on ) scale_z ( on ) restorexform ( off ) restoreattrib ( xform ) stashxform ( off ) stashattrib ( xform ) stashmerge ( replace )
-chlock matchsize1 -*
-chautoscope matchsize1 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off matchsize1
-opexprlanguage -s hscript matchsize1
-opuserdata -n '___Version___' -v '' matchsize1
-oporder -e add1 polypath1 box1 boolean1 transform1 building_generator1 polyextrude1 boolean2 box2 transform2 matchsize1 
+oporder -e subnet1 resample6 add1 
 opcf ..
 
 # Node test_outside_corridor (Object/geo)
@@ -2773,7 +2344,7 @@ opset -S on test_outside_corridor
 opparm -V 20.5.370 test_outside_corridor stdswitcher ( 0 0 0 ) xOrd ( srt ) rOrd ( xyz ) t ( 0 0 0 ) r ( 0 0 0 ) s ( 1 1 1 ) p ( 0 0 0 ) pr ( 0 0 0 ) scale ( 1 ) pre_xform ( clean ) keeppos ( off ) childcomp ( off ) constraints_on ( off ) constraints_path ( "" ) lookatpath ( "" ) lookupobjpath ( "" ) lookup ( on ) pathobjpath ( "" ) roll ( 0 ) pos ( 0 ) uparmtype ( arc ) pathorient ( 1 ) up ( 0 1 0 ) bank ( 0 ) shop_materialpath ( "" ) shop_materialopts ( override ) tdisplay ( off ) display ( 1 ) use_dcolor ( off ) dcolor ( 1 1 1 ) picking ( on ) pickscript ( "" ) caching ( on ) vport_shadeopen ( off ) vport_displayassubdiv ( off ) vport_onionskin ( off ) stdswitcher4 ( 0 0 0 ) viewportlod ( full ) vm_rendervisibility ( * ) vm_rendersubd ( off ) vm_subdstyle ( mantra_catclark ) vm_subdgroup ( "" ) vm_osd_quality ( 1 ) vm_osd_vtxinterp ( 2 ) vm_osd_fvarinterp ( 4 ) folder0 ( 0 0 0 0 ) categories ( "" ) reflectmask ( * ) refractmask ( * ) lightmask ( * ) lightcategories ( * ) vm_lpetag ( "" ) vm_volumefilter ( box ) vm_volumefilterwidth ( 1 ) vm_matte ( off ) vm_rayshade ( off ) geo_velocityblur ( off ) geo_accelattribute ( accel ) vm_shadingquality ( 1 ) vm_flatness ( 0.05 ) vm_raypredice ( 0 ) vm_curvesurface ( off ) vm_rmbackface ( off ) shop_geometrypath ( "" ) vm_forcegeometry ( on ) vm_rendersubdcurves ( off ) vm_renderpoints ( 2 ) vm_renderpointsas ( 0 ) vm_usenforpoints ( off ) vm_pointscale ( 1 ) vm_pscalediameter ( off ) vm_metavolume ( off ) vm_coving ( 1 ) vm_materialoverride ( compact ) vm_overridedetail ( off ) vm_procuseroottransform ( on )
 chlock test_outside_corridor -*
 chautoscope test_outside_corridor -* +tx +ty +tz +rx +ry +rz +sx +sy +sz
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off -x off test_outside_corridor
+opset -d on -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off -x off test_outside_corridor
 opexprlanguage -s hscript test_outside_corridor
 opuserdata -n '___Version___' -v '20.5.370' test_outside_corridor
 opcf test_outside_corridor
@@ -2894,31 +2465,6 @@ opuserdata -n '___Version___' -v '' Aisle2
 oporder -e output0 switch2 extrudevolume1 polyextrude1 group1 dissolve1 Aisle2 
 opcf ..
 
-# Node curve1 (Sop/curve::2.0)
-opadd -e -n curve::2.0 curve1
-oplocate -x -5.1839300000000001 -y 3.5509599999999999 curve1
-opspareds "" curve1
-opparm curve1  targetorients ( 0 )
-opparm -V 2 curve1 group ( "" ) sepparm3 ( ) outputtype ( nurbs ) order ( 4 ) convertcurves ( off ) sepparm ( ) mode ( BUTTONS_curve_mode_draw ) interpmethod ( smoothcurvature ) enablebezierops ( off ) operations ( "" ) delete ( 0 ) fuse ( 0 ) cut ( 0 ) join ( 0 ) deleteseg ( 0 ) makecorner ( 0 ) makesmooth ( 0 ) makebalanced ( 0 ) contract ( 0 ) expand ( 0 ) straightenseg ( 0 ) close ( 0 ) createroundedcorners ( 0 ) removeroundedcorners ( 0 ) makeauto ( 0 ) makemanual ( 0 ) reverse ( 0 ) sepparm4 ( ) sepparm5 ( ) reset ( 0 ) snaponclose ( on ) maintainpoint ( off ) approxendtangents ( off ) caching ( 0 ) stashgeo ( "" ) savedstashgeo ( 'geometry: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' ) parmpoints ( geometry:f05TSmJbKwALZmlsZXZlcnNpb24mACsBCDIwLjUuMzcwJgErAghoYXNpbmRleCYCMSsDCnBvaW50Y291bnQmAxEFKwQLdmVydGV4Y291bnQmBBEAKwUOcHJpbWl0aXZlY291bnQmBREAKwYEaW5mbyYGeysHCGhvc3RuYW1lJgcrCA9ERVNLVE9QLU9SMUtPVjImCCsJBGRhdGUmCSsKEzIwMjUtMDMtMDIgMjM6NDA6MTgmCisLBmFydGlzdCYLKwwFbWFzYXQmDCsNCHNvZnR3YXJlJg0rDhBIb3VkaW5pIDIwLjUuMzcwJg4rDwZib3VuZHMmD0AZBgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACsQEWF0dHJpYnV0ZV9zdW1tYXJ5JhAn8s4BICAgIDMyIHBvaW50IGF0dHJpYnV0ZXM6CWFkZHB0cywgbWFpbnRhaW5wb2ludCwgaGFuZGxlcDBwb3MsIHRyYW5zbGF0ZSwgUCwgc29mdHRyYW5zZm9ybXJhZCwgYWN0aXZlcHJpbSwgb3B0eXBlLCBwaXZvdHJvdGF0ZSwgaGFuZGxlcDFwb3MsIHJvdW5kY29ybmVycHRzLCBzb2Z0dHJhbnNmb3JtLCBoYW5kbGVwMnBvcywgcm90YXRlLCBhdXRvYmV6aWVyLCBhY3RpdmVwb2ludHMsIG91dHB1dHR5cGUsIHBsYW5lbm1sLCBzY2FsZSwgYXV0b3B0cywgcGxhbmVvcmlnLCBjb25zdHJhaW5zdHJhaWdodGVuLCBhcHByb3hlbmR0YW5nZW50cywgcm91bmRjb3JuZXJyYWRpdXMsIHNlZ21lbnRiZXppZXJjbG9zZSwgaW50ZXJwbWV0aG9kLCBjb3JuZXJwdHMsIHBpdm90dHJhbnNsYXRlLCBzbW9vdGhwdHMsIGNvbnZlcnRjdXJ2ZXMsIGhhbmRsZXB0cywgb3JkZXIKICAgICAxIGdsb2JhbCBhdHRyaWJ1dGVzOgl2YXJtYXAKfSsRCHRvcG9sb2d5JhFbKxIIcG9pbnRyZWYmElsrEwdpbmRpY2VzJhNAEgBdXSsUCmF0dHJpYnV0ZXMmFFsrFQ9wb2ludGF0dHJpYnV0ZXMmFVtbWysWBXNjb3BlJhYrFwZwdWJsaWMmFysYBHR5cGUmGCsZB251bWVyaWMmGSsaBG5hbWUmGisb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UlBUUyZkK2UqY29uc3RyYWluc3RyYWlnaHRlbiAtPiBDT05TVFJBSU5TVFJBSUdIVEVOJmUrZhxpbnRlcnBtZXRob2QgLT4gSU5URVJQTUVUSE9EJmYrZx5jb252ZXJ0Y3VydmVzIC0+IENPTlZFUlRDVVJWRVMmZytoHnNvZnR0cmFuc2Zvcm0gLT4gU09GVFRSQU5TRk9STSZoK2kkc29mdHRyYW5zZm9ybXJhZCAtPiBTT0ZUVFJBTlNGT1JNUkFEJmkrahZ0cmFuc2xhdGUgLT4gVFJBTlNMQVRFJmoraxByb3RhdGUgLT4gUk9UQVRFJmsrbA5zY2FsZSAtPiBTQ0FMRSZsK20gcGl2b3R0cmFuc2xhdGUgLT4gUElWT1RUUkFOU0xBVEUmbStuGnBpdm90cm90YXRlIC0+IFBJVk9UUk9UQVRFJm4rbxZoYW5kbGVwdHMgLT4gSEFORExFUFRTJm8rcBpoYW5kbGVwMHBvcyAtPiBIQU5ETEVQMFBPUyZwK3EaaGFuZGxlcDFwb3MgLT4gSEFORExFUDFQT1MmcStyGmhhbmRsZXAycG9zIC0+IEhBTkRMRVAyUE9TJnIrcxZwbGFuZW9yaWcgLT4gUExBTkVPUklHJnMrdBRwbGFuZW5tbCAtPiBQTEFORU5NTCZ0K3UYYXV0b2JlemllciAtPiBBVVRPQkVaSUVSJnUrdihzZWdtZW50YmV6aWVyY2xvc2UgLT4gU0VHTUVOVEJFWklFUkNMT1NFJnZdJhNbJiARHyYhJiomJhIABCYnW0AQAQEAAABdJihAEx8AAAAAAQAAAAIAAAADAAAABAAAAAUAAAAGAAAABwAAAAgAAAAJAAAACgAAAAsAAAAMAAAADQAAAA4AAAAPAAAAEAAAABEAAAASAAAAEwAAABQAAAAVAAAAFgAAABcAAAAYAAAAGQAAABoAAAAbAAAAHAAAAB0AAAAeAAAAXV1dXV0rdwpwcmltaXRpdmVzJndbXScFaW5kZXhbJw5pbnRlZ2VyZW50cmllc3t9Jw1zdHJpbmdlbnRyaWVze30nEWludGVnZXJrZXllbnRpcmVze30nEHN0cmluZ2tleWVudHJpZXN7fV0nDWluZGV4cG9zaXRpb24UZgAAAAAAAABd ) stashid ( ; ) ninputprimscached ( 0 ) softtransform ( off ) softtransformrad ( 0.5 ) output ( 0 ) outputcornerpts ( off ) cornerptsgroup ( corner_points ) outputsmoothpts ( off ) smoothptsgroup ( smooth_points ) outputautopts ( off ) autoptsgroup ( auto_points ) outputname ( off ) name ( '$OS' ) nameattrib ( name ) outputxaxis ( off ) xaxisname ( out ) outputyaxis ( off ) yaxisname ( up ) outputzaxis ( off ) zaxisname ( tangent ) outputorient ( off ) orientname ( orient ) tangenttype ( avgdir ) aligntangent ( on ) targetorients ( 0 ) curoperation ( 0 ) optype ( appendpoint ) activepoints ( "" ) translate ( 0 0 0 ) rotate ( 0 0 0 ) scale ( 1 1 1 ) addpts ( "" ) activeprim ( 0 ) cornerpts ( "" ) smoothpts ( * ) autopts ( "" ) pivottransformfolder ( 0 ) pivottranslate ( 0 0 0 ) pivotrotate ( 0 0 0 ) pivotfixed ( off ) roundedcornersfolder ( 0 ) viewroundcorners ( on ) roundcornerpts ( "" ) roundcornerradius ( 0 ) bakeroundcorners ( 0 ) showroundcornerwidget ( on ) showroundcornerlabels ( on ) editedgeops ( 0 ) planeorig ( 0 0 0 ) planenml ( 0 1 0 ) constrainstraighten ( off ) handleparmsfolder ( 0 ) handlepts ( -1 -1 -1 ) handlep0pos ( -1 0 0 ) handlep1pos ( 0 0 0 ) handlep2pos ( 1 0 0 )
-chlock curve1 -*
-chautoscope curve1 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off curve1
-opexprlanguage -s hscript curve1
-opuserdata -n '___Version___' -v '2' curve1
-opuserdata -n '___toolcount___' -v '1' curve1
-opuserdata -n '___toolid___' -v 'sop_curve' curve1
-
-# Node resample1 (Sop/resample)
-opadd -e -n resample resample1
-oplocate -x -5.3015800000000004 -y 2.5509599999999999 resample1
-opspareds "" resample1
-opparm -V 20.5.370 resample1 group ( "" ) maintainprimorder ( off ) lod ( 1 ) edge ( off ) method ( dist ) measure ( arc ) dolength ( on ) length ( 1 ) dosegs ( off ) segs ( 10 ) useattribs ( on ) allequal ( on ) last ( off ) randomshift ( off ) onlypoints ( off ) treatpolysas ( straight ) outputsubdpoly ( off ) doptdistattr ( off ) ptdistattr ( ptdist ) dotangentattr ( off ) tangentattr ( tangentu ) docurveuattr ( off ) curveuattr ( curveu ) docurvenumattr ( off ) curvenumattr ( curvenum )
-chlock resample1 -*
-chautoscope resample1 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off resample1
-opexprlanguage -s hscript resample1
-opuserdata -n '___Version___' -v '20.5.370' resample1
-
 # Node merge1 (Sop/merge)
 opadd -e -n merge merge1
 oplocate -x -5.3015800000000004 -y 0.041161000000000003 merge1
@@ -2929,9 +2475,32 @@ chautoscope merge1 -*
 opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off merge1
 opexprlanguage -s hscript merge1
 opuserdata -n '___Version___' -v '20.5.370' merge1
-oporder -e OutisideCorridor curve1 resample1 merge1 
+
+# Node resample6 (Sop/resample)
+opadd -e -n resample resample6
+oplocate -x -4.9533699999999996 -y 3.2157499999999999 resample6
+opspareds "" resample6
+opparm -V 20.5.370 resample6 group ( "" ) maintainprimorder ( off ) lod ( 1 ) edge ( off ) method ( dist ) measure ( arc ) dolength ( on ) length ( 0.6 ) dosegs ( off ) segs ( 10 ) useattribs ( on ) allequal ( on ) last ( off ) randomshift ( off ) onlypoints ( off ) treatpolysas ( straight ) outputsubdpoly ( off ) doptdistattr ( off ) ptdistattr ( ptdist ) dotangentattr ( off ) tangentattr ( tangentu ) docurveuattr ( off ) curveuattr ( curveu ) docurvenumattr ( off ) curvenumattr ( curvenum )
+chlock resample6 -*
+chautoscope resample6 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off resample6
+opexprlanguage -s hscript resample6
+opuserdata -n '___Version___' -v '20.5.370' resample6
+
+# Node add1 (Sop/add)
+opadd -e -n add add1
+oplocate -x -4.9533699999999996 -y 4.39975 add1
+opspareds "" add1
+opparm add1  points ( 3 ) prims ( 1 )
+opparm -V 20.5.370 add1 stdswitcher ( 1 1 1 ) keep ( off ) points ( 3 ) remove ( off ) switcher ( 1 1 ) prims ( 1 ) group ( "" ) add ( all ) inc ( 2 ) attrname ( "" ) closedall ( off ) addparticlesystem ( off ) particlegroup ( "" ) appendunusedtoparticlesystem ( off ) prim0 ( "" ) closed0 ( off ) usept0 ( on ) pt0 ( 0 0 0 ) weight0 ( 1 ) usept1 ( on ) pt1 ( 5 0 5 ) weight1 ( 1 ) usept2 ( on ) pt2 ( 0 0 5 ) weight2 ( 1 )
+chlock add1 -*
+chautoscope add1 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off add1
+opexprlanguage -s hscript add1
+opuserdata -n '___Version___' -v '20.5.370' add1
+oporder -e OutisideCorridor merge1 resample6 add1 
 opcf ..
-oporder -e test_stair test_fence test_cut_footprint test_outside_corridor 
+oporder -e test_stair test_fence test_outside_corridor 
 opcf ..
 
 # Node out (/out)
@@ -2954,6 +2523,24 @@ chautoscope mantra_ipr -*
 opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off mantra_ipr
 opexprlanguage -s hscript mantra_ipr
 opuserdata -n '___Version___' -v '2' mantra_ipr
+
+# Node mantra_ipr1 (Driver/ifd)
+opadd -e -n ifd mantra_ipr1
+oplocate -x 0 -y 0 mantra_ipr1
+opspareds "" mantra_ipr1
+chblockbegin
+chadd -t 0 0 mantra_ipr1 f1
+chkey -t 0 -v 1 -m 0 -a 0 -A 0 -T a  -F '$FSTART' mantra_ipr1/f1
+chadd -t 0 0 mantra_ipr1 f2
+chkey -t 0 -v 240 -m 0 -a 0 -A 0 -T a  -F '$FEND' mantra_ipr1/f2
+chblockend
+opparm -V 2 mantra_ipr1 execute ( 0 ) renderpreview ( 0 ) executebackground ( 0 ) renderdialog ( 0 ) trange ( off ) f ( f1 f2 1 ) take ( _current_ ) camera ( /obj/cam1 ) override_camerares ( off ) res_fraction ( 0.5 ) res_override ( 1280 720 ) res_overrideMenu ( '640 480 1' ) aspect_override ( 1 ) images ( 0 0 0 0 0 ) soho_program ( IFD.py ) soho_shopstyle ( VMantra ) soho_ipr_support ( on ) soho_previewsupport ( on ) vm_picture ( '$HIP/render/$HIPNAME.$OS.$F4.exr' ) vm_device ( "" ) soho_mkpath ( on ) soho_skip_frame ( no ) output ( 0 0 0 0 0 ) sampling ( 0 0 0 0 0 0 ) vobject ( * ) forceobject ( "" ) matte_objects ( "" ) phantom_objects ( "" ) excludeobject ( "" ) obj_light_sep ( ) sololight ( "" ) alights ( * ) forcelights ( "" ) excludelights ( "" ) soho_autoheadlight ( on ) light_fog_sep ( ) vfog ( * ) tprerender ( on ) prerender ( "" ) lprerender ( hscript ) tpreframe ( on ) preframe ( "" ) lpreframe ( hscript ) tpostframe ( on ) postframe ( "" ) lpostframe ( hscript ) tpostrender ( on ) postrender ( "" ) lpostrender ( hscript ) soho_pipecmd ( mantra ) soho_outputmode ( off ) soho_diskfile ( '$HIP/mantra.ifd' ) soho_compression ( ext ) soho_foreground ( off ) soho_initsim ( off ) soho_viewport_menu ( on )
+chlock mantra_ipr1 -*
+chautoscope mantra_ipr1 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off mantra_ipr1
+opexprlanguage -s hscript mantra_ipr1
+opuserdata -n '___Version___' -v '2' mantra_ipr1
+oporder -e mantra_ipr mantra_ipr1 
 opcf ..
 
 # Node ch (/ch)
@@ -2962,6 +2549,28 @@ opcf ..
 
 # Node img (/img)
 opcf img
+
+# Node comp2 (CopNet/img)
+opadd -e -n img comp2
+oplocate -x 0 -y 0 comp2
+opspareds "" comp2
+opparm -V 20.5.370 comp2
+chlock comp2 -*
+chautoscope comp2 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off comp2
+opexprlanguage -s hscript comp2
+opuserdata -n '___Version___' -v '20.5.370' comp2
+
+# Node copnet2 (CopNet/copnet)
+opadd -e -n copnet copnet2
+oplocate -x 0 -y 0 copnet2
+opspareds "" copnet2
+opparm -V 20.5.370 copnet2 setres ( off ) res ( 1024 1024 ) resmenu ( none ) setpixelscale ( off ) pixelscale ( 2 ) setborder ( off ) border ( wrap ) setprecision ( off ) precision ( b32 ) setvistile ( off ) vistile ( 3 )
+chlock copnet2 -*
+chautoscope copnet2 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off copnet2
+opexprlanguage -s hscript copnet2
+opuserdata -n '___Version___' -v '20.5.370' copnet2
 
 # Node comp1 (CopNet/img)
 opadd -e -n img comp1
@@ -2984,7 +2593,7 @@ chautoscope copnet1 -*
 opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off copnet1
 opexprlanguage -s hscript copnet1
 opuserdata -n '___Version___' -v '20.5.370' copnet1
-oporder -e comp1 copnet1 
+oporder -e comp2 copnet2 comp1 copnet1 
 opcf ..
 
 # Node stage (/stage)
@@ -3012,10 +2621,35 @@ opparm localscheduler  local_envmulti ( 0 )
 opparm -V 1 localscheduler folder0 ( 0 0 0 ) folder5 ( 0 ) maxprocsmenu ( 0 ) maxprocs ( 1 ) pdg_usemaxtasks ( off ) pdg_maxtasks ( 0 ) verbose ( off ) pdg_waitforfailures ( off ) folder4 ( 0 ) pdg_workingdir ( '$HIP' ) hythonbin ( 0 ) hythonbincustomuniversal ( "" ) pdg_workitemdatasource ( 0 ) pdg_compressworkitemdata ( on ) pdg_validateoutputs ( on ) pdg_checkexpectedoutputs ( on ) sepparm2 ( ) pdg_mapmode ( 0 ) pdg_usemapzone ( off ) pdg_mapzone ( '$PDG_PATHMAP_ZONE' ) folder1 ( 0 ) tempdirmenu ( 1 ) tempdirappendpid ( on ) tempdircustom ( '$HOUDINI_TEMP_DIR/$HIPNAME/pdgtemp' ) pdg_deletetempdir ( 0 ) socketcallbacks ( 1 ) pdg_rpcignoreerrors ( 0 ) pdg_rpcmaxerrors ( 5 ) pdg_rpctimeout ( 4 ) pdg_rpcretries ( 2 ) pdg_rpcbackoff ( 2 ) pdg_rpcbatch ( 1 ) pdg_rpcrelease ( on ) folder0_3 ( 0 ) local_single ( off ) local_is_CPU_number_set ( off ) local_CPUs_to_use ( 1 ) folder6 ( 0 ) local_useminfreemem ( 0 ) local_minfreemem ( 0 ) local_minfreemempct ( 0 ) folder2 ( 0 ) local_enabletimeout ( off ) local_maxtime ( 0 ) local_handletimeout ( 0 ) sepparm4 ( ) local_enablemaxmemory ( off ) local_maxmemory ( 0 ) local_handlememory ( 0 ) sepparm5 ( ) local_echandleby ( 0 ) local_echandleall ( on ) local_eccustomcode ( 1 ) sepparm ( ) local_maximumretries ( 3 ) local_addfailcountattr ( off ) local_failcountattr ( failurecount ) folder3 ( 0 ) local_usehoudinimaxthreads ( off ) local_houdinimaxthreads ( 0 ) local_requireswindow ( off ) local_skippackages ( on ) local_envunset ( "" ) local_env_file ( "" ) local_envmulti ( 0 )
 chlock localscheduler -*
 chautoscope localscheduler -*
-opset -d on -r on -h off -f off -y off -t off -l off -s off -u off -F on -c off -e on -b off localscheduler
+opset -d off -r on -h off -f off -y off -t off -l off -s off -u off -F on -c off -e on -b off localscheduler
 opexprlanguage -s hscript localscheduler
 opuserdata -n '___Version___' -v '1' localscheduler
+
+# Node localscheduler1 (Top/localscheduler)
+opadd -e -n localscheduler localscheduler1
+oplocate -x 0 -y 0 localscheduler1
+opspareds "" localscheduler1
+opparm localscheduler1  local_envmulti ( 0 )
+opparm -V 1 localscheduler1 folder0 ( 0 0 0 ) folder5 ( 0 ) maxprocsmenu ( 0 ) maxprocs ( 1 ) pdg_usemaxtasks ( off ) pdg_maxtasks ( 0 ) verbose ( off ) pdg_waitforfailures ( off ) folder4 ( 0 ) pdg_workingdir ( '$HIP' ) hythonbin ( 0 ) hythonbincustomuniversal ( "" ) pdg_workitemdatasource ( 0 ) pdg_compressworkitemdata ( on ) pdg_validateoutputs ( on ) pdg_checkexpectedoutputs ( on ) sepparm2 ( ) pdg_mapmode ( 0 ) pdg_usemapzone ( off ) pdg_mapzone ( '$PDG_PATHMAP_ZONE' ) folder1 ( 0 ) tempdirmenu ( 1 ) tempdirappendpid ( on ) tempdircustom ( '$HOUDINI_TEMP_DIR/$HIPNAME/pdgtemp' ) pdg_deletetempdir ( 0 ) socketcallbacks ( 1 ) pdg_rpcignoreerrors ( 0 ) pdg_rpcmaxerrors ( 5 ) pdg_rpctimeout ( 4 ) pdg_rpcretries ( 2 ) pdg_rpcbackoff ( 2 ) pdg_rpcbatch ( 1 ) pdg_rpcrelease ( on ) folder0_3 ( 0 ) local_single ( off ) local_is_CPU_number_set ( off ) local_CPUs_to_use ( 1 ) folder6 ( 0 ) local_useminfreemem ( 0 ) local_minfreemem ( 0 ) local_minfreemempct ( 0 ) folder2 ( 0 ) local_enabletimeout ( off ) local_maxtime ( 0 ) local_handletimeout ( 0 ) sepparm4 ( ) local_enablemaxmemory ( off ) local_maxmemory ( 0 ) local_handlememory ( 0 ) sepparm5 ( ) local_echandleby ( 0 ) local_echandleall ( on ) local_eccustomcode ( 1 ) sepparm ( ) local_maximumretries ( 3 ) local_addfailcountattr ( off ) local_failcountattr ( failurecount ) folder3 ( 0 ) local_usehoudinimaxthreads ( off ) local_houdinimaxthreads ( 0 ) local_requireswindow ( off ) local_skippackages ( on ) local_envunset ( "" ) local_env_file ( "" ) local_envmulti ( 0 )
+chlock localscheduler1 -*
+chautoscope localscheduler1 -*
+opset -d on -r off -h off -f off -y off -t off -l off -s off -u off -F on -c off -e on -b off localscheduler1
+opexprlanguage -s hscript localscheduler1
+opuserdata -n '___Version___' -v '1' localscheduler1
+oporder -e localscheduler localscheduler1 
 opcf ..
+
+# Node topnet2 (TopNet/topnet)
+opadd -e -n topnet topnet2
+oplocate -x 0 -y 0 topnet2
+opspareds "" topnet2
+opparm -V 20.5.370 topnet2 cookcontrolssection ( 0 ) generatestatic ( 0 ) cookbutton ( 0 ) dirtybutton ( 0 ) cancelbutton ( 0 ) taskgraphsection ( 0 ) checkpointformat ( 1 ) taskgraphfile ( '$HIP/$HIPNAME.taskgraph.$F.py' ) savetaskgraph ( 0 ) loadtaskgraph ( 0 ) taskgraphautosave ( off ) taskgraphsaverate ( 10 ) checkpointfile ( '$HIP/$HIPNAME.checkpoint.json' ) loadcheckpoint ( 0 ) checkpointload ( 0 ) checkpointenabled ( off ) checkpointrate ( 10 ) sep2 ( ) savegraphattribs ( on ) schedulersection ( 0 ) topscheduler ( "" ) usedefaultlabel ( off ) defaultlabel ( '$OS.`@pdg_index`' ) sep1 ( ) regenerationtype ( 0 ) evaluationtime ( 0 ) customtime ( 0 ) savescenefile ( on )
+chlock topnet2 -*
+chautoscope topnet2 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c off -e on -b off topnet2
+opexprlanguage -s hscript topnet2
+opuserdata -n '___Version___' -v '20.5.370' topnet2
+oporder -e topnet1 topnet2 
 opcf ..
 oporder -e obj out ch shop img vex mat stage tasks 
 
@@ -3181,26 +2815,6 @@ opwire -n fuse2 -0 join2
 opwire -n blast8 -0 fuse4
 opcf ..
 opcf test_fence
-opwire -n curve1 -0 resample1
-opwire -n tube1 -0 matchsize1
-opwire -n matchsize1 -0 copytopoints1
-opwire -n foreach_begin1 -1 copytopoints1
-opwire -n resample1 -0 attribwrangle1
-opwire -n copytopoints1 -0 foreach_end1
-opwire -n resample2 -0 foreach_begin1
-opwire -n attribwrangle1 -0 resample2
-opwire -n curve2 -0 resample3
-opwire -n resample3 -0 group1
-opwire -n resample5 -0 grouptransfer1
-opwire -n group1 -1 grouptransfer1
-opwire -n curve2 -0 resample4
-opwire -n curve2 -0 attribcreate1
-opwire -n resample4 -0 attribtransfer1
-opwire -n attribcreate1 -1 attribtransfer1
-opwire -n grouptransfer1 -0 delete1
-opwire -n attribtransfer1 -0 blast1
-opwire -n attribtransfer1 -0 blast2
-opwire -n resample3 -0 resample5
 opwire -n resample6 -0 subnet1
 opcf subnet1
 opwire -n matchsize1 -0 copytopoints2
@@ -3240,22 +2854,10 @@ opwire -n group1 -0 dissolve1
 opwire -n transform3 -0 polybevel1
 opwire -n -i 0 -0 facet1
 opcf ..
-opwire -n curve3 -0 resample6
-opcf ..
-opcf test_cut_footprint
-opwire -n boolean1 -0 polypath1
-opwire -n add1 -0 boolean1
-opwire -n transform1 -1 boolean1
-opwire -n box1 -0 transform1
-opwire -n boolean2 -0 building_generator1
-opwire -n add1 -0 polyextrude1
-opwire -n polyextrude1 -0 boolean2
-opwire -n transform2 -1 boolean2
-opwire -n matchsize1 -0 transform2
-opwire -n box2 -0 matchsize1
+opwire -n add1 -0 resample6
 opcf ..
 opcf test_outside_corridor
-opwire -n resample1 -0 OutisideCorridor
+opwire -n resample6 -0 OutisideCorridor
 opcf OutisideCorridor
 opwire -n dissolve1 -0 output0
 opwire -n Aisle2 -0 switch2
@@ -3267,9 +2869,9 @@ opwire -n polyextrude1 -0 group1
 opwire -n group1 -0 dissolve1
 opwire -n -i 0 -0 Aisle2
 opcf ..
-opwire -n curve1 -0 resample1
 opwire -n OutisideCorridor -0 merge1
 opwire -n -o 1 OutisideCorridor -1 merge1
+opwire -n add1 -0 resample6
 opcf ..
 opcf ..
 opcf out
