@@ -25,7 +25,7 @@ opcf Components
 
 # Node Bend (Sop/subnet)
 opadd -e -n subnet Bend
-oplocate -x -17.5168 -y 1.7422200000000001 Bend
+oplocate -x -17.751999999999999 -y 1.8598399999999999 Bend
 opspareds '    parm {         name    "label1"         baseparm         label   "Input #1 Label"         export  all     }     parm {         name    "label2"         baseparm         label   "Input #2 Label"         export  all     }     parm {         name    "label3"         baseparm         label   "Input #3 Label"         export  all     }     parm {         name    "label4"         baseparm         label   "Input #4 Label"         export  all     }     parm {         name    "Direction"         label   "Direction"         type    ordinal         default { "0" }         menu {             ""  "Left"             ""  "Right"         }         parmtag { "script_callback_language" "python" }     }     parm {         name    "Width"         label   "Width"         type    float         default { "1" }         range   { 0 10 }         parmtag { "script_callback_language" "python" }     }     parm {         name    "Angle"         label   "Angle"         type    float         default { "45" }         range   { 0! 180! }         parmtag { "script_callback_language" "python" }     } ' Bend
 opparm -V 20.5.370 Bend label1 ( 'Sub-Network Input #1' ) label2 ( 'Sub-Network Input #2' ) label3 ( 'Sub-Network Input #3' ) label4 ( 'Sub-Network Input #4' ) Direction ( "" ) Width ( 1 ) Angle ( 45 )
 chlock Bend -*
@@ -37,7 +37,7 @@ opcf Bend
 
 # Node output0 (Sop/output)
 opadd -e -n output output0
-oplocate -x -1.11759e-08 -y -4.3227099999999998 output0
+oplocate -x -0.68635699999999999 -y -6.5691499999999996 output0
 opspareds "" output0
 opparm -V 20.5.370 output0 outputidx ( 0 )
 chlock output0 -*
@@ -48,7 +48,7 @@ opuserdata -n '___Version___' -v '20.5.370' output0
 
 # Node merge1 (Sop/merge)
 opadd -e -n merge merge1
-oplocate -x -0.0011500200000000001 -y -2.1167899999999999 merge1
+oplocate -x -0.68750699999999998 -y -2.7025899999999998 merge1
 opspareds "" merge1
 opparm -V 20.5.370 merge1
 chlock merge1 -*
@@ -86,7 +86,7 @@ opspareds "" arc_points_l
 opparm -V 20.5.370 arc_points_l label1 ( 'Sub-Network Input #1' ) label2 ( 'Sub-Network Input #2' ) label3 ( 'Sub-Network Input #3' ) label4 ( 'Sub-Network Input #4' )
 chlock arc_points_l -*
 chautoscope arc_points_l -*
-opset -d off -r off -h off -f off -y off -t on -l off -s off -u off -F on -c on -e on -b off arc_points_l
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off arc_points_l
 opexprlanguage -s hscript arc_points_l
 opuserdata -n '___Version___' -v '20.5.370' arc_points_l
 opcf arc_points_l
@@ -280,7 +280,7 @@ opspareds "" connect_points_l
 opparm -V 20.5.370 connect_points_l label1 ( 'Sub-Network Input #1' ) label2 ( 'Sub-Network Input #2' ) label3 ( 'Sub-Network Input #3' ) label4 ( 'Sub-Network Input #4' )
 chlock connect_points_l -*
 chautoscope connect_points_l -*
-opset -d on -r on -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off connect_points_l
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off connect_points_l
 opexprlanguage -s hscript connect_points_l
 opuserdata -n '___Version___' -v '20.5.370' connect_points_l
 opcf connect_points_l
@@ -352,7 +352,65 @@ opexprlanguage -s hscript output0
 opuserdata -n '___Version___' -v '20.5.370' output0
 oporder -e circle1 add2 sort1 merge2 output0 
 opcf ..
-oporder -e output0 merge1 group3 group4 arc_points_l mirror1 switchif1 mirror2 switchif2 group5 group6 group7 group8 connect_points_l 
+
+# Node output1 (Sop/output)
+opadd -e -n output output1
+oplocate -x 3.6151900000000001 -y -6.5691499999999996 output1
+opspareds "" output1
+opparm -V 20.5.370 output1 outputidx ( 1 )
+chlock output1 -*
+chautoscope output1 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off output1
+opexprlanguage -s hscript output1
+opuserdata -n '___Version___' -v '20.5.370' output1
+
+# Node leftside_primitive (Sop/attribwrangle)
+opadd -e -n attribwrangle leftside_primitive
+oplocate -x 4.3757099999999998 -y -1.66086 leftside_primitive
+opspareds '    group {         name    "folder1"         label   "Code"          parm {             name    "group"             baseparm             label   "Group"             export  none             bindselector uvselect "Modify Attribs"                 "Select the geometry to affect and press Enter to complete."                 0 1 0xffffffff 0 grouptype 0         }         parm {             name    "grouptype"             baseparm             label   "Group Type"             export  none         }         parm {             name    "class"             baseparm             label   "Run Over"             export  none         }         parm {             name    "vex_numcount"             baseparm             label   "Number Count"             export  none         }         parm {             name    "vex_threadjobsize"             baseparm             label   "Thread Job Size"             export  none         }         groupsimple {             name    "folder_generatedparms_snippet"             label   "Generated Channel Parameters"             grouptag { "sidefx::look" "blank" }              parm {                 name    "GroupName"                 label   "Groupname"                 type    string                 default { "" }             }         }          parm {             name    "snippet"             baseparm             label   "VEXpression"             export  all         }         parm {             name    "exportlist"             baseparm             label   "Attributes to Create"             export  none         }         parm {             name    "vex_strict"             baseparm             label   "Enforce Prototypes"             export  none         }     }      group {         name    "folder1_1"         label   "Bindings"          parm {             name    "autobind"             baseparm             label   "Autobind by Name"             export  none         }         multiparm {             name    "bindings"             label    "Number of Bindings"             baseparm             default 0             parmtag { "autoscope" "0000000000000000" }             parmtag { "multistartoffset" "1" }              parm {                 name    "bindname#"                 baseparm                 label   "Attribute Name"                 export  none             }             parm {                 name    "bindparm#"                 baseparm                 label   "VEX Parameter"                 export  none             }         }          parm {             name    "groupautobind"             baseparm             label   "Autobind Groups by Name"             export  none         }         multiparm {             name    "groupbindings"             label    "Group Bindings"             baseparm             default 0             parmtag { "autoscope" "0000000000000000" }             parmtag { "multistartoffset" "1" }              parm {                 name    "bindgroupname#"                 baseparm                 label   "Group Name"                 export  none             }             parm {                 name    "bindgroupparm#"                 baseparm                 label   "VEX Parameter"                 export  none             }         }          parm {             name    "vex_cwdpath"             baseparm             label   "Evaluation Node Path"             export  none         }         parm {             name    "vex_outputmask"             baseparm             label   "Export Parameters"             export  none         }         parm {             name    "vex_updatenmls"             baseparm             label   "Update Normals If Displaced"             export  none         }         parm {             name    "vex_matchattrib"             baseparm             label   "Attribute to Match"             export  none         }         parm {             name    "vex_inplace"             baseparm             label   "Compute Results In Place"             export  none         }         parm {             name    "vex_selectiongroup"             baseparm             label   "Output Selection Group"             export  none         }         parm {             name    "vex_precision"             baseparm             label   "VEX Precision"             export  none         }     }  ' leftside_primitive
+opparm leftside_primitive  bindings ( 0 ) groupbindings ( 0 )
+opparm leftside_primitive folder0 ( 0 0 ) group ( leftside ) grouptype ( guess ) class ( detail ) vex_numcount ( 10 ) vex_threadjobsize ( 1024 ) snippet ( 'int prim =  addprim(0, "polyline");\n\nfor( int i=0; i<npoints(0); ++i )\n    if( inpointgroup(0, chs("GroupName"), i)==1 )\n        addvertex(0, prim, i);\n     \nsetprimattrib(0, "prim_type", prim, "leftside" );\n\n' ) exportlist ( * ) vex_strict ( off ) autobind ( on ) bindings ( 0 ) groupautobind ( on ) groupbindings ( 0 ) vex_cwdpath ( . ) vex_outputmask ( * ) vex_updatenmls ( off ) vex_matchattrib ( id ) vex_inplace ( off ) vex_selectiongroup ( "" ) vex_precision ( auto ) folder1 ( 0 0 ) folder_generatedparms_snippet ( 0 ) GroupName ( leftside )
+chlock leftside_primitive -*
+chautoscope leftside_primitive -*
+opset -d on -r on -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off leftside_primitive
+opexprlanguage -s hscript leftside_primitive
+opuserdata -n '___Version___' -v '' leftside_primitive
+
+# Node rightside_primitive (Sop/attribwrangle)
+opadd -e -n attribwrangle rightside_primitive
+oplocate -x 4.3757099999999998 -y -2.6304599999999998 rightside_primitive
+opspareds '    group {         name    "folder1"         label   "Code"          parm {             name    "group"             baseparm             label   "Group"             export  none             bindselector uvselect "Modify Attribs"                 "Select the geometry to affect and press Enter to complete."                 0 1 0xffffffff 0 grouptype 0         }         parm {             name    "grouptype"             baseparm             label   "Group Type"             export  none         }         parm {             name    "class"             baseparm             label   "Run Over"             export  none         }         parm {             name    "vex_numcount"             baseparm             label   "Number Count"             export  none         }         parm {             name    "vex_threadjobsize"             baseparm             label   "Thread Job Size"             export  none         }         groupsimple {             name    "folder_generatedparms_snippet"             label   "Generated Channel Parameters"             grouptag { "sidefx::look" "blank" }              parm {                 name    "GroupName"                 label   "Groupname"                 type    string                 default { "" }             }         }          parm {             name    "snippet"             baseparm             label   "VEXpression"             export  all         }         parm {             name    "exportlist"             baseparm             label   "Attributes to Create"             export  none         }         parm {             name    "vex_strict"             baseparm             label   "Enforce Prototypes"             export  none         }     }      group {         name    "folder1_1"         label   "Bindings"          parm {             name    "autobind"             baseparm             label   "Autobind by Name"             export  none         }         multiparm {             name    "bindings"             label    "Number of Bindings"             baseparm             default 0             parmtag { "autoscope" "0000000000000000" }             parmtag { "multistartoffset" "1" }              parm {                 name    "bindname#"                 baseparm                 label   "Attribute Name"                 export  none             }             parm {                 name    "bindparm#"                 baseparm                 label   "VEX Parameter"                 export  none             }         }          parm {             name    "groupautobind"             baseparm             label   "Autobind Groups by Name"             export  none         }         multiparm {             name    "groupbindings"             label    "Group Bindings"             baseparm             default 0             parmtag { "autoscope" "0000000000000000" }             parmtag { "multistartoffset" "1" }              parm {                 name    "bindgroupname#"                 baseparm                 label   "Group Name"                 export  none             }             parm {                 name    "bindgroupparm#"                 baseparm                 label   "VEX Parameter"                 export  none             }         }          parm {             name    "vex_cwdpath"             baseparm             label   "Evaluation Node Path"             export  none         }         parm {             name    "vex_outputmask"             baseparm             label   "Export Parameters"             export  none         }         parm {             name    "vex_updatenmls"             baseparm             label   "Update Normals If Displaced"             export  none         }         parm {             name    "vex_matchattrib"             baseparm             label   "Attribute to Match"             export  none         }         parm {             name    "vex_inplace"             baseparm             label   "Compute Results In Place"             export  none         }         parm {             name    "vex_selectiongroup"             baseparm             label   "Output Selection Group"             export  none         }         parm {             name    "vex_precision"             baseparm             label   "VEX Precision"             export  none         }     }  ' rightside_primitive
+opparm rightside_primitive  bindings ( 0 ) groupbindings ( 0 )
+opparm rightside_primitive folder0 ( 0 0 ) group ( "" ) grouptype ( guess ) class ( detail ) vex_numcount ( 10 ) vex_threadjobsize ( 1024 ) snippet ( 'int prim =  addprim(0, "polyline");\n\nfor( int i=0; i<npoints(0); ++i )\n    if( inpointgroup(0, chs("GroupName"), i)==1 )\n        addvertex(0, prim, i);\n        \nsetprimattrib(0, "prim_type", prim, "rightside" );\n\n' ) exportlist ( * ) vex_strict ( off ) autobind ( on ) bindings ( 0 ) groupautobind ( on ) groupbindings ( 0 ) vex_cwdpath ( . ) vex_outputmask ( * ) vex_updatenmls ( off ) vex_matchattrib ( id ) vex_inplace ( off ) vex_selectiongroup ( "" ) vex_precision ( auto ) folder1 ( 0 0 ) folder_generatedparms_snippet ( 0 ) GroupName ( rightside )
+chlock rightside_primitive -*
+chautoscope rightside_primitive -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off rightside_primitive
+opexprlanguage -s hscript rightside_primitive
+opuserdata -n '___Version___' -v '' rightside_primitive
+
+# Node floor_primitive (Sop/attribwrangle)
+opadd -e -n attribwrangle floor_primitive
+oplocate -x 4.3757099999999998 -y -3.5816400000000002 floor_primitive
+opspareds '    group {         name    "folder1"         label   "Code"          parm {             name    "group"             baseparm             label   "Group"             export  none             bindselector uvselect "Modify Attribs"                 "Select the geometry to affect and press Enter to complete."                 0 1 0xffffffff 0 grouptype 0         }         parm {             name    "grouptype"             baseparm             label   "Group Type"             export  none         }         parm {             name    "class"             baseparm             label   "Run Over"             export  none         }         parm {             name    "vex_numcount"             baseparm             label   "Number Count"             export  none         }         parm {             name    "vex_threadjobsize"             baseparm             label   "Thread Job Size"             export  none         }         groupsimple {             name    "folder_generatedparms_snippet"             label   "Generated Channel Parameters"             grouptag { "sidefx::look" "blank" }              parm {                 name    "GroupName"                 label   "Groupname"                 type    string                 default { "" }             }         }          parm {             name    "snippet"             baseparm             label   "VEXpression"             export  all         }         parm {             name    "exportlist"             baseparm             label   "Attributes to Create"             export  none         }         parm {             name    "vex_strict"             baseparm             label   "Enforce Prototypes"             export  none         }     }      group {         name    "folder1_1"         label   "Bindings"          parm {             name    "autobind"             baseparm             label   "Autobind by Name"             export  none         }         multiparm {             name    "bindings"             label    "Number of Bindings"             baseparm             default 0             parmtag { "autoscope" "0000000000000000" }             parmtag { "multistartoffset" "1" }              parm {                 name    "bindname#"                 baseparm                 label   "Attribute Name"                 export  none             }             parm {                 name    "bindparm#"                 baseparm                 label   "VEX Parameter"                 export  none             }         }          parm {             name    "groupautobind"             baseparm             label   "Autobind Groups by Name"             export  none         }         multiparm {             name    "groupbindings"             label    "Group Bindings"             baseparm             default 0             parmtag { "autoscope" "0000000000000000" }             parmtag { "multistartoffset" "1" }              parm {                 name    "bindgroupname#"                 baseparm                 label   "Group Name"                 export  none             }             parm {                 name    "bindgroupparm#"                 baseparm                 label   "VEX Parameter"                 export  none             }         }          parm {             name    "vex_cwdpath"             baseparm             label   "Evaluation Node Path"             export  none         }         parm {             name    "vex_outputmask"             baseparm             label   "Export Parameters"             export  none         }         parm {             name    "vex_updatenmls"             baseparm             label   "Update Normals If Displaced"             export  none         }         parm {             name    "vex_matchattrib"             baseparm             label   "Attribute to Match"             export  none         }         parm {             name    "vex_inplace"             baseparm             label   "Compute Results In Place"             export  none         }         parm {             name    "vex_selectiongroup"             baseparm             label   "Output Selection Group"             export  none         }         parm {             name    "vex_precision"             baseparm             label   "VEX Precision"             export  none         }     }  ' floor_primitive
+opparm floor_primitive  bindings ( 0 ) groupbindings ( 0 )
+opparm floor_primitive folder0 ( 0 0 ) group ( "" ) grouptype ( guess ) class ( detail ) vex_numcount ( 10 ) vex_threadjobsize ( 1024 ) snippet ( 'int prim =  addprim(0, "poly");\n\nif( ch("../Direction")==0 )\n    for( int i=npoints(0)-1; i>=0; --i )\n        addvertex(0, prim, i);\nelse\n    for( int i=0; i<npoints(0); ++i )\n        addvertex(0, prim, i);\n\nsetprimattrib(0, "prim_type", prim, "floor" );\n' ) exportlist ( * ) vex_strict ( off ) autobind ( on ) bindings ( 0 ) groupautobind ( on ) groupbindings ( 0 ) vex_cwdpath ( . ) vex_outputmask ( * ) vex_updatenmls ( off ) vex_matchattrib ( id ) vex_inplace ( off ) vex_selectiongroup ( "" ) vex_precision ( auto ) folder1 ( 0 0 ) folder_generatedparms_snippet ( 0 ) GroupName ( rightside )
+chlock floor_primitive -*
+chautoscope floor_primitive -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off floor_primitive
+opexprlanguage -s hscript floor_primitive
+opuserdata -n '___Version___' -v '' floor_primitive
+
+# Node merge2 (Sop/merge)
+opadd -e -n merge merge2
+oplocate -x 3.6140400000000001 -y -4.5319700000000003 merge2
+opspareds "" merge2
+opparm -V 20.5.370 merge2
+chlock merge2 -*
+chautoscope merge2 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off merge2
+opexprlanguage -s hscript merge2
+opuserdata -n '___Version___' -v '20.5.370' merge2
+oporder -e output0 merge1 group3 group4 arc_points_l mirror1 switchif1 mirror2 switchif2 group5 group6 group7 group8 connect_points_l output1 leftside_primitive rightside_primitive floor_primitive merge2 
 opcf ..
 
 # Node Elbow (Sop/subnet)
@@ -369,7 +427,7 @@ opcf Elbow
 
 # Node output0 (Sop/output)
 opadd -e -n output output0
-oplocate -x 0.19589999999999999 -y -3.9189799999999999 output0
+oplocate -x 0.33644200000000002 -y -6.4081900000000003 output0
 opspareds "" output0
 opparm -V 20.5.370 output0 outputidx ( 0 )
 chlock output0 -*
@@ -424,7 +482,7 @@ opuserdata -n '___Version___' -v '20.5.370' outline_points_l
 
 # Node merge1 (Sop/merge)
 opadd -e -n merge merge1
-oplocate -x 0.21655099999999999 -y -2.2291500000000002 merge1
+oplocate -x 0.33529199999999998 -y -4.4050399999999996 merge1
 opspareds "" merge1
 opparm -V 20.5.370 merge1
 chlock merge1 -*
@@ -451,7 +509,7 @@ opspareds "" group4
 opparm -V 20.5.370 group4 groupname ( end ) grouptype ( point ) mergeop ( replace ) folder0 ( 0 ) groupbase ( on ) basegroup ( 1 ) ordered ( off ) geotype ( all ) switcher3 ( 0 ) groupbounding ( off ) boundtype ( usebbox ) size ( 1 1 1 ) t ( 0 0 0 ) initbounds ( 0 ) includenotwhollycontained ( off ) iso ( 0 ) invertvolume ( off ) switcher4 ( 0 ) groupnormal ( off ) camerapath ( "" ) nonplanar ( off ) nonplanartol ( 0.001 ) dir ( 0 0 1 ) angle ( 180 ) oppositenormals ( off ) switcher5 ( 0 ) groupedges ( off ) dominedgeangle ( off ) minedgeangle ( 20 ) domaxedgeangle ( off ) maxedgeangle ( 20 ) edgeanglebetweenedges ( off ) dominedgelen ( off ) minedgelen ( 0 ) domaxedgelen ( off ) maxedgelen ( 0 ) dodepth ( off ) edgestep ( 0 ) edgeptgrp ( 0 ) unshared ( off ) boundarygroups ( off ) switcher6 ( 0 ) grouprandom ( off ) globalseed ( 1 ) useseedattrib ( off ) seedattrib ( id ) percent ( 50 )
 chlock group4 -*
 chautoscope group4 -*
-opset -d on -r on -h on -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off group4
+opset -d off -r off -h on -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off group4
 opexprlanguage -s hscript group4
 opuserdata -n '___Version___' -v '20.5.370' group4
 
@@ -661,12 +719,70 @@ chautoscope group8 -*
 opset -d off -r off -h on -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off group8
 opexprlanguage -s hscript group8
 opuserdata -n '___Version___' -v '20.5.370' group8
-oporder -e output0 connect_points_l outline_points_l merge1 group3 group4 switch3 arc_points_l mirror1 switchif1 mirror2 switchif2 group5 group6 group7 group8 
+
+# Node output1 (Sop/output)
+opadd -e -n output output1
+oplocate -x 4.0782600000000002 -y -6.4081900000000003 output1
+opspareds "" output1
+opparm -V 20.5.370 output1 outputidx ( 1 )
+chlock output1 -*
+chautoscope output1 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off output1
+opexprlanguage -s hscript output1
+opuserdata -n '___Version___' -v '20.5.370' output1
+
+# Node merge3 (Sop/merge)
+opadd -e -n merge merge3
+oplocate -x 4.0771100000000002 -y -4.9987199999999996 merge3
+opspareds "" merge3
+opparm -V 20.5.370 merge3
+chlock merge3 -*
+chautoscope merge3 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off merge3
+opexprlanguage -s hscript merge3
+opuserdata -n '___Version___' -v '20.5.370' merge3
+
+# Node leftside_primitive (Sop/attribwrangle)
+opadd -e -n attribwrangle leftside_primitive
+oplocate -x 6.0778699999999999 -y -1.16127 leftside_primitive
+opspareds '    group {         name    "folder1"         label   "Code"          parm {             name    "group"             baseparm             label   "Group"             export  none             bindselector uvselect "Modify Attribs"                 "Select the geometry to affect and press Enter to complete."                 0 1 0xffffffff 0 grouptype 0         }         parm {             name    "grouptype"             baseparm             label   "Group Type"             export  none         }         parm {             name    "class"             baseparm             label   "Run Over"             export  none         }         parm {             name    "vex_numcount"             baseparm             label   "Number Count"             export  none         }         parm {             name    "vex_threadjobsize"             baseparm             label   "Thread Job Size"             export  none         }         groupsimple {             name    "folder_generatedparms_snippet"             label   "Generated Channel Parameters"             grouptag { "sidefx::look" "blank" }              parm {                 name    "GroupName"                 label   "Groupname"                 type    string                 default { "" }             }         }          parm {             name    "snippet"             baseparm             label   "VEXpression"             export  all         }         parm {             name    "exportlist"             baseparm             label   "Attributes to Create"             export  none         }         parm {             name    "vex_strict"             baseparm             label   "Enforce Prototypes"             export  none         }     }      group {         name    "folder1_1"         label   "Bindings"          parm {             name    "autobind"             baseparm             label   "Autobind by Name"             export  none         }         multiparm {             name    "bindings"             label    "Number of Bindings"             baseparm             default 0             parmtag { "autoscope" "0000000000000000" }             parmtag { "multistartoffset" "1" }              parm {                 name    "bindname#"                 baseparm                 label   "Attribute Name"                 export  none             }             parm {                 name    "bindparm#"                 baseparm                 label   "VEX Parameter"                 export  none             }         }          parm {             name    "groupautobind"             baseparm             label   "Autobind Groups by Name"             export  none         }         multiparm {             name    "groupbindings"             label    "Group Bindings"             baseparm             default 0             parmtag { "autoscope" "0000000000000000" }             parmtag { "multistartoffset" "1" }              parm {                 name    "bindgroupname#"                 baseparm                 label   "Group Name"                 export  none             }             parm {                 name    "bindgroupparm#"                 baseparm                 label   "VEX Parameter"                 export  none             }         }          parm {             name    "vex_cwdpath"             baseparm             label   "Evaluation Node Path"             export  none         }         parm {             name    "vex_outputmask"             baseparm             label   "Export Parameters"             export  none         }         parm {             name    "vex_updatenmls"             baseparm             label   "Update Normals If Displaced"             export  none         }         parm {             name    "vex_matchattrib"             baseparm             label   "Attribute to Match"             export  none         }         parm {             name    "vex_inplace"             baseparm             label   "Compute Results In Place"             export  none         }         parm {             name    "vex_selectiongroup"             baseparm             label   "Output Selection Group"             export  none         }         parm {             name    "vex_precision"             baseparm             label   "VEX Precision"             export  none         }     }  ' leftside_primitive
+opparm leftside_primitive  bindings ( 0 ) groupbindings ( 0 )
+opparm leftside_primitive folder0 ( 0 0 ) group ( leftside ) grouptype ( guess ) class ( detail ) vex_numcount ( 10 ) vex_threadjobsize ( 1024 ) snippet ( 'int prim =  addprim(0, "polyline");\n\nfor( int i=0; i<npoints(0); ++i )\n    if( inpointgroup(0, chs("GroupName"), i)==1 )\n        addvertex(0, prim, i);\n        \nsetprimattrib(0, "prim_type", prim, "leftside" );' ) exportlist ( * ) vex_strict ( off ) autobind ( on ) bindings ( 0 ) groupautobind ( on ) groupbindings ( 0 ) vex_cwdpath ( . ) vex_outputmask ( * ) vex_updatenmls ( off ) vex_matchattrib ( id ) vex_inplace ( off ) vex_selectiongroup ( "" ) vex_precision ( auto ) folder1 ( 0 0 ) folder_generatedparms_snippet ( 0 ) GroupName ( leftside )
+chlock leftside_primitive -*
+chautoscope leftside_primitive -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off leftside_primitive
+opexprlanguage -s hscript leftside_primitive
+opuserdata -n '___Version___' -v '' leftside_primitive
+
+# Node rightside_primitive (Sop/attribwrangle)
+opadd -e -n attribwrangle rightside_primitive
+oplocate -x 6.0778699999999999 -y -2.1308699999999998 rightside_primitive
+opspareds '    group {         name    "folder1"         label   "Code"          parm {             name    "group"             baseparm             label   "Group"             export  none             bindselector uvselect "Modify Attribs"                 "Select the geometry to affect and press Enter to complete."                 0 1 0xffffffff 0 grouptype 0         }         parm {             name    "grouptype"             baseparm             label   "Group Type"             export  none         }         parm {             name    "class"             baseparm             label   "Run Over"             export  none         }         parm {             name    "vex_numcount"             baseparm             label   "Number Count"             export  none         }         parm {             name    "vex_threadjobsize"             baseparm             label   "Thread Job Size"             export  none         }         groupsimple {             name    "folder_generatedparms_snippet"             label   "Generated Channel Parameters"             grouptag { "sidefx::look" "blank" }              parm {                 name    "GroupName"                 label   "Groupname"                 type    string                 default { "" }             }         }          parm {             name    "snippet"             baseparm             label   "VEXpression"             export  all         }         parm {             name    "exportlist"             baseparm             label   "Attributes to Create"             export  none         }         parm {             name    "vex_strict"             baseparm             label   "Enforce Prototypes"             export  none         }     }      group {         name    "folder1_1"         label   "Bindings"          parm {             name    "autobind"             baseparm             label   "Autobind by Name"             export  none         }         multiparm {             name    "bindings"             label    "Number of Bindings"             baseparm             default 0             parmtag { "autoscope" "0000000000000000" }             parmtag { "multistartoffset" "1" }              parm {                 name    "bindname#"                 baseparm                 label   "Attribute Name"                 export  none             }             parm {                 name    "bindparm#"                 baseparm                 label   "VEX Parameter"                 export  none             }         }          parm {             name    "groupautobind"             baseparm             label   "Autobind Groups by Name"             export  none         }         multiparm {             name    "groupbindings"             label    "Group Bindings"             baseparm             default 0             parmtag { "autoscope" "0000000000000000" }             parmtag { "multistartoffset" "1" }              parm {                 name    "bindgroupname#"                 baseparm                 label   "Group Name"                 export  none             }             parm {                 name    "bindgroupparm#"                 baseparm                 label   "VEX Parameter"                 export  none             }         }          parm {             name    "vex_cwdpath"             baseparm             label   "Evaluation Node Path"             export  none         }         parm {             name    "vex_outputmask"             baseparm             label   "Export Parameters"             export  none         }         parm {             name    "vex_updatenmls"             baseparm             label   "Update Normals If Displaced"             export  none         }         parm {             name    "vex_matchattrib"             baseparm             label   "Attribute to Match"             export  none         }         parm {             name    "vex_inplace"             baseparm             label   "Compute Results In Place"             export  none         }         parm {             name    "vex_selectiongroup"             baseparm             label   "Output Selection Group"             export  none         }         parm {             name    "vex_precision"             baseparm             label   "VEX Precision"             export  none         }     }  ' rightside_primitive
+opparm rightside_primitive  bindings ( 0 ) groupbindings ( 0 )
+opparm rightside_primitive folder0 ( 0 0 ) group ( "" ) grouptype ( guess ) class ( detail ) vex_numcount ( 10 ) vex_threadjobsize ( 1024 ) snippet ( 'int prim =  addprim(0, "polyline");\n\nfor( int i=0; i<npoints(0); ++i )\n    if( inpointgroup(0, chs("GroupName"), i)==1 )\n        addvertex(0, prim, i);\n        \nsetprimattrib(0, "prim_type", prim, "rightside" );\n' ) exportlist ( * ) vex_strict ( off ) autobind ( on ) bindings ( 0 ) groupautobind ( on ) groupbindings ( 0 ) vex_cwdpath ( . ) vex_outputmask ( * ) vex_updatenmls ( off ) vex_matchattrib ( id ) vex_inplace ( off ) vex_selectiongroup ( "" ) vex_precision ( auto ) folder1 ( 0 0 ) folder_generatedparms_snippet ( 0 ) GroupName ( rightside )
+chlock rightside_primitive -*
+chautoscope rightside_primitive -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off rightside_primitive
+opexprlanguage -s hscript rightside_primitive
+opuserdata -n '___Version___' -v '' rightside_primitive
+
+# Node floor_primitive (Sop/attribwrangle)
+opadd -e -n attribwrangle floor_primitive
+oplocate -x 6.0778699999999999 -y -3.0820500000000002 floor_primitive
+opspareds '    group {         name    "folder1"         label   "Code"          parm {             name    "group"             baseparm             label   "Group"             export  none             bindselector uvselect "Modify Attribs"                 "Select the geometry to affect and press Enter to complete."                 0 1 0xffffffff 0 grouptype 0         }         parm {             name    "grouptype"             baseparm             label   "Group Type"             export  none         }         parm {             name    "class"             baseparm             label   "Run Over"             export  none         }         parm {             name    "vex_numcount"             baseparm             label   "Number Count"             export  none         }         parm {             name    "vex_threadjobsize"             baseparm             label   "Thread Job Size"             export  none         }         groupsimple {             name    "folder_generatedparms_snippet"             label   "Generated Channel Parameters"             grouptag { "sidefx::look" "blank" }              parm {                 name    "GroupName"                 label   "Groupname"                 type    string                 default { "" }             }         }          parm {             name    "snippet"             baseparm             label   "VEXpression"             export  all         }         parm {             name    "exportlist"             baseparm             label   "Attributes to Create"             export  none         }         parm {             name    "vex_strict"             baseparm             label   "Enforce Prototypes"             export  none         }     }      group {         name    "folder1_1"         label   "Bindings"          parm {             name    "autobind"             baseparm             label   "Autobind by Name"             export  none         }         multiparm {             name    "bindings"             label    "Number of Bindings"             baseparm             default 0             parmtag { "autoscope" "0000000000000000" }             parmtag { "multistartoffset" "1" }              parm {                 name    "bindname#"                 baseparm                 label   "Attribute Name"                 export  none             }             parm {                 name    "bindparm#"                 baseparm                 label   "VEX Parameter"                 export  none             }         }          parm {             name    "groupautobind"             baseparm             label   "Autobind Groups by Name"             export  none         }         multiparm {             name    "groupbindings"             label    "Group Bindings"             baseparm             default 0             parmtag { "autoscope" "0000000000000000" }             parmtag { "multistartoffset" "1" }              parm {                 name    "bindgroupname#"                 baseparm                 label   "Group Name"                 export  none             }             parm {                 name    "bindgroupparm#"                 baseparm                 label   "VEX Parameter"                 export  none             }         }          parm {             name    "vex_cwdpath"             baseparm             label   "Evaluation Node Path"             export  none         }         parm {             name    "vex_outputmask"             baseparm             label   "Export Parameters"             export  none         }         parm {             name    "vex_updatenmls"             baseparm             label   "Update Normals If Displaced"             export  none         }         parm {             name    "vex_matchattrib"             baseparm             label   "Attribute to Match"             export  none         }         parm {             name    "vex_inplace"             baseparm             label   "Compute Results In Place"             export  none         }         parm {             name    "vex_selectiongroup"             baseparm             label   "Output Selection Group"             export  none         }         parm {             name    "vex_precision"             baseparm             label   "VEX Precision"             export  none         }     }  ' floor_primitive
+opparm floor_primitive  bindings ( 0 ) groupbindings ( 0 )
+opparm floor_primitive folder0 ( 0 0 ) group ( "" ) grouptype ( guess ) class ( detail ) vex_numcount ( 10 ) vex_threadjobsize ( 1024 ) snippet ( 'int prim =  addprim(0, "poly");\n\nif( ch("../Direction")==0 )\n    for( int i=npoints(0)-1; i>=0; --i )\n        addvertex(0, prim, i);\nelse\n    for( int i=0; i<npoints(0); ++i )\n        addvertex(0, prim, i);\n\nsetprimattrib(0, "prim_type", prim, "floor" );\n' ) exportlist ( * ) vex_strict ( off ) autobind ( on ) bindings ( 0 ) groupautobind ( on ) groupbindings ( 0 ) vex_cwdpath ( . ) vex_outputmask ( * ) vex_updatenmls ( off ) vex_matchattrib ( id ) vex_inplace ( off ) vex_selectiongroup ( "" ) vex_precision ( auto ) folder1 ( 0 0 ) folder_generatedparms_snippet ( 0 ) GroupName ( rightside )
+chlock floor_primitive -*
+chautoscope floor_primitive -*
+opset -d on -r on -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off floor_primitive
+opexprlanguage -s hscript floor_primitive
+opuserdata -n '___Version___' -v '' floor_primitive
+oporder -e output0 connect_points_l outline_points_l merge1 group3 group4 switch3 arc_points_l mirror1 switchif1 mirror2 switchif2 group5 group6 group7 group8 output1 merge3 leftside_primitive rightside_primitive floor_primitive 
 opcf ..
 
 # Node Straight (Sop/subnet)
 opadd -e -n subnet Straight
-oplocate -x -14.7638 -y -0.18285000000000001 Straight
+oplocate -x -14.540800000000001 -y -0.66701200000000005 Straight
 opspareds '    parm {         name    "label1"         baseparm         label   "Input #1 Label"         export  all     }     parm {         name    "label2"         baseparm         label   "Input #2 Label"         export  all     }     parm {         name    "label3"         baseparm         label   "Input #3 Label"         export  all     }     parm {         name    "label4"         baseparm         label   "Input #4 Label"         export  all     }     parm {         name    "Length"         label   "Length"         type    float         default { "2" }         range   { 0 10 }         parmtag { "script_callback_language" "python" }     }     parm {         name    "Width"         label   "Width"         type    float         default { "1" }         range   { 0 10 }         parmtag { "script_callback_language" "python" }     }     parm {         name    "Elevation"         label   "Elevation"         type    float         default { "0" }         range   { -10 10 }         parmtag { "script_callback_language" "python" }     } ' Straight
 opparm -V 20.5.370 Straight label1 ( 'Sub-Network Input #1' ) label2 ( 'Sub-Network Input #2' ) label3 ( 'Sub-Network Input #3' ) label4 ( 'Sub-Network Input #4' ) Length ( 2 ) Width ( 1 ) Elevation ( 0 )
 chlock Straight -*
@@ -678,7 +794,7 @@ opcf Straight
 
 # Node output0 (Sop/output)
 opadd -e -n output output0
-oplocate -x -1.11759e-08 -y 0.090788800000000003 output0
+oplocate -x -7.9836999999999992e-09 -y -0.685948 output0
 opspareds "" output0
 opparm -V 20.5.370 output0 outputidx ( 0 )
 chlock output0 -*
@@ -764,7 +880,7 @@ opspareds "" merge1
 opparm -V 20.5.370 merge1
 chlock merge1 -*
 chautoscope merge1 -*
-opset -d on -r on -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off merge1
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off merge1
 opexprlanguage -s hscript merge1
 opuserdata -n '___Version___' -v '20.5.370' merge1
 
@@ -789,7 +905,65 @@ chautoscope group4 -*
 opset -d off -r off -h on -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off group4
 opexprlanguage -s hscript group4
 opuserdata -n '___Version___' -v '20.5.370' group4
-oporder -e output0 connect_points_l group1 group2 outline_points_l merge1 group3 group4 
+
+# Node output1 (Sop/output)
+opadd -e -n output output1
+oplocate -x 3.1348400000000001 -y -2.8475199999999998 output1
+opspareds "" output1
+opparm -V 20.5.370 output1 outputidx ( 1 )
+chlock output1 -*
+chautoscope output1 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off output1
+opexprlanguage -s hscript output1
+opuserdata -n '___Version___' -v '20.5.370' output1
+
+# Node leftside_primitive (Sop/attribwrangle)
+opadd -e -n attribwrangle leftside_primitive
+oplocate -x 3.7126100000000002 -y 1.5778399999999999 leftside_primitive
+opspareds '    group {         name    "folder1"         label   "Code"          parm {             name    "group"             baseparm             label   "Group"             export  none             bindselector uvselect "Modify Attribs"                 "Select the geometry to affect and press Enter to complete."                 0 1 0xffffffff 0 grouptype 0         }         parm {             name    "grouptype"             baseparm             label   "Group Type"             export  none         }         parm {             name    "class"             baseparm             label   "Run Over"             export  none         }         parm {             name    "vex_numcount"             baseparm             label   "Number Count"             export  none         }         parm {             name    "vex_threadjobsize"             baseparm             label   "Thread Job Size"             export  none         }         groupsimple {             name    "folder_generatedparms_snippet"             label   "Generated Channel Parameters"             grouptag { "sidefx::look" "blank" }              parm {                 name    "GroupName"                 label   "Groupname"                 type    string                 default { "" }             }         }          parm {             name    "snippet"             baseparm             label   "VEXpression"             export  all         }         parm {             name    "exportlist"             baseparm             label   "Attributes to Create"             export  none         }         parm {             name    "vex_strict"             baseparm             label   "Enforce Prototypes"             export  none         }     }      group {         name    "folder1_1"         label   "Bindings"          parm {             name    "autobind"             baseparm             label   "Autobind by Name"             export  none         }         multiparm {             name    "bindings"             label    "Number of Bindings"             baseparm             default 0             parmtag { "autoscope" "0000000000000000" }             parmtag { "multistartoffset" "1" }              parm {                 name    "bindname#"                 baseparm                 label   "Attribute Name"                 export  none             }             parm {                 name    "bindparm#"                 baseparm                 label   "VEX Parameter"                 export  none             }         }          parm {             name    "groupautobind"             baseparm             label   "Autobind Groups by Name"             export  none         }         multiparm {             name    "groupbindings"             label    "Group Bindings"             baseparm             default 0             parmtag { "autoscope" "0000000000000000" }             parmtag { "multistartoffset" "1" }              parm {                 name    "bindgroupname#"                 baseparm                 label   "Group Name"                 export  none             }             parm {                 name    "bindgroupparm#"                 baseparm                 label   "VEX Parameter"                 export  none             }         }          parm {             name    "vex_cwdpath"             baseparm             label   "Evaluation Node Path"             export  none         }         parm {             name    "vex_outputmask"             baseparm             label   "Export Parameters"             export  none         }         parm {             name    "vex_updatenmls"             baseparm             label   "Update Normals If Displaced"             export  none         }         parm {             name    "vex_matchattrib"             baseparm             label   "Attribute to Match"             export  none         }         parm {             name    "vex_inplace"             baseparm             label   "Compute Results In Place"             export  none         }         parm {             name    "vex_selectiongroup"             baseparm             label   "Output Selection Group"             export  none         }         parm {             name    "vex_precision"             baseparm             label   "VEX Precision"             export  none         }     }  ' leftside_primitive
+opparm leftside_primitive  bindings ( 0 ) groupbindings ( 0 )
+opparm leftside_primitive folder0 ( 0 0 ) group ( leftside ) grouptype ( guess ) class ( detail ) vex_numcount ( 10 ) vex_threadjobsize ( 1024 ) snippet ( 'int prim =  addprim(0, "polyline");\n\nfor( int i=0; i<npoints(0); ++i )\n    if( inpointgroup(0, chs("GroupName"), i)==1 )\n        addvertex(0, prim, i);\n        \nsetprimattrib(0, "prim_type", prim, "leftside" );\n' ) exportlist ( * ) vex_strict ( off ) autobind ( on ) bindings ( 0 ) groupautobind ( on ) groupbindings ( 0 ) vex_cwdpath ( . ) vex_outputmask ( * ) vex_updatenmls ( off ) vex_matchattrib ( id ) vex_inplace ( off ) vex_selectiongroup ( "" ) vex_precision ( auto ) folder1 ( 0 0 ) folder_generatedparms_snippet ( 0 ) GroupName ( leftside )
+chlock leftside_primitive -*
+chautoscope leftside_primitive -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off leftside_primitive
+opexprlanguage -s hscript leftside_primitive
+opuserdata -n '___Version___' -v '' leftside_primitive
+
+# Node rightside_primitive (Sop/attribwrangle)
+opadd -e -n attribwrangle rightside_primitive
+oplocate -x 3.7126100000000002 -y 0.60824500000000004 rightside_primitive
+opspareds '    group {         name    "folder1"         label   "Code"          parm {             name    "group"             baseparm             label   "Group"             export  none             bindselector uvselect "Modify Attribs"                 "Select the geometry to affect and press Enter to complete."                 0 1 0xffffffff 0 grouptype 0         }         parm {             name    "grouptype"             baseparm             label   "Group Type"             export  none         }         parm {             name    "class"             baseparm             label   "Run Over"             export  none         }         parm {             name    "vex_numcount"             baseparm             label   "Number Count"             export  none         }         parm {             name    "vex_threadjobsize"             baseparm             label   "Thread Job Size"             export  none         }         groupsimple {             name    "folder_generatedparms_snippet"             label   "Generated Channel Parameters"             grouptag { "sidefx::look" "blank" }              parm {                 name    "GroupName"                 label   "Groupname"                 type    string                 default { "" }             }         }          parm {             name    "snippet"             baseparm             label   "VEXpression"             export  all         }         parm {             name    "exportlist"             baseparm             label   "Attributes to Create"             export  none         }         parm {             name    "vex_strict"             baseparm             label   "Enforce Prototypes"             export  none         }     }      group {         name    "folder1_1"         label   "Bindings"          parm {             name    "autobind"             baseparm             label   "Autobind by Name"             export  none         }         multiparm {             name    "bindings"             label    "Number of Bindings"             baseparm             default 0             parmtag { "autoscope" "0000000000000000" }             parmtag { "multistartoffset" "1" }              parm {                 name    "bindname#"                 baseparm                 label   "Attribute Name"                 export  none             }             parm {                 name    "bindparm#"                 baseparm                 label   "VEX Parameter"                 export  none             }         }          parm {             name    "groupautobind"             baseparm             label   "Autobind Groups by Name"             export  none         }         multiparm {             name    "groupbindings"             label    "Group Bindings"             baseparm             default 0             parmtag { "autoscope" "0000000000000000" }             parmtag { "multistartoffset" "1" }              parm {                 name    "bindgroupname#"                 baseparm                 label   "Group Name"                 export  none             }             parm {                 name    "bindgroupparm#"                 baseparm                 label   "VEX Parameter"                 export  none             }         }          parm {             name    "vex_cwdpath"             baseparm             label   "Evaluation Node Path"             export  none         }         parm {             name    "vex_outputmask"             baseparm             label   "Export Parameters"             export  none         }         parm {             name    "vex_updatenmls"             baseparm             label   "Update Normals If Displaced"             export  none         }         parm {             name    "vex_matchattrib"             baseparm             label   "Attribute to Match"             export  none         }         parm {             name    "vex_inplace"             baseparm             label   "Compute Results In Place"             export  none         }         parm {             name    "vex_selectiongroup"             baseparm             label   "Output Selection Group"             export  none         }         parm {             name    "vex_precision"             baseparm             label   "VEX Precision"             export  none         }     }  ' rightside_primitive
+opparm rightside_primitive  bindings ( 0 ) groupbindings ( 0 )
+opparm rightside_primitive folder0 ( 0 0 ) group ( "" ) grouptype ( guess ) class ( detail ) vex_numcount ( 10 ) vex_threadjobsize ( 1024 ) snippet ( 'int prim =  addprim(0, "polyline");\n\nfor( int i=0; i<npoints(0); ++i )\n    if( inpointgroup(0, chs("GroupName"), i)==1 )\n        addvertex(0, prim, i);\n        \nsetprimattrib(0, "prim_type", prim, "rightside" );' ) exportlist ( * ) vex_strict ( off ) autobind ( on ) bindings ( 0 ) groupautobind ( on ) groupbindings ( 0 ) vex_cwdpath ( . ) vex_outputmask ( * ) vex_updatenmls ( off ) vex_matchattrib ( id ) vex_inplace ( off ) vex_selectiongroup ( "" ) vex_precision ( auto ) folder1 ( 0 0 ) folder_generatedparms_snippet ( 0 ) GroupName ( rightside )
+chlock rightside_primitive -*
+chautoscope rightside_primitive -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off rightside_primitive
+opexprlanguage -s hscript rightside_primitive
+opuserdata -n '___Version___' -v '' rightside_primitive
+
+# Node floor_primitive (Sop/attribwrangle)
+opadd -e -n attribwrangle floor_primitive
+oplocate -x 3.7126100000000002 -y -0.34293499999999999 floor_primitive
+opspareds '    group {         name    "folder1"         label   "Code"          parm {             name    "group"             baseparm             label   "Group"             export  none             bindselector uvselect "Modify Attribs"                 "Select the geometry to affect and press Enter to complete."                 0 1 0xffffffff 0 grouptype 0         }         parm {             name    "grouptype"             baseparm             label   "Group Type"             export  none         }         parm {             name    "class"             baseparm             label   "Run Over"             export  none         }         parm {             name    "vex_numcount"             baseparm             label   "Number Count"             export  none         }         parm {             name    "vex_threadjobsize"             baseparm             label   "Thread Job Size"             export  none         }         groupsimple {             name    "folder_generatedparms_snippet"             label   "Generated Channel Parameters"             grouptag { "sidefx::look" "blank" }              parm {                 name    "GroupName"                 label   "Groupname"                 type    string                 default { "" }             }         }          parm {             name    "snippet"             baseparm             label   "VEXpression"             export  all         }         parm {             name    "exportlist"             baseparm             label   "Attributes to Create"             export  none         }         parm {             name    "vex_strict"             baseparm             label   "Enforce Prototypes"             export  none         }     }      group {         name    "folder1_1"         label   "Bindings"          parm {             name    "autobind"             baseparm             label   "Autobind by Name"             export  none         }         multiparm {             name    "bindings"             label    "Number of Bindings"             baseparm             default 0             parmtag { "autoscope" "0000000000000000" }             parmtag { "multistartoffset" "1" }              parm {                 name    "bindname#"                 baseparm                 label   "Attribute Name"                 export  none             }             parm {                 name    "bindparm#"                 baseparm                 label   "VEX Parameter"                 export  none             }         }          parm {             name    "groupautobind"             baseparm             label   "Autobind Groups by Name"             export  none         }         multiparm {             name    "groupbindings"             label    "Group Bindings"             baseparm             default 0             parmtag { "autoscope" "0000000000000000" }             parmtag { "multistartoffset" "1" }              parm {                 name    "bindgroupname#"                 baseparm                 label   "Group Name"                 export  none             }             parm {                 name    "bindgroupparm#"                 baseparm                 label   "VEX Parameter"                 export  none             }         }          parm {             name    "vex_cwdpath"             baseparm             label   "Evaluation Node Path"             export  none         }         parm {             name    "vex_outputmask"             baseparm             label   "Export Parameters"             export  none         }         parm {             name    "vex_updatenmls"             baseparm             label   "Update Normals If Displaced"             export  none         }         parm {             name    "vex_matchattrib"             baseparm             label   "Attribute to Match"             export  none         }         parm {             name    "vex_inplace"             baseparm             label   "Compute Results In Place"             export  none         }         parm {             name    "vex_selectiongroup"             baseparm             label   "Output Selection Group"             export  none         }         parm {             name    "vex_precision"             baseparm             label   "VEX Precision"             export  none         }     }  ' floor_primitive
+opparm floor_primitive  bindings ( 0 ) groupbindings ( 0 )
+opparm floor_primitive folder0 ( 0 0 ) group ( "" ) grouptype ( guess ) class ( detail ) vex_numcount ( 10 ) vex_threadjobsize ( 1024 ) snippet ( 'int prim =  addprim(0, "poly");\n\naddvertex(0, prim, 0);\naddvertex(0, prim, 1);\naddvertex(0, prim, 3);\naddvertex(0, prim, 2);\n\nsetprimattrib(0, "prim_type", prim, "floor" );\n' ) exportlist ( * ) vex_strict ( off ) autobind ( on ) bindings ( 0 ) groupautobind ( on ) groupbindings ( 0 ) vex_cwdpath ( . ) vex_outputmask ( * ) vex_updatenmls ( off ) vex_matchattrib ( id ) vex_inplace ( off ) vex_selectiongroup ( "" ) vex_precision ( auto ) folder1 ( 0 0 ) folder_generatedparms_snippet ( 0 ) GroupName ( rightside )
+chlock floor_primitive -*
+chautoscope floor_primitive -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off floor_primitive
+opexprlanguage -s hscript floor_primitive
+opuserdata -n '___Version___' -v '' floor_primitive
+
+# Node merge3 (Sop/merge)
+opadd -e -n merge merge3
+oplocate -x 3.1336900000000001 -y -1.73034 merge3
+opspareds "" merge3
+opparm -V 20.5.370 merge3
+chlock merge3 -*
+chautoscope merge3 -*
+opset -d on -r on -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off merge3
+opexprlanguage -s hscript merge3
+opuserdata -n '___Version___' -v '20.5.370' merge3
+oporder -e output0 connect_points_l group1 group2 outline_points_l merge1 group3 group4 output1 leftside_primitive rightside_primitive floor_primitive merge3 
 opcf ..
 
 # Node add1 (Sop/add)
@@ -804,53 +978,6 @@ opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on
 opexprlanguage -s hscript add1
 opuserdata -n '___Version___' -v '20.5.370' add1
 
-# Node add2 (Sop/add)
-opadd -e -n add add2
-oplocate -x -17.5168 -y 0.82854799999999995 add2
-opspareds "" add2
-opparm add2  points ( 0 ) prims ( 1 )
-opparm -V 20.5.370 add2 stdswitcher ( 1 1 1 ) keep ( off ) points ( 0 ) remove ( off ) switcher ( 1 1 ) prims ( 1 ) group ( 'leftside rightside' ) add ( all ) inc ( 2 ) attrname ( "" ) closedall ( on ) addparticlesystem ( off ) particlegroup ( "" ) appendunusedtoparticlesystem ( off ) prim0 ( "" ) closed0 ( off )
-chlock add2 -*
-chautoscope add2 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off add2
-opexprlanguage -s hscript add2
-opuserdata -n '___Version___' -v '20.5.370' add2
-
-# Node add9 (Sop/add)
-opadd -e -n add add9
-oplocate -x -14.7638 -y -1.9100200000000001 add9
-opspareds "" add9
-opparm add9  points ( 0 ) prims ( 1 )
-opparm -V 20.5.370 add9 stdswitcher ( 1 1 1 ) keep ( off ) points ( 0 ) remove ( off ) switcher ( 1 1 ) prims ( 1 ) group ( 'leftside rightside' ) add ( all ) inc ( 2 ) attrname ( "" ) closedall ( on ) addparticlesystem ( off ) particlegroup ( "" ) appendunusedtoparticlesystem ( off ) prim0 ( "" ) closed0 ( off )
-chlock add9 -*
-chautoscope add9 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off add9
-opexprlanguage -s hscript add9
-opuserdata -n '___Version___' -v '20.5.370' add9
-
-# Node sort4 (Sop/sort)
-opadd -e -n sort sort4
-oplocate -x -14.7638 -y -1.09982 sort4
-opspareds "" sort4
-opparm -V 20.5.370 sort4 pointsfolder ( 0 ) ptgroup ( rightside ) ptsort ( none ) pointseed ( 0 ) pointoffset ( 0 ) pointprox ( 0 0 0 ) pointobjpath ( "" ) pointdir ( 0 1 0 ) pointexpr ( 0 ) pointattrib ( "" ) pointattribcomp ( 0 ) pointreverse ( on ) primitivesfolder ( 0 ) primgroup ( "" ) primsort ( none ) primseed ( 0 ) primoffset ( 0 ) primprox ( 0 0 0 ) primobjpath ( "" ) primdir ( 0 1 0 ) primexpr ( 0 ) primattrib ( "" ) primattribcomp ( 0 ) primreverse ( off ) vertexprimorder ( on )
-chlock sort4 -*
-chautoscope sort4 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off sort4
-opexprlanguage -s hscript sort4
-opuserdata -n '___Version___' -v '20.5.370' sort4
-
-# Node add10 (Sop/add)
-opadd -e -n add add10
-oplocate -x -14.4024 -y 1.9939100000000001 add10
-opspareds "" add10
-opparm add10  points ( 0 ) prims ( 1 )
-opparm -V 20.5.370 add10 stdswitcher ( 1 1 1 ) keep ( off ) points ( 0 ) remove ( off ) switcher ( 1 1 ) prims ( 1 ) group ( 'leftside rightside' ) add ( all ) inc ( 2 ) attrname ( "" ) closedall ( on ) addparticlesystem ( off ) particlegroup ( "" ) appendunusedtoparticlesystem ( off ) prim0 ( "" ) closed0 ( off )
-chlock add10 -*
-chautoscope add10 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off add10
-opexprlanguage -s hscript add10
-opuserdata -n '___Version___' -v '20.5.370' add10
-
 # Node polybevel1 (Sop/polybevel::3.0)
 opadd -e -n polybevel::3.0 polybevel1
 oplocate -x 2.1214300000000001 -y 3.18241 polybevel1
@@ -863,112 +990,49 @@ opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on
 opexprlanguage -s hscript polybevel1
 opuserdata -n '___Version___' -v '20.5.370' polybevel1
 
-# Node Isle (Sop/subnet)
-opadd -e -n subnet Isle
-oplocate -x 2.1214300000000001 -y 1.18241 Isle
-opspareds '    parm {         name    "label1"         baseparm         label   "Input #1 Label"         export  all     }     parm {         name    "label2"         baseparm         label   "Input #2 Label"         export  all     }     parm {         name    "label3"         baseparm         label   "Input #3 Label"         export  all     }     parm {         name    "label4"         baseparm         label   "Input #4 Label"         export  all     }     parm {         name    "W"         label   "W"         type    float         default { "1.6" }         range   { 0 10 }         parmtag { "script_callback_language" "python" }     }     parm {         name    "Alignment"         label   "Alignment"         type    ordinal         default { "0" }         menu {             ""  "Left"             ""  "Right"             ""  "Center"         }         parmtag { "script_callback_language" "python" }     }     parm {         name    "HandrailH"         label   "HandrailH"         type    float         default { "1.5" }         range   { 0 10 }         parmtag { "script_callback_language" "python" }     }     parm {         name    "HandrailW"         label   "HandrailW"         type    float         default { "0.1" }         range   { 0 10 }         parmtag { "script_callback_language" "python" }     } ' Isle
-opparm -V 20.5.370 Isle label1 ( 'Sub-Network Input #1' ) label2 ( 'Sub-Network Input #2' ) label3 ( 'Sub-Network Input #3' ) label4 ( 'Sub-Network Input #4' ) W ( 1.95 ) Alignment ( "" ) HandrailH ( 1.2 ) HandrailW ( 0.12 )
-chlock Isle -*
-chautoscope Isle -*
-opset -d on -r on -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off Isle
-opexprlanguage -s hscript Isle
-opuserdata -n '___Version___' -v '20.5.370' Isle
-opcf Isle
+# Node Aisle (Sop/subnet)
+opadd -e -n subnet Aisle
+oplocate -x -10.430199999999999 -y 3.3443399999999999 Aisle
+opspareds '    parm {         name    "label1"         baseparm         label   "Input #1 Label"         export  all     }     parm {         name    "label2"         baseparm         label   "Input #2 Label"         export  all     }     parm {         name    "label3"         baseparm         label   "Input #3 Label"         export  all     }     parm {         name    "label4"         baseparm         label   "Input #4 Label"         export  all     }     groupcollapsible {         name    "folder0"         label   "Isle"          parm {             name    "Alignment"             label   "Alignment"             type    ordinal             default { "0" }             menu {                 ""  "Left"                 ""  "Right"                 ""  "Center"             }             parmtag { "script_callback_language" "python" }         }         parm {             name    "W"             label   "W"             type    float             default { "1.6" }             range   { 0 10 }             parmtag { "script_callback_language" "python" }         }     }      groupcollapsible {         name    "folder1"         label   "Handrails"          parm {             name    "Placement"             label   "Placement"             type    ordinal             default { "0" }             menu {                 ""  "Left"                 ""  "Right"                 ""  "Both"             }             parmtag { "script_callback_language" "python" }         }         parm {             name    "CapStart"             label   "CapStart"             type    toggle             default { "0" }             parmtag { "script_callback_language" "python" }         }         parm {             name    "CapEnd"             label   "CapEnd"             type    toggle             default { "0" }             parmtag { "script_callback_language" "python" }         }     }  ' Aisle
+opparm -V 20.5.370 Aisle label1 ( 'Sub-Network Input #1' ) label2 ( 'Sub-Network Input #2' ) label3 ( 'Sub-Network Input #3' ) label4 ( 'Sub-Network Input #4' ) folder0 ( 1 ) Alignment ( "" ) W ( 1.95 ) folder1 ( 1 ) Placement ( "" ) CapStart ( off ) CapEnd ( on )
+chlock Aisle -*
+chautoscope Aisle -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off Aisle
+opexprlanguage -s hscript Aisle
+opuserdata -n '___Version___' -v '20.5.370' Aisle
+opcf Aisle
+
+# Network Box __netbox14
+nbadd __netbox14
+nblocate -x -0.39286 -y -1.20178 __netbox14
+nbsize -w 3.67964 -h 1.47276 __netbox14
+nbset  -m off __netbox14
+nbcolor -c 0.52 0.52 0.52 __netbox14
+
+# Network Box __netbox15
+nbadd __netbox15
+nblocate -x -0.396604 -y -5.89122 __netbox15
+nbsize -w 3.68339 -h 1.5974 __netbox15
+nbset  -m off __netbox15
+nbcolor -c 0.52 0.52 0.52 __netbox15
+
+# Network Box __netbox16
+nbadd __netbox16
+nblocate -x -0.396604 -y -3.52362 __netbox16
+nbsize -w 3.68339 -h 1.5234 __netbox16
+nbset  -m off __netbox16
+nbcolor -c 0.52 0.52 0.52 __netbox16
 
 # Network Box __netbox1
 nbadd __netbox1
-nblocate -x 0.965792 -y -4.20301 __netbox1
-nbsize -w 3.67964 -h 1.47276 __netbox1
+nblocate -x -0.4 -y -12.4898 __netbox1
+nbsize -w 4.58349 -h 3.67424 __netbox1
 nbset  -m off __netbox1
 nbcolor -c 0.52 0.52 0.52 __netbox1
 
-# Network Box __netbox2
-nbadd __netbox2
-nblocate -x 0.962047 -y -6.82707 __netbox2
-nbsize -w 3.68339 -h 1.5234 __netbox2
-nbset  -m off __netbox2
-nbcolor -c 0.52 0.52 0.52 __netbox2
-
-# Network Box __netbox3
-nbadd __netbox3
-nblocate -x 0.962047 -y -9.56655 __netbox3
-nbsize -w 3.68339 -h 1.5974 __netbox3
-nbset  -m off __netbox3
-nbcolor -c 0.52 0.52 0.52 __netbox3
-
-# Network Box __netbox4
-nbadd __netbox4
-nblocate -x -4.10798 -y -4.20301 __netbox4
-nbsize -w 3.67964 -h 1.47276 __netbox4
-nbset  -m off __netbox4
-nbcolor -c 0.52 0.52 0.52 __netbox4
-
-# Network Box __netbox5
-nbadd __netbox5
-nblocate -x -4.10798 -y -6.82707 __netbox5
-nbsize -w 3.68339 -h 1.5234 __netbox5
-nbset  -m off __netbox5
-nbcolor -c 0.52 0.52 0.52 __netbox5
-
-# Network Box __netbox6
-nbadd __netbox6
-nblocate -x -4.10798 -y -9.56655 __netbox6
-nbsize -w 3.68339 -h 1.5974 __netbox6
-nbset  -m off __netbox6
-nbcolor -c 0.52 0.52 0.52 __netbox6
-
-# Network Box __netbox7
-nbadd __netbox7
-nblocate -x -3.99004 -y -16.28 __netbox7
-nbsize -w 13.1537 -h 3.84238 __netbox7
-nbset  -m off __netbox7
-nbcolor -c 0.52 0.52 0.52 __netbox7
-
-# Network Box __netbox8
-nbadd __netbox8
-nblocate -x 22.1103 -y -11.7956 __netbox8
-nbsize -w 3.67964 -h 1.47276 __netbox8
-nbset  -m off __netbox8
-nbcolor -c 0.52 0.52 0.52 __netbox8
-
-# Network Box __netbox9
-nbadd __netbox9
-nblocate -x 22.1066 -y -14.4197 __netbox9
-nbsize -w 3.68339 -h 1.5234 __netbox9
-nbset  -m off __netbox9
-nbcolor -c 0.52 0.52 0.52 __netbox9
-
-# Network Box __netbox10
-nbadd __netbox10
-nblocate -x 22.1066 -y -17.1591 __netbox10
-nbsize -w 3.68339 -h 1.5974 __netbox10
-nbset  -m off __netbox10
-nbcolor -c 0.52 0.52 0.52 __netbox10
-
-# Network Box __netbox11
-nbadd __netbox11
-nblocate -x 17.0366 -y -11.7956 __netbox11
-nbsize -w 3.67964 -h 1.47276 __netbox11
-nbset  -m off __netbox11
-nbcolor -c 0.52 0.52 0.52 __netbox11
-
-# Network Box __netbox12
-nbadd __netbox12
-nblocate -x 17.0366 -y -14.4197 __netbox12
-nbsize -w 3.68339 -h 1.5234 __netbox12
-nbset  -m off __netbox12
-nbcolor -c 0.52 0.52 0.52 __netbox12
-
-# Network Box __netbox13
-nbadd __netbox13
-nblocate -x 17.0366 -y -17.1591 __netbox13
-nbsize -w 3.68339 -h 1.5974 __netbox13
-nbset  -m off __netbox13
-nbcolor -c 0.52 0.52 0.52 __netbox13
-
 # Node polyexpand2d1 (Sop/polyexpand2d)
 opadd -e -n polyexpand2d polyexpand2d1
-oplocate -x -1.06965 -y 0.59691999793767891 polyexpand2d1
+oplocate -x -1.0744800000000001 -y 3.6180300000000001 polyexpand2d1
 opspareds "" polyexpand2d1
 chblockbegin
 chadd -t 0 0 polyexpand2d1 offset
@@ -983,30 +1047,19 @@ opuserdata -n '___Version___' -v '20.5.370' polyexpand2d1
 
 # Node check_if_point_is_left_or_right_of_center (Sop/attribwrangle)
 opadd -e -n attribwrangle check_if_point_is_left_or_right_of_center
-oplocate -x -0.092200000000000074 -y -1.061350002062321 check_if_point_is_left_or_right_of_center
+oplocate -x -0.00300001 -y 2.1086399999999998 check_if_point_is_left_or_right_of_center
 opspareds "" check_if_point_is_left_or_right_of_center
 opparm check_if_point_is_left_or_right_of_center  bindings ( 0 ) groupbindings ( 0 )
-opparm check_if_point_is_left_or_right_of_center folder0 ( 0 0 ) group ( "" ) grouptype ( guess ) class ( point ) vex_numcount ( 10 ) vex_threadjobsize ( 1024 ) snippet ( '// distance_pointsegment(q, p0, p1)\n// https://www.sidefx.com/docs/houdini/vex/functions/distance_pointsegment.html\n\nfloat ext = chf("../W");// terminal edge extension length( W )\nint ps[] = primpoints(1, 0);\n\n//================= Get center line segment ===============//\nvector points[];\n// copy points from input1\nfor( int i=0; i<len(ps); ++i )\n{\n    vector p = point(1,"P",ps[i]);\n    append( points, p );\n}\n// extend terminal points (due to polyexpand2d extrusion behavior).\n//vector v = ext * normalize(points[0]-points[1]);\npoints[0] += ext * normalize(points[0]-points[1]);\n//vector v = ext * normalize(p1-p0);\npoints[-1] += ext * normalize(points[-1]-points[-2]);\n\n\n//======= Get closest centerline point ==========//\nint closest_point_id = -1;\nfloat dist = 999999999.9;\nfor( int i=0; i<len(points); ++i )\n{\n    float d = distance2(@P, points[i]);\n    \n    if( d <= dist )\n    {\n        dist = d;\n        closest_point_id = ps[i];//i;\n    }   \n}\n\n//======= Get closest centerline segment ==========//\nint closest_segment_id = -1;\ndist = 999999999.9;\nfor( int i=0; i<len(ps)-1; ++i )\n{\n    float d = distance_pointsegment( @P, points[i], points[i+1] );\n    if( d <= dist )\n    {\n        dist = d;\n        closest_segment_id = i;\n    }\n}\n\n\n// Check if\nvector p0 = points[closest_segment_id];//point(1,"P",ps[closest_id]);\nvector p1 = points[closest_segment_id+1];//point(1,"P",ps[closest_id+1]);\nfloat lr = sign((p1.x - p0.x) * (@P.z - p0.z) - (p1.z - p0.z) * (@P.x - p0.x));\n\nf@lr = lr;\n//i@closest_id = closest_id;\ni@closest_point_id = closest_point_id;//nearpoint(1, @P);\n//printf("[%d]: closest_id = %d, %f\\n", @ptnum, closest_id, dist );\n\n@group_right = lr>0.0;\n@group_left = !@group_right;' ) exportlist ( * ) vex_strict ( off ) autobind ( on ) bindings ( 0 ) groupautobind ( on ) groupbindings ( 0 ) vex_cwdpath ( . ) vex_outputmask ( * ) vex_updatenmls ( off ) vex_matchattrib ( id ) vex_inplace ( off ) vex_selectiongroup ( "" ) vex_precision ( auto )
+opparm check_if_point_is_left_or_right_of_center folder0 ( 0 0 ) group ( "" ) grouptype ( guess ) class ( point ) vex_numcount ( 10 ) vex_threadjobsize ( 1024 ) snippet ( '// distance_pointsegment(q, p0, p1)\n// https://www.sidefx.com/docs/houdini/vex/functions/distance_pointsegment.html\n\nfloat ext = chf("../W");// terminal edge extension length( W )\nint ps[] = primpoints(1, 0);\n\n//================= Get center line segment ===============//\nvector points[];\n// copy points from input1\nfor( int i=0; i<len(ps); ++i )\n{\n    vector p = point(1,"P",ps[i]);\n    append( points, p );\n}\n// extend terminal points (due to polyexpand2d extrusion behavior).\n//vector v = ext * normalize(points[0]-points[1]);\npoints[0] += ext * normalize(points[0]-points[1]);\n//vector v = ext * normalize(p1-p0);\npoints[-1] += ext * normalize(points[-1]-points[-2]);\n\n\n//======= Get closest centerline point ==========//\nint closest_point_id = -1;\nfloat dist = 999999999.9;\n\n\nint nears[] = nearpoints(0, @P, ch("../W")*1.001 );\n//printf("----%d\\n", nears);\nint diff = 9999999999999;\nforeach( int near; nears )\n{\n    int d = abs(@ptnum - near);\n    if( d < diff )\n    {\n        diff = d;\n        closest_point_id = near;\n    }\n}\n\n\n/*\nfor( int i=0; i<len(points); ++i )\n{\n    float d = distance2(@P, points[i]);\n    \n    if( d <= dist )\n    {\n        dist = d;\n        closest_point_id = ps[i];//i;\n    }   \n}\n*/\n//======= Get closest centerline segment ==========//\nint closest_segment_id = -1;\ndist = 999999999.9;\nfor( int i=0; i<len(ps)-1; ++i )\n{\n    float d = distance_pointsegment( @P, points[i], points[i+1] );\n    if( d <= dist )\n    {\n        dist = d;\n        closest_segment_id = i;\n    }\n}\n\n\n// Check if\nvector p0 = points[closest_segment_id];//point(1,"P",ps[closest_id]);\nvector p1 = points[closest_segment_id+1];//point(1,"P",ps[closest_id+1]);\nfloat lr = sign((p1.x - p0.x) * (@P.z - p0.z) - (p1.z - p0.z) * (@P.x - p0.x));\n\nf@lr = lr;\n//i@closest_id = closest_id;\ni@closest_point_id = closest_point_id;//nearpoint(1, @P);\n//printf("[%d]: closest_id = %d, %f\\n", @ptnum, closest_id, dist );\n\n@group_right = lr>0.0;\n@group_left = !@group_right;' ) exportlist ( * ) vex_strict ( off ) autobind ( on ) bindings ( 0 ) groupautobind ( on ) groupbindings ( 0 ) vex_cwdpath ( . ) vex_outputmask ( * ) vex_updatenmls ( off ) vex_matchattrib ( id ) vex_inplace ( off ) vex_selectiongroup ( "" ) vex_precision ( auto )
 chlock check_if_point_is_left_or_right_of_center -*
 chautoscope check_if_point_is_left_or_right_of_center -*
 opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off check_if_point_is_left_or_right_of_center
 opexprlanguage -s hscript check_if_point_is_left_or_right_of_center
 opuserdata -n '___Version___' -v '' check_if_point_is_left_or_right_of_center
 
-# Node null1 (Sop/null)
-opadd -e -n null null1
-oplocate -x -0.024800000000000065 -y 3.647099997937679 null1
-opspareds "" null1
-opparm -V 20.5.370 null1 copyinput ( on ) cacheinput ( off )
-chlock null1 -*
-chautoscope null1 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off null1
-opexprlanguage -s hscript null1
-opuserdata -n '___Version___' -v '20.5.370' null1
-
 # Node clip_function_test (Sop/attribwrangle)
 opadd -e -n attribwrangle clip_function_test
-oplocate -x 13.656700000000001 -y -21.116099999999999 clip_function_test
+oplocate -x 9.8579399999999993 -y -18.767299999999999 clip_function_test
 opspareds '    group {         name    "folder1"         label   "Code"          parm {             name    "group"             baseparm             label   "Group"             export  none             bindselector uvselect "Modify Attribs"                 "Select the geometry to affect and press Enter to complete."                 0 1 0xffffffff 0 grouptype 0         }         parm {             name    "grouptype"             baseparm             label   "Group Type"             export  none         }         parm {             name    "class"             baseparm             label   "Run Over"             export  none         }         parm {             name    "vex_numcount"             baseparm             label   "Number Count"             export  none         }         parm {             name    "vex_threadjobsize"             baseparm             label   "Thread Job Size"             export  none         }         groupsimple {             name    "folder_generatedparms_snippet"             label   "Generated Channel Parameters"             grouptag { "sidefx::look" "blank" }              parm {                 name    "W"                 label   "W"                 type    float                 default { "0" }                 range   { 0 1 }             }         }          parm {             name    "snippet"             baseparm             label   "VEXpression"             export  all         }         parm {             name    "exportlist"             baseparm             label   "Attributes to Create"             export  none         }         parm {             name    "vex_strict"             baseparm             label   "Enforce Prototypes"             export  none         }     }      group {         name    "folder1_1"         label   "Bindings"          parm {             name    "autobind"             baseparm             label   "Autobind by Name"             export  none         }         multiparm {             name    "bindings"             label    "Number of Bindings"             baseparm             default 0             parmtag { "autoscope" "0000000000000000" }             parmtag { "multistartoffset" "1" }              parm {                 name    "bindname#"                 baseparm                 label   "Attribute Name"                 export  none             }             parm {                 name    "bindparm#"                 baseparm                 label   "VEX Parameter"                 export  none             }         }          parm {             name    "groupautobind"             baseparm             label   "Autobind Groups by Name"             export  none         }         multiparm {             name    "groupbindings"             label    "Group Bindings"             baseparm             default 0             parmtag { "autoscope" "0000000000000000" }             parmtag { "multistartoffset" "1" }              parm {                 name    "bindgroupname#"                 baseparm                 label   "Group Name"                 export  none             }             parm {                 name    "bindgroupparm#"                 baseparm                 label   "VEX Parameter"                 export  none             }         }          parm {             name    "vex_cwdpath"             baseparm             label   "Evaluation Node Path"             export  none         }         parm {             name    "vex_outputmask"             baseparm             label   "Export Parameters"             export  none         }         parm {             name    "vex_updatenmls"             baseparm             label   "Update Normals If Displaced"             export  none         }         parm {             name    "vex_matchattrib"             baseparm             label   "Attribute to Match"             export  none         }         parm {             name    "vex_inplace"             baseparm             label   "Compute Results In Place"             export  none         }         parm {             name    "vex_selectiongroup"             baseparm             label   "Output Selection Group"             export  none         }         parm {             name    "vex_precision"             baseparm             label   "VEX Precision"             export  none         }     }  ' clip_function_test
 opparm clip_function_test  bindings ( 0 ) groupbindings ( 0 )
 opparm clip_function_test folder0 ( 0 0 ) group ( "" ) grouptype ( guess ) class ( detail ) vex_numcount ( 10 ) vex_threadjobsize ( 1024 ) snippet ( 'float w = chf("W");\n\nvector p0 = point(geoself(), "P", 0);\nvector p1 = point(geoself(), "P", 1);\nint result=-1;\nvector n = normalize(p1-p0);\nvector4 plane = set(-n.x, -n.y, -n.z, w );\n//printf( "%f\\n", plane );\nclip( result, p1, p0, plane );\nprintf( "%d, %f, %f\\n", result, p0, p1 );\n\nsetpointattrib(geoself(), "P", 0, p0);\nsetpointattrib(geoself(), "P", 1, p1);\n\n// OK\n//vector bbmin = set(-0.5, 1.5, -0.5);\n//vector bbmax = set(0.5, 3.5, 0.5);\n//clip( result, p0, p1, bbmin, bbmax );\n//printf( "%d, %f, %f\\n", result, p0, p1 );\n' ) exportlist ( * ) vex_strict ( off ) autobind ( on ) bindings ( 0 ) groupautobind ( on ) groupbindings ( 0 ) vex_cwdpath ( . ) vex_outputmask ( * ) vex_updatenmls ( off ) vex_matchattrib ( id ) vex_inplace ( off ) vex_selectiongroup ( "" ) vex_precision ( auto ) folder1 ( 0 0 ) folder_generatedparms_snippet ( 0 ) W ( 1 )
@@ -1018,7 +1071,7 @@ opuserdata -n '___Version___' -v '' clip_function_test
 
 # Node add5 (Sop/add)
 opadd -e -n add add5
-oplocate -x 13.337400000000001 -y -19.8506 add5
+oplocate -x 9.5386399999999991 -y -17.501799999999999 add5
 opspareds "" add5
 opparm add5  points ( 2 ) prims ( 1 )
 opparm -V 20.5.370 add5 stdswitcher ( 0 0 0 ) keep ( off ) points ( 2 ) remove ( off ) switcher ( 1 1 ) prims ( 1 ) group ( "" ) add ( all ) inc ( 2 ) attrname ( "" ) closedall ( off ) addparticlesystem ( off ) particlegroup ( "" ) appendunusedtoparticlesystem ( off ) prim0 ( "" ) closed0 ( off ) usept0 ( on ) pt0 ( 0 0 0 ) weight0 ( 1 ) usept1 ( on ) pt1 ( 0 5 0 ) weight1 ( 1 )
@@ -1028,353 +1081,9 @@ opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on
 opexprlanguage -s hscript add5
 opuserdata -n '___Version___' -v '20.5.370' add5
 
-# Node polyextrude1 (Sop/polyextrude::2.0)
-opadd -e -n polyextrude::2.0 polyextrude1
-oplocate -x -0.85018900000000008 -y -24.973800002062319 polyextrude1
-opspareds "" polyextrude1
-opparm polyextrude1  thicknessramp ( 2 ) twistramp ( 2 )
-chblockbegin
-chadd -t 0 0 polyextrude1 dist
-chkey -t 0 -v 0.084000000000000005 -m 0 -a 0 -A 0 -T a  -F 'ch("../HandrailH")' polyextrude1/dist
-chblockend
-opparm -V 20.5.370 polyextrude1 group ( "" ) splittype ( components ) usesplitgroup ( off ) splitgroup ( "" ) extrusionmode ( primnormal ) ptnormalsrc ( precompute ) ptnormalattrib ( N ) dist ( dist ) inset ( 0 ) twist ( 0 ) divs ( -3 ) spinetype ( straight ) stdswitcher ( 0 0 0 ) xformsection ( 0 ) xformfront ( off ) xformspace ( local ) rst ( srt ) xyz ( xyz ) translate ( 0 0 0 ) rotate ( 0 0 0 ) scale ( 1 1 1 ) shear ( 0 0 0 ) pivotxformsection ( 0 ) pivot ( 0 0 0 ) pivotrotate ( 0 0 0 ) prexformsection ( 0 ) prexform_rst ( srt ) prexform_xyz ( xyz ) prexform_translate ( 0 0 0 ) prexform_rotate ( 0 0 0 ) prexform_scale ( 1 1 1 ) prexform_shear ( 0 0 0 ) outputsection ( 0 ) outputfront ( on ) outputfrontgrp ( off ) frontgrp ( extrudeFront ) outputback ( on ) outputbackgrp ( off ) backgrp ( extrudeBack ) outputside ( on ) outputsidegrp ( off ) sidegrp ( extrudeSide ) outputfrontseamgrp ( off ) frontseamgrp ( extrudeFrontSeam ) outputbackseamgrp ( off ) backseamgrp ( extrudeBackSeam ) preservegroups ( on ) insettingsection ( 0 ) limitinset ( on ) commonlimit ( on ) normalsection ( 0 ) addvertexnomrals ( off ) cuspangle ( 60 ) cuspfront ( on ) cuspback ( on ) uvssection ( 0 ) genuvs ( on ) uvstyle ( proprtional ) uvscaling ( matchuv ) shapecontrolsection ( 0 ) frontmagnitude ( 1 ) backmagnitude ( 1 ) frontstiffness ( 0 ) backstiffness ( 0 ) interpolation ( rotatingframe ) spacing ( arclengthuniform ) externalspinesection ( 0 ) reversespinedirection ( off ) axialrotation ( 0 ) frontblend ( 0.1 ) backblend ( 0.1 ) thicknesssection ( 0 ) thicknessscale ( 1 ) usethicknessattrib ( on ) thicknessattrib ( thickness ) usethicknessramp ( on ) thicknessramp ( 2 ) twistsection ( 0 ) usetwistattrib ( on ) twistattrib ( twist ) usetwistramp ( on ) twistramp ( 2 ) twistscale ( 180 ) localattribs ( 0 ) uselocalzscaleattrib ( off ) localzscaleattrib ( zscale ) uselocalinsetscaleattrib ( off ) localinsetscaleattrib ( insetscale ) uselocaltwistattrib ( off ) localtwistscaleattrib ( twistscale ) uselocaldivsattrib ( off ) locadivscaleattrib ( divsscale ) localframeattribs ( 0 ) uselocalxattrib ( off ) localxattrib ( localx ) uselocalzattirb ( off ) localzattirb ( localz ) uselocalctrattrib ( off ) localctrattrib ( localctr ) thicknessramp1pos ( 0 ) thicknessramp1value ( 1 ) thicknessramp1interp ( catmull-rom ) thicknessramp2pos ( 1 ) thicknessramp2value ( 1 ) thicknessramp2interp ( catmull-rom ) twistramp1pos ( 0 ) twistramp1value ( 0.5 ) twistramp1interp ( catmull-rom ) twistramp2pos ( 1 ) twistramp2value ( 0.5 ) twistramp2interp ( catmull-rom )
-chlock polyextrude1 -*
-chautoscope polyextrude1 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off polyextrude1
-opexprlanguage -s hscript polyextrude1
-opuserdata -n '___Version___' -v '20.5.370' polyextrude1
-
-# Node polyexpand2d2 (Sop/polyexpand2d)
-opadd -e -n polyexpand2d polyexpand2d2
-oplocate -x -0.85018900000000008 -y -24.041300002062322 polyexpand2d2
-opspareds "" polyexpand2d2
-chblockbegin
-chadd -t 0 0 polyexpand2d2 offset
-chkey -t 0 -v 0.10000000000000001 -m 0 -a 0 -A 0 -T a  -F '0.5*ch("../HandrailW")' polyexpand2d2/offset
-chblockend
-opparm -V 20.5.370 polyexpand2d2 group ( "" ) planepossrc ( setplane ) planeorigin ( 0 0 0 ) planedist ( 0 ) planenormal ( 0 1 0 ) output ( curves ) offset ( offset ) divs ( 1 ) sidedetermination ( simplereach ) outputinside ( on ) outputoutside ( on ) keepinput ( off ) omitendcaps ( off ) localattribssection ( 0 ) uselocalinsidescale ( off ) localinsidescale ( offsetscale ) uselocaloutsidescale ( off ) localoutsidescale ( offsetscale ) newg ( off ) insidegroup ( inside ) outsidegroup ( outside ) doedgedistattrib ( off ) edgedistattrib ( edgedist ) doedgespeedattrib ( off ) edgespeedattrib ( edgespeed ) coincidencetol ( 0.003 ) parallelismtol ( 0.01 ) skeletonfailure ( error ) cacheskeleton ( on ) updatenmls ( on )
-chlock polyexpand2d2 -*
-chautoscope polyexpand2d2 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off polyexpand2d2
-opexprlanguage -s hscript polyexpand2d2
-opuserdata -n '___Version___' -v '20.5.370' polyexpand2d2
-
-# Node transform1 (Sop/xform)
-opadd -e -n xform transform1
-oplocate -x -0.85018900000000008 -y -25.849200002062322 transform1
-opspareds "" transform1
-opparm -V 20.5.370 transform1 group ( "" ) grouptype ( guess ) xOrd ( srt ) rOrd ( xyz ) t ( 0 -0.01 0 ) r ( 0 0 0 ) s ( 1 1 1 ) shear ( 0 0 0 ) scale ( 1 ) parmgroup_pivotxform ( 0 ) p ( 0 0 0 ) pr ( 0 0 0 ) parmgroup_prexform ( 0 ) prexform_xOrd ( srt ) prexform_rOrd ( xyz ) prexform_t ( 0 0 0 ) prexform_r ( 0 0 0 ) prexform_s ( 1 1 1 ) prexform_shear ( 0 0 0 ) movecentroid ( 0 ) movepivot ( 0 ) attribs ( * ) updatenmls ( off ) updateaffectednmls ( on ) vlength ( on ) invertxform ( off ) addattrib ( off ) outputattrib ( xform ) outputmerge ( post )
-chlock transform1 -*
-chautoscope transform1 -* +tx +ty +tz +rx +ry +rz +sx +sy +sz
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off transform1
-opexprlanguage -s hscript transform1
-opuserdata -n '___Version___' -v '20.5.370' transform1
-
-# Node clean1 (Sop/clean)
-opadd -e -n clean clean1
-oplocate -x 2.2007599999999998 -y -27.79520000206232 clean1
-opspareds "" clean1
-opparm clean1 fusepts ( on ) fusedist ( 0.001 ) deldegengeo ( on ) degentol ( 0.001 ) removeunusedgrp ( on ) orientpoly ( off ) reversewinding ( off ) fixoverlap ( on ) deleteoverlap ( on ) delunusedpts ( on ) dodelattribs ( off ) delattribs ( * ) dodelgroups ( off ) delgroups ( * ) delnans ( on ) make_manifold ( off ) delete_small ( on ) prim_count ( 3 )
-chlock clean1 -*
-chautoscope clean1 -* +delete_small
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off clean1
-opexprlanguage -s hscript clean1
-opuserdata -n '___Version___' -v '' clean1
-
-# Node merge4 (Sop/merge)
-opadd -e -n merge merge4
-oplocate -x 2.1996099999999998 -y -26.702400002062319 merge4
-opspareds "" merge4
-opparm -V 20.5.370 merge4
-chlock merge4 -*
-chautoscope merge4 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off merge4
-opexprlanguage -s hscript merge4
-opuserdata -n '___Version___' -v '20.5.370' merge4
-
-# Node polyextrude2 (Sop/polyextrude::2.0)
-opadd -e -n polyextrude::2.0 polyextrude2
-oplocate -x 6.0151500000000002 -y -23.165900002062319 polyextrude2
-opspareds "" polyextrude2
-opparm polyextrude2  thicknessramp ( 2 ) twistramp ( 2 )
-chblockbegin
-chadd -t 0 0 polyextrude2 dist
-chkey -t 0 -v 0.79363381862640381 -m 0 -a 0 -A 0 -T a  -F 'ch("../HandrailH")' polyextrude2/dist
-chblockend
-opparm -V 20.5.370 polyextrude2 group ( "" ) splittype ( components ) usesplitgroup ( off ) splitgroup ( "" ) extrusionmode ( primnormal ) ptnormalsrc ( precompute ) ptnormalattrib ( N ) dist ( dist ) inset ( 0 ) twist ( 0 ) divs ( -3 ) spinetype ( straight ) stdswitcher ( 0 0 0 ) xformsection ( 0 ) xformfront ( off ) xformspace ( local ) rst ( srt ) xyz ( xyz ) translate ( 0 0 0 ) rotate ( 0 0 0 ) scale ( 1 1 1 ) shear ( 0 0 0 ) pivotxformsection ( 0 ) pivot ( 0 0 0 ) pivotrotate ( 0 0 0 ) prexformsection ( 0 ) prexform_rst ( srt ) prexform_xyz ( xyz ) prexform_translate ( 0 0 0 ) prexform_rotate ( 0 0 0 ) prexform_scale ( 1 1 1 ) prexform_shear ( 0 0 0 ) outputsection ( 0 ) outputfront ( on ) outputfrontgrp ( off ) frontgrp ( extrudeFront ) outputback ( on ) outputbackgrp ( off ) backgrp ( extrudeBack ) outputside ( on ) outputsidegrp ( off ) sidegrp ( extrudeSide ) outputfrontseamgrp ( off ) frontseamgrp ( extrudeFrontSeam ) outputbackseamgrp ( off ) backseamgrp ( extrudeBackSeam ) preservegroups ( on ) insettingsection ( 0 ) limitinset ( on ) commonlimit ( on ) normalsection ( 0 ) addvertexnomrals ( off ) cuspangle ( 60 ) cuspfront ( on ) cuspback ( on ) uvssection ( 0 ) genuvs ( on ) uvstyle ( proprtional ) uvscaling ( matchuv ) shapecontrolsection ( 0 ) frontmagnitude ( 1 ) backmagnitude ( 1 ) frontstiffness ( 0 ) backstiffness ( 0 ) interpolation ( rotatingframe ) spacing ( arclengthuniform ) externalspinesection ( 0 ) reversespinedirection ( off ) axialrotation ( 0 ) frontblend ( 0.1 ) backblend ( 0.1 ) thicknesssection ( 0 ) thicknessscale ( 1 ) usethicknessattrib ( on ) thicknessattrib ( thickness ) usethicknessramp ( on ) thicknessramp ( 2 ) twistsection ( 0 ) usetwistattrib ( on ) twistattrib ( twist ) usetwistramp ( on ) twistramp ( 2 ) twistscale ( 180 ) localattribs ( 0 ) uselocalzscaleattrib ( off ) localzscaleattrib ( zscale ) uselocalinsetscaleattrib ( off ) localinsetscaleattrib ( insetscale ) uselocaltwistattrib ( off ) localtwistscaleattrib ( twistscale ) uselocaldivsattrib ( off ) locadivscaleattrib ( divsscale ) localframeattribs ( 0 ) uselocalxattrib ( off ) localxattrib ( localx ) uselocalzattirb ( off ) localzattirb ( localz ) uselocalctrattrib ( off ) localctrattrib ( localctr ) thicknessramp1pos ( 0 ) thicknessramp1value ( 1 ) thicknessramp1interp ( catmull-rom ) thicknessramp2pos ( 1 ) thicknessramp2value ( 1 ) thicknessramp2interp ( catmull-rom ) twistramp1pos ( 0 ) twistramp1value ( 0.5 ) twistramp1interp ( catmull-rom ) twistramp2pos ( 1 ) twistramp2value ( 0.5 ) twistramp2interp ( catmull-rom )
-chlock polyextrude2 -*
-chautoscope polyextrude2 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off polyextrude2
-opexprlanguage -s hscript polyextrude2
-opuserdata -n '___Version___' -v '20.5.370' polyextrude2
-
-# Node polyexpand2d3 (Sop/polyexpand2d)
-opadd -e -n polyexpand2d polyexpand2d3
-oplocate -x 6.0151500000000002 -y -22.233400002062321 polyexpand2d3
-opspareds "" polyexpand2d3
-chblockbegin
-chadd -t 0 0 polyexpand2d3 offset
-chkey -t 0 -v 0.10000000000000001 -m 0 -a 0 -A 0 -T a  -F '0.5*ch("../HandrailW")' polyexpand2d3/offset
-chblockend
-opparm -V 20.5.370 polyexpand2d3 group ( "" ) planepossrc ( setplane ) planeorigin ( 0 0 0 ) planedist ( 0 ) planenormal ( 0 1 0 ) output ( curves ) offset ( offset ) divs ( 1 ) sidedetermination ( simplereach ) outputinside ( on ) outputoutside ( on ) keepinput ( off ) omitendcaps ( off ) localattribssection ( 0 ) uselocalinsidescale ( off ) localinsidescale ( offsetscale ) uselocaloutsidescale ( off ) localoutsidescale ( offsetscale ) newg ( off ) insidegroup ( inside ) outsidegroup ( outside ) doedgedistattrib ( off ) edgedistattrib ( edgedist ) doedgespeedattrib ( off ) edgespeedattrib ( edgespeed ) coincidencetol ( 0.003 ) parallelismtol ( 0.01 ) skeletonfailure ( error ) cacheskeleton ( on ) updatenmls ( on )
-chlock polyexpand2d3 -*
-chautoscope polyexpand2d3 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off polyexpand2d3
-opexprlanguage -s hscript polyexpand2d3
-opuserdata -n '___Version___' -v '20.5.370' polyexpand2d3
-
-# Node transform3 (Sop/xform)
-opadd -e -n xform transform3
-oplocate -x 6.0151500000000002 -y -24.041300002062322 transform3
-opspareds "" transform3
-opparm -V 20.5.370 transform3 group ( "" ) grouptype ( guess ) xOrd ( srt ) rOrd ( xyz ) t ( 0 -0.01 0 ) r ( 0 0 0 ) s ( 1 1 1 ) shear ( 0 0 0 ) scale ( 1 ) parmgroup_pivotxform ( 0 ) p ( 0 0 0 ) pr ( 0 0 0 ) parmgroup_prexform ( 0 ) prexform_xOrd ( srt ) prexform_rOrd ( xyz ) prexform_t ( 0 0 0 ) prexform_r ( 0 0 0 ) prexform_s ( 1 1 1 ) prexform_shear ( 0 0 0 ) movecentroid ( 0 ) movepivot ( 0 ) attribs ( * ) updatenmls ( off ) updateaffectednmls ( on ) vlength ( on ) invertxform ( off ) addattrib ( off ) outputattrib ( xform ) outputmerge ( post )
-chlock transform3 -*
-chautoscope transform3 -* +tx +ty +tz +rx +ry +rz +sx +sy +sz
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off transform3
-opexprlanguage -s hscript transform3
-opuserdata -n '___Version___' -v '20.5.370' transform3
-
-# Node polyextrude3 (Sop/polyextrude::2.0)
-opadd -e -n polyextrude::2.0 polyextrude3
-oplocate -x 9.7875499999999995 -y -23.03270000206232 polyextrude3
-opspareds "" polyextrude3
-opparm polyextrude3  thicknessramp ( 2 ) twistramp ( 2 )
-chblockbegin
-chadd -t 0 0 polyextrude3 dist
-chkey -t 0 -v 0.629 -m 0 -a 0 -A 0 -T a  -F 'ch("../HandrailH")' polyextrude3/dist
-chblockend
-opparm -V 20.5.370 polyextrude3 group ( "" ) splittype ( components ) usesplitgroup ( off ) splitgroup ( "" ) extrusionmode ( primnormal ) ptnormalsrc ( precompute ) ptnormalattrib ( N ) dist ( dist ) inset ( 0 ) twist ( 0 ) divs ( -3 ) spinetype ( straight ) stdswitcher ( 0 0 0 ) xformsection ( 0 ) xformfront ( off ) xformspace ( local ) rst ( srt ) xyz ( xyz ) translate ( 0 0 0 ) rotate ( 0 0 0 ) scale ( 1 1 1 ) shear ( 0 0 0 ) pivotxformsection ( 0 ) pivot ( 0 0 0 ) pivotrotate ( 0 0 0 ) prexformsection ( 0 ) prexform_rst ( srt ) prexform_xyz ( xyz ) prexform_translate ( 0 0 0 ) prexform_rotate ( 0 0 0 ) prexform_scale ( 1 1 1 ) prexform_shear ( 0 0 0 ) outputsection ( 0 ) outputfront ( on ) outputfrontgrp ( off ) frontgrp ( extrudeFront ) outputback ( on ) outputbackgrp ( off ) backgrp ( extrudeBack ) outputside ( on ) outputsidegrp ( off ) sidegrp ( extrudeSide ) outputfrontseamgrp ( off ) frontseamgrp ( extrudeFrontSeam ) outputbackseamgrp ( off ) backseamgrp ( extrudeBackSeam ) preservegroups ( on ) insettingsection ( 0 ) limitinset ( on ) commonlimit ( on ) normalsection ( 0 ) addvertexnomrals ( off ) cuspangle ( 60 ) cuspfront ( on ) cuspback ( on ) uvssection ( 0 ) genuvs ( on ) uvstyle ( proprtional ) uvscaling ( matchuv ) shapecontrolsection ( 0 ) frontmagnitude ( 1 ) backmagnitude ( 1 ) frontstiffness ( 0 ) backstiffness ( 0 ) interpolation ( rotatingframe ) spacing ( arclengthuniform ) externalspinesection ( 0 ) reversespinedirection ( off ) axialrotation ( 0 ) frontblend ( 0.1 ) backblend ( 0.1 ) thicknesssection ( 0 ) thicknessscale ( 1 ) usethicknessattrib ( on ) thicknessattrib ( thickness ) usethicknessramp ( on ) thicknessramp ( 2 ) twistsection ( 0 ) usetwistattrib ( on ) twistattrib ( twist ) usetwistramp ( on ) twistramp ( 2 ) twistscale ( 180 ) localattribs ( 0 ) uselocalzscaleattrib ( off ) localzscaleattrib ( zscale ) uselocalinsetscaleattrib ( off ) localinsetscaleattrib ( insetscale ) uselocaltwistattrib ( off ) localtwistscaleattrib ( twistscale ) uselocaldivsattrib ( off ) locadivscaleattrib ( divsscale ) localframeattribs ( 0 ) uselocalxattrib ( off ) localxattrib ( localx ) uselocalzattirb ( off ) localzattirb ( localz ) uselocalctrattrib ( off ) localctrattrib ( localctr ) thicknessramp1pos ( 0 ) thicknessramp1value ( 1 ) thicknessramp1interp ( catmull-rom ) thicknessramp2pos ( 1 ) thicknessramp2value ( 1 ) thicknessramp2interp ( catmull-rom ) twistramp1pos ( 0 ) twistramp1value ( 0.5 ) twistramp1interp ( catmull-rom ) twistramp2pos ( 1 ) twistramp2value ( 0.5 ) twistramp2interp ( catmull-rom )
-chlock polyextrude3 -*
-chautoscope polyextrude3 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off polyextrude3
-opexprlanguage -s hscript polyextrude3
-opuserdata -n '___Version___' -v '20.5.370' polyextrude3
-
-# Node polyexpand2d4 (Sop/polyexpand2d)
-opadd -e -n polyexpand2d polyexpand2d4
-oplocate -x 9.7875499999999995 -y -22.100200002062319 polyexpand2d4
-opspareds "" polyexpand2d4
-chblockbegin
-chadd -t 0 0 polyexpand2d4 offset
-chkey -t 0 -v 0.10000000000000001 -m 0 -a 0 -A 0 -T a  -F '0.5*ch("../HandrailW")' polyexpand2d4/offset
-chblockend
-opparm -V 20.5.370 polyexpand2d4 group ( "" ) planepossrc ( setplane ) planeorigin ( 0 0 0 ) planedist ( 0 ) planenormal ( 0 1 0 ) output ( curves ) offset ( offset ) divs ( 1 ) sidedetermination ( simplereach ) outputinside ( on ) outputoutside ( on ) keepinput ( off ) omitendcaps ( off ) localattribssection ( 0 ) uselocalinsidescale ( off ) localinsidescale ( offsetscale ) uselocaloutsidescale ( off ) localoutsidescale ( offsetscale ) newg ( off ) insidegroup ( inside ) outsidegroup ( outside ) doedgedistattrib ( off ) edgedistattrib ( edgedist ) doedgespeedattrib ( off ) edgespeedattrib ( edgespeed ) coincidencetol ( 0.003 ) parallelismtol ( 0.01 ) skeletonfailure ( error ) cacheskeleton ( on ) updatenmls ( on )
-chlock polyexpand2d4 -*
-chautoscope polyexpand2d4 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off polyexpand2d4
-opexprlanguage -s hscript polyexpand2d4
-opuserdata -n '___Version___' -v '20.5.370' polyexpand2d4
-
-# Node transform4 (Sop/xform)
-opadd -e -n xform transform4
-oplocate -x 9.7875499999999995 -y -23.908100002062319 transform4
-opspareds "" transform4
-opparm -V 20.5.370 transform4 group ( "" ) grouptype ( guess ) xOrd ( srt ) rOrd ( xyz ) t ( 0 -0.01 0 ) r ( 0 0 0 ) s ( 1 1 1 ) shear ( 0 0 0 ) scale ( 1 ) parmgroup_pivotxform ( 0 ) p ( 0 0 0 ) pr ( 0 0 0 ) parmgroup_prexform ( 0 ) prexform_xOrd ( srt ) prexform_rOrd ( xyz ) prexform_t ( 0 0 0 ) prexform_r ( 0 0 0 ) prexform_s ( 1 1 1 ) prexform_shear ( 0 0 0 ) movecentroid ( 0 ) movepivot ( 0 ) attribs ( * ) updatenmls ( off ) updateaffectednmls ( on ) vlength ( on ) invertxform ( off ) addattrib ( off ) outputattrib ( xform ) outputmerge ( post )
-chlock transform4 -*
-chautoscope transform4 -* +tx +ty +tz +rx +ry +rz +sx +sy +sz
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off transform4
-opexprlanguage -s hscript transform4
-opuserdata -n '___Version___' -v '20.5.370' transform4
-
-# Node merge5 (Sop/merge)
-opadd -e -n merge merge5
-oplocate -x 8.4294499999999992 -y -25.846000002062322 merge5
-opspareds "" merge5
-opparm -V 20.5.370 merge5
-chlock merge5 -*
-chautoscope merge5 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off merge5
-opexprlanguage -s hscript merge5
-opuserdata -n '___Version___' -v '20.5.370' merge5
-
-# Node polyextrude4 (Sop/polyextrude::2.0)
-opadd -e -n polyextrude::2.0 polyextrude4
-oplocate -x 7.9538500000000001 -y -24.041300002062322 polyextrude4
-opspareds "" polyextrude4
-opparm polyextrude4  thicknessramp ( 2 ) twistramp ( 2 )
-opparm -V 20.5.370 polyextrude4 group ( "" ) splittype ( components ) usesplitgroup ( off ) splitgroup ( "" ) extrusionmode ( pointnormal ) ptnormalsrc ( attribute ) ptnormalattrib ( N ) dist ( 0.034 ) inset ( 0 ) twist ( 0 ) divs ( 1 ) spinetype ( straight ) stdswitcher ( 0 0 0 ) xformsection ( 0 ) xformfront ( off ) xformspace ( local ) rst ( srt ) xyz ( xyz ) translate ( 0 0 0 ) rotate ( 0 0 0 ) scale ( 1 1 1 ) shear ( 0 0 0 ) pivotxformsection ( 0 ) pivot ( 0 0 0 ) pivotrotate ( 0 0 0 ) prexformsection ( 0 ) prexform_rst ( srt ) prexform_xyz ( xyz ) prexform_translate ( 0 0 0 ) prexform_rotate ( 0 0 0 ) prexform_scale ( 1 1 1 ) prexform_shear ( 0 0 0 ) outputsection ( 0 ) outputfront ( on ) outputfrontgrp ( off ) frontgrp ( extrudeFront ) outputback ( on ) outputbackgrp ( off ) backgrp ( extrudeBack ) outputside ( on ) outputsidegrp ( off ) sidegrp ( extrudeSide ) outputfrontseamgrp ( off ) frontseamgrp ( extrudeFrontSeam ) outputbackseamgrp ( off ) backseamgrp ( extrudeBackSeam ) preservegroups ( on ) insettingsection ( 0 ) limitinset ( on ) commonlimit ( on ) normalsection ( 0 ) addvertexnomrals ( off ) cuspangle ( 60 ) cuspfront ( on ) cuspback ( on ) uvssection ( 0 ) genuvs ( on ) uvstyle ( proprtional ) uvscaling ( matchuv ) shapecontrolsection ( 0 ) frontmagnitude ( 1 ) backmagnitude ( 1 ) frontstiffness ( 0 ) backstiffness ( 0 ) interpolation ( rotatingframe ) spacing ( arclengthuniform ) externalspinesection ( 0 ) reversespinedirection ( off ) axialrotation ( 0 ) frontblend ( 0.1 ) backblend ( 0.1 ) thicknesssection ( 0 ) thicknessscale ( 1 ) usethicknessattrib ( on ) thicknessattrib ( thickness ) usethicknessramp ( on ) thicknessramp ( 2 ) twistsection ( 0 ) usetwistattrib ( on ) twistattrib ( twist ) usetwistramp ( on ) twistramp ( 2 ) twistscale ( 180 ) localattribs ( 0 ) uselocalzscaleattrib ( off ) localzscaleattrib ( zscale ) uselocalinsetscaleattrib ( off ) localinsetscaleattrib ( insetscale ) uselocaltwistattrib ( off ) localtwistscaleattrib ( twistscale ) uselocaldivsattrib ( off ) locadivscaleattrib ( divsscale ) localframeattribs ( 0 ) uselocalxattrib ( off ) localxattrib ( localx ) uselocalzattirb ( off ) localzattirb ( localz ) uselocalctrattrib ( off ) localctrattrib ( localctr ) thicknessramp1pos ( 0 ) thicknessramp1value ( 1 ) thicknessramp1interp ( catmull-rom ) thicknessramp2pos ( 1 ) thicknessramp2value ( 1 ) thicknessramp2interp ( catmull-rom ) twistramp1pos ( 0 ) twistramp1value ( 0.5 ) twistramp1interp ( catmull-rom ) twistramp2pos ( 1 ) twistramp2value ( 0.5 ) twistramp2interp ( catmull-rom )
-chlock polyextrude4 -*
-chautoscope polyextrude4 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off polyextrude4
-opexprlanguage -s hscript polyextrude4
-opuserdata -n '___Version___' -v '20.5.370' polyextrude4
-
-# Node polyextrude5 (Sop/polyextrude::2.0)
-opadd -e -n polyextrude::2.0 polyextrude5
-oplocate -x 2.0868199999999999 -y -24.592600002062319 polyextrude5
-opspareds "" polyextrude5
-opparm polyextrude5  thicknessramp ( 2 ) twistramp ( 2 )
-opparm -V 20.5.370 polyextrude5 group ( "" ) splittype ( components ) usesplitgroup ( off ) splitgroup ( "" ) extrusionmode ( primnormal ) ptnormalsrc ( precompute ) ptnormalattrib ( N ) dist ( 0.034 ) inset ( 0 ) twist ( 0 ) divs ( 1 ) spinetype ( straight ) stdswitcher ( 0 0 0 ) xformsection ( 0 ) xformfront ( off ) xformspace ( local ) rst ( srt ) xyz ( xyz ) translate ( 0 0 0 ) rotate ( 0 0 0 ) scale ( 1 1 1 ) shear ( 0 0 0 ) pivotxformsection ( 0 ) pivot ( 0 0 0 ) pivotrotate ( 0 0 0 ) prexformsection ( 0 ) prexform_rst ( srt ) prexform_xyz ( xyz ) prexform_translate ( 0 0 0 ) prexform_rotate ( 0 0 0 ) prexform_scale ( 1 1 1 ) prexform_shear ( 0 0 0 ) outputsection ( 0 ) outputfront ( on ) outputfrontgrp ( off ) frontgrp ( extrudeFront ) outputback ( on ) outputbackgrp ( off ) backgrp ( extrudeBack ) outputside ( on ) outputsidegrp ( off ) sidegrp ( extrudeSide ) outputfrontseamgrp ( off ) frontseamgrp ( extrudeFrontSeam ) outputbackseamgrp ( off ) backseamgrp ( extrudeBackSeam ) preservegroups ( on ) insettingsection ( 0 ) limitinset ( on ) commonlimit ( on ) normalsection ( 0 ) addvertexnomrals ( off ) cuspangle ( 60 ) cuspfront ( on ) cuspback ( on ) uvssection ( 0 ) genuvs ( on ) uvstyle ( proprtional ) uvscaling ( matchuv ) shapecontrolsection ( 0 ) frontmagnitude ( 1 ) backmagnitude ( 1 ) frontstiffness ( 0 ) backstiffness ( 0 ) interpolation ( rotatingframe ) spacing ( arclengthuniform ) externalspinesection ( 0 ) reversespinedirection ( off ) axialrotation ( 0 ) frontblend ( 0.1 ) backblend ( 0.1 ) thicknesssection ( 0 ) thicknessscale ( 1 ) usethicknessattrib ( on ) thicknessattrib ( thickness ) usethicknessramp ( on ) thicknessramp ( 2 ) twistsection ( 0 ) usetwistattrib ( on ) twistattrib ( twist ) usetwistramp ( on ) twistramp ( 2 ) twistscale ( 180 ) localattribs ( 0 ) uselocalzscaleattrib ( off ) localzscaleattrib ( zscale ) uselocalinsetscaleattrib ( off ) localinsetscaleattrib ( insetscale ) uselocaltwistattrib ( off ) localtwistscaleattrib ( twistscale ) uselocaldivsattrib ( off ) locadivscaleattrib ( divsscale ) localframeattribs ( 0 ) uselocalxattrib ( off ) localxattrib ( localx ) uselocalzattirb ( off ) localzattirb ( localz ) uselocalctrattrib ( off ) localctrattrib ( localctr ) thicknessramp1pos ( 0 ) thicknessramp1value ( 1 ) thicknessramp1interp ( catmull-rom ) thicknessramp2pos ( 1 ) thicknessramp2value ( 1 ) thicknessramp2interp ( catmull-rom ) twistramp1pos ( 0 ) twistramp1value ( 0.5 ) twistramp1interp ( catmull-rom ) twistramp2pos ( 1 ) twistramp2value ( 0.5 ) twistramp2interp ( catmull-rom )
-chlock polyextrude5 -*
-chautoscope polyextrude5 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off polyextrude5
-opexprlanguage -s hscript polyextrude5
-opuserdata -n '___Version___' -v '20.5.370' polyextrude5
-
-# Node polyextrude6 (Sop/polyextrude::2.0)
-opadd -e -n polyextrude::2.0 polyextrude6
-oplocate -x -8.1780899999999992 -y -23.460500002062322 polyextrude6
-opspareds "" polyextrude6
-opparm polyextrude6  thicknessramp ( 2 ) twistramp ( 2 )
-chblockbegin
-chadd -t 0 0 polyextrude6 dist
-chkey -t 0 -v 0.79363381862640381 -m 0 -a 0 -A 0 -T a  -F 'ch("../HandrailH")' polyextrude6/dist
-chblockend
-opparm -V 20.5.370 polyextrude6 group ( "" ) splittype ( components ) usesplitgroup ( off ) splitgroup ( "" ) extrusionmode ( primnormal ) ptnormalsrc ( precompute ) ptnormalattrib ( N ) dist ( dist ) inset ( 0 ) twist ( 0 ) divs ( -3 ) spinetype ( straight ) stdswitcher ( 0 0 0 ) xformsection ( 0 ) xformfront ( off ) xformspace ( local ) rst ( srt ) xyz ( xyz ) translate ( 0 0 0 ) rotate ( 0 0 0 ) scale ( 1 1 1 ) shear ( 0 0 0 ) pivotxformsection ( 0 ) pivot ( 0 0 0 ) pivotrotate ( 0 0 0 ) prexformsection ( 0 ) prexform_rst ( srt ) prexform_xyz ( xyz ) prexform_translate ( 0 0 0 ) prexform_rotate ( 0 0 0 ) prexform_scale ( 1 1 1 ) prexform_shear ( 0 0 0 ) outputsection ( 0 ) outputfront ( on ) outputfrontgrp ( off ) frontgrp ( extrudeFront ) outputback ( on ) outputbackgrp ( off ) backgrp ( extrudeBack ) outputside ( on ) outputsidegrp ( off ) sidegrp ( extrudeSide ) outputfrontseamgrp ( off ) frontseamgrp ( extrudeFrontSeam ) outputbackseamgrp ( off ) backseamgrp ( extrudeBackSeam ) preservegroups ( on ) insettingsection ( 0 ) limitinset ( on ) commonlimit ( on ) normalsection ( 0 ) addvertexnomrals ( off ) cuspangle ( 60 ) cuspfront ( on ) cuspback ( on ) uvssection ( 0 ) genuvs ( on ) uvstyle ( proprtional ) uvscaling ( matchuv ) shapecontrolsection ( 0 ) frontmagnitude ( 1 ) backmagnitude ( 1 ) frontstiffness ( 0 ) backstiffness ( 0 ) interpolation ( rotatingframe ) spacing ( arclengthuniform ) externalspinesection ( 0 ) reversespinedirection ( off ) axialrotation ( 0 ) frontblend ( 0.1 ) backblend ( 0.1 ) thicknesssection ( 0 ) thicknessscale ( 1 ) usethicknessattrib ( on ) thicknessattrib ( thickness ) usethicknessramp ( on ) thicknessramp ( 2 ) twistsection ( 0 ) usetwistattrib ( on ) twistattrib ( twist ) usetwistramp ( on ) twistramp ( 2 ) twistscale ( 180 ) localattribs ( 0 ) uselocalzscaleattrib ( off ) localzscaleattrib ( zscale ) uselocalinsetscaleattrib ( off ) localinsetscaleattrib ( insetscale ) uselocaltwistattrib ( off ) localtwistscaleattrib ( twistscale ) uselocaldivsattrib ( off ) locadivscaleattrib ( divsscale ) localframeattribs ( 0 ) uselocalxattrib ( off ) localxattrib ( localx ) uselocalzattirb ( off ) localzattirb ( localz ) uselocalctrattrib ( off ) localctrattrib ( localctr ) thicknessramp1pos ( 0 ) thicknessramp1value ( 1 ) thicknessramp1interp ( catmull-rom ) thicknessramp2pos ( 1 ) thicknessramp2value ( 1 ) thicknessramp2interp ( catmull-rom ) twistramp1pos ( 0 ) twistramp1value ( 0.5 ) twistramp1interp ( catmull-rom ) twistramp2pos ( 1 ) twistramp2value ( 0.5 ) twistramp2interp ( catmull-rom )
-chlock polyextrude6 -*
-chautoscope polyextrude6 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off polyextrude6
-opexprlanguage -s hscript polyextrude6
-opuserdata -n '___Version___' -v '20.5.370' polyextrude6
-
-# Node polyexpand2d5 (Sop/polyexpand2d)
-opadd -e -n polyexpand2d polyexpand2d5
-oplocate -x -8.1780899999999992 -y -22.528000002062321 polyexpand2d5
-opspareds "" polyexpand2d5
-chblockbegin
-chadd -t 0 0 polyexpand2d5 offset
-chkey -t 0 -v 0.5 -m 0 -a 0 -A 0 -T a  -F '0.5*ch("../HandrailW")' polyexpand2d5/offset
-chblockend
-opparm -V 20.5.370 polyexpand2d5 group ( "" ) planepossrc ( setplane ) planeorigin ( 0 0 0 ) planedist ( 0 ) planenormal ( 0 1 0 ) output ( curves ) offset ( offset ) divs ( 1 ) sidedetermination ( simplereach ) outputinside ( on ) outputoutside ( on ) keepinput ( off ) omitendcaps ( off ) localattribssection ( 0 ) uselocalinsidescale ( off ) localinsidescale ( offsetscale ) uselocaloutsidescale ( off ) localoutsidescale ( offsetscale ) newg ( off ) insidegroup ( inside ) outsidegroup ( outside ) doedgedistattrib ( off ) edgedistattrib ( edgedist ) doedgespeedattrib ( off ) edgespeedattrib ( edgespeed ) coincidencetol ( 0.003 ) parallelismtol ( 0.01 ) skeletonfailure ( error ) cacheskeleton ( on ) updatenmls ( on )
-chlock polyexpand2d5 -*
-chautoscope polyexpand2d5 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off polyexpand2d5
-opexprlanguage -s hscript polyexpand2d5
-opuserdata -n '___Version___' -v '20.5.370' polyexpand2d5
-
-# Node transform5 (Sop/xform)
-opadd -e -n xform transform5
-oplocate -x -8.1780899999999992 -y -24.335900002062321 transform5
-opspareds "" transform5
-opparm -V 20.5.370 transform5 group ( "" ) grouptype ( guess ) xOrd ( srt ) rOrd ( xyz ) t ( 0 -0.01 0 ) r ( 0 0 0 ) s ( 1 1 1 ) shear ( 0 0 0 ) scale ( 1 ) parmgroup_pivotxform ( 0 ) p ( 0 0 0 ) pr ( 0 0 0 ) parmgroup_prexform ( 0 ) prexform_xOrd ( srt ) prexform_rOrd ( xyz ) prexform_t ( 0 0 0 ) prexform_r ( 0 0 0 ) prexform_s ( 1 1 1 ) prexform_shear ( 0 0 0 ) movecentroid ( 0 ) movepivot ( 0 ) attribs ( * ) updatenmls ( off ) updateaffectednmls ( on ) vlength ( on ) invertxform ( off ) addattrib ( off ) outputattrib ( xform ) outputmerge ( post )
-chlock transform5 -*
-chautoscope transform5 -* +tx +ty +tz +rx +ry +rz +sx +sy +sz
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off transform5
-opexprlanguage -s hscript transform5
-opuserdata -n '___Version___' -v '20.5.370' transform5
-
-# Node clean2 (Sop/clean)
-opadd -e -n clean clean2
-oplocate -x -5.1271399999999998 -y -26.746800002062319 clean2
-opspareds "" clean2
-opparm clean2 fusepts ( on ) fusedist ( 0.001 ) deldegengeo ( on ) degentol ( 0.001 ) removeunusedgrp ( on ) orientpoly ( off ) reversewinding ( off ) fixoverlap ( on ) deleteoverlap ( on ) delunusedpts ( on ) dodelattribs ( off ) delattribs ( * ) dodelgroups ( off ) delgroups ( * ) delnans ( on ) make_manifold ( off ) delete_small ( on ) prim_count ( 3 )
-chlock clean2 -*
-chautoscope clean2 -* +delete_small
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off clean2
-opexprlanguage -s hscript clean2
-opuserdata -n '___Version___' -v '' clean2
-
-# Node merge6 (Sop/merge)
-opadd -e -n merge merge6
-oplocate -x -5.1282899999999998 -y -25.189100002062322 merge6
-opspareds "" merge6
-opparm -V 20.5.370 merge6
-chlock merge6 -*
-chautoscope merge6 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off merge6
-opexprlanguage -s hscript merge6
-opuserdata -n '___Version___' -v '20.5.370' merge6
-
-# Node polyextrude7 (Sop/polyextrude::2.0)
-opadd -e -n polyextrude::2.0 polyextrude7
-oplocate -x -5.2410800000000002 -y -23.079300002062322 polyextrude7
-opspareds "" polyextrude7
-opparm polyextrude7  thicknessramp ( 2 ) twistramp ( 2 )
-opparm -V 20.5.370 polyextrude7 group ( "" ) splittype ( components ) usesplitgroup ( off ) splitgroup ( "" ) extrusionmode ( primnormal ) ptnormalsrc ( precompute ) ptnormalattrib ( N ) dist ( 0.034 ) inset ( 0 ) twist ( 0 ) divs ( 1 ) spinetype ( straight ) stdswitcher ( 0 0 0 ) xformsection ( 0 ) xformfront ( off ) xformspace ( local ) rst ( srt ) xyz ( xyz ) translate ( 0 0 0 ) rotate ( 0 0 0 ) scale ( 1 1 1 ) shear ( 0 0 0 ) pivotxformsection ( 0 ) pivot ( 0 0 0 ) pivotrotate ( 0 0 0 ) prexformsection ( 0 ) prexform_rst ( srt ) prexform_xyz ( xyz ) prexform_translate ( 0 0 0 ) prexform_rotate ( 0 0 0 ) prexform_scale ( 1 1 1 ) prexform_shear ( 0 0 0 ) outputsection ( 0 ) outputfront ( on ) outputfrontgrp ( off ) frontgrp ( extrudeFront ) outputback ( on ) outputbackgrp ( off ) backgrp ( extrudeBack ) outputside ( on ) outputsidegrp ( off ) sidegrp ( extrudeSide ) outputfrontseamgrp ( off ) frontseamgrp ( extrudeFrontSeam ) outputbackseamgrp ( off ) backseamgrp ( extrudeBackSeam ) preservegroups ( on ) insettingsection ( 0 ) limitinset ( on ) commonlimit ( on ) normalsection ( 0 ) addvertexnomrals ( off ) cuspangle ( 60 ) cuspfront ( on ) cuspback ( on ) uvssection ( 0 ) genuvs ( on ) uvstyle ( proprtional ) uvscaling ( matchuv ) shapecontrolsection ( 0 ) frontmagnitude ( 1 ) backmagnitude ( 1 ) frontstiffness ( 0 ) backstiffness ( 0 ) interpolation ( rotatingframe ) spacing ( arclengthuniform ) externalspinesection ( 0 ) reversespinedirection ( off ) axialrotation ( 0 ) frontblend ( 0.1 ) backblend ( 0.1 ) thicknesssection ( 0 ) thicknessscale ( 1 ) usethicknessattrib ( on ) thicknessattrib ( thickness ) usethicknessramp ( on ) thicknessramp ( 2 ) twistsection ( 0 ) usetwistattrib ( on ) twistattrib ( twist ) usetwistramp ( on ) twistramp ( 2 ) twistscale ( 180 ) localattribs ( 0 ) uselocalzscaleattrib ( off ) localzscaleattrib ( zscale ) uselocalinsetscaleattrib ( off ) localinsetscaleattrib ( insetscale ) uselocaltwistattrib ( off ) localtwistscaleattrib ( twistscale ) uselocaldivsattrib ( off ) locadivscaleattrib ( divsscale ) localframeattribs ( 0 ) uselocalxattrib ( off ) localxattrib ( localx ) uselocalzattirb ( off ) localzattirb ( localz ) uselocalctrattrib ( off ) localctrattrib ( localctr ) thicknessramp1pos ( 0 ) thicknessramp1value ( 1 ) thicknessramp1interp ( catmull-rom ) thicknessramp2pos ( 1 ) thicknessramp2value ( 1 ) thicknessramp2interp ( catmull-rom ) twistramp1pos ( 0 ) twistramp1value ( 0.5 ) twistramp1interp ( catmull-rom ) twistramp2pos ( 1 ) twistramp2value ( 0.5 ) twistramp2interp ( catmull-rom )
-chlock polyextrude7 -*
-chautoscope polyextrude7 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off polyextrude7
-opexprlanguage -s hscript polyextrude7
-opuserdata -n '___Version___' -v '20.5.370' polyextrude7
-
-# Node clean3 (Sop/clean)
-opadd -e -n clean clean3
-oplocate -x 8.5323499999999992 -y -27.951400002062321 clean3
-opspareds "" clean3
-opparm clean3 fusepts ( on ) fusedist ( 0.001 ) deldegengeo ( on ) degentol ( 0.001 ) removeunusedgrp ( on ) orientpoly ( off ) reversewinding ( off ) fixoverlap ( on ) deleteoverlap ( on ) delunusedpts ( on ) dodelattribs ( off ) delattribs ( * ) dodelgroups ( off ) delgroups ( * ) delnans ( on ) make_manifold ( off ) delete_small ( on ) prim_count ( 3 )
-chlock clean3 -*
-chautoscope clean3 -* +delete_small
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off clean3
-opexprlanguage -s hscript clean3
-opuserdata -n '___Version___' -v '' clean3
-
-# Node add3 (Sop/add)
-opadd -e -n add add3
-oplocate -x 20.973400000000002 -y 0.064993599999999999 add3
-opspareds "" add3
-opparm add3  points ( 4 ) prims ( 1 )
-opparm -V 20.5.370 add3 stdswitcher ( 0 0 0 ) keep ( off ) points ( 4 ) remove ( off ) switcher ( 1 1 ) prims ( 1 ) group ( "" ) add ( all ) inc ( 2 ) attrname ( "" ) closedall ( off ) addparticlesystem ( off ) particlegroup ( "" ) appendunusedtoparticlesystem ( off ) prim0 ( "" ) closed0 ( off ) usept0 ( on ) pt0 ( 10.650483006260728 0.6781109571456909 5.348127216742299 ) weight0 ( 1 ) usept1 ( on ) pt1 ( 11.066027475639132 3.5786960124969482 2.4299791412245133 ) weight1 ( 1 ) usept2 ( on ) pt2 ( 11.006015689172596 2 -2.3352185309853093 ) weight2 ( 1 ) usept3 ( on ) pt3 ( 10.952116667113549 0.7476645708084106 -5.588689490299409 ) weight3 ( 1 )
-chlock add3 -*
-chautoscope add3 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b on add3
-opexprlanguage -s hscript add3
-opuserdata -n '___Version___' -v '20.5.370' add3
-
-# Node attribwrangle9 (Sop/attribwrangle)
-opadd -e -n attribwrangle attribwrangle9
-oplocate -x 29.565200000000001 -y -21.230399999999999 attribwrangle9
-opspareds "" attribwrangle9
-opparm attribwrangle9  bindings ( 0 ) groupbindings ( 0 )
-opparm attribwrangle9 folder0 ( 0 0 ) group ( "" ) grouptype ( guess ) class ( point ) vex_numcount ( 10 ) vex_threadjobsize ( 1024 ) snippet ( 'vector p = point(0,"P", @ptnum);\n\n\nint numpoints = npoints(1);\nint i = nearpoint(1, p);\nfloat h = point(1,"height",i);\n\n@P.y = h;\n\n\nif( @ptnum==0 )\n{\n    int ps[] = primpoints(1, 0);\n\n    vector p0 = point(1,"P",ps[0]);\n    vector p1 = point(1,"P",ps[1]);\n    float leng = length(p0-p1);\n    \n    float h0 = point(1,"height",0);\n    float h1 = point(1,"height",1);\n    float dh = (h0-h1) / leng;\n    \n    float ext = chf("../W") * 0.5;\n    \n    float newh = dh*ext;\n    \n    printf("!!!!%f, %f, %f\\n", dh, dh*ext, h0 );\n    @P.y = h0 + dh*ext;// + newh;\n}\nelse if( @ptnum==@numpt-1 )\n{\n//    printf("!!!!");\n\n}' ) exportlist ( * ) vex_strict ( off ) autobind ( on ) bindings ( 0 ) groupautobind ( on ) groupbindings ( 0 ) vex_cwdpath ( . ) vex_outputmask ( * ) vex_updatenmls ( off ) vex_matchattrib ( id ) vex_inplace ( off ) vex_selectiongroup ( "" ) vex_precision ( auto )
-chlock attribwrangle9 -*
-chautoscope attribwrangle9 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b on attribwrangle9
-opexprlanguage -s hscript attribwrangle9
-opuserdata -n '___Version___' -v '' attribwrangle9
-
-# Node check_if_point_is_left_or_right_of_center1 (Sop/attribwrangle)
-opadd -e -n attribwrangle check_if_point_is_left_or_right_of_center1
-oplocate -x 21.107299999999999 -y -6.96699 check_if_point_is_left_or_right_of_center1
-opspareds "" check_if_point_is_left_or_right_of_center1
-opparm check_if_point_is_left_or_right_of_center1  bindings ( 0 ) groupbindings ( 0 )
-opparm check_if_point_is_left_or_right_of_center1 folder0 ( 0 0 ) group ( "" ) grouptype ( guess ) class ( point ) vex_numcount ( 10 ) vex_threadjobsize ( 1024 ) snippet ( '// distance_pointsegment(q, p0, p1)\n// https://www.sidefx.com/docs/houdini/vex/functions/distance_pointsegment.html\n\nfloat ext = chf("../W");// terminal edge extension length( W )\nint ps[] = primpoints(1, 0);\nint closest_id = -1;\nfloat dist = 999999999.9;\n\n/*\nvector points[];\nfor( int i=0; i<len(ps); ++i )\n{\n    vector p = point(1,"P",ps[i]);\n    append( points, p );\n}\n\n// TODO: check loop\n*/\n\nfor( int i=0; i<len(ps)-1; ++i )\n{\n    vector p0 = point(1,"P",ps[i]);\n    vector p1 = point(1,"P",ps[i+1]);\n    \n    if(i==0)\n    {\n        vector v = ext * normalize(p0-p1);\n        p0 += v;\n    }\n    else if(i==len(ps)-2)\n    {\n        vector v = ext * normalize(p1-p0);\n        p1 += v;\n    }\n    \n    \n    float d = distance_pointsegment( @P, p0, p1 );\n    \n    if( d <= dist )\n    {\n        dist = d;\n        closest_id = i;\n    }\n}\n\n//printf("[%d]: closest_id = %d, %f\\n", @ptnum, closest_id, dist );\n\n// Check if \nvector p0 = point(1,"P",ps[closest_id]);\nvector p1 = point(1,"P",ps[closest_id+1]);\nfloat lr = sign((p1.x - p0.x) * (@P.z - p0.z) - (p1.z - p0.z) * (@P.x - p0.x));\n\nf@lr = lr;\ni@closest_id = closest_id;\n\n@group_right = lr<0.0;\n@group_left = !@group_right;' ) exportlist ( * ) vex_strict ( off ) autobind ( on ) bindings ( 0 ) groupautobind ( on ) groupbindings ( 0 ) vex_cwdpath ( . ) vex_outputmask ( * ) vex_updatenmls ( off ) vex_matchattrib ( id ) vex_inplace ( off ) vex_selectiongroup ( "" ) vex_precision ( auto )
-chlock check_if_point_is_left_or_right_of_center1 -*
-chautoscope check_if_point_is_left_or_right_of_center1 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b on check_if_point_is_left_or_right_of_center1
-opexprlanguage -s hscript check_if_point_is_left_or_right_of_center1
-opuserdata -n '___Version___' -v '' check_if_point_is_left_or_right_of_center1
-
-# Node blast8 (Sop/blast)
-opadd -e -n blast blast8
-oplocate -x 27.492599999999999 -y -10.310700000000001 blast8
-opspareds "" blast8
-opparm -V 20.5.370 blast8 group ( right ) grouptype ( guess ) computenorms ( off ) negate ( on ) fillhole ( off ) removegrp ( off )
-chlock blast8 -*
-chautoscope blast8 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b on blast8
-opexprlanguage -s hscript blast8
-opuserdata -n '___Version___' -v '20.5.370' blast8
-
-# Node polyexpand2d7 (Sop/polyexpand2d)
-opadd -e -n polyexpand2d polyexpand2d7
-oplocate -x 18.327400000000001 -y -5.9632100000000001 polyexpand2d7
-opspareds "" polyexpand2d7
-chblockbegin
-chadd -t 0 0 polyexpand2d7 offset
-chkey -t 0 -v 0.67000000000000004 -m 0 -a 0 -A 0 -T a  -F '0.5*ch("../W")' polyexpand2d7/offset
-chblockend
-opparm -V 20.5.370 polyexpand2d7 group ( "" ) planepossrc ( fitplane ) planeorigin ( 0 0 0 ) planedist ( 0 ) planenormal ( 0 1 0 ) output ( curves ) offset ( offset ) divs ( 1 ) sidedetermination ( simplereach ) outputinside ( off ) outputoutside ( on ) keepinput ( off ) omitendcaps ( on ) localattribssection ( 0 ) uselocalinsidescale ( off ) localinsidescale ( offsetscale ) uselocaloutsidescale ( off ) localoutsidescale ( offsetscale ) newg ( off ) insidegroup ( inside ) outsidegroup ( outside ) doedgedistattrib ( off ) edgedistattrib ( edgedist ) doedgespeedattrib ( off ) edgespeedattrib ( edgespeed ) coincidencetol ( 0.003 ) parallelismtol ( 0.01 ) skeletonfailure ( error ) cacheskeleton ( on ) updatenmls ( on )
-chlock polyexpand2d7 -*
-chautoscope polyexpand2d7 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b on polyexpand2d7
-opexprlanguage -s hscript polyexpand2d7
-opuserdata -n '___Version___' -v '20.5.370' polyexpand2d7
-
-# Node attribwrangle10 (Sop/attribwrangle)
-opadd -e -n attribwrangle attribwrangle10
-oplocate -x 22.271699999999999 -y -3.1098400000000002 attribwrangle10
-opspareds "" attribwrangle10
-opparm attribwrangle10  bindings ( 0 ) groupbindings ( 0 )
-opparm attribwrangle10 folder0 ( 0 0 ) group ( "" ) grouptype ( guess ) class ( point ) vex_numcount ( 10 ) vex_threadjobsize ( 1024 ) snippet ( '@height = @P.y;\n@P.y*=0.0;\n' ) exportlist ( * ) vex_strict ( off ) autobind ( on ) bindings ( 0 ) groupautobind ( on ) groupbindings ( 0 ) vex_cwdpath ( . ) vex_outputmask ( * ) vex_updatenmls ( off ) vex_matchattrib ( id ) vex_inplace ( off ) vex_selectiongroup ( "" ) vex_precision ( auto )
-chlock attribwrangle10 -*
-chautoscope attribwrangle10 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b on attribwrangle10
-opexprlanguage -s hscript attribwrangle10
-opuserdata -n '___Version___' -v '' attribwrangle10
-
 # Node sort10 (Sop/sort)
 opadd -e -n sort sort10
-oplocate -x -6.6498321572543508e-17 -y 4.7497999979376786 sort10
+oplocate -x -1.11759e-08 -y 5.1368400000000003 sort10
 opspareds "" sort10
 opparm -V 20.5.370 sort10 pointsfolder ( 0 ) ptgroup ( "" ) ptsort ( vtxord ) pointseed ( 0 ) pointoffset ( 0 ) pointprox ( 0 0 0 ) pointobjpath ( "" ) pointdir ( 0 1 0 ) pointexpr ( 0 ) pointattrib ( "" ) pointattribcomp ( 0 ) pointreverse ( off ) primitivesfolder ( 0 ) primgroup ( "" ) primsort ( none ) primseed ( 0 ) primoffset ( 0 ) primprox ( 0 0 0 ) primobjpath ( "" ) primdir ( 0 1 0 ) primexpr ( 0 ) primattrib ( "" ) primattribcomp ( 0 ) primreverse ( off ) vertexprimorder ( on )
 chlock sort10 -*
@@ -1383,405 +1092,483 @@ opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on
 opexprlanguage -s hscript sort10
 opuserdata -n '___Version___' -v '20.5.370' sort10
 
-# Node rewire1 (Sop/rewire)
-opadd -e -n rewire rewire1
-oplocate -x 1.3586499999999999 -y -4.4150100020623206 rewire1
-opspareds "" rewire1
-opparm -V 20.5.370 rewire1 group ( "" ) grouptype ( guess ) attrib ( rewire_to ) deletetargetpointattrib ( off ) recurse ( off ) keepunusedpoints ( off ) createorigattrib ( off ) origattrib ( rewired_from )
-chlock rewire1 -*
-chautoscope rewire1 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off rewire1
-nbop __netbox1 add rewire1
-opexprlanguage -s hscript rewire1
-opuserdata -n '___Version___' -v '20.5.370' rewire1
+# Node output1 (Sop/output)
+opadd -e -n output output1
+oplocate -x -1.7397 -y -29.0062 output1
+opspareds "" output1
+opparm -V 20.5.370 output1 outputidx ( 0 )
+chlock output1 -*
+chautoscope output1 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off output1
+opexprlanguage -s hscript output1
+opuserdata -n '___Version___' -v '20.5.370' output1
 
-# Node attribwrangle4 (Sop/attribwrangle)
-opadd -e -n attribwrangle attribwrangle4
-oplocate -x 1.35565 -y -3.5821500020623209 attribwrangle4
-opspareds "" attribwrangle4
-opparm attribwrangle4  bindings ( 0 ) groupbindings ( 0 )
-opparm attribwrangle4 folder0 ( 0 0 ) group ( "" ) grouptype ( guess ) class ( vertex ) vex_numcount ( 10 ) vex_threadjobsize ( 1024 ) snippet ( 'i@rewire_to = (@numvtx-1)-@vtxnum;' ) exportlist ( * ) vex_strict ( off ) autobind ( on ) bindings ( 0 ) groupautobind ( on ) groupbindings ( 0 ) vex_cwdpath ( . ) vex_outputmask ( * ) vex_updatenmls ( off ) vex_matchattrib ( id ) vex_inplace ( off ) vex_selectiongroup ( "" ) vex_precision ( auto )
-chlock attribwrangle4 -*
-chautoscope attribwrangle4 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off attribwrangle4
-nbop __netbox1 add attribwrangle4
-opexprlanguage -s hscript attribwrangle4
-opuserdata -n '___Version___' -v '' attribwrangle4
+# Node output2 (Sop/output)
+opadd -e -n output output2
+oplocate -x 1.6191 -y -29.0062 output2
+opspareds "" output2
+opparm -V 20.5.370 output2 outputidx ( 1 )
+chlock output2 -*
+chautoscope output2 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off output2
+opexprlanguage -s hscript output2
+opuserdata -n '___Version___' -v '20.5.370' output2
 
-# Node clip_end_segment (Sop/attribwrangle)
-opadd -e -n attribwrangle clip_end_segment
-oplocate -x 1.35565 -y -9.7406500020623206 clip_end_segment
-opspareds '    group {         name    "folder1"         label   "Code"          parm {             name    "group"             baseparm             label   "Group"             export  none             bindselector uvselect "Modify Attribs"                 "Select the geometry to affect and press Enter to complete."                 0 1 0xffffffff 0 grouptype 0         }         parm {             name    "grouptype"             baseparm             label   "Group Type"             export  none         }         parm {             name    "class"             baseparm             label   "Run Over"             export  none         }         parm {             name    "vex_numcount"             baseparm             label   "Number Count"             export  none         }         parm {             name    "vex_threadjobsize"             baseparm             label   "Thread Job Size"             export  none         }         groupsimple {             name    "folder_generatedparms_snippet"             label   "Generated Channel Parameters"             grouptag { "group_type" "simple" }             grouptag { "sidefx::look" "blank" }              parm {                 name    "p0"                 label   "P0"                 type    integer                 default { "0" }                 range   { 0 10 }             }             parm {                 name    "p1"                 label   "P1"                 type    integer                 default { "0" }                 range   { 0 10 }             }         }          parm {             name    "snippet"             baseparm             label   "VEXpression"             export  all         }         parm {             name    "exportlist"             baseparm             label   "Attributes to Create"             export  none         }         parm {             name    "vex_strict"             baseparm             label   "Enforce Prototypes"             export  none         }     }      group {         name    "folder1_1"         label   "Bindings"          parm {             name    "autobind"             baseparm             label   "Autobind by Name"             export  none         }         multiparm {             name    "bindings"             label    "Number of Bindings"             baseparm             default 0             parmtag { "autoscope" "0000000000000000" }             parmtag { "multistartoffset" "1" }              parm {                 name    "bindname#"                 baseparm                 label   "Attribute Name"                 export  none             }             parm {                 name    "bindparm#"                 baseparm                 label   "VEX Parameter"                 export  none             }         }          parm {             name    "groupautobind"             baseparm             label   "Autobind Groups by Name"             export  none         }         multiparm {             name    "groupbindings"             label    "Group Bindings"             baseparm             default 0             parmtag { "autoscope" "0000000000000000" }             parmtag { "multistartoffset" "1" }              parm {                 name    "bindgroupname#"                 baseparm                 label   "Group Name"                 export  none             }             parm {                 name    "bindgroupparm#"                 baseparm                 label   "VEX Parameter"                 export  none             }         }          parm {             name    "vex_cwdpath"             baseparm             label   "Evaluation Node Path"             export  none         }         parm {             name    "vex_outputmask"             baseparm             label   "Export Parameters"             export  none         }         parm {             name    "vex_updatenmls"             baseparm             label   "Update Normals If Displaced"             export  none         }         parm {             name    "vex_matchattrib"             baseparm             label   "Attribute to Match"             export  none         }         parm {             name    "vex_inplace"             baseparm             label   "Compute Results In Place"             export  none         }         parm {             name    "vex_selectiongroup"             baseparm             label   "Output Selection Group"             export  none         }         parm {             name    "vex_precision"             baseparm             label   "VEX Precision"             export  none         }     }  ' clip_end_segment
-opparm clip_end_segment  bindings ( 0 ) groupbindings ( 0 )
-opparm clip_end_segment folder0 ( 0 0 ) group ( "" ) grouptype ( guess ) class ( detail ) vex_numcount ( 10 ) vex_threadjobsize ( 1024 ) snippet ( '/*\np0         p(clip plane)       p1\n|---------------x--------------|\n      <--- n(=normalize(v))\n\n                |--------------|\n                 remaining part\n                 after clip\n*/\n\n\n\nint p0_idx = chi("p0");\nint p1_idx = chi("p1");\nfloat w = ch("../W");\nfloat ext = w * (chi("../Alignment")==2 ? 0.5 : 1.0);\n/*\nint al = chi("../Alignment");\nif(al==2) width_cos *= 0.5;\nelse width_cos *= 1.0;\n*/\n\nint ps[] = primpoints(0, 0);\nvector p0 = point(geoself(), "P", ps[p0_idx]);\nvector p1 = point(geoself(), "P", ps[p1_idx]);\nvector v = p0 - p1;\nvector n = normalize(v);\n\nvector p = p0 - ext * n;//w*v;\nfloat d = -dot(n,p);\n\nif( dot(p-p1,n)<=0.0 )\n{\n    setpointattrib(geoself(), "P", ps[p0_idx], p1);\n    return;\n}\n\n\nvector4 plane = set(n.x, n.y, n.z, d);\n//printf( "%f\\n", plane );\n\nint result=-1;\nclip( result, p1, p0, plane );\n//printf( "%d, %f, %f\\n", result, p0, p1 );\n\nsetpointattrib(geoself(), "P", ps[p0_idx], p0);\n//setpointattrib(geoself(), "P", ps[p1_idx], p1);\n' ) exportlist ( * ) vex_strict ( off ) autobind ( on ) bindings ( 0 ) groupautobind ( on ) groupbindings ( 0 ) vex_cwdpath ( . ) vex_outputmask ( * ) vex_updatenmls ( off ) vex_matchattrib ( id ) vex_inplace ( off ) vex_selectiongroup ( "" ) vex_precision ( auto ) folder1 ( 0 0 ) folder_generatedparms_snippet ( 0 ) p0 ( -1 ) p1 ( -2 )
-chlock clip_end_segment -* +p0 +p1
-chautoscope clip_end_segment -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off clip_end_segment
-nbop __netbox3 add clip_end_segment
-opexprlanguage -s hscript clip_end_segment
-opuserdata -n '___Version___' -v '' clip_end_segment
-
-# Node clip_start_segment (Sop/attribwrangle)
-opadd -e -n attribwrangle clip_start_segment
-oplocate -x 1.35565 -y -8.8210500020623215 clip_start_segment
-opspareds '    group {         name    "folder1"         label   "Code"          parm {             name    "group"             baseparm             label   "Group"             export  none             bindselector uvselect "Modify Attribs"                 "Select the geometry to affect and press Enter to complete."                 0 1 0xffffffff 0 grouptype 0         }         parm {             name    "grouptype"             baseparm             label   "Group Type"             export  none         }         parm {             name    "class"             baseparm             label   "Run Over"             export  none         }         parm {             name    "vex_numcount"             baseparm             label   "Number Count"             export  none         }         parm {             name    "vex_threadjobsize"             baseparm             label   "Thread Job Size"             export  none         }         groupsimple {             name    "folder_generatedparms_snippet"             label   "Generated Channel Parameters"             grouptag { "group_type" "simple" }             grouptag { "sidefx::look" "blank" }              parm {                 name    "p0"                 label   "P0"                 type    integer                 default { "0" }                 range   { 0 10 }             }             parm {                 name    "p1"                 label   "P1"                 type    integer                 default { "0" }                 range   { 0 10 }             }         }          parm {             name    "snippet"             baseparm             label   "VEXpression"             export  all         }         parm {             name    "exportlist"             baseparm             label   "Attributes to Create"             export  none         }         parm {             name    "vex_strict"             baseparm             label   "Enforce Prototypes"             export  none         }     }      group {         name    "folder1_1"         label   "Bindings"          parm {             name    "autobind"             baseparm             label   "Autobind by Name"             export  none         }         multiparm {             name    "bindings"             label    "Number of Bindings"             baseparm             default 0             parmtag { "autoscope" "0000000000000000" }             parmtag { "multistartoffset" "1" }              parm {                 name    "bindname#"                 baseparm                 label   "Attribute Name"                 export  none             }             parm {                 name    "bindparm#"                 baseparm                 label   "VEX Parameter"                 export  none             }         }          parm {             name    "groupautobind"             baseparm             label   "Autobind Groups by Name"             export  none         }         multiparm {             name    "groupbindings"             label    "Group Bindings"             baseparm             default 0             parmtag { "autoscope" "0000000000000000" }             parmtag { "multistartoffset" "1" }              parm {                 name    "bindgroupname#"                 baseparm                 label   "Group Name"                 export  none             }             parm {                 name    "bindgroupparm#"                 baseparm                 label   "VEX Parameter"                 export  none             }         }          parm {             name    "vex_cwdpath"             baseparm             label   "Evaluation Node Path"             export  none         }         parm {             name    "vex_outputmask"             baseparm             label   "Export Parameters"             export  none         }         parm {             name    "vex_updatenmls"             baseparm             label   "Update Normals If Displaced"             export  none         }         parm {             name    "vex_matchattrib"             baseparm             label   "Attribute to Match"             export  none         }         parm {             name    "vex_inplace"             baseparm             label   "Compute Results In Place"             export  none         }         parm {             name    "vex_selectiongroup"             baseparm             label   "Output Selection Group"             export  none         }         parm {             name    "vex_precision"             baseparm             label   "VEX Precision"             export  none         }     }  ' clip_start_segment
-opparm clip_start_segment  bindings ( 0 ) groupbindings ( 0 )
-opparm clip_start_segment folder0 ( 0 0 ) group ( "" ) grouptype ( guess ) class ( detail ) vex_numcount ( 10 ) vex_threadjobsize ( 1024 ) snippet ( '/*\np0         p(clip plane)       p1\n|---------------x--------------|\n      <--- n(=normalize(v))\n\n                |--------------|\n                 remaining part\n                 after clip\n*/\n\n\n\nint p0_idx = chi("p0");\nint p1_idx = chi("p1");\nfloat w = ch("../W");\nfloat ext = w * (chi("../Alignment")==2 ? 0.5 : 1.0);\n/*\nint al = chi("../Alignment");\nif(al==2) width_cos *= 0.5;\nelse width_cos *= 1.0;\n*/\n\nint ps[] = primpoints(0, 0);\nvector p0 = point(geoself(), "P", ps[p0_idx]);\nvector p1 = point(geoself(), "P", ps[p1_idx]);\nvector v = p0 - p1;\nvector n = normalize(v);\n\nvector p = p0 - ext * n;//w*v;\nfloat d = -dot(n,p);\n\nif( dot(p-p1,n)<=0.0 )\n{\n    setpointattrib(geoself(), "P", ps[p0_idx], p1);\n    return;\n}\n\n\nvector4 plane = set(n.x, n.y, n.z, d);\n//printf( "%f\\n", plane );\n\nint result=-1;\nclip( result, p1, p0, plane );\n//printf( "%d, %f, %f\\n", result, p0, p1 );\n\nsetpointattrib(geoself(), "P", ps[p0_idx], p0);\n//setpointattrib(geoself(), "P", ps[p1_idx], p1);\n' ) exportlist ( * ) vex_strict ( off ) autobind ( on ) bindings ( 0 ) groupautobind ( on ) groupbindings ( 0 ) vex_cwdpath ( . ) vex_outputmask ( * ) vex_updatenmls ( off ) vex_matchattrib ( id ) vex_inplace ( off ) vex_selectiongroup ( "" ) vex_precision ( auto ) folder1 ( 0 0 ) folder_generatedparms_snippet ( 0 ) p0 ( 0 ) p1 ( 1 )
-chlock clip_start_segment -* +p0 +p1
-chautoscope clip_start_segment -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off clip_start_segment
-nbop __netbox3 add clip_start_segment
-opexprlanguage -s hscript clip_start_segment
-opuserdata -n '___Version___' -v '' clip_start_segment
-
-# Node sort6 (Sop/sort)
-opadd -e -n sort sort6
-oplocate -x 1.3586499999999999 -y -7.0390700020623207 sort6
-opspareds "" sort6
+# Node switchif1 (Sop/switchif)
+opadd -e -n switchif switchif1
+oplocate -x -1.7397 -y -18.224900000000002 switchif1
+opspareds "" switchif1
+opparm switchif1  tests ( 1 )
 chblockbegin
-chadd -t 0 0 sort6 pointreverse
-chkey -t 0 -v 0 -m 0 -a 0 -A 0 -T a  -F 'detail(0,"reversed_point_order",0)==1' sort6/pointreverse
+chadd -t 0 0 switchif1 expr1
+chkey -t 0 -v 1 -m 0 -a 0 -A 0 -T a  -F 'ch("../Alignment")==1' switchif1/expr1
 chblockend
-opparm -V 20.5.370 sort6 pointsfolder ( 0 ) ptgroup ( "" ) ptsort ( none ) pointseed ( 0 ) pointoffset ( 0 ) pointprox ( 0 0 0 ) pointobjpath ( "" ) pointdir ( 0 1 0 ) pointexpr ( 0 ) pointattrib ( "" ) pointattribcomp ( 0 ) pointreverse ( pointreverse ) primitivesfolder ( 0 ) primgroup ( "" ) primsort ( none ) primseed ( 0 ) primoffset ( 0 ) primprox ( 0 0 0 ) primobjpath ( "" ) primdir ( 0 1 0 ) primexpr ( 0 ) primattrib ( "" ) primattribcomp ( 0 ) primreverse ( off ) vertexprimorder ( on )
-chlock sort6 -*
-chautoscope sort6 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off sort6
-nbop __netbox2 add sort6
-opexprlanguage -s hscript sort6
-opuserdata -n '___Version___' -v '20.5.370' sort6
+opparm -V 20.5.370 switchif1 mergecondition ( all ) testinput ( first ) tests ( 1 ) enable1 ( on ) type1 ( expr ) expr1 ( expr1 ) attribtype1 ( all ) attribowner1 ( point ) attributes1 ( "" ) attribvaltype1 ( flt ) attribfloatcomp1 ( equal ) attribstringcomp1 ( equal ) attribval1 ( 0 ) attribsval1 ( "" ) counttype1 ( points ) countgroup1 ( "" ) countcomp1 ( equal ) countval1 ( 0 ) hasinputtype1 ( wired )
+chlock switchif1 -*
+chautoscope switchif1 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off switchif1
+opexprlanguage -s hscript switchif1
+opuserdata -n '___Version___' -v '20.5.370' switchif1
 
-# Node check_if_point_is_ascending_order (Sop/attribwrangle)
-opadd -e -n attribwrangle check_if_point_is_ascending_order
-oplocate -x 1.35565 -y -6.155570002062321 check_if_point_is_ascending_order
-opspareds "" check_if_point_is_ascending_order
-opparm check_if_point_is_ascending_order  bindings ( 0 ) groupbindings ( 0 )
-opparm check_if_point_is_ascending_order folder0 ( 0 0 ) group ( "" ) grouptype ( guess ) class ( detail ) vex_numcount ( 10 ) vex_threadjobsize ( 1024 ) snippet ( '// distance_pointsegment(q, p0, p1)\n// https://www.sidefx.com/docs/houdini/vex/functions/distance_pointsegment.html\n\n//int ps[] = primpoints(0, 0);\n//for(int i=0; i<len(ps); ++i)\n//    printf("ps[%d]: %d\\n", i, ps[i] );\n\n\n//printf("Is closest_id[0]==0 ? %d\\n", point(0, "closest_id", 0)==0 );\n\n//i@reversed_point_order = point(0, "closest_id", 0)!=0;\ni@reversed_point_order = point(0, "closest_point_id", 0)!=0;\n' ) exportlist ( * ) vex_strict ( off ) autobind ( on ) bindings ( 0 ) groupautobind ( on ) groupbindings ( 0 ) vex_cwdpath ( . ) vex_outputmask ( * ) vex_updatenmls ( off ) vex_matchattrib ( id ) vex_inplace ( off ) vex_selectiongroup ( "" ) vex_precision ( auto )
-chlock check_if_point_is_ascending_order -*
-chautoscope check_if_point_is_ascending_order -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off check_if_point_is_ascending_order
-nbop __netbox2 add check_if_point_is_ascending_order
-opexprlanguage -s hscript check_if_point_is_ascending_order
-opuserdata -n '___Version___' -v '' check_if_point_is_ascending_order
-
-# Node rewire2 (Sop/rewire)
-opadd -e -n rewire rewire2
-oplocate -x -3.7151299999999998 -y -4.4150100020623206 rewire2
-opspareds "" rewire2
-opparm -V 20.5.370 rewire2 group ( "" ) grouptype ( guess ) attrib ( rewire_to ) deletetargetpointattrib ( off ) recurse ( off ) keepunusedpoints ( off ) createorigattrib ( off ) origattrib ( rewired_from )
-chlock rewire2 -*
-chautoscope rewire2 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off rewire2
-nbop __netbox4 add rewire2
-opexprlanguage -s hscript rewire2
-opuserdata -n '___Version___' -v '20.5.370' rewire2
-
-# Node attribwrangle5 (Sop/attribwrangle)
-opadd -e -n attribwrangle attribwrangle5
-oplocate -x -3.7181299999999999 -y -3.5821500020623209 attribwrangle5
-opspareds "" attribwrangle5
-opparm attribwrangle5  bindings ( 0 ) groupbindings ( 0 )
-opparm attribwrangle5 folder0 ( 0 0 ) group ( "" ) grouptype ( guess ) class ( vertex ) vex_numcount ( 10 ) vex_threadjobsize ( 1024 ) snippet ( 'i@rewire_to = (@numvtx-1)-@vtxnum;' ) exportlist ( * ) vex_strict ( off ) autobind ( on ) bindings ( 0 ) groupautobind ( on ) groupbindings ( 0 ) vex_cwdpath ( . ) vex_outputmask ( * ) vex_updatenmls ( off ) vex_matchattrib ( id ) vex_inplace ( off ) vex_selectiongroup ( "" ) vex_precision ( auto )
-chlock attribwrangle5 -*
-chautoscope attribwrangle5 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off attribwrangle5
-nbop __netbox4 add attribwrangle5
-opexprlanguage -s hscript attribwrangle5
-opuserdata -n '___Version___' -v '' attribwrangle5
-
-# Node clip_end_segment1 (Sop/attribwrangle)
-opadd -e -n attribwrangle clip_end_segment1
-oplocate -x -3.7143899999999999 -y -9.7406500020623206 clip_end_segment1
-opspareds '    group {         name    "folder1"         label   "Code"          parm {             name    "group"             baseparm             label   "Group"             export  none             bindselector uvselect "Modify Attribs"                 "Select the geometry to affect and press Enter to complete."                 0 1 0xffffffff 0 grouptype 0         }         parm {             name    "grouptype"             baseparm             label   "Group Type"             export  none         }         parm {             name    "class"             baseparm             label   "Run Over"             export  none         }         parm {             name    "vex_numcount"             baseparm             label   "Number Count"             export  none         }         parm {             name    "vex_threadjobsize"             baseparm             label   "Thread Job Size"             export  none         }         groupsimple {             name    "folder_generatedparms_snippet"             label   "Generated Channel Parameters"             grouptag { "group_type" "simple" }             grouptag { "sidefx::look" "blank" }              parm {                 name    "p0"                 label   "P0"                 type    integer                 default { "0" }                 range   { 0 10 }             }             parm {                 name    "p1"                 label   "P1"                 type    integer                 default { "0" }                 range   { 0 10 }             }         }          parm {             name    "snippet"             baseparm             label   "VEXpression"             export  all         }         parm {             name    "exportlist"             baseparm             label   "Attributes to Create"             export  none         }         parm {             name    "vex_strict"             baseparm             label   "Enforce Prototypes"             export  none         }     }      group {         name    "folder1_1"         label   "Bindings"          parm {             name    "autobind"             baseparm             label   "Autobind by Name"             export  none         }         multiparm {             name    "bindings"             label    "Number of Bindings"             baseparm             default 0             parmtag { "autoscope" "0000000000000000" }             parmtag { "multistartoffset" "1" }              parm {                 name    "bindname#"                 baseparm                 label   "Attribute Name"                 export  none             }             parm {                 name    "bindparm#"                 baseparm                 label   "VEX Parameter"                 export  none             }         }          parm {             name    "groupautobind"             baseparm             label   "Autobind Groups by Name"             export  none         }         multiparm {             name    "groupbindings"             label    "Group Bindings"             baseparm             default 0             parmtag { "autoscope" "0000000000000000" }             parmtag { "multistartoffset" "1" }              parm {                 name    "bindgroupname#"                 baseparm                 label   "Group Name"                 export  none             }             parm {                 name    "bindgroupparm#"                 baseparm                 label   "VEX Parameter"                 export  none             }         }          parm {             name    "vex_cwdpath"             baseparm             label   "Evaluation Node Path"             export  none         }         parm {             name    "vex_outputmask"             baseparm             label   "Export Parameters"             export  none         }         parm {             name    "vex_updatenmls"             baseparm             label   "Update Normals If Displaced"             export  none         }         parm {             name    "vex_matchattrib"             baseparm             label   "Attribute to Match"             export  none         }         parm {             name    "vex_inplace"             baseparm             label   "Compute Results In Place"             export  none         }         parm {             name    "vex_selectiongroup"             baseparm             label   "Output Selection Group"             export  none         }         parm {             name    "vex_precision"             baseparm             label   "VEX Precision"             export  none         }     }  ' clip_end_segment1
-opparm clip_end_segment1  bindings ( 0 ) groupbindings ( 0 )
-opparm clip_end_segment1 folder0 ( 0 0 ) group ( "" ) grouptype ( guess ) class ( detail ) vex_numcount ( 10 ) vex_threadjobsize ( 1024 ) snippet ( '/*\np0         p(clip plane)       p1\n|---------------x--------------|\n      <--- n(=normalize(v))\n\n                |--------------|\n                 remaining part\n                 after clip\n*/\n\n\n\nint p0_idx = chi("p0");\nint p1_idx = chi("p1");\nfloat w = ch("../W");\nfloat ext = w * (chi("../Alignment")==2 ? 0.5 : 1.0);\n/*\nint al = chi("../Alignment");\nif(al==2) width_cos *= 0.5;\nelse width_cos *= 1.0;\n*/\n\nint ps[] = primpoints(0, 0);\nvector p0 = point(geoself(), "P", ps[p0_idx]);\nvector p1 = point(geoself(), "P", ps[p1_idx]);\nvector v = p0 - p1;\nvector n = normalize(v);\n\nvector p = p0 - ext * n;//w*v;\nfloat d = -dot(n,p);\n\nif( dot(p-p1,n)<=0.0 )\n{\n    setpointattrib(geoself(), "P", ps[p0_idx], p1);\n    return;\n}\n\n\nvector4 plane = set(n.x, n.y, n.z, d);\n//printf( "%f\\n", plane );\n\nint result=-1;\nclip( result, p1, p0, plane );\n//printf( "%d, %f, %f\\n", result, p0, p1 );\n\nsetpointattrib(geoself(), "P", ps[p0_idx], p0);\n//setpointattrib(geoself(), "P", ps[p1_idx], p1);\n' ) exportlist ( * ) vex_strict ( off ) autobind ( on ) bindings ( 0 ) groupautobind ( on ) groupbindings ( 0 ) vex_cwdpath ( . ) vex_outputmask ( * ) vex_updatenmls ( off ) vex_matchattrib ( id ) vex_inplace ( off ) vex_selectiongroup ( "" ) vex_precision ( auto ) folder1 ( 0 0 ) folder_generatedparms_snippet ( 0 ) p0 ( -1 ) p1 ( -2 )
-chlock clip_end_segment1 -* +p0 +p1
-chautoscope clip_end_segment1 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off clip_end_segment1
-nbop __netbox6 add clip_end_segment1
-opexprlanguage -s hscript clip_end_segment1
-opuserdata -n '___Version___' -v '' clip_end_segment1
-
-# Node clip_start_segment1 (Sop/attribwrangle)
-opadd -e -n attribwrangle clip_start_segment1
-oplocate -x -3.7143899999999999 -y -8.8210500020623215 clip_start_segment1
-opspareds '    group {         name    "folder1"         label   "Code"          parm {             name    "group"             baseparm             label   "Group"             export  none             bindselector uvselect "Modify Attribs"                 "Select the geometry to affect and press Enter to complete."                 0 1 0xffffffff 0 grouptype 0         }         parm {             name    "grouptype"             baseparm             label   "Group Type"             export  none         }         parm {             name    "class"             baseparm             label   "Run Over"             export  none         }         parm {             name    "vex_numcount"             baseparm             label   "Number Count"             export  none         }         parm {             name    "vex_threadjobsize"             baseparm             label   "Thread Job Size"             export  none         }         groupsimple {             name    "folder_generatedparms_snippet"             label   "Generated Channel Parameters"             grouptag { "group_type" "simple" }             grouptag { "sidefx::look" "blank" }              parm {                 name    "p0"                 label   "P0"                 type    integer                 default { "0" }                 range   { 0 10 }             }             parm {                 name    "p1"                 label   "P1"                 type    integer                 default { "0" }                 range   { 0 10 }             }         }          parm {             name    "snippet"             baseparm             label   "VEXpression"             export  all         }         parm {             name    "exportlist"             baseparm             label   "Attributes to Create"             export  none         }         parm {             name    "vex_strict"             baseparm             label   "Enforce Prototypes"             export  none         }     }      group {         name    "folder1_1"         label   "Bindings"          parm {             name    "autobind"             baseparm             label   "Autobind by Name"             export  none         }         multiparm {             name    "bindings"             label    "Number of Bindings"             baseparm             default 0             parmtag { "autoscope" "0000000000000000" }             parmtag { "multistartoffset" "1" }              parm {                 name    "bindname#"                 baseparm                 label   "Attribute Name"                 export  none             }             parm {                 name    "bindparm#"                 baseparm                 label   "VEX Parameter"                 export  none             }         }          parm {             name    "groupautobind"             baseparm             label   "Autobind Groups by Name"             export  none         }         multiparm {             name    "groupbindings"             label    "Group Bindings"             baseparm             default 0             parmtag { "autoscope" "0000000000000000" }             parmtag { "multistartoffset" "1" }              parm {                 name    "bindgroupname#"                 baseparm                 label   "Group Name"                 export  none             }             parm {                 name    "bindgroupparm#"                 baseparm                 label   "VEX Parameter"                 export  none             }         }          parm {             name    "vex_cwdpath"             baseparm             label   "Evaluation Node Path"             export  none         }         parm {             name    "vex_outputmask"             baseparm             label   "Export Parameters"             export  none         }         parm {             name    "vex_updatenmls"             baseparm             label   "Update Normals If Displaced"             export  none         }         parm {             name    "vex_matchattrib"             baseparm             label   "Attribute to Match"             export  none         }         parm {             name    "vex_inplace"             baseparm             label   "Compute Results In Place"             export  none         }         parm {             name    "vex_selectiongroup"             baseparm             label   "Output Selection Group"             export  none         }         parm {             name    "vex_precision"             baseparm             label   "VEX Precision"             export  none         }     }  ' clip_start_segment1
-opparm clip_start_segment1  bindings ( 0 ) groupbindings ( 0 )
-opparm clip_start_segment1 folder0 ( 0 0 ) group ( "" ) grouptype ( guess ) class ( detail ) vex_numcount ( 10 ) vex_threadjobsize ( 1024 ) snippet ( '/*\np0         p(clip plane)       p1\n|---------------x--------------|\n      <--- n(=normalize(v))\n\n                |--------------|\n                 remaining part\n                 after clip\n*/\n\n\n\nint p0_idx = chi("p0");\nint p1_idx = chi("p1");\nfloat w = ch("../W");\nfloat ext = w * (chi("../Alignment")==2 ? 0.5 : 1.0);\n/*\nint al = chi("../Alignment");\nif(al==2) width_cos *= 0.5;\nelse width_cos *= 1.0;\n*/\n\nint ps[] = primpoints(0, 0);\nvector p0 = point(geoself(), "P", ps[p0_idx]);\nvector p1 = point(geoself(), "P", ps[p1_idx]);\nvector v = p0 - p1;\nvector n = normalize(v);\n\nvector p = p0 - ext * n;//w*v;\nfloat d = -dot(n,p);\n\nif( dot(p-p1,n)<=0.0 )\n{\n    setpointattrib(geoself(), "P", ps[p0_idx], p1);\n    return;\n}\n\n\nvector4 plane = set(n.x, n.y, n.z, d);\n//printf( "%f\\n", plane );\n\nint result=-1;\nclip( result, p1, p0, plane );\n//printf( "%d, %f, %f\\n", result, p0, p1 );\n\nsetpointattrib(geoself(), "P", ps[p0_idx], p0);\n//setpointattrib(geoself(), "P", ps[p1_idx], p1);\n' ) exportlist ( * ) vex_strict ( off ) autobind ( on ) bindings ( 0 ) groupautobind ( on ) groupbindings ( 0 ) vex_cwdpath ( . ) vex_outputmask ( * ) vex_updatenmls ( off ) vex_matchattrib ( id ) vex_inplace ( off ) vex_selectiongroup ( "" ) vex_precision ( auto ) folder1 ( 0 0 ) folder_generatedparms_snippet ( 0 ) p0 ( 0 ) p1 ( 1 )
-chlock clip_start_segment1 -* +p0 +p1
-chautoscope clip_start_segment1 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off clip_start_segment1
-nbop __netbox6 add clip_start_segment1
-opexprlanguage -s hscript clip_start_segment1
-opuserdata -n '___Version___' -v '' clip_start_segment1
-
-# Node sort7 (Sop/sort)
-opadd -e -n sort sort7
-oplocate -x -3.7113900000000002 -y -7.0390700020623207 sort7
-opspareds "" sort7
+# Node switchif2 (Sop/switchif)
+opadd -e -n switchif switchif2
+oplocate -x 1.6191 -y -18.224900000000002 switchif2
+opspareds "" switchif2
+opparm switchif2  tests ( 1 )
 chblockbegin
-chadd -t 0 0 sort7 pointreverse
-chkey -t 0 -v 0 -m 0 -a 0 -A 0 -T a  -F 'detail(0,"reversed_point_order",0)==1' sort7/pointreverse
+chadd -t 0 0 switchif2 expr1
+chkey -t 0 -v 1 -m 0 -a 0 -A 0 -T a  -F 'ch("../Alignment")==0' switchif2/expr1
 chblockend
-opparm -V 20.5.370 sort7 pointsfolder ( 0 ) ptgroup ( "" ) ptsort ( none ) pointseed ( 0 ) pointoffset ( 0 ) pointprox ( 0 0 0 ) pointobjpath ( "" ) pointdir ( 0 1 0 ) pointexpr ( 0 ) pointattrib ( "" ) pointattribcomp ( 0 ) pointreverse ( pointreverse ) primitivesfolder ( 0 ) primgroup ( "" ) primsort ( none ) primseed ( 0 ) primoffset ( 0 ) primprox ( 0 0 0 ) primobjpath ( "" ) primdir ( 0 1 0 ) primexpr ( 0 ) primattrib ( "" ) primattribcomp ( 0 ) primreverse ( off ) vertexprimorder ( on )
-chlock sort7 -*
-chautoscope sort7 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off sort7
-nbop __netbox5 add sort7
-opexprlanguage -s hscript sort7
-opuserdata -n '___Version___' -v '20.5.370' sort7
+opparm -V 20.5.370 switchif2 mergecondition ( all ) testinput ( first ) tests ( 1 ) enable1 ( on ) type1 ( expr ) expr1 ( expr1 ) attribtype1 ( all ) attribowner1 ( point ) attributes1 ( "" ) attribvaltype1 ( flt ) attribfloatcomp1 ( equal ) attribstringcomp1 ( equal ) attribval1 ( 0 ) attribsval1 ( "" ) counttype1 ( points ) countgroup1 ( "" ) countcomp1 ( equal ) countval1 ( 0 ) hasinputtype1 ( wired )
+chlock switchif2 -*
+chautoscope switchif2 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off switchif2
+opexprlanguage -s hscript switchif2
+opuserdata -n '___Version___' -v '20.5.370' switchif2
 
-# Node check_if_point_is_ascending_order1 (Sop/attribwrangle)
-opadd -e -n attribwrangle check_if_point_is_ascending_order1
-oplocate -x -3.7143899999999999 -y -6.155570002062321 check_if_point_is_ascending_order1
-opspareds "" check_if_point_is_ascending_order1
-opparm check_if_point_is_ascending_order1  bindings ( 0 ) groupbindings ( 0 )
-opparm check_if_point_is_ascending_order1 folder0 ( 0 0 ) group ( "" ) grouptype ( guess ) class ( detail ) vex_numcount ( 10 ) vex_threadjobsize ( 1024 ) snippet ( '// distance_pointsegment(q, p0, p1)\n// https://www.sidefx.com/docs/houdini/vex/functions/distance_pointsegment.html\n\n//int ps[] = primpoints(0, 0);\n//for(int i=0; i<len(ps); ++i)\n//    printf("ps[%d]: %d\\n", i, ps[i] );\n\n\n//printf("Is closest_id[0]==0 ? %d\\n", point(0, "closest_id", 0)==0 );\n\n//i@reversed_point_order = point(0, "closest_id", 0)!=0;\ni@reversed_point_order = point(0, "closest_point_id", 0)!=0;\n' ) exportlist ( * ) vex_strict ( off ) autobind ( on ) bindings ( 0 ) groupautobind ( on ) groupbindings ( 0 ) vex_cwdpath ( . ) vex_outputmask ( * ) vex_updatenmls ( off ) vex_matchattrib ( id ) vex_inplace ( off ) vex_selectiongroup ( "" ) vex_precision ( auto )
-chlock check_if_point_is_ascending_order1 -*
-chautoscope check_if_point_is_ascending_order1 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off check_if_point_is_ascending_order1
-nbop __netbox5 add check_if_point_is_ascending_order1
-opexprlanguage -s hscript check_if_point_is_ascending_order1
-opuserdata -n '___Version___' -v '' check_if_point_is_ascending_order1
+# Node add4 (Sop/add)
+opadd -e -n add add4
+oplocate -x 5.6876100000000003 -y -23.632200000000001 add4
+opspareds "" add4
+opparm add4  points ( 0 ) prims ( 1 )
+opparm -V 20.5.370 add4 stdswitcher ( 1 1 1 ) keep ( on ) points ( 0 ) remove ( on ) switcher ( 1 1 ) prims ( 1 ) group ( "" ) add ( all ) inc ( 2 ) attrname ( "" ) closedall ( on ) addparticlesystem ( off ) particlegroup ( "" ) appendunusedtoparticlesystem ( off ) prim0 ( "" ) closed0 ( off )
+chlock add4 -*
+chautoscope add4 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off add4
+opexprlanguage -s hscript add4
+opuserdata -n '___Version___' -v '20.5.370' add4
 
-# Node merge1 (Sop/merge)
-opadd -e -n merge merge1
-oplocate -x -2.7120700000000002 -y -14.826300002062322 merge1
-opspareds "" merge1
-opparm -V 20.5.370 merge1
-chlock merge1 -*
-chautoscope merge1 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off merge1
-nbop __netbox7 add merge1
-opexprlanguage -s hscript merge1
-opuserdata -n '___Version___' -v '20.5.370' merge1
+# Node merge7 (Sop/merge)
+opadd -e -n merge merge7
+oplocate -x 5.6864600000000003 -y -21.5688 merge7
+opspareds "" merge7
+opparm -V 20.5.370 merge7
+chlock merge7 -*
+chautoscope merge7 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off merge7
+opexprlanguage -s hscript merge7
+opuserdata -n '___Version___' -v '20.5.370' merge7
 
-# Node add6 (Sop/add)
-opadd -e -n add add6
-oplocate -x -2.7109200000000002 -y -16.702700002062318 add6
-opspareds "" add6
-opparm add6  points ( 0 ) prims ( 1 )
-opparm -V 20.5.370 add6 stdswitcher ( 1 1 1 ) keep ( off ) points ( 0 ) remove ( off ) switcher ( 1 1 ) prims ( 1 ) group ( "" ) add ( all ) inc ( 2 ) attrname ( "" ) closedall ( on ) addparticlesystem ( off ) particlegroup ( "" ) appendunusedtoparticlesystem ( off ) prim0 ( "" ) closed0 ( off )
-chlock add6 -*
-chautoscope add6 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off add6
-nbop __netbox7 add add6
-opexprlanguage -s hscript add6
-opuserdata -n '___Version___' -v '20.5.370' add6
+# Node reverse_point_order (Sop/sort)
+opadd -e -n sort reverse_point_order
+oplocate -x 5.6876100000000003 -y -20.137799999999999 reverse_point_order
+opspareds "" reverse_point_order
+opparm -V 20.5.370 reverse_point_order pointsfolder ( 0 ) ptgroup ( "" ) ptsort ( none ) pointseed ( 0 ) pointoffset ( 0 ) pointprox ( 0 0 0 ) pointobjpath ( "" ) pointdir ( 0 1 0 ) pointexpr ( 0 ) pointattrib ( "" ) pointattribcomp ( 0 ) pointreverse ( on ) primitivesfolder ( 0 ) primgroup ( "" ) primsort ( none ) primseed ( 0 ) primoffset ( 0 ) primprox ( 0 0 0 ) primobjpath ( "" ) primdir ( 0 1 0 ) primexpr ( 0 ) primattrib ( "" ) primattribcomp ( 0 ) primreverse ( off ) vertexprimorder ( on )
+chlock reverse_point_order -*
+chautoscope reverse_point_order -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off reverse_point_order
+opexprlanguage -s hscript reverse_point_order
+opuserdata -n '___Version___' -v '20.5.370' reverse_point_order
 
-# Node fuse1 (Sop/fuse::2.0)
-opadd -e -n fuse::2.0 fuse1
-oplocate -x -2.7109200000000002 -y -15.853900002062321 fuse1
-opspareds "" fuse1
-opparm fuse1  numpointattribs ( 0 ) numgroups ( 0 )
-opparm -V 20.5.370 fuse1 querygroup ( "" ) usetargetgroup ( off ) targetgroup ( "" ) modifyboth ( off ) posattrib ( P ) snapgroup ( 0 ) snaptype ( distancesnap ) algorithm ( lowest ) usetol3d ( on ) tol3d ( 0.001 ) targetptattrib ( snap_to ) targetclass ( point ) usepositionsnapmethod ( on ) positionsnapmethod ( average ) positionsnapweightname ( weight ) useradiusattrib ( off ) radiusattrib ( pscale ) usematchattrib ( off ) matchattrib ( name ) matchtype ( match ) matchtol ( 0 ) gridtype ( spacing ) gridspacing ( 0.1 0.1 0.1 ) gridlines ( 10 10 10 ) gridpow2 ( 3 3 3 ) gridoffset ( 0 0 0 ) gridround ( nearest ) usegridtol ( on ) gridtol ( 10 ) consolidategroup ( 0 ) consolidatesnappedpoints ( on ) keepconsolidatedpoints ( off ) deldegen ( on ) deldegenpoints ( on ) delunusedpoints ( off ) outputgroup ( 0 ) recomputenml ( on ) createsnappedgroup ( off ) snappedgroupname ( snapped_points ) createsnappedattrib ( off ) snappedattribname ( snapped_to ) numpointattribs ( 0 ) numgroups ( 0 )
-chlock fuse1 -*
-chautoscope fuse1 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off fuse1
-nbop __netbox7 add fuse1
-opexprlanguage -s hscript fuse1
-opuserdata -n '___Version___' -v '20.5.370' fuse1
+# Node output3 (Sop/output)
+opadd -e -n output output3
+oplocate -x 5.6876100000000003 -y -27.941500000000001 output3
+opspareds "" output3
+opparm -V 20.5.370 output3 outputidx ( 3 )
+chlock output3 -*
+chautoscope output3 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off output3
+opexprlanguage -s hscript output3
+opuserdata -n '___Version___' -v '20.5.370' output3
 
-# Node merge2 (Sop/merge)
-opadd -e -n merge merge2
-oplocate -x 2.3025899999999999 -y -14.823000002062322 merge2
-opspareds "" merge2
-opparm -V 20.5.370 merge2
-chlock merge2 -*
-chautoscope merge2 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off merge2
-nbop __netbox7 add merge2
-opexprlanguage -s hscript merge2
-opuserdata -n '___Version___' -v '20.5.370' merge2
+# Node output4 (Sop/output)
+opadd -e -n output output4
+oplocate -x 3.62324 -y -37.930500000000002 output4
+opspareds "" output4
+opparm -V 20.5.370 output4 outputidx ( 2 )
+chlock output4 -*
+chautoscope output4 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off output4
+opexprlanguage -s hscript output4
+opuserdata -n '___Version___' -v '20.5.370' output4
 
-# Node add7 (Sop/add)
-opadd -e -n add add7
-oplocate -x 2.3037399999999999 -y -16.699400002062319 add7
-opspareds "" add7
-opparm add7  points ( 0 ) prims ( 1 )
-opparm -V 20.5.370 add7 stdswitcher ( 1 1 1 ) keep ( off ) points ( 0 ) remove ( off ) switcher ( 1 1 ) prims ( 1 ) group ( "" ) add ( all ) inc ( 2 ) attrname ( "" ) closedall ( on ) addparticlesystem ( off ) particlegroup ( "" ) appendunusedtoparticlesystem ( off ) prim0 ( "" ) closed0 ( off )
-chlock add7 -*
-chautoscope add7 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off add7
-nbop __netbox7 add add7
-opexprlanguage -s hscript add7
-opuserdata -n '___Version___' -v '20.5.370' add7
+# Node foreach_end2 (Sop/block_end)
+opadd -e -n block_end foreach_end2
+oplocate -x 0.00160001 -y -7.7677199999999997 foreach_end2
+opspareds "" foreach_end2
+opparm -V 20.5.370 foreach_end2 itermethod ( pieces ) method ( merge ) iterations ( 10 ) startvalue ( 1 ) increment ( 1 ) class ( primitive ) useattrib ( off ) attrib ( "" ) usemaxiter ( off ) maxiter ( 10 ) blockpath ( ../foreach_begin2 ) templatepath ( ../foreach_begin2 ) resetcookpass ( 0 ) dosinglepass ( off ) singlepass ( 1 ) stopcondition ( 0 ) multithread ( off )
+chlock foreach_end2 -*
+chautoscope foreach_end2 -*
+opcolor -c 0.75 0.40000000596046448 0 foreach_end2
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F off -c on -e on -b off foreach_end2
+opexprlanguage -s hscript foreach_end2
+opuserdata -n '___Version___' -v '20.5.370' foreach_end2
 
-# Node fuse2 (Sop/fuse::2.0)
-opadd -e -n fuse::2.0 fuse2
-oplocate -x 2.3037399999999999 -y -15.850600002062322 fuse2
-opspareds "" fuse2
-opparm fuse2  numpointattribs ( 0 ) numgroups ( 0 )
-opparm -V 20.5.370 fuse2 querygroup ( "" ) usetargetgroup ( off ) targetgroup ( "" ) modifyboth ( off ) posattrib ( P ) snapgroup ( 0 ) snaptype ( distancesnap ) algorithm ( lowest ) usetol3d ( on ) tol3d ( 0.001 ) targetptattrib ( snap_to ) targetclass ( point ) usepositionsnapmethod ( on ) positionsnapmethod ( average ) positionsnapweightname ( weight ) useradiusattrib ( off ) radiusattrib ( pscale ) usematchattrib ( off ) matchattrib ( name ) matchtype ( match ) matchtol ( 0 ) gridtype ( spacing ) gridspacing ( 0.1 0.1 0.1 ) gridlines ( 10 10 10 ) gridpow2 ( 3 3 3 ) gridoffset ( 0 0 0 ) gridround ( nearest ) usegridtol ( on ) gridtol ( 10 ) consolidategroup ( 0 ) consolidatesnappedpoints ( on ) keepconsolidatedpoints ( off ) deldegen ( on ) deldegenpoints ( on ) delunusedpoints ( off ) outputgroup ( 0 ) recomputenml ( on ) createsnappedgroup ( off ) snappedgroupname ( snapped_points ) createsnappedattrib ( off ) snappedattribname ( snapped_to ) numpointattribs ( 0 ) numgroups ( 0 )
-chlock fuse2 -*
-chautoscope fuse2 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off fuse2
-nbop __netbox7 add fuse2
-opexprlanguage -s hscript fuse2
-opuserdata -n '___Version___' -v '20.5.370' fuse2
+# Node foreach_begin2 (Sop/block_begin)
+opadd -e -n block_begin foreach_begin2
+oplocate -x 0.0016000000000000001 -y 1.05881 foreach_begin2
+opspareds "" foreach_begin2
+opparm -V 20.5.370 foreach_begin2 method ( piece ) blockpath ( ../foreach_end2 ) resetcookpass ( 0 ) createmetablock ( 0 ) label1 ( 'iteration, numiterations, value, ivalue' )
+chlock foreach_begin2 -*
+chautoscope foreach_begin2 -*
+opcolor -c 0.75 0.40000000596046448 0 foreach_begin2
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F off -c on -e on -b off foreach_begin2
+opexprlanguage -s hscript foreach_begin2
+opuserdata -n '___Version___' -v '20.5.370' foreach_begin2
 
-# Node merge3 (Sop/merge)
-opadd -e -n merge merge3
-oplocate -x 7.3157899999999998 -y -14.856400002062323 merge3
-opspareds "" merge3
-opparm -V 20.5.370 merge3
-chlock merge3 -*
-chautoscope merge3 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off merge3
-nbop __netbox7 add merge3
-opexprlanguage -s hscript merge3
-opuserdata -n '___Version___' -v '20.5.370' merge3
+# Node rewire5 (Sop/rewire)
+opadd -e -n rewire rewire5
+oplocate -x -7.7094900000000004e-09 -y -1.0517799999999999 rewire5
+opspareds "" rewire5
+opparm -V 20.5.370 rewire5 group ( "" ) grouptype ( guess ) attrib ( rewire_to ) deletetargetpointattrib ( off ) recurse ( off ) keepunusedpoints ( off ) createorigattrib ( off ) origattrib ( rewired_from )
+chlock rewire5 -*
+chautoscope rewire5 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off rewire5
+nbop __netbox14 add rewire5
+opexprlanguage -s hscript rewire5
+opuserdata -n '___Version___' -v '20.5.370' rewire5
 
-# Node add8 (Sop/add)
-opadd -e -n add add8
-oplocate -x 7.3169399999999998 -y -16.660500002062321 add8
-opspareds "" add8
-opparm add8  points ( 0 ) prims ( 1 )
-opparm -V 20.5.370 add8 stdswitcher ( 1 1 1 ) keep ( off ) points ( 0 ) remove ( off ) switcher ( 1 1 ) prims ( 1 ) group ( "" ) add ( all ) inc ( 2 ) attrname ( "" ) closedall ( on ) addparticlesystem ( off ) particlegroup ( "" ) appendunusedtoparticlesystem ( off ) prim0 ( "" ) closed0 ( off )
-chlock add8 -*
-chautoscope add8 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off add8
-nbop __netbox7 add add8
-opexprlanguage -s hscript add8
-opuserdata -n '___Version___' -v '20.5.370' add8
+# Node attribwrangle12 (Sop/attribwrangle)
+opadd -e -n attribwrangle attribwrangle12
+oplocate -x -0.00300001 -y -0.21892200000000001 attribwrangle12
+opspareds "" attribwrangle12
+opparm attribwrangle12  bindings ( 0 ) groupbindings ( 0 )
+opparm attribwrangle12 folder0 ( 0 0 ) group ( "" ) grouptype ( guess ) class ( vertex ) vex_numcount ( 10 ) vex_threadjobsize ( 1024 ) snippet ( '//int pt = vertexpoint(0, @vtxnum);\n//printf( "@numvtx: %d, pt: %d\\n", @vtxnum, pt );\n\nif( vertexpoint(0, @vtxnum) != @vtxnum )\n    i@rewire_to = (@numvtx-1)-@vtxnum;\nelse\n    i@rewire_to = @vtxnum;\n' ) exportlist ( * ) vex_strict ( off ) autobind ( on ) bindings ( 0 ) groupautobind ( on ) groupbindings ( 0 ) vex_cwdpath ( . ) vex_outputmask ( * ) vex_updatenmls ( off ) vex_matchattrib ( id ) vex_inplace ( off ) vex_selectiongroup ( "" ) vex_precision ( auto )
+chlock attribwrangle12 -*
+chautoscope attribwrangle12 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off attribwrangle12
+nbop __netbox14 add attribwrangle12
+opexprlanguage -s hscript attribwrangle12
+opuserdata -n '___Version___' -v '' attribwrangle12
 
-# Node fuse3 (Sop/fuse::2.0)
-opadd -e -n fuse::2.0 fuse3
-oplocate -x 7.3169399999999998 -y -15.81180000206232 fuse3
-opspareds "" fuse3
-opparm fuse3  numpointattribs ( 0 ) numgroups ( 0 )
-opparm -V 20.5.370 fuse3 querygroup ( "" ) usetargetgroup ( off ) targetgroup ( "" ) modifyboth ( off ) posattrib ( P ) snapgroup ( 0 ) snaptype ( distancesnap ) algorithm ( lowest ) usetol3d ( on ) tol3d ( 0.001 ) targetptattrib ( snap_to ) targetclass ( point ) usepositionsnapmethod ( on ) positionsnapmethod ( average ) positionsnapweightname ( weight ) useradiusattrib ( off ) radiusattrib ( pscale ) usematchattrib ( off ) matchattrib ( name ) matchtype ( match ) matchtol ( 0 ) gridtype ( spacing ) gridspacing ( 0.1 0.1 0.1 ) gridlines ( 10 10 10 ) gridpow2 ( 3 3 3 ) gridoffset ( 0 0 0 ) gridround ( nearest ) usegridtol ( on ) gridtol ( 10 ) consolidategroup ( 0 ) consolidatesnappedpoints ( on ) keepconsolidatedpoints ( off ) deldegen ( on ) deldegenpoints ( on ) delunusedpoints ( off ) outputgroup ( 0 ) recomputenml ( on ) createsnappedgroup ( off ) snappedgroupname ( snapped_points ) createsnappedattrib ( off ) snappedattribname ( snapped_to ) numpointattribs ( 0 ) numgroups ( 0 )
-chlock fuse3 -*
-chautoscope fuse3 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off fuse3
-nbop __netbox7 add fuse3
-opexprlanguage -s hscript fuse3
-opuserdata -n '___Version___' -v '20.5.370' fuse3
+# Node clip_end_segment4 (Sop/attribwrangle)
+opadd -e -n attribwrangle clip_end_segment4
+oplocate -x -0.0030000000000000001 -y -5.7033199999999997 clip_end_segment4
+opspareds '    group {         name    "folder1"         label   "Code"          parm {             name    "group"             baseparm             label   "Group"             export  none             bindselector uvselect "Modify Attribs"                 "Select the geometry to affect and press Enter to complete."                 0 1 0xffffffff 0 grouptype 0         }         parm {             name    "grouptype"             baseparm             label   "Group Type"             export  none         }         parm {             name    "class"             baseparm             label   "Run Over"             export  none         }         parm {             name    "vex_numcount"             baseparm             label   "Number Count"             export  none         }         parm {             name    "vex_threadjobsize"             baseparm             label   "Thread Job Size"             export  none         }         groupsimple {             name    "folder_generatedparms_snippet"             label   "Generated Channel Parameters"             grouptag { "group_type" "simple" }             grouptag { "sidefx::look" "blank" }              parm {                 name    "p0"                 label   "P0"                 type    integer                 default { "0" }                 range   { 0 10 }             }             parm {                 name    "p1"                 label   "P1"                 type    integer                 default { "0" }                 range   { 0 10 }             }             parm {                 name    "W"                 label   "W"                 type    float                 default { "0" }                 range   { 0 1 }             }         }          parm {             name    "snippet"             baseparm             label   "VEXpression"             export  all         }         parm {             name    "exportlist"             baseparm             label   "Attributes to Create"             export  none         }         parm {             name    "vex_strict"             baseparm             label   "Enforce Prototypes"             export  none         }     }      group {         name    "folder1_1"         label   "Bindings"          parm {             name    "autobind"             baseparm             label   "Autobind by Name"             export  none         }         multiparm {             name    "bindings"             label    "Number of Bindings"             baseparm             default 0             parmtag { "autoscope" "0000000000000000" }             parmtag { "multistartoffset" "1" }              parm {                 name    "bindname#"                 baseparm                 label   "Attribute Name"                 export  none             }             parm {                 name    "bindparm#"                 baseparm                 label   "VEX Parameter"                 export  none             }         }          parm {             name    "groupautobind"             baseparm             label   "Autobind Groups by Name"             export  none         }         multiparm {             name    "groupbindings"             label    "Group Bindings"             baseparm             default 0             parmtag { "autoscope" "0000000000000000" }             parmtag { "multistartoffset" "1" }              parm {                 name    "bindgroupname#"                 baseparm                 label   "Group Name"                 export  none             }             parm {                 name    "bindgroupparm#"                 baseparm                 label   "VEX Parameter"                 export  none             }         }          parm {             name    "vex_cwdpath"             baseparm             label   "Evaluation Node Path"             export  none         }         parm {             name    "vex_outputmask"             baseparm             label   "Export Parameters"             export  none         }         parm {             name    "vex_updatenmls"             baseparm             label   "Update Normals If Displaced"             export  none         }         parm {             name    "vex_matchattrib"             baseparm             label   "Attribute to Match"             export  none         }         parm {             name    "vex_inplace"             baseparm             label   "Compute Results In Place"             export  none         }         parm {             name    "vex_selectiongroup"             baseparm             label   "Output Selection Group"             export  none         }         parm {             name    "vex_precision"             baseparm             label   "VEX Precision"             export  none         }     }  ' clip_end_segment4
+opparm clip_end_segment4  bindings ( 0 ) groupbindings ( 0 )
+chblockbegin
+chadd -t 0 0 clip_end_segment4 W
+chkey -t 0 -v 0 -m 0 -a 0 -A 0 -T a  -F 'ch("../W")' clip_end_segment4/W
+chblockend
+opparm clip_end_segment4 folder0 ( 0 0 ) group ( "" ) grouptype ( guess ) class ( detail ) vex_numcount ( 10 ) vex_threadjobsize ( 1024 ) snippet ( '/*\np0         p(clip plane)       p1\n|---------------x--------------|\n      <--- n(=normalize(v))\n\n                |--------------|\n                 remaining part\n                 after clip\n*/\n\n\n\nint p0_idx = chi("p0");\nint p1_idx = chi("p1");\nfloat w = ch("W");\nfloat ext = w * (chi("../Alignment")==2 ? 0.5 : 1.0);\n/*\nint al = chi("../Alignment");\nif(al==2) width_cos *= 0.5;\nelse width_cos *= 1.0;\n*/\n\nint ps[] = primpoints(0, 0);\nvector p0 = point(geoself(), "P", ps[p0_idx]);\nvector p1 = point(geoself(), "P", ps[p1_idx]);\nvector v = p0 - p1;\nvector n = normalize(v);\n\nvector p = p0 - ext * n;//w*v;\nfloat d = -dot(n,p);\n\nif( dot(p-p1,n)<=0.0 )\n{\n    setpointattrib(geoself(), "P", ps[p0_idx], p1);\n    return;\n}\n\n\nvector4 plane = set(n.x, n.y, n.z, d);\n//printf( "%f\\n", plane );\n\nint result=-1;\nclip( result, p1, p0, plane );\n//printf( "%d, %f, %f\\n", result, p0, p1 );\n\nsetpointattrib(geoself(), "P", ps[p0_idx], p0);\n//setpointattrib(geoself(), "P", ps[p1_idx], p1);\n' ) exportlist ( * ) vex_strict ( off ) autobind ( on ) bindings ( 0 ) groupautobind ( on ) groupbindings ( 0 ) vex_cwdpath ( . ) vex_outputmask ( * ) vex_updatenmls ( off ) vex_matchattrib ( id ) vex_inplace ( off ) vex_selectiongroup ( "" ) vex_precision ( auto ) folder1 ( 0 0 ) folder_generatedparms_snippet ( 0 ) p0 ( -1 ) p1 ( -2 ) W ( W )
+chlock clip_end_segment4 -* +p0 +p1
+chautoscope clip_end_segment4 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off clip_end_segment4
+nbop __netbox15 add clip_end_segment4
+opexprlanguage -s hscript clip_end_segment4
+opuserdata -n '___Version___' -v '' clip_end_segment4
 
-# Node blast1 (Sop/blast)
-opadd -e -n blast blast1
-oplocate -x 0.94432099999999985 -y -16.532300002062321 blast1
-opspareds "" blast1
-opparm -V 20.5.370 blast1 group ( right ) grouptype ( guess ) computenorms ( off ) negate ( on ) fillhole ( off ) removegrp ( off )
-chlock blast1 -*
-chautoscope blast1 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b on blast1
-nbop __netbox7 add blast1
-opexprlanguage -s hscript blast1
-opuserdata -n '___Version___' -v '20.5.370' blast1
+# Node clip_start_segment4 (Sop/attribwrangle)
+opadd -e -n attribwrangle clip_start_segment4
+oplocate -x -0.0030000000000000001 -y -4.7837199999999998 clip_start_segment4
+opspareds '    group {         name    "folder1"         label   "Code"          parm {             name    "group"             baseparm             label   "Group"             export  none             bindselector uvselect "Modify Attribs"                 "Select the geometry to affect and press Enter to complete."                 0 1 0xffffffff 0 grouptype 0         }         parm {             name    "grouptype"             baseparm             label   "Group Type"             export  none         }         parm {             name    "class"             baseparm             label   "Run Over"             export  none         }         parm {             name    "vex_numcount"             baseparm             label   "Number Count"             export  none         }         parm {             name    "vex_threadjobsize"             baseparm             label   "Thread Job Size"             export  none         }         groupsimple {             name    "folder_generatedparms_snippet"             label   "Generated Channel Parameters"             grouptag { "group_type" "simple" }             grouptag { "sidefx::look" "blank" }              parm {                 name    "p0"                 label   "P0"                 type    integer                 default { "0" }                 range   { 0 10 }             }             parm {                 name    "p1"                 label   "P1"                 type    integer                 default { "0" }                 range   { 0 10 }             }             parm {                 name    "W"                 label   "W"                 type    float                 default { "0" }                 range   { 0 1 }             }         }          parm {             name    "snippet"             baseparm             label   "VEXpression"             export  all         }         parm {             name    "exportlist"             baseparm             label   "Attributes to Create"             export  none         }         parm {             name    "vex_strict"             baseparm             label   "Enforce Prototypes"             export  none         }     }      group {         name    "folder1_1"         label   "Bindings"          parm {             name    "autobind"             baseparm             label   "Autobind by Name"             export  none         }         multiparm {             name    "bindings"             label    "Number of Bindings"             baseparm             default 0             parmtag { "autoscope" "0000000000000000" }             parmtag { "multistartoffset" "1" }              parm {                 name    "bindname#"                 baseparm                 label   "Attribute Name"                 export  none             }             parm {                 name    "bindparm#"                 baseparm                 label   "VEX Parameter"                 export  none             }         }          parm {             name    "groupautobind"             baseparm             label   "Autobind Groups by Name"             export  none         }         multiparm {             name    "groupbindings"             label    "Group Bindings"             baseparm             default 0             parmtag { "autoscope" "0000000000000000" }             parmtag { "multistartoffset" "1" }              parm {                 name    "bindgroupname#"                 baseparm                 label   "Group Name"                 export  none             }             parm {                 name    "bindgroupparm#"                 baseparm                 label   "VEX Parameter"                 export  none             }         }          parm {             name    "vex_cwdpath"             baseparm             label   "Evaluation Node Path"             export  none         }         parm {             name    "vex_outputmask"             baseparm             label   "Export Parameters"             export  none         }         parm {             name    "vex_updatenmls"             baseparm             label   "Update Normals If Displaced"             export  none         }         parm {             name    "vex_matchattrib"             baseparm             label   "Attribute to Match"             export  none         }         parm {             name    "vex_inplace"             baseparm             label   "Compute Results In Place"             export  none         }         parm {             name    "vex_selectiongroup"             baseparm             label   "Output Selection Group"             export  none         }         parm {             name    "vex_precision"             baseparm             label   "VEX Precision"             export  none         }     }  ' clip_start_segment4
+opparm clip_start_segment4  bindings ( 0 ) groupbindings ( 0 )
+chblockbegin
+chadd -t 0 0 clip_start_segment4 W
+chkey -t 0 -v 0 -m 0 -a 0 -A 0 -T a  -F 'ch("../W")' clip_start_segment4/W
+chblockend
+opparm clip_start_segment4 folder0 ( 0 0 ) group ( "" ) grouptype ( guess ) class ( detail ) vex_numcount ( 10 ) vex_threadjobsize ( 1024 ) snippet ( '/*\np0         p(clip plane)       p1\n|---------------x--------------|\n      <--- n(=normalize(v))\n\n                |--------------|\n                 remaining part\n                 after clip\n*/\n\n\n\nint p0_idx = chi("p0");\nint p1_idx = chi("p1");\nfloat w = ch("W");\nfloat ext = w * (chi("../Alignment")==2 ? 0.5 : 1.0);\n/*\nint al = chi("../Alignment");\nif(al==2) width_cos *= 0.5;\nelse width_cos *= 1.0;\n*/\n\nint ps[] = primpoints(0, 0);\nvector p0 = point(geoself(), "P", ps[p0_idx]);\nvector p1 = point(geoself(), "P", ps[p1_idx]);\nvector v = p0 - p1;\nvector n = normalize(v);\n\nvector p = p0 - ext * n;//w*v;\nfloat d = -dot(n,p);\n\nif( dot(p-p1,n)<=0.0 )\n{\n    setpointattrib(geoself(), "P", ps[p0_idx], p1);\n    return;\n}\n\n\nvector4 plane = set(n.x, n.y, n.z, d);\n//printf( "%f\\n", plane );\n\nint result=-1;\nclip( result, p1, p0, plane );\n//printf( "%d, %f, %f\\n", result, p0, p1 );\n\nsetpointattrib(geoself(), "P", ps[p0_idx], p0);\n//setpointattrib(geoself(), "P", ps[p1_idx], p1);\n' ) exportlist ( * ) vex_strict ( off ) autobind ( on ) bindings ( 0 ) groupautobind ( on ) groupbindings ( 0 ) vex_cwdpath ( . ) vex_outputmask ( * ) vex_updatenmls ( off ) vex_matchattrib ( id ) vex_inplace ( off ) vex_selectiongroup ( "" ) vex_precision ( auto ) folder1 ( 0 0 ) folder_generatedparms_snippet ( 0 ) p0 ( 0 ) p1 ( 1 ) W ( W )
+chlock clip_start_segment4 -* +p0 +p1
+chautoscope clip_start_segment4 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off clip_start_segment4
+nbop __netbox15 add clip_start_segment4
+opexprlanguage -s hscript clip_start_segment4
+opuserdata -n '___Version___' -v '' clip_start_segment4
 
-# Node sort9 (Sop/sort)
-opadd -e -n sort sort9
-oplocate -x 9.2866199999999992 -y -10.308970002062321 sort9
-opspareds "" sort9
-opparm -V 20.5.370 sort9 pointsfolder ( 0 ) ptgroup ( "" ) ptsort ( none ) pointseed ( 0 ) pointoffset ( 0 ) pointprox ( 0 0 0 ) pointobjpath ( "" ) pointdir ( 0 1 0 ) pointexpr ( 0 ) pointattrib ( "" ) pointattribcomp ( 0 ) pointreverse ( on ) primitivesfolder ( 0 ) primgroup ( "" ) primsort ( none ) primseed ( 0 ) primoffset ( 0 ) primprox ( 0 0 0 ) primobjpath ( "" ) primdir ( 0 1 0 ) primexpr ( 0 ) primattrib ( "" ) primattribcomp ( 0 ) primreverse ( off ) vertexprimorder ( on )
-chlock sort9 -*
-chautoscope sort9 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off sort9
-opexprlanguage -s hscript sort9
-opuserdata -n '___Version___' -v '20.5.370' sort9
+# Node sort13 (Sop/sort)
+opadd -e -n sort sort13
+oplocate -x -4.2431099999999998e-09 -y -3.3736100000000002 sort13
+opspareds "" sort13
+chblockbegin
+chadd -t 0 0 sort13 pointreverse
+chkey -t 0 -v 0 -m 0 -a 0 -A 0 -T a  -F 'detail(0,"reversed_point_order",0)==1' sort13/pointreverse
+chblockend
+opparm -V 20.5.370 sort13 pointsfolder ( 0 ) ptgroup ( "" ) ptsort ( none ) pointseed ( 0 ) pointoffset ( 0 ) pointprox ( 0 0 0 ) pointobjpath ( "" ) pointdir ( 0 1 0 ) pointexpr ( 0 ) pointattrib ( "" ) pointattribcomp ( 0 ) pointreverse ( pointreverse ) primitivesfolder ( 0 ) primgroup ( "" ) primsort ( none ) primseed ( 0 ) primoffset ( 0 ) primprox ( 0 0 0 ) primobjpath ( "" ) primdir ( 0 1 0 ) primexpr ( 0 ) primattrib ( "" ) primattribcomp ( 0 ) primreverse ( off ) vertexprimorder ( on )
+chlock sort13 -*
+chautoscope sort13 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off sort13
+nbop __netbox16 add sort13
+opexprlanguage -s hscript sort13
+opuserdata -n '___Version___' -v '20.5.370' sort13
 
-# Node blast2 (Sop/blast)
-opadd -e -n blast blast2
-oplocate -x -4.1265799999999997 -y -16.702700002062318 blast2
-opspareds "" blast2
-opparm -V 20.5.370 blast2 group ( left ) grouptype ( guess ) computenorms ( off ) negate ( on ) fillhole ( off ) removegrp ( off )
-chlock blast2 -*
-chautoscope blast2 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b on blast2
-nbop __netbox7 add blast2
-opexprlanguage -s hscript blast2
-opuserdata -n '___Version___' -v '20.5.370' blast2
+# Node check_if_point_is_ascending_order4 (Sop/attribwrangle)
+opadd -e -n attribwrangle check_if_point_is_ascending_order4
+oplocate -x -0.00300001 -y -2.49011 check_if_point_is_ascending_order4
+opspareds "" check_if_point_is_ascending_order4
+opparm check_if_point_is_ascending_order4  bindings ( 0 ) groupbindings ( 0 )
+opparm check_if_point_is_ascending_order4 folder0 ( 0 0 ) group ( "" ) grouptype ( guess ) class ( detail ) vex_numcount ( 10 ) vex_threadjobsize ( 1024 ) snippet ( '// distance_pointsegment(q, p0, p1)\n// https://www.sidefx.com/docs/houdini/vex/functions/distance_pointsegment.html\n\n//int ps[] = primpoints(0, 0);\n//for(int i=0; i<len(ps); ++i)\n//    printf("ps[%d]: %d\\n", i, ps[i] );\n\n\n//printf("Is closest_id[0]==0 ? %d\\n", point(0, "closest_id", 0)==0 );\n\n//i@reversed_point_order = point(0, "closest_id", 0)!=0;\ni@reversed_point_order = point(0, "closest_point_id", 0)!=0;\n' ) exportlist ( * ) vex_strict ( off ) autobind ( on ) bindings ( 0 ) groupautobind ( on ) groupbindings ( 0 ) vex_cwdpath ( . ) vex_outputmask ( * ) vex_updatenmls ( off ) vex_matchattrib ( id ) vex_inplace ( off ) vex_selectiongroup ( "" ) vex_precision ( auto )
+chlock check_if_point_is_ascending_order4 -*
+chautoscope check_if_point_is_ascending_order4 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off check_if_point_is_ascending_order4
+nbop __netbox16 add check_if_point_is_ascending_order4
+opexprlanguage -s hscript check_if_point_is_ascending_order4
+opuserdata -n '___Version___' -v '' check_if_point_is_ascending_order4
 
-# Node sort5 (Sop/sort)
-opadd -e -n sort sort5
-oplocate -x -3.7113900000000002 -y -10.908100002062319 sort5
-opspareds "" sort5
-opparm -V 20.5.370 sort5 pointsfolder ( 0 ) ptgroup ( "" ) ptsort ( none ) pointseed ( 0 ) pointoffset ( 0 ) pointprox ( 0 0 0 ) pointobjpath ( "" ) pointdir ( 0 1 0 ) pointexpr ( 0 ) pointattrib ( "" ) pointattribcomp ( 0 ) pointreverse ( on ) primitivesfolder ( 0 ) primgroup ( "" ) primsort ( none ) primseed ( 0 ) primoffset ( 0 ) primprox ( 0 0 0 ) primobjpath ( "" ) primdir ( 0 1 0 ) primexpr ( 0 ) primattrib ( "" ) primattribcomp ( 0 ) primreverse ( off ) vertexprimorder ( on )
-chlock sort5 -*
-chautoscope sort5 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off sort5
-opexprlanguage -s hscript sort5
-opuserdata -n '___Version___' -v '20.5.370' sort5
+# Node fuse10 (Sop/fuse::2.0)
+opadd -e -n fuse::2.0 fuse10
+oplocate -x -1.17587e-09 -y -6.7412200000000002 fuse10
+opspareds "" fuse10
+opparm fuse10  numpointattribs ( 0 ) numgroups ( 0 )
+opparm -V 20.5.370 fuse10 querygroup ( "" ) usetargetgroup ( off ) targetgroup ( "" ) modifyboth ( off ) posattrib ( P ) snapgroup ( 0 ) snaptype ( distancesnap ) algorithm ( lowest ) usetol3d ( on ) tol3d ( 0.001 ) targetptattrib ( snap_to ) targetclass ( point ) usepositionsnapmethod ( on ) positionsnapmethod ( average ) positionsnapweightname ( weight ) useradiusattrib ( off ) radiusattrib ( pscale ) usematchattrib ( off ) matchattrib ( name ) matchtype ( match ) matchtol ( 0 ) gridtype ( spacing ) gridspacing ( 0.1 0.1 0.1 ) gridlines ( 10 10 10 ) gridpow2 ( 3 3 3 ) gridoffset ( 0 0 0 ) gridround ( nearest ) usegridtol ( on ) gridtol ( 10 ) consolidategroup ( 0 ) consolidatesnappedpoints ( on ) keepconsolidatedpoints ( off ) deldegen ( on ) deldegenpoints ( on ) delunusedpoints ( off ) outputgroup ( 0 ) recomputenml ( on ) createsnappedgroup ( off ) snappedgroupname ( snapped_points ) createsnappedattrib ( off ) snappedattribname ( snapped_to ) numpointattribs ( 0 ) numgroups ( 0 )
+chlock fuse10 -*
+chautoscope fuse10 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off fuse10
+opexprlanguage -s hscript fuse10
+opuserdata -n '___Version___' -v '20.5.370' fuse10
 
-# Node blast3 (Sop/blast)
-opadd -e -n blast blast3
-oplocate -x 5.3439500000000004 -y -16.433200002062321 blast3
-opspareds "" blast3
-opparm -V 20.5.370 blast3 group ( left ) grouptype ( guess ) computenorms ( off ) negate ( on ) fillhole ( off ) removegrp ( off )
-chlock blast3 -*
-chautoscope blast3 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b on blast3
-nbop __netbox7 add blast3
-opexprlanguage -s hscript blast3
-opuserdata -n '___Version___' -v '20.5.370' blast3
+# Node fuse11 (Sop/fuse::2.0)
+opadd -e -n fuse::2.0 fuse11
+oplocate -x 5.6876100000000003 -y -22.5776 fuse11
+opspareds "" fuse11
+opparm fuse11  numpointattribs ( 0 ) numgroups ( 0 )
+opparm -V 20.5.370 fuse11 querygroup ( "" ) usetargetgroup ( off ) targetgroup ( "" ) modifyboth ( off ) posattrib ( P ) snapgroup ( 0 ) snaptype ( distancesnap ) algorithm ( lowest ) usetol3d ( on ) tol3d ( 0.001 ) targetptattrib ( snap_to ) targetclass ( point ) usepositionsnapmethod ( on ) positionsnapmethod ( average ) positionsnapweightname ( weight ) useradiusattrib ( off ) radiusattrib ( pscale ) usematchattrib ( off ) matchattrib ( name ) matchtype ( match ) matchtol ( 0 ) gridtype ( spacing ) gridspacing ( 0.1 0.1 0.1 ) gridlines ( 10 10 10 ) gridpow2 ( 3 3 3 ) gridoffset ( 0 0 0 ) gridround ( nearest ) usegridtol ( on ) gridtol ( 10 ) consolidategroup ( 0 ) consolidatesnappedpoints ( on ) keepconsolidatedpoints ( off ) deldegen ( on ) deldegenpoints ( on ) delunusedpoints ( off ) outputgroup ( 0 ) recomputenml ( on ) createsnappedgroup ( off ) snappedgroupname ( snapped_points ) createsnappedattrib ( off ) snappedattribname ( snapped_to ) numpointattribs ( 0 ) numgroups ( 0 )
+chlock fuse11 -*
+chautoscope fuse11 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off fuse11
+opexprlanguage -s hscript fuse11
+opuserdata -n '___Version___' -v '20.5.370' fuse11
 
-# Node blast4 (Sop/blast)
-opadd -e -n blast blast4
-oplocate -x 9.4944100000000002 -y -16.248900002062321 blast4
-opspareds "" blast4
-opparm -V 20.5.370 blast4 group ( right ) grouptype ( guess ) computenorms ( off ) negate ( on ) fillhole ( off ) removegrp ( off )
-chlock blast4 -*
-chautoscope blast4 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b on blast4
-nbop __netbox7 add blast4
-opexprlanguage -s hscript blast4
-opuserdata -n '___Version___' -v '20.5.370' blast4
+# Node foreach_end1 (Sop/block_end)
+opadd -e -n block_end foreach_end1
+oplocate -x 0.00160001 -y -12.250500000000001 foreach_end1
+opspareds "" foreach_end1
+opparm -V 20.5.370 foreach_end1 itermethod ( pieces ) method ( merge ) iterations ( 10 ) startvalue ( 1 ) increment ( 1 ) class ( primitive ) useattrib ( off ) attrib ( "" ) usemaxiter ( off ) maxiter ( 10 ) blockpath ( ../foreach_begin1 ) templatepath ( ../foreach_begin1 ) resetcookpass ( 0 ) dosinglepass ( off ) singlepass ( 0 ) stopcondition ( 0 ) multithread ( off )
+chlock foreach_end1 -*
+chautoscope foreach_end1 -*
+opcolor -c 0.75 0.40000000596046448 0 foreach_end1
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F off -c on -e on -b off foreach_end1
+nbop __netbox1 add foreach_end1
+opexprlanguage -s hscript foreach_end1
+opuserdata -n '___Version___' -v '20.5.370' foreach_end1
 
-# Node fuse4 (Sop/fuse::2.0)
-opadd -e -n fuse::2.0 fuse4
-oplocate -x -4.1265799999999997 -y -14.829500002062321 fuse4
-opspareds "" fuse4
-opparm fuse4  numpointattribs ( 0 ) numgroups ( 0 )
-opparm -V 20.5.370 fuse4 querygroup ( "" ) usetargetgroup ( off ) targetgroup ( "" ) modifyboth ( off ) posattrib ( P ) snapgroup ( 0 ) snaptype ( distancesnap ) algorithm ( lowest ) usetol3d ( on ) tol3d ( 0.001 ) targetptattrib ( snap_to ) targetclass ( point ) usepositionsnapmethod ( on ) positionsnapmethod ( average ) positionsnapweightname ( weight ) useradiusattrib ( off ) radiusattrib ( pscale ) usematchattrib ( off ) matchattrib ( name ) matchtype ( match ) matchtol ( 0 ) gridtype ( spacing ) gridspacing ( 0.1 0.1 0.1 ) gridlines ( 10 10 10 ) gridpow2 ( 3 3 3 ) gridoffset ( 0 0 0 ) gridround ( nearest ) usegridtol ( on ) gridtol ( 10 ) consolidategroup ( 0 ) consolidatesnappedpoints ( on ) keepconsolidatedpoints ( off ) deldegen ( on ) deldegenpoints ( on ) delunusedpoints ( off ) outputgroup ( 0 ) recomputenml ( on ) createsnappedgroup ( off ) snappedgroupname ( snapped_points ) createsnappedattrib ( off ) snappedattribname ( snapped_to ) numpointattribs ( 0 ) numgroups ( 0 )
-chlock fuse4 -*
-chautoscope fuse4 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off fuse4
-nbop __netbox7 add fuse4
-opexprlanguage -s hscript fuse4
-opuserdata -n '___Version___' -v '20.5.370' fuse4
+# Node foreach_begin1 (Sop/block_begin)
+opadd -e -n block_begin foreach_begin1
+oplocate -x 0.00160001 -y -9.3612300000000008 foreach_begin1
+opspareds "" foreach_begin1
+opparm -V 20.5.370 foreach_begin1 method ( piece ) blockpath ( ../foreach_end1 ) resetcookpass ( 0 ) createmetablock ( 0 ) label1 ( 'iteration, numiterations, value, ivalue' )
+chlock foreach_begin1 -*
+chautoscope foreach_begin1 -*
+opcolor -c 0.75 0.40000000596046448 0 foreach_begin1
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F off -c on -e on -b off foreach_begin1
+nbop __netbox1 add foreach_begin1
+opexprlanguage -s hscript foreach_begin1
+opuserdata -n '___Version___' -v '20.5.370' foreach_begin1
 
-# Node fuse6 (Sop/fuse::2.0)
-opadd -e -n fuse::2.0 fuse6
-oplocate -x 5.3439500000000004 -y -15.001300002062322 fuse6
-opspareds "" fuse6
-opparm fuse6  numpointattribs ( 0 ) numgroups ( 0 )
-opparm -V 20.5.370 fuse6 querygroup ( "" ) usetargetgroup ( off ) targetgroup ( "" ) modifyboth ( off ) posattrib ( P ) snapgroup ( 0 ) snaptype ( distancesnap ) algorithm ( lowest ) usetol3d ( on ) tol3d ( 0.001 ) targetptattrib ( snap_to ) targetclass ( point ) usepositionsnapmethod ( on ) positionsnapmethod ( average ) positionsnapweightname ( weight ) useradiusattrib ( off ) radiusattrib ( pscale ) usematchattrib ( off ) matchattrib ( name ) matchtype ( match ) matchtol ( 0 ) gridtype ( spacing ) gridspacing ( 0.1 0.1 0.1 ) gridlines ( 10 10 10 ) gridpow2 ( 3 3 3 ) gridoffset ( 0 0 0 ) gridround ( nearest ) usegridtol ( on ) gridtol ( 10 ) consolidategroup ( 0 ) consolidatesnappedpoints ( on ) keepconsolidatedpoints ( off ) deldegen ( on ) deldegenpoints ( on ) delunusedpoints ( off ) outputgroup ( 0 ) recomputenml ( on ) createsnappedgroup ( off ) snappedgroupname ( snapped_points ) createsnappedattrib ( off ) snappedattribname ( snapped_to ) numpointattribs ( 0 ) numgroups ( 0 )
-chlock fuse6 -*
-chautoscope fuse6 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off fuse6
-nbop __netbox7 add fuse6
-opexprlanguage -s hscript fuse6
-opuserdata -n '___Version___' -v '20.5.370' fuse6
+# Node Select_shortest_path_if_multiple_candidates_exist (Sop/attribwrangle)
+opadd -e -n attribwrangle Select_shortest_path_if_multiple_candidates_exist
+oplocate -x -0.0030000000000000001 -y -10.4185 Select_shortest_path_if_multiple_candidates_exist
+opspareds "" Select_shortest_path_if_multiple_candidates_exist
+opparm Select_shortest_path_if_multiple_candidates_exist  bindings ( 0 ) groupbindings ( 0 )
+opparm Select_shortest_path_if_multiple_candidates_exist folder0 ( 0 0 ) group ( "" ) grouptype ( guess ) class ( detail ) vex_numcount ( 10 ) vex_threadjobsize ( 1024 ) snippet ( 'if( nprimitives(0)==1 ) return;\n\nfloat path_length = 1.0e+9;\nint out_prim = -1;\n\nfor( int prim=0; prim<nprimitives(0); ++prim )\n{\n    if( primintrinsic ( 0, "closed", prim ) )\n    {\n        out_prim = prim;\n        break;\n    }\n}\n\nif( out_prim == -1)\n{\n    for( int prim=0; prim<nprimitives(0); ++prim )\n    {\n        int pts[] = primpoints(0, prim);\n        float leng = 0.0;\n        for( int i=0; i<len(pts)-1; ++i )\n        {\n            vector p0 = point(0, "P", pts[i]);\n            vector p1 = point(0, "P", pts[i+1]);\n            leng += distance( p0, p1 );\n        }\n        printf( "%d\\n", leng );\n    \n        if( leng < path_length )\n        {\n            path_length = leng;\n            out_prim = prim;\n        }\n    }\n\n}\n\nprintf( "%d\\n", out_prim );\n\nfor( int prim=0; prim<nprimitives(0); ++prim )\n    if( prim!=out_prim )    removeprim(0, prim, 1);' ) exportlist ( * ) vex_strict ( off ) autobind ( on ) bindings ( 0 ) groupautobind ( on ) groupbindings ( 0 ) vex_cwdpath ( . ) vex_outputmask ( * ) vex_updatenmls ( off ) vex_matchattrib ( id ) vex_inplace ( off ) vex_selectiongroup ( "" ) vex_precision ( auto )
+chlock Select_shortest_path_if_multiple_candidates_exist -*
+chautoscope Select_shortest_path_if_multiple_candidates_exist -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off Select_shortest_path_if_multiple_candidates_exist
+nbop __netbox1 add Select_shortest_path_if_multiple_candidates_exist
+opexprlanguage -s hscript Select_shortest_path_if_multiple_candidates_exist
+opuserdata -n '___Version___' -v '' Select_shortest_path_if_multiple_candidates_exist
 
-# Node fuse7 (Sop/fuse::2.0)
-opadd -e -n fuse::2.0 fuse7
-oplocate -x 9.4944100000000002 -y -15.001300002062322 fuse7
-opspareds "" fuse7
-opparm fuse7  numpointattribs ( 0 ) numgroups ( 0 )
-opparm -V 20.5.370 fuse7 querygroup ( "" ) usetargetgroup ( off ) targetgroup ( "" ) modifyboth ( off ) posattrib ( P ) snapgroup ( 0 ) snaptype ( distancesnap ) algorithm ( lowest ) usetol3d ( on ) tol3d ( 0.001 ) targetptattrib ( snap_to ) targetclass ( point ) usepositionsnapmethod ( on ) positionsnapmethod ( average ) positionsnapweightname ( weight ) useradiusattrib ( off ) radiusattrib ( pscale ) usematchattrib ( off ) matchattrib ( name ) matchtype ( match ) matchtol ( 0 ) gridtype ( spacing ) gridspacing ( 0.1 0.1 0.1 ) gridlines ( 10 10 10 ) gridpow2 ( 3 3 3 ) gridoffset ( 0 0 0 ) gridround ( nearest ) usegridtol ( on ) gridtol ( 10 ) consolidategroup ( 0 ) consolidatesnappedpoints ( on ) keepconsolidatedpoints ( off ) deldegen ( on ) deldegenpoints ( on ) delunusedpoints ( off ) outputgroup ( 0 ) recomputenml ( on ) createsnappedgroup ( off ) snappedgroupname ( snapped_points ) createsnappedattrib ( off ) snappedattribname ( snapped_to ) numpointattribs ( 0 ) numgroups ( 0 )
-chlock fuse7 -*
-chautoscope fuse7 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b on fuse7
-nbop __netbox7 add fuse7
-opexprlanguage -s hscript fuse7
-opuserdata -n '___Version___' -v '20.5.370' fuse7
+# Node polypath4 (Sop/polypath)
+opadd -e -n polypath polypath4
+oplocate -x -1.17587e-09 -y -11.3467 polypath4
+opspareds "" polypath4
+opparm polypath4 connectends ( off ) maxendptdist ( 0.01 ) connectonlytoends ( on ) closeloops ( off )
+chlock polypath4 -*
+chautoscope polypath4 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off polypath4
+nbop __netbox1 add polypath4
+opexprlanguage -s hscript polypath4
+opuserdata -n '___Version___' -v '' polypath4
 
-# Node fuse8 (Sop/fuse::2.0)
-opadd -e -n fuse::2.0 fuse8
-oplocate -x 0.94432099999999985 -y -15.487300002062319 fuse8
-opspareds "" fuse8
-opparm fuse8  numpointattribs ( 0 ) numgroups ( 0 )
-opparm -V 20.5.370 fuse8 querygroup ( "" ) usetargetgroup ( off ) targetgroup ( "" ) modifyboth ( off ) posattrib ( P ) snapgroup ( 0 ) snaptype ( distancesnap ) algorithm ( lowest ) usetol3d ( on ) tol3d ( 0.001 ) targetptattrib ( snap_to ) targetclass ( point ) usepositionsnapmethod ( on ) positionsnapmethod ( average ) positionsnapweightname ( weight ) useradiusattrib ( off ) radiusattrib ( pscale ) usematchattrib ( off ) matchattrib ( name ) matchtype ( match ) matchtol ( 0 ) gridtype ( spacing ) gridspacing ( 0.1 0.1 0.1 ) gridlines ( 10 10 10 ) gridpow2 ( 3 3 3 ) gridoffset ( 0 0 0 ) gridround ( nearest ) usegridtol ( on ) gridtol ( 10 ) consolidategroup ( 0 ) consolidatesnappedpoints ( on ) keepconsolidatedpoints ( off ) deldegen ( on ) deldegenpoints ( on ) delunusedpoints ( off ) outputgroup ( 0 ) recomputenml ( on ) createsnappedgroup ( off ) snappedgroupname ( snapped_points ) createsnappedattrib ( off ) snappedattribname ( snapped_to ) numpointattribs ( 0 ) numgroups ( 0 )
-chlock fuse8 -*
-chautoscope fuse8 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off fuse8
-nbop __netbox7 add fuse8
-opexprlanguage -s hscript fuse8
-opuserdata -n '___Version___' -v '20.5.370' fuse8
+# Node split4 (Sop/split)
+opadd -e -n split split4
+oplocate -x -1.17587e-09 -y -14.952500000000001 split4
+opspareds "" split4
+opparm split4 group ( left ) grouptype ( points ) negate ( off ) removegrp ( off )
+chlock split4 -*
+chautoscope split4 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off split4
+opexprlanguage -s hscript split4
+opuserdata -n '___Version___' -v '' split4
+
+# Node leftside_outline_with_endcap1 (Sop/null)
+opadd -e -n null leftside_outline_with_endcap1
+oplocate -x -1.7397 -y -16.554500000000001 leftside_outline_with_endcap1
+opspareds "" leftside_outline_with_endcap1
+opparm -V 20.5.370 leftside_outline_with_endcap1 copyinput ( on ) cacheinput ( off )
+chlock leftside_outline_with_endcap1 -*
+chautoscope leftside_outline_with_endcap1 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off leftside_outline_with_endcap1
+opexprlanguage -s hscript leftside_outline_with_endcap1
+opuserdata -n '___Version___' -v '20.5.370' leftside_outline_with_endcap1
+
+# Node right_outline_with_endcap2 (Sop/null)
+opadd -e -n null right_outline_with_endcap2
+oplocate -x 1.6191 -y -16.554500000000001 right_outline_with_endcap2
+opspareds "" right_outline_with_endcap2
+opparm -V 20.5.370 right_outline_with_endcap2 copyinput ( on ) cacheinput ( off )
+chlock right_outline_with_endcap2 -*
+chautoscope right_outline_with_endcap2 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off right_outline_with_endcap2
+opexprlanguage -s hscript right_outline_with_endcap2
+opuserdata -n '___Version___' -v '20.5.370' right_outline_with_endcap2
+
+# Node groupdelete1 (Sop/groupdelete)
+opadd -e -n groupdelete groupdelete1
+oplocate -x 5.6876100000000003 -y -25.632200000000001 groupdelete1
+opspareds "" groupdelete1
+opparm groupdelete1  deletions ( 1 )
+opparm -V 20.5.370 groupdelete1 deletions ( 1 ) removegrp ( off ) selection_folder ( 0 ) selectiongroup ( "" ) selectiongrouptype ( guess ) enable1 ( on ) grouptype1 ( any ) group1 ( 'left right' )
+chlock groupdelete1 -*
+chautoscope groupdelete1 -*
+opset -d off -r off -h on -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off groupdelete1
+opexprlanguage -s hscript groupdelete1
+opuserdata -n '___Version___' -v '20.5.370' groupdelete1
+
+# Node attribwrangle2 (Sop/attribwrangle)
+opadd -e -n attribwrangle attribwrangle2
+oplocate -x -0.0030000000000000001 -y -13.77 attribwrangle2
+opspareds "" attribwrangle2
+opparm attribwrangle2  bindings ( 0 ) groupbindings ( 0 )
+opparm attribwrangle2 folder0 ( 0 0 ) group ( "" ) grouptype ( guess ) class ( point ) vex_numcount ( 10 ) vex_threadjobsize ( 1024 ) snippet ( '@P.y = 0.0;' ) exportlist ( * ) vex_strict ( off ) autobind ( on ) bindings ( 0 ) groupautobind ( on ) groupbindings ( 0 ) vex_cwdpath ( . ) vex_outputmask ( * ) vex_updatenmls ( off ) vex_matchattrib ( id ) vex_inplace ( off ) vex_selectiongroup ( "" ) vex_precision ( auto )
+chlock attribwrangle2 -*
+chautoscope attribwrangle2 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off attribwrangle2
+opexprlanguage -s hscript attribwrangle2
+opuserdata -n '___Version___' -v '' attribwrangle2
+
+# Node color1 (Sop/color)
+opadd -e -n color color1
+oplocate -x -1.7397 -y -22.535699999999999 color1
+opspareds "" color1
+opparm color1  ramp ( 2 )
+opparm color1 group ( "" ) grouptype ( guess ) deleteallcolorattribs ( off ) enable ( on ) class ( 2 ) colortype ( 0 ) color ( 1 0 0 ) seed ( 0 ) rampattribute ( "" ) ramprange ( 0 1 ) ramp ( 2 ) ramp1pos ( 0 ) ramp1c ( 0 0 0 ) ramp1interp ( linear ) ramp2pos ( 1 ) ramp2c ( 1 1 1 ) ramp2interp ( linear )
+chlock color1 -*
+chautoscope color1 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b on color1
+opexprlanguage -s hscript color1
+opuserdata -n '___Version___' -v '' color1
+opuserdata -n '___toolcount___' -v '2' color1
+opuserdata -n '___toolid___' -v 'sop_color' color1
+
+# Node color2 (Sop/color)
+opadd -e -n color color2
+oplocate -x 1.6191 -y -22.535699999999999 color2
+opspareds "" color2
+opparm color2  ramp ( 2 )
+opparm color2 group ( "" ) grouptype ( guess ) deleteallcolorattribs ( off ) enable ( on ) class ( 2 ) colortype ( 0 ) color ( 0 0 1 ) seed ( 0 ) rampattribute ( "" ) ramprange ( 0 1 ) ramp ( 2 ) ramp1pos ( 0 ) ramp1c ( 0 0 0 ) ramp1interp ( linear ) ramp2pos ( 1 ) ramp2c ( 1 1 1 ) ramp2interp ( linear )
+chlock color2 -*
+chautoscope color2 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b on color2
+opexprlanguage -s hscript color2
+opuserdata -n '___Version___' -v '' color2
+opuserdata -n '___toolcount___' -v '2' color2
+opuserdata -n '___toolid___' -v 'sop_color' color2
+
+# Node setup_leftendcap (Sop/attribwrangle)
+opadd -e -n attribwrangle setup_leftendcap
+oplocate -x -1.7426999999999999 -y -21.3874 setup_leftendcap
+opspareds "" setup_leftendcap
+opparm setup_leftendcap  bindings ( 0 ) groupbindings ( 0 )
+opparm setup_leftendcap folder0 ( 0 0 ) group ( "" ) grouptype ( guess ) class ( detail ) vex_numcount ( 10 ) vex_threadjobsize ( 1024 ) snippet ( 'int placement = chi("../Placement");\n\nint pt1[] = primpoints(1, 0);\nint pt2[] = primpoints(2, 0);\n\n\nint prim = addprim(0, "polyline");\n\n// put first point from input 2\nif( ch("../CapStart") == 1 && placement!=1 )\n{\n    vector p = placement==2\n                ? 0.5 * vector( point(1, "P", pt1[0])+point(2, "P", pt2[0]) )\n                : point(2, "P", pt2[0]);\n    int idx = addpoint(0, p);\n    addvertex( 0, prim, idx );\n}\n\n// copy side points from input 1\nfor( int i=0; i<len(pt1); ++i )\n{\n    vector p = point(1, "P", pt1[i]);\n    int idx = addpoint(0, p);\n    addvertex( 0, prim, idx );\n}\n\n// put end point from input 3\nif( ch("../CapEnd") == 1 && placement!=1 )\n{\n    vector p = placement==2\n                ? 0.5 * vector( point(1, "P", pt1[-1])+point(2, "P", pt2[-1]) )\n                : point(2, "P", pt2[-1]);\n    int idx = addpoint(0, p);\n    addvertex( 0, prim, idx );\n}\n\nint val = inpointgroup(1, "left", 0);\nsetprimgroup(0, "left", prim, val );\n\nval = inpointgroup(1, "right", 0);\nsetprimgroup(0, "right", prim, val );\n\n//i@group_left = prim(1, "group_left", 0);' ) exportlist ( * ) vex_strict ( off ) autobind ( on ) bindings ( 0 ) groupautobind ( on ) groupbindings ( 0 ) vex_cwdpath ( . ) vex_outputmask ( * ) vex_updatenmls ( off ) vex_matchattrib ( id ) vex_inplace ( off ) vex_selectiongroup ( "" ) vex_precision ( auto )
+chlock setup_leftendcap -*
+chautoscope setup_leftendcap -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off setup_leftendcap
+opexprlanguage -s hscript setup_leftendcap
+opuserdata -n '___Version___' -v '' setup_leftendcap
+
+# Node setup_rightendcap (Sop/attribwrangle)
+opadd -e -n attribwrangle setup_rightendcap
+oplocate -x 1.6161000000000001 -y -21.3874 setup_rightendcap
+opspareds "" setup_rightendcap
+opparm setup_rightendcap  bindings ( 0 ) groupbindings ( 0 )
+opparm setup_rightendcap folder0 ( 0 0 ) group ( "" ) grouptype ( guess ) class ( detail ) vex_numcount ( 10 ) vex_threadjobsize ( 1024 ) snippet ( 'int placement = chi("../Placement");\n\nint pt1[] = primpoints(1, 0);\nint pt2[] = primpoints(2, 0);\n\n\nint prim = addprim(0, "polyline");\n\n// put first point from input 2\nif( ch("../CapStart") == 1 && placement!=0 )\n{\n    vector p = placement==2\n                ? 0.5 * vector( point(1, "P", pt1[0])+point(2, "P", pt2[0]) )\n                : point(2, "P", pt2[0]);\n    int idx = addpoint(0, p);\n    addvertex( 0, prim, idx );\n}\n\n// copy side points from input 1\nfor( int i=0; i<len(pt1); ++i )\n{\n    vector p = point(1, "P", pt1[i]);\n    int idx = addpoint(0, p);\n    addvertex( 0, prim, idx );\n}\n\n// put end point from input 3\nif( ch("../CapEnd") == 1 && placement!=0 )\n{\n    vector p = placement==2\n                ? 0.5 * vector( point(1, "P", pt1[-1])+point(2, "P", pt2[-1]) )\n                : point(2, "P", pt2[-1]);\n    int idx = addpoint(0, p);\n    addvertex( 0, prim, idx );\n}\n\nint val = inpointgroup(1, "left", 0);\nsetprimgroup(0, "left", prim, val );\n\nval = inpointgroup(1, "right", 0);\nsetprimgroup(0, "right", prim, val );\n\n//i@group_left = prim(1, "group_left", 0);' ) exportlist ( * ) vex_strict ( off ) autobind ( on ) bindings ( 0 ) groupautobind ( on ) groupbindings ( 0 ) vex_cwdpath ( . ) vex_outputmask ( * ) vex_updatenmls ( off ) vex_matchattrib ( id ) vex_inplace ( off ) vex_selectiongroup ( "" ) vex_precision ( auto )
+chlock setup_rightendcap -*
+chautoscope setup_rightendcap -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off setup_rightendcap
+opexprlanguage -s hscript setup_rightendcap
+opuserdata -n '___Version___' -v '' setup_rightendcap
+
+# Node left_handaril (Sop/null)
+opadd -e -n null left_handaril
+oplocate -x -1.7397 -y -27.860700000000001 left_handaril
+opspareds "" left_handaril
+opparm -V 20.5.370 left_handaril copyinput ( on ) cacheinput ( off )
+chlock left_handaril -*
+chautoscope left_handaril -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off left_handaril
+opexprlanguage -s hscript left_handaril
+opuserdata -n '___Version___' -v '20.5.370' left_handaril
+
+# Node right_handrail (Sop/null)
+opadd -e -n null right_handrail
+oplocate -x 1.6191 -y -27.860700000000001 right_handrail
+opspareds "" right_handrail
+opparm -V 20.5.370 right_handrail copyinput ( on ) cacheinput ( off )
+chlock right_handrail -*
+chautoscope right_handrail -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off right_handrail
+opexprlanguage -s hscript right_handrail
+opuserdata -n '___Version___' -v '20.5.370' right_handrail
+
+# Node all_handrail1 (Sop/null)
+opadd -e -n null all_handrail1
+oplocate -x 3.62324 -y -36.698300000000003 all_handrail1
+opspareds "" all_handrail1
+opparm -V 20.5.370 all_handrail1 copyinput ( on ) cacheinput ( off )
+chlock all_handrail1 -*
+chautoscope all_handrail1 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off all_handrail1
+opexprlanguage -s hscript all_handrail1
+opuserdata -n '___Version___' -v '20.5.370' all_handrail1
+
+# Node reverse_vertex_order (Sop/subnet)
+opadd -e -n subnet reverse_vertex_order
+oplocate -x -1.7397 -y -23.535699999999999 reverse_vertex_order
+opspareds "" reverse_vertex_order
+opparm -V 20.5.370 reverse_vertex_order label1 ( 'Sub-Network Input #1' ) label2 ( 'Sub-Network Input #2' ) label3 ( 'Sub-Network Input #3' ) label4 ( 'Sub-Network Input #4' )
+chlock reverse_vertex_order -*
+chautoscope reverse_vertex_order -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off reverse_vertex_order
+opexprlanguage -s hscript reverse_vertex_order
+opuserdata -n '___Version___' -v '20.5.370' reverse_vertex_order
+opcf reverse_vertex_order
+
+# Node rewire6 (Sop/rewire)
+opadd -e -n rewire rewire6
+oplocate -x 0.0030000000000000001 -y 5.2789999999999999 rewire6
+opspareds "" rewire6
+opparm -V 20.5.370 rewire6 group ( "" ) grouptype ( guess ) attrib ( rewire_to ) deletetargetpointattrib ( off ) recurse ( off ) keepunusedpoints ( off ) createorigattrib ( off ) origattrib ( rewired_from )
+chlock rewire6 -*
+chautoscope rewire6 -*
+opset -d on -r on -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off rewire6
+opexprlanguage -s hscript rewire6
+opuserdata -n '___Version___' -v '20.5.370' rewire6
+
+# Node attribwrangle13 (Sop/attribwrangle)
+opadd -e -n attribwrangle attribwrangle13
+oplocate -x 0 -y 6.1117999999999997 attribwrangle13
+opspareds "" attribwrangle13
+opparm attribwrangle13  bindings ( 0 ) groupbindings ( 0 )
+opparm attribwrangle13 folder0 ( 0 0 ) group ( "" ) grouptype ( guess ) class ( vertex ) vex_numcount ( 10 ) vex_threadjobsize ( 1024 ) snippet ( '\ni@rewire_to = (@numvtx-1)-@vtxnum;\n\n' ) exportlist ( * ) vex_strict ( off ) autobind ( on ) bindings ( 0 ) groupautobind ( on ) groupbindings ( 0 ) vex_cwdpath ( . ) vex_outputmask ( * ) vex_updatenmls ( off ) vex_matchattrib ( id ) vex_inplace ( off ) vex_selectiongroup ( "" ) vex_precision ( auto )
+chlock attribwrangle13 -*
+chautoscope attribwrangle13 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off attribwrangle13
+opexprlanguage -s hscript attribwrangle13
+opuserdata -n '___Version___' -v '' attribwrangle13
 
 # Node output0 (Sop/output)
 opadd -e -n output output0
-oplocate -x 2.0868199999999999 -y -33.983700002062321 output0
+oplocate -x 0.0030000000000000001 -y 4.3848000000000003 output0
 opspareds "" output0
 opparm -V 20.5.370 output0 outputidx ( 0 )
 chlock output0 -*
@@ -1789,264 +1576,176 @@ chautoscope output0 -*
 opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off output0
 opexprlanguage -s hscript output0
 opuserdata -n '___Version___' -v '20.5.370' output0
-
-# Node switch1 (Sop/switch)
-opadd -e -n switch switch1
-oplocate -x 2.2007599999999998 -y -31.843000002062322 switch1
-opspareds "" switch1
-chblockbegin
-chadd -t 0 0 switch1 input
-chkey -t 0 -v 0 -m 0 -a 0 -A 0 -T a  -F 'ch("../Alignment")' switch1/input
-chblockend
-opparm -V 20.5.370 switch1 input ( input )
-chlock switch1 -*
-chautoscope switch1 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off switch1
-opexprlanguage -s hscript switch1
-opuserdata -n '___Version___' -v '20.5.370' switch1
-
-# Node split1 (Sop/split)
-opadd -e -n split split1
-oplocate -x -0.034208300000000066 -y -1.8439500020623212 split1
-opspareds "" split1
-opparm split1 group ( left ) grouptype ( guess ) negate ( off ) removegrp ( off )
-chlock split1 -*
-chautoscope split1 -*
-opset -d on -r on -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off split1
-opexprlanguage -s hscript split1
-opuserdata -n '___Version___' -v '' split1
-
-# Node split2 (Sop/split)
-opadd -e -n split split2
-oplocate -x 21.110299999999999 -y -9.0745500000000003 split2
-opspareds "" split2
-opparm split2 group ( left ) grouptype ( guess ) negate ( off ) removegrp ( off )
-chlock split2 -*
-chautoscope split2 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b on split2
-opexprlanguage -s hscript split2
-opuserdata -n '___Version___' -v '' split2
-
-# Node rewire3 (Sop/rewire)
-opadd -e -n rewire rewire3
-oplocate -x 22.5032 -y -11.6456 rewire3
-opspareds "" rewire3
-opparm -V 20.5.370 rewire3 group ( "" ) grouptype ( guess ) attrib ( rewire_to ) deletetargetpointattrib ( off ) recurse ( off ) keepunusedpoints ( off ) createorigattrib ( off ) origattrib ( rewired_from )
-chlock rewire3 -*
-chautoscope rewire3 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b on rewire3
-nbop __netbox8 add rewire3
-opexprlanguage -s hscript rewire3
-opuserdata -n '___Version___' -v '20.5.370' rewire3
-
-# Node attribwrangle6 (Sop/attribwrangle)
-opadd -e -n attribwrangle attribwrangle6
-oplocate -x 22.5002 -y -10.8127 attribwrangle6
-opspareds "" attribwrangle6
-opparm attribwrangle6  bindings ( 0 ) groupbindings ( 0 )
-opparm attribwrangle6 folder0 ( 0 0 ) group ( "" ) grouptype ( guess ) class ( vertex ) vex_numcount ( 10 ) vex_threadjobsize ( 1024 ) snippet ( 'i@rewire_to = (@numvtx-1)-@vtxnum;' ) exportlist ( * ) vex_strict ( off ) autobind ( on ) bindings ( 0 ) groupautobind ( on ) groupbindings ( 0 ) vex_cwdpath ( . ) vex_outputmask ( * ) vex_updatenmls ( off ) vex_matchattrib ( id ) vex_inplace ( off ) vex_selectiongroup ( "" ) vex_precision ( auto )
-chlock attribwrangle6 -*
-chautoscope attribwrangle6 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b on attribwrangle6
-nbop __netbox8 add attribwrangle6
-opexprlanguage -s hscript attribwrangle6
-opuserdata -n '___Version___' -v '' attribwrangle6
-
-# Node clip_end_segment2 (Sop/attribwrangle)
-opadd -e -n attribwrangle clip_end_segment2
-oplocate -x 22.5002 -y -16.9712 clip_end_segment2
-opspareds '    group {         name    "folder1"         label   "Code"          parm {             name    "group"             baseparm             label   "Group"             export  none             bindselector uvselect "Modify Attribs"                 "Select the geometry to affect and press Enter to complete."                 0 1 0xffffffff 0 grouptype 0         }         parm {             name    "grouptype"             baseparm             label   "Group Type"             export  none         }         parm {             name    "class"             baseparm             label   "Run Over"             export  none         }         parm {             name    "vex_numcount"             baseparm             label   "Number Count"             export  none         }         parm {             name    "vex_threadjobsize"             baseparm             label   "Thread Job Size"             export  none         }         groupsimple {             name    "folder_generatedparms_snippet"             label   "Generated Channel Parameters"             grouptag { "group_type" "simple" }             grouptag { "sidefx::look" "blank" }              parm {                 name    "p0"                 label   "P0"                 type    integer                 default { "0" }                 range   { 0 10 }             }             parm {                 name    "p1"                 label   "P1"                 type    integer                 default { "0" }                 range   { 0 10 }             }         }          parm {             name    "snippet"             baseparm             label   "VEXpression"             export  all         }         parm {             name    "exportlist"             baseparm             label   "Attributes to Create"             export  none         }         parm {             name    "vex_strict"             baseparm             label   "Enforce Prototypes"             export  none         }     }      group {         name    "folder1_1"         label   "Bindings"          parm {             name    "autobind"             baseparm             label   "Autobind by Name"             export  none         }         multiparm {             name    "bindings"             label    "Number of Bindings"             baseparm             default 0             parmtag { "autoscope" "0000000000000000" }             parmtag { "multistartoffset" "1" }              parm {                 name    "bindname#"                 baseparm                 label   "Attribute Name"                 export  none             }             parm {                 name    "bindparm#"                 baseparm                 label   "VEX Parameter"                 export  none             }         }          parm {             name    "groupautobind"             baseparm             label   "Autobind Groups by Name"             export  none         }         multiparm {             name    "groupbindings"             label    "Group Bindings"             baseparm             default 0             parmtag { "autoscope" "0000000000000000" }             parmtag { "multistartoffset" "1" }              parm {                 name    "bindgroupname#"                 baseparm                 label   "Group Name"                 export  none             }             parm {                 name    "bindgroupparm#"                 baseparm                 label   "VEX Parameter"                 export  none             }         }          parm {             name    "vex_cwdpath"             baseparm             label   "Evaluation Node Path"             export  none         }         parm {             name    "vex_outputmask"             baseparm             label   "Export Parameters"             export  none         }         parm {             name    "vex_updatenmls"             baseparm             label   "Update Normals If Displaced"             export  none         }         parm {             name    "vex_matchattrib"             baseparm             label   "Attribute to Match"             export  none         }         parm {             name    "vex_inplace"             baseparm             label   "Compute Results In Place"             export  none         }         parm {             name    "vex_selectiongroup"             baseparm             label   "Output Selection Group"             export  none         }         parm {             name    "vex_precision"             baseparm             label   "VEX Precision"             export  none         }     }  ' clip_end_segment2
-opparm clip_end_segment2  bindings ( 0 ) groupbindings ( 0 )
-opparm clip_end_segment2 folder0 ( 0 0 ) group ( "" ) grouptype ( guess ) class ( detail ) vex_numcount ( 10 ) vex_threadjobsize ( 1024 ) snippet ( '/*\np0         p(clip plane)       p1\n|---------------x--------------|\n      <--- n(=normalize(v))\n\n                |--------------|\n                 remaining part\n                 after clip\n*/\n\n\n\nint p0_idx = chi("p0");\nint p1_idx = chi("p1");\nfloat width_cos = ch("../W") * cos(45.0);\n\nint ps[] = primpoints(0, 0);\nvector p0 = point(geoself(), "P", ps[p0_idx]);\nvector p1 = point(geoself(), "P", ps[p1_idx]);\nvector v = p0 - p1;\nvector n = normalize(v);\n\nvector p = p0 - width_cos * n;//w*v;\nfloat d = -dot(n,p);\n\nif( dot(p-p1,n)<=0.0 )\n{\n    setpointattrib(geoself(), "P", ps[p0_idx], p1);\n    return;\n}\n\n\nvector4 plane = set(n.x, n.y, n.z, d);\n//printf( "%f\\n", plane );\n\nint result=-1;\nclip( result, p1, p0, plane );\n//printf( "%d, %f, %f\\n", result, p0, p1 );\n\nsetpointattrib(geoself(), "P", ps[p0_idx], p0);\n//setpointattrib(geoself(), "P", ps[p1_idx], p1);\n' ) exportlist ( * ) vex_strict ( off ) autobind ( on ) bindings ( 0 ) groupautobind ( on ) groupbindings ( 0 ) vex_cwdpath ( . ) vex_outputmask ( * ) vex_updatenmls ( off ) vex_matchattrib ( id ) vex_inplace ( off ) vex_selectiongroup ( "" ) vex_precision ( auto ) folder1 ( 0 0 ) folder_generatedparms_snippet ( 0 ) p0 ( -1 ) p1 ( -2 )
-chlock clip_end_segment2 -* +p0 +p1
-chautoscope clip_end_segment2 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b on clip_end_segment2
-nbop __netbox10 add clip_end_segment2
-opexprlanguage -s hscript clip_end_segment2
-opuserdata -n '___Version___' -v '' clip_end_segment2
-
-# Node clip_start_segment2 (Sop/attribwrangle)
-opadd -e -n attribwrangle clip_start_segment2
-oplocate -x 22.5002 -y -16.051600000000001 clip_start_segment2
-opspareds '    group {         name    "folder1"         label   "Code"          parm {             name    "group"             baseparm             label   "Group"             export  none             bindselector uvselect "Modify Attribs"                 "Select the geometry to affect and press Enter to complete."                 0 1 0xffffffff 0 grouptype 0         }         parm {             name    "grouptype"             baseparm             label   "Group Type"             export  none         }         parm {             name    "class"             baseparm             label   "Run Over"             export  none         }         parm {             name    "vex_numcount"             baseparm             label   "Number Count"             export  none         }         parm {             name    "vex_threadjobsize"             baseparm             label   "Thread Job Size"             export  none         }         groupsimple {             name    "folder_generatedparms_snippet"             label   "Generated Channel Parameters"             grouptag { "group_type" "simple" }             grouptag { "sidefx::look" "blank" }              parm {                 name    "p0"                 label   "P0"                 type    integer                 default { "0" }                 range   { 0 10 }             }             parm {                 name    "p1"                 label   "P1"                 type    integer                 default { "0" }                 range   { 0 10 }             }         }          parm {             name    "snippet"             baseparm             label   "VEXpression"             export  all         }         parm {             name    "exportlist"             baseparm             label   "Attributes to Create"             export  none         }         parm {             name    "vex_strict"             baseparm             label   "Enforce Prototypes"             export  none         }     }      group {         name    "folder1_1"         label   "Bindings"          parm {             name    "autobind"             baseparm             label   "Autobind by Name"             export  none         }         multiparm {             name    "bindings"             label    "Number of Bindings"             baseparm             default 0             parmtag { "autoscope" "0000000000000000" }             parmtag { "multistartoffset" "1" }              parm {                 name    "bindname#"                 baseparm                 label   "Attribute Name"                 export  none             }             parm {                 name    "bindparm#"                 baseparm                 label   "VEX Parameter"                 export  none             }         }          parm {             name    "groupautobind"             baseparm             label   "Autobind Groups by Name"             export  none         }         multiparm {             name    "groupbindings"             label    "Group Bindings"             baseparm             default 0             parmtag { "autoscope" "0000000000000000" }             parmtag { "multistartoffset" "1" }              parm {                 name    "bindgroupname#"                 baseparm                 label   "Group Name"                 export  none             }             parm {                 name    "bindgroupparm#"                 baseparm                 label   "VEX Parameter"                 export  none             }         }          parm {             name    "vex_cwdpath"             baseparm             label   "Evaluation Node Path"             export  none         }         parm {             name    "vex_outputmask"             baseparm             label   "Export Parameters"             export  none         }         parm {             name    "vex_updatenmls"             baseparm             label   "Update Normals If Displaced"             export  none         }         parm {             name    "vex_matchattrib"             baseparm             label   "Attribute to Match"             export  none         }         parm {             name    "vex_inplace"             baseparm             label   "Compute Results In Place"             export  none         }         parm {             name    "vex_selectiongroup"             baseparm             label   "Output Selection Group"             export  none         }         parm {             name    "vex_precision"             baseparm             label   "VEX Precision"             export  none         }     }  ' clip_start_segment2
-opparm clip_start_segment2  bindings ( 0 ) groupbindings ( 0 )
-opparm clip_start_segment2 folder0 ( 0 0 ) group ( "" ) grouptype ( guess ) class ( detail ) vex_numcount ( 10 ) vex_threadjobsize ( 1024 ) snippet ( '/*\np0         p(clip plane)       p1\n|---------------x--------------|\n      <--- n(=normalize(v))\n\n                |--------------|\n                 remaining part\n                 after clip\n*/\n\n\n\nint p0_idx = chi("p0");\nint p1_idx = chi("p1");\nfloat width_cos = ch("../W") * cos(45.0);\n\nint ps[] = primpoints(0, 0);\nvector p0 = point(geoself(), "P", ps[p0_idx]);\nvector p1 = point(geoself(), "P", ps[p1_idx]);\nvector v = p0 - p1;\nvector n = normalize(v);\n\nvector p = p0 - width_cos * n;//w*v;\nfloat d = -dot(n,p);\n\nif( dot(p-p1,n)<=0.0 )\n{\n    setpointattrib(geoself(), "P", ps[p0_idx], p1);\n    return;\n}\n\n\nvector4 plane = set(n.x, n.y, n.z, d);\n//printf( "%f\\n", plane );\n\nint result=-1;\nclip( result, p1, p0, plane );\n//printf( "%d, %f, %f\\n", result, p0, p1 );\n\nsetpointattrib(geoself(), "P", ps[p0_idx], p0);\n//setpointattrib(geoself(), "P", ps[p1_idx], p1);\n' ) exportlist ( * ) vex_strict ( off ) autobind ( on ) bindings ( 0 ) groupautobind ( on ) groupbindings ( 0 ) vex_cwdpath ( . ) vex_outputmask ( * ) vex_updatenmls ( off ) vex_matchattrib ( id ) vex_inplace ( off ) vex_selectiongroup ( "" ) vex_precision ( auto ) folder1 ( 0 0 ) folder_generatedparms_snippet ( 0 ) p0 ( 0 ) p1 ( 1 )
-chlock clip_start_segment2 -* +p0 +p1
-chautoscope clip_start_segment2 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b on clip_start_segment2
-nbop __netbox10 add clip_start_segment2
-opexprlanguage -s hscript clip_start_segment2
-opuserdata -n '___Version___' -v '' clip_start_segment2
-
-# Node sort11 (Sop/sort)
-opadd -e -n sort sort11
-oplocate -x 22.5032 -y -14.2697 sort11
-opspareds "" sort11
-chblockbegin
-chadd -t 0 0 sort11 pointreverse
-chkey -t 0 -v 0 -m 0 -a 0 -A 0 -T a  -F 'detail(0,"reversed_point_order",0)==1' sort11/pointreverse
-chblockend
-opparm -V 20.5.370 sort11 pointsfolder ( 0 ) ptgroup ( "" ) ptsort ( none ) pointseed ( 0 ) pointoffset ( 0 ) pointprox ( 0 0 0 ) pointobjpath ( "" ) pointdir ( 0 1 0 ) pointexpr ( 0 ) pointattrib ( "" ) pointattribcomp ( 0 ) pointreverse ( pointreverse ) primitivesfolder ( 0 ) primgroup ( "" ) primsort ( none ) primseed ( 0 ) primoffset ( 0 ) primprox ( 0 0 0 ) primobjpath ( "" ) primdir ( 0 1 0 ) primexpr ( 0 ) primattrib ( "" ) primattribcomp ( 0 ) primreverse ( off ) vertexprimorder ( on )
-chlock sort11 -*
-chautoscope sort11 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b on sort11
-nbop __netbox9 add sort11
-opexprlanguage -s hscript sort11
-opuserdata -n '___Version___' -v '20.5.370' sort11
-
-# Node check_if_point_is_ascending_order2 (Sop/attribwrangle)
-opadd -e -n attribwrangle check_if_point_is_ascending_order2
-oplocate -x 22.5002 -y -13.386200000000001 check_if_point_is_ascending_order2
-opspareds "" check_if_point_is_ascending_order2
-opparm check_if_point_is_ascending_order2  bindings ( 0 ) groupbindings ( 0 )
-opparm check_if_point_is_ascending_order2 folder0 ( 0 0 ) group ( "" ) grouptype ( guess ) class ( detail ) vex_numcount ( 10 ) vex_threadjobsize ( 1024 ) snippet ( '// distance_pointsegment(q, p0, p1)\n// https://www.sidefx.com/docs/houdini/vex/functions/distance_pointsegment.html\n\n//int ps[] = primpoints(0, 0);\n//for(int i=0; i<len(ps); ++i)\n//    printf("ps[%d]: %d\\n", i, ps[i] );\n\n\n//printf("Is closest_id[0]==0 ? %d\\n", point(0, "closest_id", 0)==0 );\ni@reversed_point_order = point(0, "closest_id", 0)!=0;' ) exportlist ( * ) vex_strict ( off ) autobind ( on ) bindings ( 0 ) groupautobind ( on ) groupbindings ( 0 ) vex_cwdpath ( . ) vex_outputmask ( * ) vex_updatenmls ( off ) vex_matchattrib ( id ) vex_inplace ( off ) vex_selectiongroup ( "" ) vex_precision ( auto )
-chlock check_if_point_is_ascending_order2 -*
-chautoscope check_if_point_is_ascending_order2 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b on check_if_point_is_ascending_order2
-nbop __netbox9 add check_if_point_is_ascending_order2
-opexprlanguage -s hscript check_if_point_is_ascending_order2
-opuserdata -n '___Version___' -v '' check_if_point_is_ascending_order2
-
-# Node rewire4 (Sop/rewire)
-opadd -e -n rewire rewire4
-oplocate -x 17.429400000000001 -y -11.6456 rewire4
-opspareds "" rewire4
-opparm -V 20.5.370 rewire4 group ( "" ) grouptype ( guess ) attrib ( rewire_to ) deletetargetpointattrib ( off ) recurse ( off ) keepunusedpoints ( off ) createorigattrib ( off ) origattrib ( rewired_from )
-chlock rewire4 -*
-chautoscope rewire4 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b on rewire4
-nbop __netbox11 add rewire4
-opexprlanguage -s hscript rewire4
-opuserdata -n '___Version___' -v '20.5.370' rewire4
-
-# Node attribwrangle7 (Sop/attribwrangle)
-opadd -e -n attribwrangle attribwrangle7
-oplocate -x 17.426400000000001 -y -10.8127 attribwrangle7
-opspareds "" attribwrangle7
-opparm attribwrangle7  bindings ( 0 ) groupbindings ( 0 )
-opparm attribwrangle7 folder0 ( 0 0 ) group ( "" ) grouptype ( guess ) class ( vertex ) vex_numcount ( 10 ) vex_threadjobsize ( 1024 ) snippet ( 'i@rewire_to = (@numvtx-1)-@vtxnum;' ) exportlist ( * ) vex_strict ( off ) autobind ( on ) bindings ( 0 ) groupautobind ( on ) groupbindings ( 0 ) vex_cwdpath ( . ) vex_outputmask ( * ) vex_updatenmls ( off ) vex_matchattrib ( id ) vex_inplace ( off ) vex_selectiongroup ( "" ) vex_precision ( auto )
-chlock attribwrangle7 -*
-chautoscope attribwrangle7 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b on attribwrangle7
-nbop __netbox11 add attribwrangle7
-opexprlanguage -s hscript attribwrangle7
-opuserdata -n '___Version___' -v '' attribwrangle7
-
-# Node clip_end_segment3 (Sop/attribwrangle)
-opadd -e -n attribwrangle clip_end_segment3
-oplocate -x 17.430199999999999 -y -16.9712 clip_end_segment3
-opspareds '    group {         name    "folder1"         label   "Code"          parm {             name    "group"             baseparm             label   "Group"             export  none             bindselector uvselect "Modify Attribs"                 "Select the geometry to affect and press Enter to complete."                 0 1 0xffffffff 0 grouptype 0         }         parm {             name    "grouptype"             baseparm             label   "Group Type"             export  none         }         parm {             name    "class"             baseparm             label   "Run Over"             export  none         }         parm {             name    "vex_numcount"             baseparm             label   "Number Count"             export  none         }         parm {             name    "vex_threadjobsize"             baseparm             label   "Thread Job Size"             export  none         }         groupsimple {             name    "folder_generatedparms_snippet"             label   "Generated Channel Parameters"             grouptag { "group_type" "simple" }             grouptag { "sidefx::look" "blank" }              parm {                 name    "p0"                 label   "P0"                 type    integer                 default { "0" }                 range   { 0 10 }             }             parm {                 name    "p1"                 label   "P1"                 type    integer                 default { "0" }                 range   { 0 10 }             }         }          parm {             name    "snippet"             baseparm             label   "VEXpression"             export  all         }         parm {             name    "exportlist"             baseparm             label   "Attributes to Create"             export  none         }         parm {             name    "vex_strict"             baseparm             label   "Enforce Prototypes"             export  none         }     }      group {         name    "folder1_1"         label   "Bindings"          parm {             name    "autobind"             baseparm             label   "Autobind by Name"             export  none         }         multiparm {             name    "bindings"             label    "Number of Bindings"             baseparm             default 0             parmtag { "autoscope" "0000000000000000" }             parmtag { "multistartoffset" "1" }              parm {                 name    "bindname#"                 baseparm                 label   "Attribute Name"                 export  none             }             parm {                 name    "bindparm#"                 baseparm                 label   "VEX Parameter"                 export  none             }         }          parm {             name    "groupautobind"             baseparm             label   "Autobind Groups by Name"             export  none         }         multiparm {             name    "groupbindings"             label    "Group Bindings"             baseparm             default 0             parmtag { "autoscope" "0000000000000000" }             parmtag { "multistartoffset" "1" }              parm {                 name    "bindgroupname#"                 baseparm                 label   "Group Name"                 export  none             }             parm {                 name    "bindgroupparm#"                 baseparm                 label   "VEX Parameter"                 export  none             }         }          parm {             name    "vex_cwdpath"             baseparm             label   "Evaluation Node Path"             export  none         }         parm {             name    "vex_outputmask"             baseparm             label   "Export Parameters"             export  none         }         parm {             name    "vex_updatenmls"             baseparm             label   "Update Normals If Displaced"             export  none         }         parm {             name    "vex_matchattrib"             baseparm             label   "Attribute to Match"             export  none         }         parm {             name    "vex_inplace"             baseparm             label   "Compute Results In Place"             export  none         }         parm {             name    "vex_selectiongroup"             baseparm             label   "Output Selection Group"             export  none         }         parm {             name    "vex_precision"             baseparm             label   "VEX Precision"             export  none         }     }  ' clip_end_segment3
-opparm clip_end_segment3  bindings ( 0 ) groupbindings ( 0 )
-opparm clip_end_segment3 folder0 ( 0 0 ) group ( "" ) grouptype ( guess ) class ( detail ) vex_numcount ( 10 ) vex_threadjobsize ( 1024 ) snippet ( '/*\np0         p(clip plane)       p1\n|---------------x--------------|\n      <--- n(=normalize(v))\n\n                |--------------|\n                 remaining part\n                 after clip\n*/\n\n\n\nint p0_idx = chi("p0");\nint p1_idx = chi("p1");\nfloat width_cos = ch("../W") * cos(45.0);\n\nint ps[] = primpoints(0, 0);\nvector p0 = point(geoself(), "P", ps[p0_idx]);\nvector p1 = point(geoself(), "P", ps[p1_idx]);\nvector v = p0 - p1;\nvector n = normalize(v);\n\nvector p = p0 - width_cos * n;//w*v;\nfloat d = -dot(n,p);\n\nif( dot(p-p1,n)<=0.0 )\n{\n    setpointattrib(geoself(), "P", ps[p0_idx], p1);\n    return;\n}\n\n\nvector4 plane = set(n.x, n.y, n.z, d);\n//printf( "%f\\n", plane );\n\nint result=-1;\nclip( result, p1, p0, plane );\n//printf( "%d, %f, %f\\n", result, p0, p1 );\n\nsetpointattrib(geoself(), "P", ps[p0_idx], p0);\n//setpointattrib(geoself(), "P", ps[p1_idx], p1);\n' ) exportlist ( * ) vex_strict ( off ) autobind ( on ) bindings ( 0 ) groupautobind ( on ) groupbindings ( 0 ) vex_cwdpath ( . ) vex_outputmask ( * ) vex_updatenmls ( off ) vex_matchattrib ( id ) vex_inplace ( off ) vex_selectiongroup ( "" ) vex_precision ( auto ) folder1 ( 0 0 ) folder_generatedparms_snippet ( 0 ) p0 ( -1 ) p1 ( -2 )
-chlock clip_end_segment3 -* +p0 +p1
-chautoscope clip_end_segment3 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b on clip_end_segment3
-nbop __netbox13 add clip_end_segment3
-opexprlanguage -s hscript clip_end_segment3
-opuserdata -n '___Version___' -v '' clip_end_segment3
-
-# Node clip_start_segment3 (Sop/attribwrangle)
-opadd -e -n attribwrangle clip_start_segment3
-oplocate -x 17.430199999999999 -y -16.051600000000001 clip_start_segment3
-opspareds '    group {         name    "folder1"         label   "Code"          parm {             name    "group"             baseparm             label   "Group"             export  none             bindselector uvselect "Modify Attribs"                 "Select the geometry to affect and press Enter to complete."                 0 1 0xffffffff 0 grouptype 0         }         parm {             name    "grouptype"             baseparm             label   "Group Type"             export  none         }         parm {             name    "class"             baseparm             label   "Run Over"             export  none         }         parm {             name    "vex_numcount"             baseparm             label   "Number Count"             export  none         }         parm {             name    "vex_threadjobsize"             baseparm             label   "Thread Job Size"             export  none         }         groupsimple {             name    "folder_generatedparms_snippet"             label   "Generated Channel Parameters"             grouptag { "group_type" "simple" }             grouptag { "sidefx::look" "blank" }              parm {                 name    "p0"                 label   "P0"                 type    integer                 default { "0" }                 range   { 0 10 }             }             parm {                 name    "p1"                 label   "P1"                 type    integer                 default { "0" }                 range   { 0 10 }             }         }          parm {             name    "snippet"             baseparm             label   "VEXpression"             export  all         }         parm {             name    "exportlist"             baseparm             label   "Attributes to Create"             export  none         }         parm {             name    "vex_strict"             baseparm             label   "Enforce Prototypes"             export  none         }     }      group {         name    "folder1_1"         label   "Bindings"          parm {             name    "autobind"             baseparm             label   "Autobind by Name"             export  none         }         multiparm {             name    "bindings"             label    "Number of Bindings"             baseparm             default 0             parmtag { "autoscope" "0000000000000000" }             parmtag { "multistartoffset" "1" }              parm {                 name    "bindname#"                 baseparm                 label   "Attribute Name"                 export  none             }             parm {                 name    "bindparm#"                 baseparm                 label   "VEX Parameter"                 export  none             }         }          parm {             name    "groupautobind"             baseparm             label   "Autobind Groups by Name"             export  none         }         multiparm {             name    "groupbindings"             label    "Group Bindings"             baseparm             default 0             parmtag { "autoscope" "0000000000000000" }             parmtag { "multistartoffset" "1" }              parm {                 name    "bindgroupname#"                 baseparm                 label   "Group Name"                 export  none             }             parm {                 name    "bindgroupparm#"                 baseparm                 label   "VEX Parameter"                 export  none             }         }          parm {             name    "vex_cwdpath"             baseparm             label   "Evaluation Node Path"             export  none         }         parm {             name    "vex_outputmask"             baseparm             label   "Export Parameters"             export  none         }         parm {             name    "vex_updatenmls"             baseparm             label   "Update Normals If Displaced"             export  none         }         parm {             name    "vex_matchattrib"             baseparm             label   "Attribute to Match"             export  none         }         parm {             name    "vex_inplace"             baseparm             label   "Compute Results In Place"             export  none         }         parm {             name    "vex_selectiongroup"             baseparm             label   "Output Selection Group"             export  none         }         parm {             name    "vex_precision"             baseparm             label   "VEX Precision"             export  none         }     }  ' clip_start_segment3
-opparm clip_start_segment3  bindings ( 0 ) groupbindings ( 0 )
-opparm clip_start_segment3 folder0 ( 0 0 ) group ( "" ) grouptype ( guess ) class ( detail ) vex_numcount ( 10 ) vex_threadjobsize ( 1024 ) snippet ( '/*\np0         p(clip plane)       p1\n|---------------x--------------|\n      <--- n(=normalize(v))\n\n                |--------------|\n                 remaining part\n                 after clip\n*/\n\n\n\nint p0_idx = chi("p0");\nint p1_idx = chi("p1");\nfloat width_cos = ch("../W") * cos(45.0);\n\nint ps[] = primpoints(0, 0);\nvector p0 = point(geoself(), "P", ps[p0_idx]);\nvector p1 = point(geoself(), "P", ps[p1_idx]);\nvector v = p0 - p1;\nvector n = normalize(v);\n\nvector p = p0 - width_cos * n;//w*v;\nfloat d = -dot(n,p);\n\nif( dot(p-p1,n)<=0.0 )\n{\n    setpointattrib(geoself(), "P", ps[p0_idx], p1);\n    return;\n}\n\n\nvector4 plane = set(n.x, n.y, n.z, d);\n//printf( "%f\\n", plane );\n\nint result=-1;\nclip( result, p1, p0, plane );\n//printf( "%d, %f, %f\\n", result, p0, p1 );\n\nsetpointattrib(geoself(), "P", ps[p0_idx], p0);\n//setpointattrib(geoself(), "P", ps[p1_idx], p1);\n' ) exportlist ( * ) vex_strict ( off ) autobind ( on ) bindings ( 0 ) groupautobind ( on ) groupbindings ( 0 ) vex_cwdpath ( . ) vex_outputmask ( * ) vex_updatenmls ( off ) vex_matchattrib ( id ) vex_inplace ( off ) vex_selectiongroup ( "" ) vex_precision ( auto ) folder1 ( 0 0 ) folder_generatedparms_snippet ( 0 ) p0 ( 0 ) p1 ( 1 )
-chlock clip_start_segment3 -* +p0 +p1
-chautoscope clip_start_segment3 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b on clip_start_segment3
-nbop __netbox13 add clip_start_segment3
-opexprlanguage -s hscript clip_start_segment3
-opuserdata -n '___Version___' -v '' clip_start_segment3
-
-# Node sort12 (Sop/sort)
-opadd -e -n sort sort12
-oplocate -x 17.433199999999999 -y -14.2697 sort12
-opspareds "" sort12
-chblockbegin
-chadd -t 0 0 sort12 pointreverse
-chkey -t 0 -v 0 -m 0 -a 0 -A 0 -T a  -F 'detail(0,"reversed_point_order",0)==1' sort12/pointreverse
-chblockend
-opparm -V 20.5.370 sort12 pointsfolder ( 0 ) ptgroup ( "" ) ptsort ( none ) pointseed ( 0 ) pointoffset ( 0 ) pointprox ( 0 0 0 ) pointobjpath ( "" ) pointdir ( 0 1 0 ) pointexpr ( 0 ) pointattrib ( "" ) pointattribcomp ( 0 ) pointreverse ( pointreverse ) primitivesfolder ( 0 ) primgroup ( "" ) primsort ( none ) primseed ( 0 ) primoffset ( 0 ) primprox ( 0 0 0 ) primobjpath ( "" ) primdir ( 0 1 0 ) primexpr ( 0 ) primattrib ( "" ) primattribcomp ( 0 ) primreverse ( off ) vertexprimorder ( on )
-chlock sort12 -*
-chautoscope sort12 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b on sort12
-nbop __netbox12 add sort12
-opexprlanguage -s hscript sort12
-opuserdata -n '___Version___' -v '20.5.370' sort12
-
-# Node check_if_point_is_ascending_order3 (Sop/attribwrangle)
-opadd -e -n attribwrangle check_if_point_is_ascending_order3
-oplocate -x 17.430199999999999 -y -13.386200000000001 check_if_point_is_ascending_order3
-opspareds "" check_if_point_is_ascending_order3
-opparm check_if_point_is_ascending_order3  bindings ( 0 ) groupbindings ( 0 )
-opparm check_if_point_is_ascending_order3 folder0 ( 0 0 ) group ( "" ) grouptype ( guess ) class ( detail ) vex_numcount ( 10 ) vex_threadjobsize ( 1024 ) snippet ( '// distance_pointsegment(q, p0, p1)\n// https://www.sidefx.com/docs/houdini/vex/functions/distance_pointsegment.html\n\n//int ps[] = primpoints(0, 0);\n//for(int i=0; i<len(ps); ++i)\n//    printf("ps[%d]: %d\\n", i, ps[i] );\n\n\n//printf("Is closest_id[0]==0 ? %d\\n", point(0, "closest_id", 0)==0 );\ni@reversed_point_order = point(0, "closest_id", 0)!=0;' ) exportlist ( * ) vex_strict ( off ) autobind ( on ) bindings ( 0 ) groupautobind ( on ) groupbindings ( 0 ) vex_cwdpath ( . ) vex_outputmask ( * ) vex_updatenmls ( off ) vex_matchattrib ( id ) vex_inplace ( off ) vex_selectiongroup ( "" ) vex_precision ( auto )
-chlock check_if_point_is_ascending_order3 -*
-chautoscope check_if_point_is_ascending_order3 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b on check_if_point_is_ascending_order3
-nbop __netbox12 add check_if_point_is_ascending_order3
-opexprlanguage -s hscript check_if_point_is_ascending_order3
-opuserdata -n '___Version___' -v '' check_if_point_is_ascending_order3
-
-# Node attribwrangle11 (Sop/attribwrangle)
-opadd -e -n attribwrangle attribwrangle11
-oplocate -x 24.298200000000001 -y -20.4697 attribwrangle11
-opspareds "" attribwrangle11
-opparm attribwrangle11  bindings ( 0 ) groupbindings ( 0 )
-opparm attribwrangle11 folder0 ( 0 0 ) group ( "" ) grouptype ( guess ) class ( point ) vex_numcount ( 10 ) vex_threadjobsize ( 1024 ) snippet ( 'vector p = point(0,"P", @ptnum);\n\n\nint numpoints = npoints(1);\nint i = nearpoint(1, p);\nfloat h = point(1,"height",i);\n\n@P.y = h;\n\n/*\nif( @ptnum==0 )\n{\n    int ps[] = primpoints(1, 0);\n\n    vector p0 = point(1,"P",ps[0]);\n    vector p1 = point(1,"P",ps[1]);\n    float leng = length(p0-p1);\n    \n    float h0 = point(1,"height",0);\n    float h1 = point(1,"height",1);\n    float dh = (h0-h1) / leng;\n    \n    float ext = chf("../W") * 0.5;\n    \n    float newh = dh*ext;\n    \n    printf("!!!!%f, %f, %f\\n", dh, dh*ext, h0 );\n    @P.y = h0 + dh*ext;// + newh;\n}\nelse if( @ptnum==@numpt-1 )\n{\n//    printf("!!!!");\n\n}\n*/' ) exportlist ( * ) vex_strict ( off ) autobind ( on ) bindings ( 0 ) groupautobind ( on ) groupbindings ( 0 ) vex_cwdpath ( . ) vex_outputmask ( * ) vex_updatenmls ( off ) vex_matchattrib ( id ) vex_inplace ( off ) vex_selectiongroup ( "" ) vex_precision ( auto )
-chlock attribwrangle11 -*
-chautoscope attribwrangle11 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b on attribwrangle11
-opexprlanguage -s hscript attribwrangle11
-opuserdata -n '___Version___' -v '' attribwrangle11
-
-# Node attribwrangle14 (Sop/attribwrangle)
-opadd -e -n attribwrangle attribwrangle14
-oplocate -x 8.63551 -y -26.913500002062321 attribwrangle14
-opspareds "" attribwrangle14
-opparm attribwrangle14  bindings ( 0 ) groupbindings ( 0 )
-opparm attribwrangle14 folder0 ( 0 0 ) group ( "" ) grouptype ( guess ) class ( point ) vex_numcount ( 10 ) vex_threadjobsize ( 1024 ) snippet ( 'vector p = point(0,"P", @ptnum);\n\n\nint numpoints = npoints(1);\nint i = nearpoint(1, p);\nfloat h = point(1,"height",i);\n\n@P.y += h;\n\n/*\nif( @ptnum==0 )\n{\n    int ps[] = primpoints(1, 0);\n\n    vector p0 = point(1,"P",ps[0]);\n    vector p1 = point(1,"P",ps[1]);\n    float leng = length(p0-p1);\n    \n    float h0 = point(1,"height",0);\n    float h1 = point(1,"height",1);\n    float dh = (h0-h1) / leng;\n    \n    float ext = chf("../W") * 0.5;\n    \n    float newh = dh*ext;\n    \n    printf("!!!!%f, %f, %f\\n", dh, dh*ext, h0 );\n    @P.y = h0 + dh*ext;// + newh;\n}\nelse if( @ptnum==@numpt-1 )\n{\n//    printf("!!!!");\n\n}\n*/' ) exportlist ( * ) vex_strict ( off ) autobind ( on ) bindings ( 0 ) groupautobind ( on ) groupbindings ( 0 ) vex_cwdpath ( . ) vex_outputmask ( * ) vex_updatenmls ( off ) vex_matchattrib ( id ) vex_inplace ( off ) vex_selectiongroup ( "" ) vex_precision ( auto )
-chlock attribwrangle14 -*
-chautoscope attribwrangle14 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off attribwrangle14
-opexprlanguage -s hscript attribwrangle14
-opuserdata -n '___Version___' -v '' attribwrangle14
-
-# Node attribwrangle1 (Sop/attribwrangle)
-opadd -e -n attribwrangle attribwrangle1
-oplocate -x -3.4262314657987127e-17 -y 5.7877000106692309 attribwrangle1
-opspareds "" attribwrangle1
-opparm attribwrangle1  bindings ( 0 ) groupbindings ( 0 )
-opparm attribwrangle1 folder0 ( 0 0 ) group ( "" ) grouptype ( guess ) class ( detail ) vex_numcount ( 10 ) vex_threadjobsize ( 1024 ) snippet ( 'int al =   chi("../Alignment");\nprintf("%d\\n",  al );' ) exportlist ( * ) vex_strict ( off ) autobind ( on ) bindings ( 0 ) groupautobind ( on ) groupbindings ( 0 ) vex_cwdpath ( . ) vex_outputmask ( * ) vex_updatenmls ( off ) vex_matchattrib ( id ) vex_inplace ( off ) vex_selectiongroup ( "" ) vex_precision ( auto )
-chlock attribwrangle1 -*
-chautoscope attribwrangle1 -*
-opset -d off -r off -h off -f off -y off -t on -l off -s off -u off -F on -c on -e on -b off attribwrangle1
-opexprlanguage -s hscript attribwrangle1
-opuserdata -n '___Version___' -v '' attribwrangle1
-
-# Node polyframe1 (Sop/polyframe)
-opadd -e -n polyframe polyframe1
-oplocate -x 7.3169399999999989 -y -19.352875166660386 polyframe1
-opspareds "" polyframe1
-opparm -V 20.5.370 polyframe1 group ( "" ) entity ( primitive ) style ( edge2 ) attribname ( "" ) Non ( on ) N ( N ) tangentuon ( on ) tangentu ( tangentu ) tangentvon ( off ) tangentv ( tangentv ) signson ( off ) signs ( signs ) ortho ( off ) lefthanded ( off )
-chlock polyframe1 -*
-chautoscope polyframe1 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b on polyframe1
-opexprlanguage -s hscript polyframe1
-opuserdata -n '___Version___' -v '20.5.370' polyframe1
-oporder -e polyexpand2d1 check_if_point_is_left_or_right_of_center null1 clip_function_test add5 polyextrude1 polyexpand2d2 transform1 clean1 merge4 polyextrude2 polyexpand2d3 transform3 polyextrude3 polyexpand2d4 transform4 merge5 polyextrude4 polyextrude5 polyextrude6 polyexpand2d5 transform5 clean2 merge6 polyextrude7 clean3 add3 attribwrangle9 check_if_point_is_left_or_right_of_center1 blast8 polyexpand2d7 attribwrangle10 sort10 rewire1 attribwrangle4 clip_end_segment clip_start_segment sort6 check_if_point_is_ascending_order rewire2 attribwrangle5 clip_end_segment1 clip_start_segment1 sort7 check_if_point_is_ascending_order1 merge1 add6 fuse1 merge2 add7 fuse2 merge3 add8 fuse3 blast1 sort9 blast2 sort5 blast3 blast4 fuse4 fuse6 fuse7 fuse8 output0 switch1 split1 split2 rewire3 attribwrangle6 clip_end_segment2 clip_start_segment2 sort11 check_if_point_is_ascending_order2 rewire4 attribwrangle7 clip_end_segment3 clip_start_segment3 sort12 check_if_point_is_ascending_order3 attribwrangle11 attribwrangle14 attribwrangle1 polyframe1 
+oporder -e rewire6 attribwrangle13 output0 
 opcf ..
 
-# Node add3 (Sop/add)
-opadd -e -n add add3
-oplocate -x 4.1917499999999999 -y 4.18241 add3
-opspareds "" add3
-opparm add3  points ( 7 ) prims ( 1 )
-opparm -V 20.5.370 add3 stdswitcher ( 0 0 0 ) keep ( off ) points ( 7 ) remove ( off ) switcher ( 1 1 ) prims ( 1 ) group ( "" ) add ( all ) inc ( 2 ) attrname ( "" ) closedall ( off ) addparticlesystem ( off ) particlegroup ( "" ) appendunusedtoparticlesystem ( off ) prim0 ( "" ) closed0 ( off ) usept0 ( on ) pt0 ( -8.310231997980374 0 -5.101238288487917 ) weight0 ( 1 ) usept1 ( on ) pt1 ( -4.925878058069987 -0.3025818318128586 -7.74378953759328 ) weight1 ( 1 ) usept2 ( on ) pt2 ( -1.7721339375626393 0.8742424249649048 -7.458605202106966 ) weight2 ( 1 ) usept3 ( on ) pt3 ( -1.0043319223094338 1.5114163160324097 -3.937796292561387 ) weight3 ( 1 ) usept4 ( on ) pt4 ( 2.4830994398343833 -0.23365849256515503 -4.155529821680007 ) weight4 ( 1 ) usept5 ( on ) pt5 ( 4.362990550930839 2.2943488359451294 1.666749164673134 ) weight5 ( 1 ) usept6 ( on ) pt6 ( 2.9999188620454134 -1.0186234712600708 6.764161620346881 ) weight6 ( 1 )
-chlock add3 -*
-chautoscope add3 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off add3
-opexprlanguage -s hscript add3
-opuserdata -n '___Version___' -v '20.5.370' add3
+# Node merge1 (Sop/merge)
+opadd -e -n merge merge1
+oplocate -x 3.62209 -y -30.2805 merge1
+opspareds "" merge1
+opparm -V 20.5.370 merge1
+chlock merge1 -*
+chautoscope merge1 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off merge1
+opexprlanguage -s hscript merge1
+opuserdata -n '___Version___' -v '20.5.370' merge1
+
+# Node join1 (Sop/join)
+opadd -e -n join join1
+oplocate -x 5.67455 -y -31.448799999999999 join1
+opspareds "" join1
+opparm -V 20.5.370 join1 group ( "" ) blend ( on ) tolerance ( 1 ) bias ( 0.5 ) knotmult ( off ) proximity ( on ) dir ( ujoin ) joinop ( all ) inc ( 2 ) loop ( off ) prim ( off ) onlyconnected ( off )
+chlock join1 -*
+chautoscope join1 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off join1
+opexprlanguage -s hscript join1
+opuserdata -n '___Version___' -v '20.5.370' join1
+
+# Node fuse1 (Sop/fuse::2.0)
+opadd -e -n fuse::2.0 fuse1
+oplocate -x 5.67455 -y -32.448799999999999 fuse1
+opspareds "" fuse1
+opparm fuse1  numpointattribs ( 0 ) numgroups ( 0 )
+opparm -V 20.5.370 fuse1 querygroup ( "" ) usetargetgroup ( off ) targetgroup ( "" ) modifyboth ( off ) posattrib ( P ) snapgroup ( 0 ) snaptype ( distancesnap ) algorithm ( lowest ) usetol3d ( on ) tol3d ( 0.001 ) targetptattrib ( snap_to ) targetclass ( point ) usepositionsnapmethod ( on ) positionsnapmethod ( average ) positionsnapweightname ( weight ) useradiusattrib ( off ) radiusattrib ( pscale ) usematchattrib ( off ) matchattrib ( name ) matchtype ( match ) matchtol ( 0 ) gridtype ( spacing ) gridspacing ( 0.1 0.1 0.1 ) gridlines ( 10 10 10 ) gridpow2 ( 3 3 3 ) gridoffset ( 0 0 0 ) gridround ( nearest ) usegridtol ( on ) gridtol ( 10 ) consolidategroup ( 0 ) consolidatesnappedpoints ( on ) keepconsolidatedpoints ( off ) deldegen ( on ) deldegenpoints ( on ) delunusedpoints ( off ) outputgroup ( 0 ) recomputenml ( on ) createsnappedgroup ( off ) snappedgroupname ( snapped_points ) createsnappedattrib ( off ) snappedattribname ( snapped_to ) numpointattribs ( 0 ) numgroups ( 0 )
+chlock fuse1 -*
+chautoscope fuse1 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off fuse1
+opexprlanguage -s hscript fuse1
+opuserdata -n '___Version___' -v '20.5.370' fuse1
+
+# Node facet1 (Sop/facet)
+opadd -e -n facet facet1
+oplocate -x 5.67455 -y -33.448799999999999 facet1
+opspareds "" facet1
+opparm -V 20.5.370 facet1 group ( "" ) grouptype ( guess ) prenml ( off ) unit ( off ) unique ( off ) cons ( points ) dist ( 0.001 ) accurate ( on ) inline ( on ) inlinedist ( 0.001 ) orientPolys ( off ) cusp ( off ) angle ( 20 ) remove ( off ) mkplanar ( off ) postnml ( off ) reversenml ( off )
+chlock facet1 -*
+chautoscope facet1 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off facet1
+opexprlanguage -s hscript facet1
+opuserdata -n '___Version___' -v '20.5.370' facet1
+
+# Node groupdelete2 (Sop/groupdelete)
+opadd -e -n groupdelete groupdelete2
+oplocate -x -1.7397 -y -25.693300000000001 groupdelete2
+opspareds "" groupdelete2
+opparm groupdelete2  deletions ( 1 )
+opparm -V 20.5.370 groupdelete2 deletions ( 1 ) removegrp ( off ) selection_folder ( 0 ) selectiongroup ( "" ) selectiongrouptype ( guess ) enable1 ( on ) grouptype1 ( any ) group1 ( 'right left' )
+chlock groupdelete2 -*
+chautoscope groupdelete2 -*
+opset -d off -r off -h on -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off groupdelete2
+opexprlanguage -s hscript groupdelete2
+opuserdata -n '___Version___' -v '20.5.370' groupdelete2
+
+# Node groupdelete3 (Sop/groupdelete)
+opadd -e -n groupdelete groupdelete3
+oplocate -x 1.6191 -y -25.716999999999999 groupdelete3
+opspareds "" groupdelete3
+opparm groupdelete3  deletions ( 1 )
+opparm -V 20.5.370 groupdelete3 deletions ( 1 ) removegrp ( off ) selection_folder ( 0 ) selectiongroup ( "" ) selectiongrouptype ( guess ) enable1 ( on ) grouptype1 ( any ) group1 ( 'left right' )
+chlock groupdelete3 -*
+chautoscope groupdelete3 -*
+opset -d off -r off -h on -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off groupdelete3
+opexprlanguage -s hscript groupdelete3
+opuserdata -n '___Version___' -v '20.5.370' groupdelete3
+
+# Node attribcreate1 (Sop/attribcreate::2.0)
+opadd -e -n attribcreate::2.0 attribcreate1
+oplocate -x -1.7397 -y -26.7121 attribcreate1
+opspareds "" attribcreate1
+opparm attribcreate1  numattr ( 1 )
+opparm -V 20.5.370 attribcreate1 group ( "" ) grouptype ( guess ) encodenames ( off ) numattr ( 1 ) enable1 ( on ) name1 ( skeleton_type ) existing1 ( better ) createvarmap1 ( off ) varname1 ( "" ) class1 ( primitive ) savetoinfo1 ( off ) type1 ( index ) typeinfo1 ( guess ) precision1 ( auto ) size1 ( 1 ) default1v ( 0 0 0 0 ) writevalues1 ( on ) uselocal1 ( on ) value1v ( 0 0 0 0 ) string1 ( rail_left ) numattr_spacerparm1 ( )
+chlock attribcreate1 -*
+chautoscope attribcreate1 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off attribcreate1
+opexprlanguage -s hscript attribcreate1
+opuserdata -n '___Version___' -v '20.5.370' attribcreate1
+
+# Node attribcreate2 (Sop/attribcreate::2.0)
+opadd -e -n attribcreate::2.0 attribcreate2
+oplocate -x 1.61565 -y -26.7121 attribcreate2
+opspareds "" attribcreate2
+opparm attribcreate2  numattr ( 1 )
+opparm -V 20.5.370 attribcreate2 group ( "" ) grouptype ( guess ) encodenames ( off ) numattr ( 1 ) enable1 ( on ) name1 ( skeleton_type ) existing1 ( better ) createvarmap1 ( off ) varname1 ( "" ) class1 ( primitive ) savetoinfo1 ( off ) type1 ( index ) typeinfo1 ( guess ) precision1 ( auto ) size1 ( 1 ) default1v ( 0 0 0 0 ) writevalues1 ( on ) uselocal1 ( on ) value1v ( 0 0 0 0 ) string1 ( rail_right ) numattr_spacerparm1 ( )
+chlock attribcreate2 -*
+chautoscope attribcreate2 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off attribcreate2
+opexprlanguage -s hscript attribcreate2
+opuserdata -n '___Version___' -v '20.5.370' attribcreate2
+
+# Node attribcreate3 (Sop/attribcreate::2.0)
+opadd -e -n attribcreate::2.0 attribcreate3
+oplocate -x 3.6197900000000001 -y -35.366700000000002 attribcreate3
+opspareds "" attribcreate3
+opparm attribcreate3  numattr ( 1 )
+opparm -V 20.5.370 attribcreate3 group ( "" ) grouptype ( guess ) encodenames ( off ) numattr ( 1 ) enable1 ( on ) name1 ( skeleton_type ) existing1 ( better ) createvarmap1 ( off ) varname1 ( "" ) class1 ( primitive ) savetoinfo1 ( off ) type1 ( index ) typeinfo1 ( guess ) precision1 ( auto ) size1 ( 1 ) default1v ( 0 0 0 0 ) writevalues1 ( on ) uselocal1 ( on ) value1v ( 0 0 0 0 ) string1 ( rail_both ) numattr_spacerparm1 ( )
+chlock attribcreate3 -*
+chautoscope attribcreate3 -*
+opset -d on -r on -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off attribcreate3
+opexprlanguage -s hscript attribcreate3
+opuserdata -n '___Version___' -v '20.5.370' attribcreate3
+
+# Node attribcreate4 (Sop/attribcreate::2.0)
+opadd -e -n attribcreate::2.0 attribcreate4
+oplocate -x 5.6841600000000003 -y -26.726400000000002 attribcreate4
+opspareds "" attribcreate4
+opparm attribcreate4  numattr ( 1 )
+opparm -V 20.5.370 attribcreate4 group ( "" ) grouptype ( guess ) encodenames ( off ) numattr ( 1 ) enable1 ( on ) name1 ( skeleton_type ) existing1 ( better ) createvarmap1 ( off ) varname1 ( "" ) class1 ( primitive ) savetoinfo1 ( off ) type1 ( index ) typeinfo1 ( guess ) precision1 ( auto ) size1 ( 1 ) default1v ( 0 0 0 0 ) writevalues1 ( on ) uselocal1 ( on ) value1v ( 0 0 0 0 ) string1 ( footprint ) numattr_spacerparm1 ( )
+chlock attribcreate4 -*
+chautoscope attribcreate4 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off attribcreate4
+opexprlanguage -s hscript attribcreate4
+opuserdata -n '___Version___' -v '20.5.370' attribcreate4
+
+# Node attribdelete1 (Sop/attribdelete)
+opadd -e -n attribdelete attribdelete1
+oplocate -x 5.6876100000000003 -y -24.632200000000001 attribdelete1
+opspareds "" attribdelete1
+opparm attribdelete1 usereference ( off ) negate ( off ) doptdel ( on ) ptdel ( 'closest_point_id lr' ) dovtxdel ( on ) vtxdel ( rewire_to ) doprimdel ( on ) primdel ( "" ) dodtldel ( on ) dtldel ( reversed_point_order ) updatevar ( on )
+chlock attribdelete1 -*
+chautoscope attribdelete1 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off attribdelete1
+opexprlanguage -s hscript attribdelete1
+opuserdata -n '___Version___' -v '' attribdelete1
+
+# Node attribdelete2 (Sop/attribdelete)
+opadd -e -n attribdelete attribdelete2
+oplocate -x -1.74315 -y -24.674600000000002 attribdelete2
+opspareds "" attribdelete2
+opparm attribdelete2 usereference ( off ) negate ( off ) doptdel ( on ) ptdel ( "" ) dovtxdel ( on ) vtxdel ( rewire_to ) doprimdel ( on ) primdel ( "" ) dodtldel ( on ) dtldel ( "" ) updatevar ( on )
+chlock attribdelete2 -*
+chautoscope attribdelete2 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off attribdelete2
+opexprlanguage -s hscript attribdelete2
+opuserdata -n '___Version___' -v '' attribdelete2
+
+# Node attribdelete3 (Sop/attribdelete)
+opadd -e -n attribdelete attribdelete3
+oplocate -x 1.61565 -y -24.674600000000002 attribdelete3
+opspareds "" attribdelete3
+opparm attribdelete3 usereference ( off ) negate ( off ) doptdel ( on ) ptdel ( "" ) dovtxdel ( on ) vtxdel ( "" ) doprimdel ( on ) primdel ( "" ) dodtldel ( on ) dtldel ( "" ) updatevar ( on )
+chlock attribdelete3 -*
+chautoscope attribdelete3 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off attribdelete3
+opexprlanguage -s hscript attribdelete3
+opuserdata -n '___Version___' -v '' attribdelete3
+
+# Node switchif3 (Sop/switchif)
+opadd -e -n switchif switchif3
+oplocate -x 3.62324 -y -34.211500000000001 switchif3
+opspareds "" switchif3
+opparm switchif3  tests ( 1 )
+chblockbegin
+chadd -t 0 0 switchif3 expr1
+chkey -t 0 -v 1 -m 0 -a 0 -A 0 -T a  -F 'ch("../CapStart")=0 && ch(../CapEnd)=0' switchif3/expr1
+chblockend
+opparm -V 20.5.370 switchif3 mergecondition ( all ) testinput ( first ) tests ( 1 ) enable1 ( on ) type1 ( expr ) expr1 ( expr1 ) attribtype1 ( all ) attribowner1 ( point ) attributes1 ( "" ) attribvaltype1 ( flt ) attribfloatcomp1 ( equal ) attribstringcomp1 ( equal ) attribval1 ( 0 ) attribsval1 ( "" ) counttype1 ( points ) countgroup1 ( "" ) countcomp1 ( equal ) countval1 ( 0 ) hasinputtype1 ( wired )
+chlock switchif3 -*
+chautoscope switchif3 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off switchif3
+opexprlanguage -s hscript switchif3
+opuserdata -n '___Version___' -v '20.5.370' switchif3
+oporder -e polyexpand2d1 check_if_point_is_left_or_right_of_center clip_function_test add5 sort10 output1 output2 switchif1 switchif2 add4 merge7 reverse_point_order output3 output4 foreach_end2 foreach_begin2 rewire5 attribwrangle12 clip_end_segment4 clip_start_segment4 sort13 check_if_point_is_ascending_order4 fuse10 fuse11 foreach_end1 foreach_begin1 Select_shortest_path_if_multiple_candidates_exist polypath4 split4 leftside_outline_with_endcap1 right_outline_with_endcap2 groupdelete1 attribwrangle2 color1 color2 setup_leftendcap setup_rightendcap left_handaril right_handrail all_handrail1 reverse_vertex_order merge1 join1 fuse1 facet1 groupdelete2 groupdelete3 attribcreate1 attribcreate2 attribcreate3 attribcreate4 attribdelete1 attribdelete2 attribdelete3 switchif3 
+opcf ..
 
 # Node resample1 (Sop/resample)
 opadd -e -n resample resample1
@@ -2061,51 +1760,51 @@ opuserdata -n '___Version___' -v '20.5.370' resample1
 
 # Node lattice1 (Sop/lattice)
 opadd -e -n lattice lattice1
-oplocate -x 2.5878700000000001 -y -1.6694100000000001 lattice1
+oplocate -x 2.5748799999999998 -y -2.0137 lattice1
 opspareds "" lattice1
 opparm -V 20.5.370 lattice1 group ( "" ) stdswitcher ( 0 0 ) divs ( 1 1 1 ) interptype ( bezier ) restgroup ( "" ) kernel ( wyvill ) radius ( 1 ) normthreshold ( 0 ) bspheres ( off )
 chlock lattice1 -*
 chautoscope lattice1 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off lattice1
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b on lattice1
 opexprlanguage -s hscript lattice1
 opuserdata -n '___Version___' -v '20.5.370' lattice1
 
 # Node bound1 (Sop/bound)
 opadd -e -n bound bound1
-oplocate -x 4.1917499999999999 -y -0.21721499999999999 bound1
+oplocate -x 4.1787599999999996 -y -0.56149899999999997 bound1
 opspareds "" bound1
 opparm -V 20.5.370 bound1 group ( "" ) grouptype ( guess ) keepOriginal ( off ) createboundinggeo ( on ) createempty ( on ) separator ( ) boundtype ( off ) orientedbbox ( off ) refinementiterations ( 6 ) dodivs ( on ) divs ( 1 1 1 ) rebar ( off ) minsize ( 0 0 0 ) orient ( y ) accurate ( off ) minradius ( 0 ) orientedbrect ( off ) origin ( 0 0 0 ) dist ( 0 ) dir ( 0 1 0 ) minpad ( 0 0 0 ) maxpad ( 0 0 0 ) addboundsgroup ( off ) boundsgroup ( bounds ) addxformattrib ( off ) xformattrib ( xform ) addradiiattrib ( off ) radiiattrib ( radii )
 chlock bound1 -*
 chautoscope bound1 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off bound1
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b on bound1
 opexprlanguage -s hscript bound1
 opuserdata -n '___Version___' -v '20.5.370' bound1
 
 # Node edit1 (Sop/edit)
 opadd -e -n edit edit1
-oplocate -x 5.7879300000000002 -y -1.2217499999999999 edit1
+oplocate -x 5.77494 -y -1.5660400000000001 edit1
 opspareds "" edit1
 opparm -V 20.5.370 edit1 group ( p0-4 ) grouptype ( edges ) modeswitcher ( 0 0 ) switcher ( 0 0 ) xOrd ( srt ) rOrd ( xyz ) t ( 0 -5.988216161727905 0 ) r ( 0 0 0 ) s ( 1 1 1 ) shear ( 0 0 0 ) parmgroup_pivotxform ( 0 ) p ( -1.4612903594970703 3.029026985168457 -11.518953323364258 ) pr ( 0 0 0 ) parmgroup_prexform ( 0 ) prexform_xOrd ( srt ) prexform_rOrd ( xyz ) prexform_t ( 0 0 0 ) prexform_r ( 0 0 0 ) prexform_s ( 1 1 1 ) prexform_shear ( 0 0 0 ) parmgroup_lpivotxform ( 0 ) lp ( 0 0 0 ) lpr ( 0 0 0 ) parmgroup_lprexform ( 0 ) lprexform_xOrd ( srt ) lprexform_rOrd ( xyz ) lprexform_t ( 0 0 0 ) lprexform_r ( 0 0 0 ) lprexform_s ( 1 1 1 ) lprexform_shear ( 0 0 0 ) vlength ( on ) parmgroup_xformspace ( 0 ) xformspace ( global ) localframe ( component ) localspaceupvector ( 0 1 0 ) leadislandhint ( p0-4 ) slideonsurface ( off ) dist ( 0 ) leadnml ( on ) apply ( 0 ) softparmsgrouper ( 0 ) distmetric ( surface ) applyrolloff ( off ) distattr ( "" ) leadptattr ( "" ) rad ( 0 ) type ( cubic ) tandeg ( 0 0 ) kernel ( wyvill ) visualizefalloff ( state ) sculptswitcher ( 0 0 0 ) op ( smoothdeform ) axis ( normal ) vector ( 0 0 1 ) stencilaccum ( off ) stencilclear ( 0 ) resetnormal ( 0 ) flood ( 0 ) color ( off off ) fd ( 0.10000000149011612 ) bd ( -0.10000000149011612 ) shape ( circle ) bitmap ( butterfly1.pic ) bmpchan ( alpha ) sculptrad ( 0.10000000149011612 ) uvradius ( 0.10000000149011612 ) radiuspressure ( 1 ) usedepth ( off ) depth ( 0.1 0.1 ) brushangle ( 0 ) squash ( 1 ) opacity ( 1 ) opacitypresure ( 1 ) brushsplatter ( 0 ) papergrain ( 0 ) softedge ( 1 ) sculptkernel ( elendt ) uptype ( stroke ) upvector ( 0 1 0 ) projtype ( on ) useconnectivity ( on ) usenormals ( on ) realtime ( off ) dir ( 0 0 1 ) hitpos ( 0 0 0 ) hitprim ( 0 ) hituvw ( 0 0 0 ) hitpressure ( 1 ) hitpt ( 0 ) event ( nop ) useorient ( off ) doreflect ( off ) symaxis ( 1 0 0 ) symorig ( 0 0 0 ) symdist ( 0 ) symthreshold ( 1 ) symplanetol ( 9.999999747378752e-6 ) updatenmls ( on ) clearall ( 0 )
 chlock edit1 -*
 chautoscope edit1 -*
-opset -d off -r off -h on -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off edit1
+opset -d off -r off -h on -f off -y off -t off -l off -s off -u off -F on -c on -e on -b on edit1
 opexprlanguage -s hscript edit1
 opuserdata -n '___Version___' -v '20.5.370' edit1
 
 # Node polyframe1 (Sop/polyframe)
 opadd -e -n polyframe polyframe1
-oplocate -x -7.1382099999999999 -y 0.85604999999999998 polyframe1
+oplocate -x -1.2989900000000001 -y -2.9737 polyframe1
 opspareds "" polyframe1
 opparm -V 20.5.370 polyframe1 group ( "" ) entity ( primitive ) style ( edge2 ) attribname ( "" ) Non ( off ) N ( N ) tangentuon ( on ) tangentu ( N ) tangentvon ( off ) tangentv ( tangentv ) signson ( off ) signs ( signs ) ortho ( off ) lefthanded ( off )
 chlock polyframe1 -*
 chautoscope polyframe1 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off polyframe1
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b on polyframe1
 opexprlanguage -s hscript polyframe1
 opuserdata -n '___Version___' -v '20.5.370' polyframe1
 
 # Node circle1 (Sop/circle)
 opadd -e -n circle circle1
-oplocate -x -7.1412100000000001 -y 3.2682500000000001 circle1
+oplocate -x -1.30199 -y -0.56149899999999997 circle1
 opspareds "" circle1
 chblockbegin
 chadd -t 0 0 circle1 divs
@@ -2114,139 +1813,292 @@ chblockend
 opparm -V 20.5.370 circle1 type ( poly ) orient ( zx ) reverse ( on ) rad ( 1 1 ) t ( 0 0 0 ) r ( 0 0 0 ) scale ( 1 ) order ( 4 ) divs ( divs ) arc ( openarc ) angle ( 0 350 ) imperfect ( on )
 chlock circle1 -*
 chautoscope circle1 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off circle1
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b on circle1
 opexprlanguage -s hscript circle1
 opuserdata -n '___Version___' -v '20.5.370' circle1
 
 # Node attribwrangle1 (Sop/attribwrangle)
 opadd -e -n attribwrangle attribwrangle1
-oplocate -x -7.1412100000000001 -y 2.0308999999999999 attribwrangle1
+oplocate -x -1.30199 -y -1.7988500000000001 attribwrangle1
 opspareds '    group {         name    "folder1"         label   "Code"          parm {             name    "group"             baseparm             label   "Group"             export  none             bindselector uvselect "Modify Attribs"                 "Select the geometry to affect and press Enter to complete."                 0 1 0xffffffff 0 grouptype 0         }         parm {             name    "grouptype"             baseparm             label   "Group Type"             export  none         }         parm {             name    "class"             baseparm             label   "Run Over"             export  none         }         parm {             name    "vex_numcount"             baseparm             label   "Number Count"             export  none         }         parm {             name    "vex_threadjobsize"             baseparm             label   "Thread Job Size"             export  none         }         groupsimple {             name    "folder_generatedparms_snippet"             label   "Generated Channel Parameters"             grouptag { "sidefx::look" "blank" }              parm {                 name    "height"                 label   "Height"                 type    float                 default { "0" }                 range   { 0 1 }             }         }          parm {             name    "snippet"             baseparm             label   "VEXpression"             export  all         }         parm {             name    "exportlist"             baseparm             label   "Attributes to Create"             export  none         }         parm {             name    "vex_strict"             baseparm             label   "Enforce Prototypes"             export  none         }     }      group {         name    "folder1_1"         label   "Bindings"          parm {             name    "autobind"             baseparm             label   "Autobind by Name"             export  none         }         multiparm {             name    "bindings"             label    "Number of Bindings"             baseparm             default 0             parmtag { "autoscope" "0000000000000000" }             parmtag { "multistartoffset" "1" }              parm {                 name    "bindname#"                 baseparm                 label   "Attribute Name"                 export  none             }             parm {                 name    "bindparm#"                 baseparm                 label   "VEX Parameter"                 export  none             }         }          parm {             name    "groupautobind"             baseparm             label   "Autobind Groups by Name"             export  none         }         multiparm {             name    "groupbindings"             label    "Group Bindings"             baseparm             default 0             parmtag { "autoscope" "0000000000000000" }             parmtag { "multistartoffset" "1" }              parm {                 name    "bindgroupname#"                 baseparm                 label   "Group Name"                 export  none             }             parm {                 name    "bindgroupparm#"                 baseparm                 label   "VEX Parameter"                 export  none             }         }          parm {             name    "vex_cwdpath"             baseparm             label   "Evaluation Node Path"             export  none         }         parm {             name    "vex_outputmask"             baseparm             label   "Export Parameters"             export  none         }         parm {             name    "vex_updatenmls"             baseparm             label   "Update Normals If Displaced"             export  none         }         parm {             name    "vex_matchattrib"             baseparm             label   "Attribute to Match"             export  none         }         parm {             name    "vex_inplace"             baseparm             label   "Compute Results In Place"             export  none         }         parm {             name    "vex_selectiongroup"             baseparm             label   "Output Selection Group"             export  none         }         parm {             name    "vex_precision"             baseparm             label   "VEX Precision"             export  none         }     }  ' attribwrangle1
 opparm attribwrangle1  bindings ( 0 ) groupbindings ( 0 )
 opparm attribwrangle1 folder0 ( 0 0 ) group ( "" ) grouptype ( guess ) class ( point ) vex_numcount ( 10 ) vex_threadjobsize ( 1024 ) snippet ( 'float t = float(@ptnum)/float(@numpt - 1); // (0~@numpt)を(0~1)に正規化(@ptnumはintなのでfloatにキャストしてます)\n@P.y += chf("height") * t; \n\n//@N.y=0;' ) exportlist ( * ) vex_strict ( off ) autobind ( on ) bindings ( 0 ) groupautobind ( on ) groupbindings ( 0 ) vex_cwdpath ( . ) vex_outputmask ( * ) vex_updatenmls ( off ) vex_matchattrib ( id ) vex_inplace ( off ) vex_selectiongroup ( "" ) vex_precision ( auto ) folder1 ( 0 0 ) folder_generatedparms_snippet ( 0 ) height ( 0.334 )
 chlock attribwrangle1 -*
 chautoscope attribwrangle1 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off attribwrangle1
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b on attribwrangle1
 opexprlanguage -s hscript attribwrangle1
 opuserdata -n '___Version___' -v '' attribwrangle1
 
 # Node sweep1 (Sop/sweep::2.0)
 opadd -e -n sweep::2.0 sweep1
-oplocate -x -7.2778600000000004 -y -1.2217499999999999 sweep1
+oplocate -x -1.4386399999999999 -y -5.0514999999999999 sweep1
 opspareds "" sweep1
 opparm sweep1  scaleramp ( 2 )
 opparm -V 20.5.370 sweep1 curvegroup ( "" ) crosssectiongroup ( "" ) sepparm ( ) surface_folder ( 1 1 1 ) surfaceshape ( ribbon ) surfacetype ( quads ) scale ( 1 ) cols ( 1 ) radius ( 0.1 ) width ( 0.2 ) reversecrosssections ( off ) stretcharoundturns ( on ) maxstretcharoundturns ( 10 ) endcaps_folder ( 0 ) endcaptype ( none ) capdivs ( 3 ) triangularpoles ( off ) capscale ( 1 ) caproundness ( 1 ) addendcapsgroup ( off ) endcapsgroup ( endcaps ) scale_folder ( 0 ) applyscale ( off ) scaleramp ( 2 ) rotation_folder ( 0 ) rOrd ( xyz ) applyroll ( on ) roll ( 0 ) fulltwists ( 0 ) incroll ( 0 ) rollper ( fulldistance ) rollattrib ( roll ) sepparmroll ( ) applyyaw ( off ) yaw ( 0 ) incyaw ( 0 ) yawper ( fulldistance ) yawattrib ( yaw ) sepparmyaw ( ) applypitch ( off ) pitch ( 0 ) incpitch ( 0 ) pitchper ( fulldistance ) pitchattrib ( pitch ) cross_sections_folder ( 0 ) copyorder ( each ) crosssectionattrib ( variant ) primtype ( auto ) unrollclosedrowcol ( off ) swaprowcol ( off ) closeifnocurveinput ( off ) up_folder ( 0 ) upvectortype ( attrib ) upvectoratstart ( off ) useendupvector ( off ) upvectorattrib ( N ) endupvectorattrib ( N ) upvector ( 0 1 0 ) endupvector ( 0 1 0 ) tangents_folder ( 0 ) tangenttype ( avgdir ) continuousclosed ( on ) extrapolateendtangents ( off ) transformbyattribs ( on ) uv_folder ( 0 ) computeuvs ( off ) overrideexistinguvs ( off ) lengthweighteduvs ( on ) normalizeu ( on ) normalizev ( off ) flipu ( on ) uvscale_folder ( 0 ) uvscale ( 1 1 ) usemeshedgelengths ( on ) propscalepercurve ( on ) uvseams_folder ( 0 ) wrapu ( on ) wrapv ( on ) attributes_folder ( 0 ) input_folder ( 0 ) attribsfrombackbone ( '* ^P ^N ^up ^pscale ^scale ^orient ^rot ^pivot ^trans ^transform' ) attribsfromcrosssection ( * ) output_folder ( 0 ) addptrow ( off ) ptrowattrib ( ptrow ) addptcol ( off ) ptcolattrib ( ptcol ) addprimrow ( off ) primrowattrib ( primrow ) addprimcol ( off ) primcolattrib ( primcol ) addcrosssectionnum ( off ) crosssectionnumattrib ( crossnum ) addcurvenum ( off ) curvenumattrib ( curvenum ) scaleramp1pos ( 0 ) scaleramp1value ( 1 ) scaleramp1interp ( linear ) scaleramp2pos ( 1 ) scaleramp2value ( 1 ) scaleramp2interp ( linear )
 chlock sweep1 -*
 chautoscope sweep1 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off sweep1
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b on sweep1
 opexprlanguage -s hscript sweep1
 opuserdata -n '___Version___' -v '20.5.370' sweep1
 
 # Node attribwrangle2 (Sop/attribwrangle)
 opadd -e -n attribwrangle attribwrangle2
-oplocate -x -7.2778600000000004 -y -0.18385000000000001 attribwrangle2
+oplocate -x -1.4386399999999999 -y -4.0136000000000003 attribwrangle2
 opspareds "" attribwrangle2
 opparm attribwrangle2  bindings ( 0 ) groupbindings ( 0 )
 opparm attribwrangle2 folder0 ( 0 0 ) group ( "" ) grouptype ( guess ) class ( point ) vex_numcount ( 10 ) vex_threadjobsize ( 1024 ) snippet ( '@N.y=0;' ) exportlist ( * ) vex_strict ( off ) autobind ( on ) bindings ( 0 ) groupautobind ( on ) groupbindings ( 0 ) vex_cwdpath ( . ) vex_outputmask ( * ) vex_updatenmls ( off ) vex_matchattrib ( id ) vex_inplace ( off ) vex_selectiongroup ( "" ) vex_precision ( auto )
 chlock attribwrangle2 -*
 chautoscope attribwrangle2 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off attribwrangle2
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b on attribwrangle2
 opexprlanguage -s hscript attribwrangle2
 opuserdata -n '___Version___' -v '' attribwrangle2
 
 # Node polyexpand2d1 (Sop/polyexpand2d)
 opadd -e -n polyexpand2d polyexpand2d1
-oplocate -x -9.1433900000000001 -y -1.33613 polyexpand2d1
+oplocate -x -3.3041700000000001 -y -5.1658799999999996 polyexpand2d1
 opspareds "" polyexpand2d1
 opparm -V 20.5.370 polyexpand2d1 group ( "" ) planepossrc ( fitplane ) planeorigin ( 0 0 0 ) planedist ( 0 ) planenormal ( 0 1 0 ) output ( curves ) offset ( 0.1 ) divs ( 1 ) sidedetermination ( simplereach ) outputinside ( on ) outputoutside ( on ) keepinput ( off ) omitendcaps ( off ) localattribssection ( 0 ) uselocalinsidescale ( off ) localinsidescale ( offsetscale ) uselocaloutsidescale ( off ) localoutsidescale ( offsetscale ) newg ( off ) insidegroup ( inside ) outsidegroup ( outside ) doedgedistattrib ( off ) edgedistattrib ( edgedist ) doedgespeedattrib ( off ) edgespeedattrib ( edgespeed ) coincidencetol ( 0.003 ) parallelismtol ( 0.01 ) skeletonfailure ( error ) cacheskeleton ( on ) updatenmls ( on )
 chlock polyexpand2d1 -*
 chautoscope polyexpand2d1 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off polyexpand2d1
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b on polyexpand2d1
 opexprlanguage -s hscript polyexpand2d1
 opuserdata -n '___Version___' -v '20.5.370' polyexpand2d1
 
-# Node sweep2 (Sop/sweep::2.0)
-opadd -e -n sweep::2.0 sweep2
-oplocate -x -3.11863 -y -2.56806 sweep2
-opspareds "" sweep2
-opparm sweep2  scaleramp ( 2 )
-opparm -V 20.5.370 sweep2 curvegroup ( "" ) crosssectiongroup ( "" ) sepparm ( ) surface_folder ( 1 1 1 ) surfaceshape ( ribbon ) surfacetype ( quads ) scale ( 1 ) cols ( 1 ) radius ( 0.1 ) width ( 1 ) reversecrosssections ( off ) stretcharoundturns ( on ) maxstretcharoundturns ( 10 ) endcaps_folder ( 0 ) endcaptype ( none ) capdivs ( 3 ) triangularpoles ( off ) capscale ( 1 ) caproundness ( 1 ) addendcapsgroup ( off ) endcapsgroup ( endcaps ) scale_folder ( 0 ) applyscale ( off ) scaleramp ( 2 ) rotation_folder ( 0 ) rOrd ( xyz ) applyroll ( on ) roll ( 0 ) fulltwists ( 0 ) incroll ( 0 ) rollper ( fulldistance ) rollattrib ( roll ) sepparmroll ( ) applyyaw ( off ) yaw ( 0 ) incyaw ( 0 ) yawper ( fulldistance ) yawattrib ( yaw ) sepparmyaw ( ) applypitch ( off ) pitch ( 0 ) incpitch ( 0 ) pitchper ( fulldistance ) pitchattrib ( pitch ) cross_sections_folder ( 0 ) copyorder ( each ) crosssectionattrib ( variant ) primtype ( auto ) unrollclosedrowcol ( off ) swaprowcol ( off ) closeifnocurveinput ( off ) up_folder ( 0 ) upvectortype ( y ) upvectoratstart ( on ) useendupvector ( off ) upvectorattrib ( start_up ) endupvectorattrib ( end_up ) upvector ( 0 1 0 ) endupvector ( 0 1 0 ) tangents_folder ( 0 ) tangenttype ( avgdir ) continuousclosed ( on ) extrapolateendtangents ( off ) transformbyattribs ( on ) uv_folder ( 0 ) computeuvs ( off ) overrideexistinguvs ( off ) lengthweighteduvs ( on ) normalizeu ( on ) normalizev ( off ) flipu ( on ) uvscale_folder ( 0 ) uvscale ( 1 1 ) usemeshedgelengths ( on ) propscalepercurve ( on ) uvseams_folder ( 0 ) wrapu ( on ) wrapv ( on ) attributes_folder ( 0 ) input_folder ( 0 ) attribsfrombackbone ( '* ^P ^N ^up ^pscale ^scale ^orient ^rot ^pivot ^trans ^transform' ) attribsfromcrosssection ( * ) output_folder ( 0 ) addptrow ( off ) ptrowattrib ( ptrow ) addptcol ( off ) ptcolattrib ( ptcol ) addprimrow ( off ) primrowattrib ( primrow ) addprimcol ( off ) primcolattrib ( primcol ) addcrosssectionnum ( off ) crosssectionnumattrib ( crossnum ) addcurvenum ( off ) curvenumattrib ( curvenum ) scaleramp1pos ( 0 ) scaleramp1value ( 1 ) scaleramp1interp ( linear ) scaleramp2pos ( 1 ) scaleramp2value ( 1 ) scaleramp2interp ( linear )
-chlock sweep2 -*
-chautoscope sweep2 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off sweep2
-opexprlanguage -s hscript sweep2
-opuserdata -n '___Version___' -v '20.5.370' sweep2
+# Node blast3 (Sop/blast)
+opadd -e -n blast blast3
+oplocate -x -14.4024 -y -1.8374600000000001 blast3
+opspareds "" blast3
+opparm -V 20.5.370 blast3 group ( '@prim_type=rightside @prim_type=floor @prim_type=leftside' ) grouptype ( guess ) computenorms ( off ) negate ( on ) fillhole ( off ) removegrp ( off )
+chlock blast3 -*
+chautoscope blast3 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off blast3
+opexprlanguage -s hscript blast3
+opuserdata -n '___Version___' -v '20.5.370' blast3
 
-# Node resample2 (Sop/resample)
-opadd -e -n resample resample2
-oplocate -x -2.9443299999999999 -y 2.3430499999999999 resample2
-opspareds "" resample2
-opparm -V 20.5.370 resample2 group ( "" ) maintainprimorder ( off ) lod ( 1 ) edge ( off ) method ( dist ) measure ( arc ) dolength ( on ) length ( 0.26 ) dosegs ( off ) segs ( 10 ) useattribs ( on ) allequal ( on ) last ( off ) randomshift ( off ) onlypoints ( off ) treatpolysas ( straight ) outputsubdpoly ( off ) doptdistattr ( off ) ptdistattr ( ptdist ) dotangentattr ( off ) tangentattr ( tangentu ) docurveuattr ( off ) curveuattr ( curveu ) docurvenumattr ( off ) curvenumattr ( curvenum )
-chlock resample2 -*
-chautoscope resample2 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off resample2
-opexprlanguage -s hscript resample2
-opuserdata -n '___Version___' -v '20.5.370' resample2
+# Node blast4 (Sop/blast)
+opadd -e -n blast blast4
+oplocate -x -14.4024 -y 1.57731 blast4
+opspareds "" blast4
+opparm -V 20.5.370 blast4 group ( '@prim_type=rightside @prim_type=floor @prim_type=leftside' ) grouptype ( guess ) computenorms ( off ) negate ( on ) fillhole ( off ) removegrp ( off )
+chlock blast4 -*
+chautoscope blast4 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off blast4
+opexprlanguage -s hscript blast4
+opuserdata -n '___Version___' -v '20.5.370' blast4
 
-# Node polybevel2 (Sop/polybevel::3.0)
-opadd -e -n polybevel::3.0 polybevel2
-oplocate -x -2.4305599999999998 -y 3.3430499999999999 polybevel2
-opspareds "" polybevel2
-opparm polybevel2  profileramp ( 2 )
-opparm -V 20.5.370 polybevel2 group ( "" ) grouptype ( points ) ignoregroup ( 0 ) ignorebridgededges ( on ) ignoresharededges ( off ) ignoreflatedges ( off ) ignoreflatpoints ( off ) ignoreinlinepoints ( off ) flatangle ( 2 ) offsettingsection ( 0 ) offset ( 1 ) useoffsetscale ( unscaled ) pointscaleattr ( pscale ) sliding ( auto ) asymtol ( 0.5 ) slideedges ( "" ) collisionsandlimits ( 0 ) detectcollisions ( on ) restrictslides ( on ) limit ( individually ) stopatslideend ( on ) stopatpinches ( on ) pinchangle ( 0 ) stopatcollisions ( on ) filletsection ( 0 ) filletshape ( round ) divisions ( 6 ) profilesampling ( uniform ) convexity ( 1 ) profilesource ( basic ) profilegroup ( 0 ) profilescale ( 1 ) reverseprofile ( off ) symmetrizeprofile ( on ) profiledirection ( "" ) profileramp ( 2 ) flatboost ( 30 ) outputgroupssection ( 0 ) useptfilletgroup ( off ) ptfilletgroup ( pointfilletpolys ) useptfilletedges ( off ) ptfilletedges ( pointfilletedges ) useedgefilletgroup ( off ) edgeprims ( edgefilletpolys ) useoffsetedges ( off ) offsetedges ( offsetedges ) useoffsetpoints ( off ) offsetpoints ( offsetpoints ) usemergedpoints ( off ) mergedpoints ( mergedpoints ) profileramp1pos ( 0 ) profileramp1value ( 0.5 ) profileramp1interp ( catmull-rom ) profileramp2pos ( 1 ) profileramp2value ( 0.5 ) profileramp2interp ( catmull-rom )
-chlock polybevel2 -*
-chautoscope polybevel2 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off polybevel2
-opexprlanguage -s hscript polybevel2
-opuserdata -n '___Version___' -v '20.5.370' polybevel2
+# Node blast5 (Sop/blast)
+opadd -e -n blast blast5
+oplocate -x -17.751999999999999 -y 0.73999199999999998 blast5
+opspareds "" blast5
+opparm -V 20.5.370 blast5 group ( '@prim_type=rightside @prim_type=floor @prim_type=leftside' ) grouptype ( guess ) computenorms ( off ) negate ( on ) fillhole ( off ) removegrp ( off )
+chlock blast5 -*
+chautoscope blast5 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off blast5
+opexprlanguage -s hscript blast5
+opuserdata -n '___Version___' -v '20.5.370' blast5
 
-# Node attribwrangle3 (Sop/attribwrangle)
-opadd -e -n attribwrangle attribwrangle3
-oplocate -x -2.94733 -y 1.30315 attribwrangle3
-opspareds '    group {         name    "folder1"         label   "Code"          parm {             name    "group"             baseparm             label   "Group"             export  none             bindselector uvselect "Modify Attribs"                 "Select the geometry to affect and press Enter to complete."                 0 1 0xffffffff 0 grouptype 0         }         parm {             name    "grouptype"             baseparm             label   "Group Type"             export  none         }         parm {             name    "class"             baseparm             label   "Run Over"             export  none         }         parm {             name    "vex_numcount"             baseparm             label   "Number Count"             export  none         }         parm {             name    "vex_threadjobsize"             baseparm             label   "Thread Job Size"             export  none         }         groupsimple {             name    "folder_generatedparms_snippet"             label   "Generated Channel Parameters"             grouptag { "sidefx::look" "blank" }              parm {                 name    "height"                 label   "Height"                 type    float                 default { "0" }                 range   { 0 1 }             }         }          parm {             name    "snippet"             baseparm             label   "VEXpression"             export  all         }         parm {             name    "exportlist"             baseparm             label   "Attributes to Create"             export  none         }         parm {             name    "vex_strict"             baseparm             label   "Enforce Prototypes"             export  none         }     }      group {         name    "folder1_1"         label   "Bindings"          parm {             name    "autobind"             baseparm             label   "Autobind by Name"             export  none         }         multiparm {             name    "bindings"             label    "Number of Bindings"             baseparm             default 0             parmtag { "autoscope" "0000000000000000" }             parmtag { "multistartoffset" "1" }              parm {                 name    "bindname#"                 baseparm                 label   "Attribute Name"                 export  none             }             parm {                 name    "bindparm#"                 baseparm                 label   "VEX Parameter"                 export  none             }         }          parm {             name    "groupautobind"             baseparm             label   "Autobind Groups by Name"             export  none         }         multiparm {             name    "groupbindings"             label    "Group Bindings"             baseparm             default 0             parmtag { "autoscope" "0000000000000000" }             parmtag { "multistartoffset" "1" }              parm {                 name    "bindgroupname#"                 baseparm                 label   "Group Name"                 export  none             }             parm {                 name    "bindgroupparm#"                 baseparm                 label   "VEX Parameter"                 export  none             }         }          parm {             name    "vex_cwdpath"             baseparm             label   "Evaluation Node Path"             export  none         }         parm {             name    "vex_outputmask"             baseparm             label   "Export Parameters"             export  none         }         parm {             name    "vex_updatenmls"             baseparm             label   "Update Normals If Displaced"             export  none         }         parm {             name    "vex_matchattrib"             baseparm             label   "Attribute to Match"             export  none         }         parm {             name    "vex_inplace"             baseparm             label   "Compute Results In Place"             export  none         }         parm {             name    "vex_selectiongroup"             baseparm             label   "Output Selection Group"             export  none         }         parm {             name    "vex_precision"             baseparm             label   "VEX Precision"             export  none         }     }  ' attribwrangle3
-opparm attribwrangle3  bindings ( 0 ) groupbindings ( 0 )
-opparm attribwrangle3 folder0 ( 0 0 ) group ( "" ) grouptype ( guess ) class ( point ) vex_numcount ( 10 ) vex_threadjobsize ( 1024 ) snippet ( 'float t = float(@ptnum)/float(@numpt - 1); // (0~@numpt)を(0~1)に正規化(@ptnumはintなのでfloatにキャストしてます)\n@P.y += chf("height") * t; \n\n//@N.y=0;' ) exportlist ( * ) vex_strict ( off ) autobind ( on ) bindings ( 0 ) groupautobind ( on ) groupbindings ( 0 ) vex_cwdpath ( . ) vex_outputmask ( * ) vex_updatenmls ( off ) vex_matchattrib ( id ) vex_inplace ( off ) vex_selectiongroup ( "" ) vex_precision ( auto ) folder1 ( 0 0 ) folder_generatedparms_snippet ( 0 ) height ( 10 )
-chlock attribwrangle3 -*
-chautoscope attribwrangle3 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off attribwrangle3
-opexprlanguage -s hscript attribwrangle3
-opuserdata -n '___Version___' -v '' attribwrangle3
+# Node boolean_curve1 (labs::Sop/boolean_curve::1.0)
+opadd -e -n labs::boolean_curve::1.0 boolean_curve1
+oplocate -x 8.3168399999999991 -y 1.9663600000000001 boolean_curve1
+opspareds "" boolean_curve1
+opparm -V 370 boolean_curve1 fd_outputgeometry ( 0 ) operation ( 2 ) useproxtol ( off ) proxtol ( 0.01 ) fd_groups ( 0 ) ainsideb ( on ) ainsidebgrp ( ainsideb ) aoutsideb ( on ) aoutsidebgrp ( aoutsideb )
+chlock boolean_curve1 -*
+chautoscope boolean_curve1 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off boolean_curve1
+opexprlanguage -s hscript boolean_curve1
+opuserdata -n '___Version___' -v '370' boolean_curve1
 
-# Node attribwrangle4 (Sop/attribwrangle)
-opadd -e -n attribwrangle attribwrangle4
-oplocate -x -2.94733 -y -1.28417 attribwrangle4
-opspareds "" attribwrangle4
-opparm attribwrangle4  bindings ( 0 ) groupbindings ( 0 )
-opparm attribwrangle4 folder0 ( 0 0 ) group ( "" ) grouptype ( guess ) class ( point ) vex_numcount ( 10 ) vex_threadjobsize ( 1024 ) snippet ( '@N.y=0;' ) exportlist ( * ) vex_strict ( off ) autobind ( on ) bindings ( 0 ) groupautobind ( on ) groupbindings ( 0 ) vex_cwdpath ( . ) vex_outputmask ( * ) vex_updatenmls ( off ) vex_matchattrib ( id ) vex_inplace ( off ) vex_selectiongroup ( "" ) vex_precision ( auto )
-chlock attribwrangle4 -*
-chautoscope attribwrangle4 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off attribwrangle4
-opexprlanguage -s hscript attribwrangle4
-opuserdata -n '___Version___' -v '' attribwrangle4
+# Node blast1 (Sop/blast)
+opadd -e -n blast blast1
+oplocate -x 10.5055 -y 0.530555 blast1
+opspareds "" blast1
+opparm -V 20.5.370 blast1 group ( aoutsideb ) grouptype ( guess ) computenorms ( off ) negate ( on ) fillhole ( off ) removegrp ( off )
+chlock blast1 -*
+chautoscope blast1 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off blast1
+opexprlanguage -s hscript blast1
+opuserdata -n '___Version___' -v '20.5.370' blast1
 
-# Node polyframe2 (Sop/polyframe)
-opadd -e -n polyframe polyframe2
-oplocate -x -2.9443299999999999 -y -0.056575399999999998 polyframe2
-opspareds "" polyframe2
-opparm -V 20.5.370 polyframe2 group ( "" ) entity ( primitive ) style ( edge2 ) attribname ( "" ) Non ( off ) N ( N ) tangentuon ( on ) tangentu ( N ) tangentvon ( off ) tangentv ( tangentv ) signson ( off ) signs ( signs ) ortho ( off ) lefthanded ( off )
-chlock polyframe2 -*
-chautoscope polyframe2 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off polyframe2
-opexprlanguage -s hscript polyframe2
-opuserdata -n '___Version___' -v '20.5.370' polyframe2
+# Node box1 (Sop/box)
+opadd -e -n box box1
+oplocate -x 10.244899999999999 -y 4.0623500000000003 box1
+opspareds "" box1
+opparm -V 20.5.370 box1 type ( polymesh ) surftype ( quads ) consolidatepts ( on ) size ( 1 1 1 ) t ( 0 0 0 ) r ( 0 0 0 ) scale ( 1 ) divrate ( 2 2 2 ) orderrate ( 4 4 4 ) dodivs ( off ) divs ( 3 3 3 ) rebar ( off ) orientedbbox ( off ) vertexnormals ( off )
+chlock box1 -*
+chautoscope box1 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off box1
+opexprlanguage -s hscript box1
+opuserdata -n '___Version___' -v '20.5.370' box1
 
-# Node add4 (Sop/add)
-opadd -e -n add add4
-oplocate -x 0.41626278277613915 -y 2.7085384150002514 add4
-opspareds "" add4
-opparm add4  points ( 3 ) prims ( 1 )
-opparm -V 20.5.370 add4 stdswitcher ( 0 0 0 ) keep ( off ) points ( 3 ) remove ( off ) switcher ( 1 1 ) prims ( 1 ) group ( "" ) add ( all ) inc ( 2 ) attrname ( "" ) closedall ( off ) addparticlesystem ( off ) particlegroup ( "" ) appendunusedtoparticlesystem ( off ) prim0 ( "" ) closed0 ( off ) usept0 ( on ) pt0 ( -3.5916844821803586 0 0 ) weight0 ( 1 ) usept1 ( on ) pt1 ( 2.040119762246583 0 0 ) weight1 ( 1 ) usept2 ( on ) pt2 ( 9.300876389721193 0 0 ) weight2 ( 1 )
-chlock add4 -*
-chautoscope add4 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off add4
-opexprlanguage -s hscript add4
-opuserdata -n '___Version___' -v '20.5.370' add4
-oporder -e Bend Elbow Straight add1 add2 add9 sort4 add10 polybevel1 Isle add3 resample1 lattice1 bound1 edit1 polyframe1 circle1 attribwrangle1 sweep1 attribwrangle2 polyexpand2d1 sweep2 resample2 polybevel2 attribwrangle3 attribwrangle4 polyframe2 add4 
+# Node transform1 (Sop/xform)
+opadd -e -n xform transform1
+oplocate -x 9.6287299999999991 -y 3.0623499999999999 transform1
+opspareds "" transform1
+opparm -V 20.5.370 transform1 group ( "" ) grouptype ( guess ) xOrd ( srt ) rOrd ( xyz ) t ( 10.635339617729187 0 -0.11121177673339844 ) r ( 0 0 0 ) s ( 1 1 1 ) shear ( 0 0 0 ) scale ( 1 ) parmgroup_pivotxform ( 0 ) p ( 0 0 0 ) pr ( 0 0 0 ) parmgroup_prexform ( 0 ) prexform_xOrd ( srt ) prexform_rOrd ( xyz ) prexform_t ( 0 0 0 ) prexform_r ( 0 0 0 ) prexform_s ( 1 1 1 ) prexform_shear ( 0 0 0 ) movecentroid ( 0 ) movepivot ( 0 ) attribs ( * ) updatenmls ( off ) updateaffectednmls ( on ) vlength ( on ) invertxform ( off ) addattrib ( off ) outputattrib ( xform ) outputmerge ( post )
+chlock transform1 -*
+chautoscope transform1 -* +tx +ty +tz +rx +ry +rz +sx +sy +sz
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off transform1
+opexprlanguage -s hscript transform1
+opuserdata -n '___Version___' -v '20.5.370' transform1
+
+# Node sort1 (Sop/sort)
+opadd -e -n sort sort1
+oplocate -x 10.304399999999999 -y -0.469445 sort1
+opspareds "" sort1
+opparm -V 20.5.370 sort1 pointsfolder ( 0 ) ptgroup ( "" ) ptsort ( vtxord ) pointseed ( 0 ) pointoffset ( 0 ) pointprox ( 0 0 0 ) pointobjpath ( "" ) pointdir ( 0 1 0 ) pointexpr ( 0 ) pointattrib ( "" ) pointattribcomp ( 0 ) pointreverse ( off ) primitivesfolder ( 0 ) primgroup ( "" ) primsort ( none ) primseed ( 0 ) primoffset ( 0 ) primprox ( 0 0 0 ) primobjpath ( "" ) primdir ( 0 1 0 ) primexpr ( 0 ) primattrib ( "" ) primattribcomp ( 0 ) primreverse ( off ) vertexprimorder ( on )
+chlock sort1 -*
+chautoscope sort1 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off sort1
+opexprlanguage -s hscript sort1
+opuserdata -n '___Version___' -v '20.5.370' sort1
+
+# Node foreach_end1 (Sop/block_end)
+opadd -e -n block_end foreach_end1
+oplocate -x 11.2018 -y -4.6573099999999998 foreach_end1
+opspareds "" foreach_end1
+opparm -V 20.5.370 foreach_end1 itermethod ( pieces ) method ( merge ) iterations ( 10 ) startvalue ( 1 ) increment ( 1 ) class ( primitive ) useattrib ( off ) attrib ( "" ) usemaxiter ( off ) maxiter ( 10 ) blockpath ( ../foreach_begin1 ) templatepath ( ../foreach_begin1 ) resetcookpass ( 0 ) dosinglepass ( off ) singlepass ( 1 ) stopcondition ( 0 ) multithread ( off )
+chlock foreach_end1 -*
+chautoscope foreach_end1 -*
+opcolor -c 0.75 0.40000000596046448 0 foreach_end1
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F off -c on -e on -b off foreach_end1
+opexprlanguage -s hscript foreach_end1
+opuserdata -n '___Version___' -v '20.5.370' foreach_end1
+
+# Node foreach_begin1 (Sop/block_begin)
+opadd -e -n block_begin foreach_begin1
+oplocate -x 11.2018 -y -2.57091 foreach_begin1
+opspareds "" foreach_begin1
+opparm -V 20.5.370 foreach_begin1 method ( piece ) blockpath ( ../foreach_end1 ) resetcookpass ( 0 ) createmetablock ( 0 ) label1 ( 'iteration, numiterations, value, ivalue' )
+chlock foreach_begin1 -*
+chautoscope foreach_begin1 -*
+opcolor -c 0.75 0.40000000596046448 0 foreach_begin1
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F off -c on -e on -b off foreach_begin1
+opexprlanguage -s hscript foreach_begin1
+opuserdata -n '___Version___' -v '20.5.370' foreach_begin1
+
+# Node add2 (Sop/add)
+opadd -e -n add add2
+oplocate -x -10.430199999999999 -y 4.3884999999999996 add2
+opspareds "" add2
+opparm add2  points ( 4 ) prims ( 1 )
+opparm -V 20.5.370 add2 stdswitcher ( 0 0 0 ) keep ( off ) points ( 4 ) remove ( off ) switcher ( 1 1 ) prims ( 1 ) group ( "" ) add ( all ) inc ( 2 ) attrname ( "" ) closedall ( off ) addparticlesystem ( off ) particlegroup ( "" ) appendunusedtoparticlesystem ( off ) prim0 ( "" ) closed0 ( off ) usept0 ( on ) pt0 ( -9.309728970987432 0 -2.96600192453716 ) weight0 ( 1 ) usept1 ( on ) pt1 ( -14.851995297716652 0 1.8327447832697548 ) weight1 ( 1 ) usept2 ( on ) pt2 ( -0.5817985159241603 0 3.029683595029634 ) weight2 ( 1 ) usept3 ( on ) pt3 ( -10.54609776039264 0 9.587972918449656 ) weight3 ( 1 )
+chlock add2 -*
+chautoscope add2 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off add2
+opexprlanguage -s hscript add2
+opuserdata -n '___Version___' -v '20.5.370' add2
+
+# Node leftrail (Sop/null)
+opadd -e -n null leftrail
+oplocate -x -12.169499999999999 -y 2.0268999999999999 leftrail
+opspareds "" leftrail
+opparm -V 20.5.370 leftrail copyinput ( on ) cacheinput ( off )
+chlock leftrail -*
+chautoscope leftrail -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off leftrail
+opexprlanguage -s hscript leftrail
+opuserdata -n '___Version___' -v '20.5.370' leftrail
+
+# Node rightrail (Sop/null)
+opadd -e -n null rightrail
+oplocate -x -10.7812 -y 2.0268999999999999 rightrail
+opspareds "" rightrail
+opparm -V 20.5.370 rightrail copyinput ( on ) cacheinput ( off )
+chlock rightrail -*
+chautoscope rightrail -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off rightrail
+opexprlanguage -s hscript rightrail
+opuserdata -n '___Version___' -v '20.5.370' rightrail
+
+# Node floor (Sop/null)
+opadd -e -n null floor
+oplocate -x -7.90442 -y 2.0268999999999999 floor
+opspareds "" floor
+opparm -V 20.5.370 floor copyinput ( on ) cacheinput ( off )
+chlock floor -*
+chautoscope floor -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off floor
+opexprlanguage -s hscript floor
+opuserdata -n '___Version___' -v '20.5.370' floor
+
+# Node bothrail (Sop/null)
+opadd -e -n null bothrail
+oplocate -x -9.4428599999999996 -y 2.0268999999999999 bothrail
+opspareds "" bothrail
+opparm -V 20.5.370 bothrail copyinput ( on ) cacheinput ( off )
+chlock bothrail -*
+chautoscope bothrail -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off bothrail
+opexprlanguage -s hscript bothrail
+opuserdata -n '___Version___' -v '20.5.370' bothrail
+
+# Node extrudevolume1 (Sop/extrudevolume)
+opadd -e -n extrudevolume extrudevolume1
+oplocate -x -11.0098 -y -1.5815999999999999 extrudevolume1
+opspareds "" extrudevolume1
+opparm extrudevolume1 depth ( 1 ) basenormal ( 0 1 0 ) flat ( on ) labelparm ( 'Base Extension (Second Output)' ) basepadding ( 0.1 ) baselift ( 1 ) folder0 ( 0 ) outputtopgrp ( off ) topgrp ( extrudeTop ) outputbasegrp ( off ) basegrp ( extrudeBase ) outputsidegrp ( off ) sidegrp ( extrudeSide ) outputtopseamgrp ( off ) topseamgrp ( extrudeTopSeam ) outputbaseseamgrp ( off ) baseseamgrp ( extrudeBaseSeam )
+chlock extrudevolume1 -*
+chautoscope extrudevolume1 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off extrudevolume1
+opexprlanguage -s hscript extrudevolume1
+opuserdata -n '___Version___' -v '' extrudevolume1
+
+# Node polyextrude1 (Sop/polyextrude::2.0)
+opadd -e -n polyextrude::2.0 polyextrude1
+oplocate -x -11.0098 -y -2.58121 polyextrude1
+opspareds "" polyextrude1
+opparm polyextrude1  thicknessramp ( 2 ) twistramp ( 2 )
+opparm -V 20.5.370 polyextrude1 group ( "" ) splittype ( components ) usesplitgroup ( off ) splitgroup ( "" ) extrusionmode ( primnormal ) ptnormalsrc ( precompute ) ptnormalattrib ( N ) dist ( 0.221 ) inset ( 0 ) twist ( 0 ) divs ( 1 ) spinetype ( straight ) stdswitcher ( 0 0 0 ) xformsection ( 0 ) xformfront ( off ) xformspace ( local ) rst ( srt ) xyz ( xyz ) translate ( 0 0 0 ) rotate ( 0 0 0 ) scale ( 1 1 1 ) shear ( 0 0 0 ) pivotxformsection ( 0 ) pivot ( 0 0 0 ) pivotrotate ( 0 0 0 ) prexformsection ( 0 ) prexform_rst ( srt ) prexform_xyz ( xyz ) prexform_translate ( 0 0 0 ) prexform_rotate ( 0 0 0 ) prexform_scale ( 1 1 1 ) prexform_shear ( 0 0 0 ) outputsection ( 0 ) outputfront ( on ) outputfrontgrp ( off ) frontgrp ( extrudeFront ) outputback ( on ) outputbackgrp ( off ) backgrp ( extrudeBack ) outputside ( on ) outputsidegrp ( off ) sidegrp ( extrudeSide ) outputfrontseamgrp ( off ) frontseamgrp ( extrudeFrontSeam ) outputbackseamgrp ( off ) backseamgrp ( extrudeBackSeam ) preservegroups ( on ) insettingsection ( 0 ) limitinset ( on ) commonlimit ( on ) normalsection ( 0 ) addvertexnomrals ( off ) cuspangle ( 60 ) cuspfront ( on ) cuspback ( on ) uvssection ( 0 ) genuvs ( on ) uvstyle ( proprtional ) uvscaling ( matchuv ) shapecontrolsection ( 0 ) frontmagnitude ( 1 ) backmagnitude ( 1 ) frontstiffness ( 0 ) backstiffness ( 0 ) interpolation ( rotatingframe ) spacing ( arclengthuniform ) externalspinesection ( 0 ) reversespinedirection ( off ) axialrotation ( 0 ) frontblend ( 0.1 ) backblend ( 0.1 ) thicknesssection ( 0 ) thicknessscale ( 1 ) usethicknessattrib ( on ) thicknessattrib ( thickness ) usethicknessramp ( on ) thicknessramp ( 2 ) twistsection ( 0 ) usetwistattrib ( on ) twistattrib ( twist ) usetwistramp ( on ) twistramp ( 2 ) twistscale ( 180 ) localattribs ( 0 ) uselocalzscaleattrib ( off ) localzscaleattrib ( zscale ) uselocalinsetscaleattrib ( off ) localinsetscaleattrib ( insetscale ) uselocaltwistattrib ( off ) localtwistscaleattrib ( twistscale ) uselocaldivsattrib ( off ) locadivscaleattrib ( divsscale ) localframeattribs ( 0 ) uselocalxattrib ( off ) localxattrib ( localx ) uselocalzattirb ( off ) localzattirb ( localz ) uselocalctrattrib ( off ) localctrattrib ( localctr ) thicknessramp1pos ( 0 ) thicknessramp1value ( 1 ) thicknessramp1interp ( catmull-rom ) thicknessramp2pos ( 1 ) thicknessramp2value ( 1 ) thicknessramp2interp ( catmull-rom ) twistramp1pos ( 0 ) twistramp1value ( 0.5 ) twistramp1interp ( catmull-rom ) twistramp2pos ( 1 ) twistramp2value ( 0.5 ) twistramp2interp ( catmull-rom )
+chlock polyextrude1 -*
+chautoscope polyextrude1 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off polyextrude1
+opexprlanguage -s hscript polyextrude1
+opuserdata -n '___Version___' -v '20.5.370' polyextrude1
+
+# Node group1 (Sop/groupcreate)
+opadd -e -n groupcreate group1
+oplocate -x -11.0098 -y -3.6296200000000001 group1
+opspareds "" group1
+opparm -V 20.5.370 group1 groupname ( group1 ) grouptype ( edge ) mergeop ( replace ) folder0 ( 0 ) groupbase ( off ) basegroup ( "" ) ordered ( off ) geotype ( all ) switcher3 ( 0 ) groupbounding ( off ) boundtype ( usebbox ) size ( 1 1 1 ) t ( 0 0 0 ) initbounds ( 0 ) includenotwhollycontained ( off ) iso ( 0 ) invertvolume ( off ) switcher4 ( 0 ) groupnormal ( off ) camerapath ( "" ) nonplanar ( off ) nonplanartol ( 0.001 ) dir ( 0 0 1 ) angle ( 180 ) oppositenormals ( off ) switcher5 ( 0 ) groupedges ( on ) dominedgeangle ( off ) minedgeangle ( 20 ) domaxedgeangle ( on ) maxedgeangle ( 360 ) edgeanglebetweenedges ( off ) dominedgelen ( off ) minedgelen ( 0 ) domaxedgelen ( off ) maxedgelen ( 0 ) dodepth ( off ) edgestep ( 0 ) edgeptgrp ( 0 ) unshared ( off ) boundarygroups ( off ) switcher6 ( 0 ) grouprandom ( off ) globalseed ( 1 ) useseedattrib ( off ) seedattrib ( id ) percent ( 50 )
+chlock group1 -*
+chautoscope group1 -*
+opset -d off -r off -h on -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off group1
+opexprlanguage -s hscript group1
+opuserdata -n '___Version___' -v '20.5.370' group1
+
+# Node dissolve1 (Sop/dissolve::2.0)
+opadd -e -n dissolve::2.0 dissolve1
+oplocate -x -11.0098 -y -4.4451499999999999 dissolve1
+opspareds "" dissolve1
+opparm -V 20.5.370 dissolve1 group ( group1 ) invertsel ( delete ) compnorms ( off ) reminlinepts ( on ) coltol ( 45 ) remunusedpts ( on ) bridge ( bridge ) deldegeneratebridges ( off ) boundarycurves ( off )
+chlock dissolve1 -*
+chautoscope dissolve1 -*
+opset -d on -r on -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off dissolve1
+opexprlanguage -s hscript dissolve1
+opuserdata -n '___Version___' -v '20.5.370' dissolve1
+
+# Sticky Note __stickynote1
+python -c 'hou.pwd().createStickyNote("__stickynote1")'
+python -c 'hou.pwd().findStickyNote("__stickynote1").setColor(hou.Color((1, 0.969, 0.522)))'
+python -c 'hou.pwd().findStickyNote("__stickynote1").setText("https://www.google.com/maps/@35.9010533,139.632468,3a,42y,220.37h,95.82t/data=!3m7!1e1!3m5!1siPpQM_yLEL14yMRl1asi9A!2e0!6shttps:%2F%2Fstreetviewpixels-pa.googleapis.com%2Fv1%2Fthumbnail%3Fcb_client%3Dmaps_sv.tactile%26w%3D900%26h%3D600%26pitch%3D-5.82331549635434%26panoid%3DiPpQM_yLEL14yMRl1asi9A%26yaw%3D220.36782734664033!7i16384!8i8192?entry=ttu&g_ep=EgoyMDI1MDIyNS4wIKXMDSoASAFQAw%3D%3D\n\napartmenthouse example location")'
+python -c 'hou.pwd().findStickyNote("__stickynote1").setTextSize(0)'
+python -c 'hou.pwd().findStickyNote("__stickynote1").setTextColor(hou.Color((0, 0, 0)))'
+python -c 'hou.pwd().findStickyNote("__stickynote1").setDrawBackground(True)'
+python -c 'hou.pwd().findStickyNote("__stickynote1").setPosition(hou.Vector2(-1.10252, 8.13803))'
+python -c 'hou.pwd().findStickyNote("__stickynote1").setSize(hou.Vector2(9.50743, 2.5))'
+python -c 'hou.pwd().findStickyNote("__stickynote1").setMinimized(False)'
+
+# Sticky Note __stickynote2
+python -c 'hou.pwd().createStickyNote("__stickynote2")'
+python -c 'hou.pwd().findStickyNote("__stickynote2").setColor(hou.Color((1, 0.969, 0.522)))'
+python -c 'hou.pwd().findStickyNote("__stickynote2").setText("https://support.borndigital.co.jp/hc/ja/articles/7115779739033-%E3%83%9D%E3%82%A4%E3%83%B3%E3%83%88%E3%81%A7%E3%82%AB%E3%83%BC%E3%83%96%E3%82%92%E3%82%AB%E3%83%83%E3%83%88%E3%81%99%E3%82%8B%E6%96%B9%E6%B3%95\n\npolycut")'
+python -c 'hou.pwd().findStickyNote("__stickynote2").setTextSize(0)'
+python -c 'hou.pwd().findStickyNote("__stickynote2").setTextColor(hou.Color((0, 0, 0)))'
+python -c 'hou.pwd().findStickyNote("__stickynote2").setDrawBackground(True)'
+python -c 'hou.pwd().findStickyNote("__stickynote2").setPosition(hou.Vector2(0.097545, 4.36235))'
+python -c 'hou.pwd().findStickyNote("__stickynote2").setSize(hou.Vector2(10.1474, 2.5))'
+python -c 'hou.pwd().findStickyNote("__stickynote2").setMinimized(False)'
+oporder -e Bend Elbow Straight add1 polybevel1 Aisle resample1 lattice1 bound1 edit1 polyframe1 circle1 attribwrangle1 sweep1 attribwrangle2 polyexpand2d1 blast3 blast4 blast5 boolean_curve1 blast1 box1 transform1 sort1 foreach_end1 foreach_begin1 add2 leftrail rightrail floor bothrail extrudevolume1 polyextrude1 group1 dissolve1 
 opcf ..
 
 # Node testgeometry_templatebody1 (Object/geo)
@@ -2393,6 +2245,12 @@ opwire -n circle1 -0 sort1
 opwire -n add2 -0 merge2
 opwire -n merge2 -0 output0
 opcf ..
+opwire -n merge2 -0 output1
+opwire -n switchif1 -0 leftside_primitive
+opwire -n leftside_primitive -0 rightside_primitive
+opwire -n rightside_primitive -0 floor_primitive
+opwire -n group4 -0 merge2
+opwire -n floor_primitive -1 merge2
 opcf ..
 opcf Elbow
 opwire -n merge1 -0 output0
@@ -2419,6 +2277,12 @@ opwire -n switch3 -0 group5
 opwire -n group5 -0 group6
 opwire -n mirror1 -0 group7
 opwire -n group7 -0 group8
+opwire -n merge3 -0 output1
+opwire -n group4 -0 merge3
+opwire -n floor_primitive -1 merge3
+opwire -n switchif1 -0 leftside_primitive
+opwire -n leftside_primitive -0 rightside_primitive
+opwire -n rightside_primitive -0 floor_primitive
 opcf ..
 opcf Straight
 opwire -n merge1 -0 output0
@@ -2428,128 +2292,113 @@ opwire -n group2 -0 merge1
 opwire -n group4 -1 merge1
 opwire -n connect_points_l -0 group3
 opwire -n group3 -0 group4
+opwire -n merge3 -0 output1
+opwire -n group2 -0 leftside_primitive
+opwire -n leftside_primitive -0 rightside_primitive
+opwire -n rightside_primitive -0 floor_primitive
+opwire -n group4 -0 merge3
+opwire -n floor_primitive -1 merge3
 opcf ..
-opwire -n Bend -0 add2
-opwire -n sort4 -0 add9
-opwire -n Straight -0 sort4
-opwire -n Elbow -0 add10
 opwire -n add1 -0 polybevel1
-opwire -n resample1 -0 Isle
-opcf Isle
-opwire -n null1 -0 polyexpand2d1
+opwire -n add2 -0 Aisle
+opcf Aisle
+opwire -n sort10 -0 polyexpand2d1
 opwire -n polyexpand2d1 -0 check_if_point_is_left_or_right_of_center
-opwire -n null1 -1 check_if_point_is_left_or_right_of_center
-opwire -n sort10 -0 null1
+opwire -n sort10 -1 check_if_point_is_left_or_right_of_center
 opwire -n add5 -0 clip_function_test
-opwire -n polyexpand2d2 -0 polyextrude1
-opwire -n blast1 -0 polyexpand2d2
-opwire -n polyextrude1 -0 transform1
-opwire -n merge4 -0 clean1
-opwire -n transform1 -0 merge4
-opwire -n polyextrude5 -1 merge4
-opwire -n polyexpand2d3 -0 polyextrude2
-opwire -n blast3 -0 polyexpand2d3
-opwire -n polyextrude2 -0 transform3
-opwire -n polyexpand2d4 -0 polyextrude3
-opwire -n blast4 -0 polyexpand2d4
-opwire -n polyextrude3 -0 transform4
-opwire -n transform3 -0 merge5
-opwire -n polyextrude4 -1 merge5
-opwire -n transform4 -2 merge5
-opwire -n polyframe1 -0 polyextrude4
-opwire -n add7 -0 polyextrude5
-opwire -n polyexpand2d5 -0 polyextrude6
-opwire -n blast2 -0 polyexpand2d5
-opwire -n polyextrude6 -0 transform5
-opwire -n merge6 -0 clean2
-opwire -n transform5 -0 merge6
-opwire -n polyextrude7 -1 merge6
-opwire -n add6 -0 polyextrude7
-opwire -n attribwrangle14 -0 clean3
-opwire -n blast8 -0 attribwrangle9
-opwire -n attribwrangle10 -1 attribwrangle9
-opwire -n polyexpand2d7 -0 check_if_point_is_left_or_right_of_center1
-opwire -n add3 -1 check_if_point_is_left_or_right_of_center1
-opwire -n check_if_point_is_left_or_right_of_center1 -0 blast8
-opwire -n attribwrangle10 -0 polyexpand2d7
-opwire -n add3 -0 attribwrangle10
-opwire -n attribwrangle1 -0 sort10
-opwire -n attribwrangle4 -0 rewire1
-opwire -n -o 1 split1 -0 attribwrangle4
-opwire -n clip_start_segment -0 clip_end_segment
-opwire -n sort6 -0 clip_start_segment
-opwire -n check_if_point_is_ascending_order -0 sort6
-opwire -n rewire1 -0 check_if_point_is_ascending_order
-opwire -n attribwrangle5 -0 rewire2
-opwire -n split1 -0 attribwrangle5
-opwire -n clip_start_segment1 -0 clip_end_segment1
-opwire -n sort7 -0 clip_start_segment1
-opwire -n check_if_point_is_ascending_order1 -0 sort7
-opwire -n rewire2 -0 check_if_point_is_ascending_order1
-opwire -n sort5 -0 merge1
-opwire -n null1 -1 merge1
-opwire -n fuse1 -0 add6
-opwire -n merge1 -0 fuse1
-opwire -n clip_end_segment -0 merge2
-opwire -n sort9 -1 merge2
-opwire -n fuse2 -0 add7
-opwire -n merge2 -0 fuse2
-opwire -n sort5 -0 merge3
-opwire -n clip_end_segment -1 merge3
-opwire -n fuse3 -0 add8
-opwire -n merge3 -0 fuse3
-opwire -n fuse8 -0 blast1
-opwire -n null1 -0 sort9
-opwire -n fuse4 -0 blast2
-opwire -n clip_end_segment1 -0 sort5
-opwire -n fuse6 -0 blast3
-opwire -n fuse7 -0 blast4
-opwire -n sort5 -0 fuse4
-opwire -n sort5 -0 fuse6
-opwire -n clip_end_segment -0 fuse7
-opwire -n clip_end_segment -0 fuse8
-opwire -n switch1 -0 output0
-opwire -n clean2 -0 switch1
-opwire -n clean1 -1 switch1
-opwire -n clean3 -2 switch1
-opwire -n check_if_point_is_left_or_right_of_center -0 split1
-opwire -n check_if_point_is_left_or_right_of_center1 -0 split2
-opwire -n attribwrangle6 -0 rewire3
-opwire -n -o 1 split2 -0 attribwrangle6
-opwire -n clip_start_segment2 -0 clip_end_segment2
-opwire -n sort11 -0 clip_start_segment2
-opwire -n check_if_point_is_ascending_order2 -0 sort11
-opwire -n rewire3 -0 check_if_point_is_ascending_order2
-opwire -n attribwrangle7 -0 rewire4
-opwire -n split2 -0 attribwrangle7
-opwire -n clip_start_segment3 -0 clip_end_segment3
-opwire -n sort12 -0 clip_start_segment3
-opwire -n check_if_point_is_ascending_order3 -0 sort12
-opwire -n rewire4 -0 check_if_point_is_ascending_order3
-opwire -n clip_end_segment2 -0 attribwrangle11
-opwire -n clip_end_segment2 -1 attribwrangle11
-opwire -n merge5 -0 attribwrangle14
-opwire -n merge5 -1 attribwrangle14
-opwire -n -i 0 -0 attribwrangle1
-opwire -n add8 -0 polyframe1
+opwire -n -i 0 -0 sort10
+opwire -n left_handaril -0 output1
+opwire -n right_handrail -0 output2
+opwire -n leftside_outline_with_endcap1 -0 switchif1
+opwire -n sort10 -1 switchif1
+opwire -n right_outline_with_endcap2 -0 switchif2
+opwire -n sort10 -1 switchif2
+opwire -n fuse11 -0 add4
+opwire -n switchif1 -0 merge7
+opwire -n reverse_point_order -1 merge7
+opwire -n switchif2 -0 reverse_point_order
+opwire -n attribcreate4 -0 output3
+opwire -n all_handrail1 -0 output4
+opwire -n fuse10 -0 foreach_end2
+opwire -n check_if_point_is_left_or_right_of_center -0 foreach_begin2
+opwire -n attribwrangle12 -0 rewire5
+opwire -n foreach_begin2 -0 attribwrangle12
+opwire -n clip_start_segment4 -0 clip_end_segment4
+opwire -n sort13 -0 clip_start_segment4
+opwire -n check_if_point_is_ascending_order4 -0 sort13
+opwire -n rewire5 -0 check_if_point_is_ascending_order4
+opwire -n clip_end_segment4 -0 fuse10
+opwire -n merge7 -0 fuse11
+opwire -n polypath4 -0 foreach_end1
+opwire -n foreach_end2 -0 foreach_begin1
+opwire -n foreach_begin1 -0 Select_shortest_path_if_multiple_candidates_exist
+opwire -n Select_shortest_path_if_multiple_candidates_exist -0 polypath4
+opwire -n attribwrangle2 -0 split4
+opwire -n split4 -0 leftside_outline_with_endcap1
+opwire -n -o 1 split4 -0 right_outline_with_endcap2
+opwire -n attribdelete1 -0 groupdelete1
+opwire -n foreach_end1 -0 attribwrangle2
+opwire -n setup_leftendcap -0 color1
+opwire -n setup_rightendcap -0 color2
+opwire -n switchif1 -1 setup_leftendcap
+opwire -n switchif2 -2 setup_leftendcap
+opwire -n switchif2 -1 setup_rightendcap
+opwire -n switchif1 -2 setup_rightendcap
+opwire -n attribcreate1 -0 left_handaril
+opwire -n attribcreate2 -0 right_handrail
+opwire -n attribcreate3 -0 all_handrail1
+opwire -n color1 -0 reverse_vertex_order
+opcf reverse_vertex_order
+opwire -n attribwrangle13 -0 rewire6
+opwire -n -i 0 -0 attribwrangle13
+opwire -n rewire6 -0 output0
+opcf ..
+opwire -n left_handaril -0 merge1
+opwire -n right_handrail -1 merge1
+opwire -n merge1 -0 join1
+opwire -n join1 -0 fuse1
+opwire -n fuse1 -0 facet1
+opwire -n attribdelete2 -0 groupdelete2
+opwire -n attribdelete3 -0 groupdelete3
+opwire -n groupdelete2 -0 attribcreate1
+opwire -n groupdelete3 -0 attribcreate2
+opwire -n switchif3 -0 attribcreate3
+opwire -n groupdelete1 -0 attribcreate4
+opwire -n add4 -0 attribdelete1
+opwire -n reverse_vertex_order -0 attribdelete2
+opwire -n color2 -0 attribdelete3
+opwire -n merge1 -0 switchif3
+opwire -n facet1 -1 switchif3
 opcf ..
 opwire -n polybevel1 -0 resample1
-opwire -n Isle -0 lattice1
+opwire -n resample1 -0 lattice1
 opwire -n bound1 -1 lattice1
 opwire -n edit1 -2 lattice1
-opwire -n Isle -0 bound1
+opwire -n resample1 -0 bound1
 opwire -n bound1 -0 edit1
 opwire -n attribwrangle1 -0 polyframe1
 opwire -n circle1 -0 attribwrangle1
 opwire -n attribwrangle2 -0 sweep1
 opwire -n polyframe1 -0 attribwrangle2
 opwire -n attribwrangle2 -0 polyexpand2d1
-opwire -n attribwrangle4 -0 sweep2
-opwire -n polybevel2 -0 resample2
-opwire -n add1 -0 polybevel2
-opwire -n resample2 -0 attribwrangle3
-opwire -n polyframe2 -0 attribwrangle4
-opwire -n attribwrangle3 -0 polyframe2
+opwire -n -o 1 Straight -0 blast3
+opwire -n -o 1 Elbow -0 blast4
+opwire -n -o 1 Bend -0 blast5
+opwire -n add1 -0 boolean_curve1
+opwire -n transform1 -1 boolean_curve1
+opwire -n boolean_curve1 -0 blast1
+opwire -n box1 -0 transform1
+opwire -n blast1 -0 sort1
+opwire -n foreach_begin1 -0 foreach_end1
+opwire -n sort1 -0 foreach_begin1
+opwire -n Aisle -0 leftrail
+opwire -n -o 1 Aisle -0 rightrail
+opwire -n -o 3 Aisle -0 floor
+opwire -n -o 2 Aisle -0 bothrail
+opwire -n bothrail -0 extrudevolume1
+opwire -n extrudevolume1 -0 polyextrude1
+opwire -n polyextrude1 -0 group1
+opwire -n group1 -0 dissolve1
 opcf ..
 opcf testgeometry_templatebody1
 opcf ..
