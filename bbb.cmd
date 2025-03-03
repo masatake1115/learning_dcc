@@ -30,21 +30,6 @@ nbsize -w 9.95358 -h 10.5815 __netbox1
 nbset  -m off __netbox1
 nbcolor -c 0.52 0.52 0.52 __netbox1
 
-# Network Box __netbox2
-nbadd __netbox2
-nblocate -x -16.5246 -y -15.002 __netbox2
-nbsize -w 34.5916 -h 20.6584 __netbox2
-nbset  -m off __netbox2
-nbcolor -c 0.52 0.52 0.52 __netbox2
-
-# Network Box __netbox3
-nbadd __netbox3
-nblocate -x -7.7012 -y -13.6972 __netbox3
-nbsize -w 2.92411 -h 5.89241 __netbox3
-nbset  -m off __netbox3
-nbcolor -c 0.52 0.52 0.52 __netbox3
-python -c "hou.pwd().findNetworkBox(\"__netbox2\").addItem(hou.pwd().findNetworkBox(\"__netbox3\"))"
-
 # Node extrude_along_normal (Sop/polyextrude::2.0)
 opadd -e -n polyextrude::2.0 extrude_along_normal
 oplocate -x -40.823500000000003 -y 0.088754399999999997 extrude_along_normal
@@ -218,628 +203,6 @@ nbop __netbox1 add blast1
 opexprlanguage -s hscript blast1
 opuserdata -n '___Version___' -v '20.5.370' blast1
 
-# Node Params (Sop/null)
-opadd -e -n null Params
-oplocate -x 2.4531700000000001 -y 4.4789199999999996 Params
-opspareds '    parm {         name    "copyinput"         baseparm         label   "Copy Input (Note: Input will be still cooked if disabled)"         export  none     }     parm {         name    "cacheinput"         baseparm         label   "Cache Input"         export  none     }     parm {         name    "NumFloors"         label   "NumFloors"         type    integer         default { "3" }         range   { 0 10 }         parmtag { "script_callback_language" "python" }     }     parm {         name    "Width"         label   "Width"         type    float         default { "1" }         range   { 0! 10 }         parmtag { "script_callback_language" "python" }     }     parm {         name    "Elevation"         label   "Elevation"         type    float         default { "3" }         range   { 0! 10 }         parmtag { "script_callback_language" "python" }     }     parm {         name    "CornerType"         label   "CornerType"         type    ordinal         default { "0" }         menu {             ""  "Rect"             ""  "Arc"         }         parmtag { "script_callback_language" "python" }     }     parm {         name    "GroundFloor"         label   "GroundFloor"         type    integer         default { "0" }         range   { 0 10 }         parmtag { "script_callback_language" "python" }     }     parm {         name    "SlopeLength"         label   "SlopeLength"         type    float         default { "2" }         range   { 0 10 }         parmtag { "script_callback_language" "python" }     }     parm {         name    "CenterMargin"         label   "CenterMargin"         type    float         default { "0.25" }         range   { 0 10 }         parmtag { "script_callback_language" "python" }     } ' Params
-opparm -V 20.5.370 Params copyinput ( on ) cacheinput ( off ) NumFloors ( 7 ) Width ( 7.05 ) Elevation ( 3 ) CornerType ( "" ) GroundFloor ( 0 ) SlopeLength ( 6.17 ) CenterMargin ( 6.99 )
-chlock Params -*
-chautoscope Params -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off Params
-nbop __netbox2 add Params
-opexprlanguage -s hscript Params
-opuserdata -n '___Version___' -v '20.5.370' Params
-
-# Node extrudevolume3 (Sop/extrudevolume)
-opadd -e -n extrudevolume extrudevolume3
-oplocate -x -7.1770899999999997 -y -11.055 extrudevolume3
-opspareds "" extrudevolume3
-opparm extrudevolume3 depth ( 1.6 ) basenormal ( 0 1 0 ) flat ( on ) labelparm ( 'Base Extension (Second Output)' ) basepadding ( 0.1 ) baselift ( 1 ) folder0 ( 0 ) outputtopgrp ( off ) topgrp ( extrudeTop ) outputbasegrp ( off ) basegrp ( extrudeBase ) outputsidegrp ( off ) sidegrp ( extrudeSide ) outputtopseamgrp ( off ) topseamgrp ( extrudeTopSeam ) outputbaseseamgrp ( off ) baseseamgrp ( extrudeBaseSeam )
-chlock extrudevolume3 -*
-chautoscope extrudevolume3 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off extrudevolume3
-nbop __netbox3 add extrudevolume3
-opexprlanguage -s hscript extrudevolume3
-opuserdata -n '___Version___' -v '' extrudevolume3
-
-# Node fuse1 (Sop/fuse::2.0)
-opadd -e -n fuse::2.0 fuse1
-oplocate -x -12.186999999999999 -y -6.0501899999999997 fuse1
-opspareds "" fuse1
-opparm fuse1  numpointattribs ( 0 ) numgroups ( 0 )
-opparm -V 20.5.370 fuse1 querygroup ( "" ) usetargetgroup ( off ) targetgroup ( "" ) modifyboth ( off ) posattrib ( P ) snapgroup ( 0 ) snaptype ( distancesnap ) algorithm ( lowest ) usetol3d ( on ) tol3d ( 0.001 ) targetptattrib ( snap_to ) targetclass ( point ) usepositionsnapmethod ( on ) positionsnapmethod ( average ) positionsnapweightname ( weight ) useradiusattrib ( off ) radiusattrib ( pscale ) usematchattrib ( off ) matchattrib ( name ) matchtype ( match ) matchtol ( 0 ) gridtype ( spacing ) gridspacing ( 0.1 0.1 0.1 ) gridlines ( 10 10 10 ) gridpow2 ( 3 3 3 ) gridoffset ( 0 0 0 ) gridround ( nearest ) usegridtol ( on ) gridtol ( 10 ) consolidategroup ( 0 ) consolidatesnappedpoints ( on ) keepconsolidatedpoints ( off ) deldegen ( on ) deldegenpoints ( on ) delunusedpoints ( off ) outputgroup ( 0 ) recomputenml ( on ) createsnappedgroup ( off ) snappedgroupname ( snapped_points ) createsnappedattrib ( off ) snappedattribname ( snapped_to ) numpointattribs ( 0 ) numgroups ( 0 )
-chlock fuse1 -*
-chautoscope fuse1 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b on fuse1
-nbop __netbox2 add fuse1
-opexprlanguage -s hscript fuse1
-opuserdata -n '___Version___' -v '20.5.370' fuse1
-
-# Node foreach_end1 (Sop/block_end)
-opadd -e -n block_end foreach_end1
-oplocate -x 6.9033800000000003 -y -5.5828800000000003 foreach_end1
-opspareds "" foreach_end1
-chblockbegin
-chadd -t 0 0 foreach_end1 iterations
-chkey -t 0 -v 3 -m 0 -a 0 -A 0 -T a  -F 'ch("../Params/NumFloors")-1' foreach_end1/iterations
-chadd -t 0 0 foreach_end1 startvalue
-chkey -t 0 -v 0 -m 0 -a 0 -A 0 -T a  -F '-ch("../Params/GroundFloor")' foreach_end1/startvalue
-chblockend
-opparm -V 20.5.370 foreach_end1 itermethod ( count ) method ( merge ) iterations ( iterations ) startvalue ( startvalue ) increment ( 1 ) class ( point ) useattrib ( on ) attrib ( "" ) usemaxiter ( off ) maxiter ( 10 ) blockpath ( ../foreach_begin1 ) templatepath ( ../foreach_begin1 ) resetcookpass ( 0 ) dosinglepass ( off ) singlepass ( 1 ) stopcondition ( 0 ) multithread ( off )
-chlock foreach_end1 -*
-chautoscope foreach_end1 -*
-opcolor -c 0.75 0.40000000596046448 0 foreach_end1
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F off -c on -e on -b off foreach_end1
-nbop __netbox2 add foreach_end1
-opexprlanguage -s hscript foreach_end1
-opuserdata -n '___Version___' -v '20.5.370' foreach_end1
-
-# Node foreach_begin1 (Sop/block_begin)
-opadd -e -n block_begin foreach_begin1
-oplocate -x 6.9033800000000003 -y 3.8300900000000002 foreach_begin1
-opspareds "" foreach_begin1
-opparm -V 20.5.370 foreach_begin1 method ( input ) blockpath ( ../foreach_end1 ) resetcookpass ( 0 ) createmetablock ( 0 ) label1 ( 'iteration, numiterations, value, ivalue' )
-chlock foreach_begin1 -*
-chautoscope foreach_begin1 -*
-opcolor -c 0.75 0.40000000596046448 0 foreach_begin1
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F off -c on -e on -b off foreach_begin1
-nbop __netbox2 add foreach_begin1
-opexprlanguage -s hscript foreach_begin1
-opuserdata -n '___Version___' -v '20.5.370' foreach_begin1
-
-# Node foreach_count1 (Sop/block_begin)
-opadd -e -n block_begin foreach_count1
-oplocate -x 11.759499999999999 -y 3.8300900000000002 foreach_count1
-opspareds "" foreach_count1
-opparm -V 20.5.370 foreach_count1 method ( metadata ) blockpath ( ../foreach_end1 ) resetcookpass ( 0 ) createmetablock ( 0 ) label1 ( 'iteration, numiterations, value, ivalue' )
-chlock foreach_count1 -*
-chautoscope foreach_count1 -*
-opcolor -c 0.75 0.40000000596046448 0 foreach_count1
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F off -c on -e on -b off foreach_count1
-nbop __netbox2 add foreach_count1
-opexprlanguage -s hscript foreach_count1
-opuserdata -n '___Version___' -v '20.5.370' foreach_count1
-
-# Node null1 (Sop/null)
-opadd -e -n null null1
-oplocate -x 6.7480200000000004 -y -6.6927000000000003 null1
-opspareds "" null1
-opparm -V 20.5.370 null1 copyinput ( on ) cacheinput ( off )
-chlock null1 -*
-chautoscope null1 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off null1
-nbop __netbox2 add null1
-opexprlanguage -s hscript null1
-opuserdata -n '___Version___' -v '20.5.370' null1
-
-# Node copytopoints1 (Sop/copytopoints::2.0)
-opadd -e -n copytopoints::2.0 copytopoints1
-oplocate -x 6.9017799999999996 -y -4.0095499999999999 copytopoints1
-opspareds "" copytopoints1
-opparm copytopoints1  targetattribs ( 3 )
-opparm -V 20.5.370 copytopoints1 sourcegroup ( "" ) sourcegrouptype ( guess ) targetgroup ( "" ) useidattrib ( off ) idattrib ( name ) pack ( off ) pivot ( centroid ) viewportlod ( full ) transform ( on ) useimplicitn ( on ) resettargetattribs ( 0 ) targetattribs ( 3 ) useapply1 ( on ) applyto1 ( points ) applymethod1 ( copy ) applyattribs1 ( *,^v,^Alpha,^N,^up,^pscale,^scale,^orient,^rot,^pivot,^trans,^transform ) useapply2 ( on ) applyto2 ( points ) applymethod2 ( mult ) applyattribs2 ( Alpha ) useapply3 ( on ) applyto3 ( points ) applymethod3 ( add ) applyattribs3 ( v )
-chlock copytopoints1 -*
-chautoscope copytopoints1 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off copytopoints1
-nbop __netbox2 add copytopoints1
-opexprlanguage -s hscript copytopoints1
-opuserdata -n '___Version___' -v '20.5.370' copytopoints1
-
-# Node add1 (Sop/add)
-opadd -e -n add add1
-oplocate -x 6.9017799999999996 -y 5.0821899999999998 add1
-opspareds "" add1
-opparm add1  points ( 1 ) prims ( 1 )
-opparm -V 20.5.370 add1 stdswitcher ( 0 0 0 ) keep ( off ) points ( 1 ) remove ( off ) switcher ( 0 0 ) prims ( 1 ) group ( "" ) add ( all ) inc ( 2 ) attrname ( "" ) closedall ( off ) addparticlesystem ( off ) particlegroup ( "" ) appendunusedtoparticlesystem ( off ) prim0 ( "" ) closed0 ( off ) usept0 ( on ) pt0 ( 0 0 0 ) weight0 ( 1 )
-chlock add1 -*
-chautoscope add1 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off add1
-nbop __netbox2 add add1
-opexprlanguage -s hscript add1
-opuserdata -n '___Version___' -v '20.5.370' add1
-
-# Node transform (Sop/xform)
-opadd -e -n xform transform
-oplocate -x 8.1594999999999995 -y 0.37820300000000001 transform
-opspareds "" transform
-chblockbegin
-chadd -t 0 0 transform ty
-chkey -t 0 -v 0 -m 0 -a 0 -A 0 -T a  -F 'detail("../foreach_count1", "value", 0) * ch("../Params/Elevation")' transform/ty
-chadd -t 0 0 transform tz
-chkey -t 0 -v 0 -m 0 -a 0 -A 0 -T a  -F '-ch("../Params/Width")' transform/tz
-chblockend
-opparm -V 20.5.370 transform group ( "" ) grouptype ( guess ) xOrd ( srt ) rOrd ( xyz ) t ( 0 ty tz ) r ( 0 0 0 ) s ( 1 1 1 ) shear ( 0 0 0 ) scale ( 1 ) parmgroup_pivotxform ( 0 ) p ( 0 0 0 ) pr ( 0 0 0 ) parmgroup_prexform ( 0 ) prexform_xOrd ( srt ) prexform_rOrd ( xyz ) prexform_t ( 0 0 0 ) prexform_r ( 0 0 0 ) prexform_s ( 1 1 1 ) prexform_shear ( 0 0 0 ) movecentroid ( 0 ) movepivot ( 0 ) attribs ( * ) updatenmls ( off ) updateaffectednmls ( on ) vlength ( on ) invertxform ( off ) addattrib ( off ) outputattrib ( xform ) outputmerge ( post )
-chlock transform -*
-chautoscope transform -* +tx +ty +tz +rx +ry +rz +sx +sy +sz
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off transform
-nbop __netbox2 add transform
-opexprlanguage -s hscript transform
-opuserdata -n '___Version___' -v '20.5.370' transform
-
-# Node matchsize1 (Sop/matchsize)
-opadd -e -n matchsize matchsize1
-oplocate -x 8.1594999999999995 -y -0.82189999999999996 matchsize1
-opspareds "" matchsize1
-opparm matchsize1 group ( "" ) grouptype ( guess ) sepparm ( ) justifytarget ( auto ) doboundgroup ( off ) folder2 ( 0 ) sourcegroup ( "" ) sourcegrouptype ( guess ) refgroup ( "" ) refgrouptype ( guess ) folder1 ( 0 ) t ( 0 0 0 ) size ( 1 1 1 ) folder0 ( 0 ) dotranslate ( on ) justify_x ( none ) goal_x ( same ) offset_x ( 0 ) justify_y ( none ) goal_y ( same ) offset_y ( 0 ) justify_z ( max ) goal_z ( same ) offset_z ( 0 ) doscale ( off ) uniformscale ( on ) scale_axis ( min ) scale_x ( on ) scale_y ( on ) scale_z ( on ) restorexform ( off ) restoreattrib ( xform ) stashxform ( off ) stashattrib ( xform ) stashmerge ( replace )
-chlock matchsize1 -*
-chautoscope matchsize1 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off matchsize1
-nbop __netbox2 add matchsize1
-opexprlanguage -s hscript matchsize1
-opuserdata -n '___Version___' -v '' matchsize1
-
-# Node transform5 (Sop/xform)
-opadd -e -n xform transform5
-oplocate -x 10.8521 -y 0.37820300000000001 transform5
-opspareds "" transform5
-chblockbegin
-chadd -t 0 0 transform5 ty
-chkey -t 0 -v 0 -m 0 -a 0 -A 0 -T a  -F '(detail("../foreach_count1", "value", 0)+0.5) * ch("../Params/Elevation")' transform5/ty
-chadd -t 0 0 transform5 tz
-chkey -t 0 -v 0 -m 0 -a 0 -A 0 -T a  -F '0.5*ch("../Params/Width")' transform5/tz
-chblockend
-opparm -V 20.5.370 transform5 group ( "" ) grouptype ( guess ) xOrd ( srt ) rOrd ( xyz ) t ( 0 ty tz ) r ( 0 180 0 ) s ( 1 1 1 ) shear ( 0 0 0 ) scale ( 1 ) parmgroup_pivotxform ( 0 ) p ( 0 0 0 ) pr ( 0 0 0 ) parmgroup_prexform ( 0 ) prexform_xOrd ( srt ) prexform_rOrd ( xyz ) prexform_t ( 0 0 0 ) prexform_r ( 0 0 0 ) prexform_s ( 1 1 1 ) prexform_shear ( 0 0 0 ) movecentroid ( 0 ) movepivot ( 0 ) attribs ( * ) updatenmls ( off ) updateaffectednmls ( on ) vlength ( on ) invertxform ( off ) addattrib ( off ) outputattrib ( xform ) outputmerge ( post )
-chlock transform5 -*
-chautoscope transform5 -* +tx +ty +tz +rx +ry +rz +sx +sy +sz
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off transform5
-nbop __netbox2 add transform5
-opexprlanguage -s hscript transform5
-opuserdata -n '___Version___' -v '20.5.370' transform5
-
-# Node matchsize3 (Sop/matchsize)
-opadd -e -n matchsize matchsize3
-oplocate -x 10.8521 -y -0.82189999999999996 matchsize3
-opspareds "" matchsize3
-opparm matchsize3 group ( "" ) grouptype ( guess ) sepparm ( ) justifytarget ( auto ) doboundgroup ( off ) folder2 ( 0 ) sourcegroup ( "" ) sourcegrouptype ( guess ) refgroup ( "" ) refgrouptype ( guess ) folder1 ( 0 ) t ( 0 0 0 ) size ( 1 1 1 ) folder0 ( 0 ) dotranslate ( on ) justify_x ( max ) goal_x ( same ) offset_x ( 0 ) justify_y ( none ) goal_y ( same ) offset_y ( 0 ) justify_z ( none ) goal_z ( same ) offset_z ( 0 ) doscale ( off ) uniformscale ( on ) scale_axis ( min ) scale_x ( on ) scale_y ( on ) scale_z ( on ) restorexform ( off ) restoreattrib ( xform ) stashxform ( off ) stashattrib ( xform ) stashmerge ( replace )
-chlock matchsize3 -*
-chautoscope matchsize3 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off matchsize3
-nbop __netbox2 add matchsize3
-opexprlanguage -s hscript matchsize3
-opuserdata -n '___Version___' -v '' matchsize3
-
-# Node merge6 (Sop/merge)
-opadd -e -n merge merge6
-oplocate -x 9.6508800000000008 -y -2.3330799999999998 merge6
-opspareds "" merge6
-opparm -V 20.5.370 merge6
-chlock merge6 -*
-chautoscope merge6 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off merge6
-nbop __netbox2 add merge6
-opexprlanguage -s hscript merge6
-opuserdata -n '___Version___' -v '20.5.370' merge6
-
-# Node extrudevolume4 (Sop/extrudevolume)
-opadd -e -n extrudevolume extrudevolume4
-oplocate -x -12.186999999999999 -y -6.9615200000000002 extrudevolume4
-opspareds "" extrudevolume4
-opparm extrudevolume4 depth ( 1.6 ) basenormal ( 0 1 0 ) flat ( on ) labelparm ( 'Base Extension (Second Output)' ) basepadding ( 0.1 ) baselift ( 1 ) folder0 ( 0 ) outputtopgrp ( off ) topgrp ( extrudeTop ) outputbasegrp ( off ) basegrp ( extrudeBase ) outputsidegrp ( off ) sidegrp ( extrudeSide ) outputtopseamgrp ( off ) topseamgrp ( extrudeTopSeam ) outputbaseseamgrp ( off ) baseseamgrp ( extrudeBaseSeam )
-chlock extrudevolume4 -*
-chautoscope extrudevolume4 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b on extrudevolume4
-nbop __netbox2 add extrudevolume4
-opexprlanguage -s hscript extrudevolume4
-opuserdata -n '___Version___' -v '' extrudevolume4
-
-# Node fuse2 (Sop/fuse::2.0)
-opadd -e -n fuse::2.0 fuse2
-oplocate -x -7.3011999999999997 -y -9.0549800000000005 fuse2
-opspareds "" fuse2
-opparm fuse2  numpointattribs ( 0 ) numgroups ( 0 )
-opparm -V 20.5.370 fuse2 querygroup ( "" ) usetargetgroup ( off ) targetgroup ( "" ) modifyboth ( off ) posattrib ( P ) snapgroup ( 0 ) snaptype ( distancesnap ) algorithm ( lowest ) usetol3d ( on ) tol3d ( 0.001 ) targetptattrib ( snap_to ) targetclass ( point ) usepositionsnapmethod ( on ) positionsnapmethod ( average ) positionsnapweightname ( weight ) useradiusattrib ( off ) radiusattrib ( pscale ) usematchattrib ( off ) matchattrib ( name ) matchtype ( match ) matchtol ( 0 ) gridtype ( spacing ) gridspacing ( 0.1 0.1 0.1 ) gridlines ( 10 10 10 ) gridpow2 ( 3 3 3 ) gridoffset ( 0 0 0 ) gridround ( nearest ) usegridtol ( on ) gridtol ( 10 ) consolidategroup ( 0 ) consolidatesnappedpoints ( on ) keepconsolidatedpoints ( off ) deldegen ( on ) deldegenpoints ( on ) delunusedpoints ( off ) outputgroup ( 0 ) recomputenml ( on ) createsnappedgroup ( off ) snappedgroupname ( snapped_points ) createsnappedattrib ( off ) snappedattribname ( snapped_to ) numpointattribs ( 0 ) numgroups ( 0 )
-chlock fuse2 -*
-chautoscope fuse2 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off fuse2
-nbop __netbox3 add fuse2
-opexprlanguage -s hscript fuse2
-opuserdata -n '___Version___' -v '20.5.370' fuse2
-
-# Node polyextrude5 (Sop/polyextrude::2.0)
-opadd -e -n polyextrude::2.0 polyextrude5
-oplocate -x -7.1770899999999997 -y -12.7698 polyextrude5
-opspareds "" polyextrude5
-opparm polyextrude5  thicknessramp ( 2 ) twistramp ( 2 )
-opparm -V 20.5.370 polyextrude5 group ( "" ) splittype ( components ) usesplitgroup ( off ) splitgroup ( "" ) extrusionmode ( primnormal ) ptnormalsrc ( precompute ) ptnormalattrib ( N ) dist ( 0.172 ) inset ( 0 ) twist ( 0 ) divs ( 1 ) spinetype ( straight ) stdswitcher ( 0 0 0 ) xformsection ( 0 ) xformfront ( off ) xformspace ( local ) rst ( srt ) xyz ( xyz ) translate ( 0 0 0 ) rotate ( 0 0 0 ) scale ( 1 1 1 ) shear ( 0 0 0 ) pivotxformsection ( 0 ) pivot ( 0 0 0 ) pivotrotate ( 0 0 0 ) prexformsection ( 0 ) prexform_rst ( srt ) prexform_xyz ( xyz ) prexform_translate ( 0 0 0 ) prexform_rotate ( 0 0 0 ) prexform_scale ( 1 1 1 ) prexform_shear ( 0 0 0 ) outputsection ( 0 ) outputfront ( on ) outputfrontgrp ( off ) frontgrp ( extrudeFront ) outputback ( on ) outputbackgrp ( off ) backgrp ( extrudeBack ) outputside ( on ) outputsidegrp ( off ) sidegrp ( extrudeSide ) outputfrontseamgrp ( off ) frontseamgrp ( extrudeFrontSeam ) outputbackseamgrp ( off ) backseamgrp ( extrudeBackSeam ) preservegroups ( on ) insettingsection ( 0 ) limitinset ( on ) commonlimit ( on ) normalsection ( 0 ) addvertexnomrals ( off ) cuspangle ( 60 ) cuspfront ( on ) cuspback ( on ) uvssection ( 0 ) genuvs ( on ) uvstyle ( proprtional ) uvscaling ( matchuv ) shapecontrolsection ( 0 ) frontmagnitude ( 1 ) backmagnitude ( 1 ) frontstiffness ( 0 ) backstiffness ( 0 ) interpolation ( rotatingframe ) spacing ( arclengthuniform ) externalspinesection ( 0 ) reversespinedirection ( off ) axialrotation ( 0 ) frontblend ( 0.1 ) backblend ( 0.1 ) thicknesssection ( 0 ) thicknessscale ( 1 ) usethicknessattrib ( on ) thicknessattrib ( thickness ) usethicknessramp ( on ) thicknessramp ( 2 ) twistsection ( 0 ) usetwistattrib ( on ) twistattrib ( twist ) usetwistramp ( on ) twistramp ( 2 ) twistscale ( 180 ) localattribs ( 0 ) uselocalzscaleattrib ( off ) localzscaleattrib ( zscale ) uselocalinsetscaleattrib ( off ) localinsetscaleattrib ( insetscale ) uselocaltwistattrib ( off ) localtwistscaleattrib ( twistscale ) uselocaldivsattrib ( off ) locadivscaleattrib ( divsscale ) localframeattribs ( 0 ) uselocalxattrib ( off ) localxattrib ( localx ) uselocalzattirb ( off ) localzattirb ( localz ) uselocalctrattrib ( off ) localctrattrib ( localctr ) thicknessramp1pos ( 0 ) thicknessramp1value ( 1 ) thicknessramp1interp ( catmull-rom ) thicknessramp2pos ( 1 ) thicknessramp2value ( 1 ) thicknessramp2interp ( catmull-rom ) twistramp1pos ( 0 ) twistramp1value ( 0.5 ) twistramp1interp ( catmull-rom ) twistramp2pos ( 1 ) twistramp2value ( 0.5 ) twistramp2interp ( catmull-rom )
-chlock polyextrude5 -*
-chautoscope polyextrude5 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off polyextrude5
-nbop __netbox3 add polyextrude5
-opexprlanguage -s hscript polyextrude5
-opuserdata -n '___Version___' -v '20.5.370' polyextrude5
-
-# Node blast8 (Sop/blast)
-opadd -e -n blast blast8
-oplocate -x 6.7480200000000004 -y -8.8481199999999998 blast8
-opspareds "" blast8
-opparm -V 20.5.370 blast8 group ( '@prim_type=floor' ) grouptype ( guess ) computenorms ( off ) negate ( on ) fillhole ( off ) removegrp ( off )
-chlock blast8 -*
-chautoscope blast8 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off blast8
-nbop __netbox2 add blast8
-opexprlanguage -s hscript blast8
-opuserdata -n '___Version___' -v '20.5.370' blast8
-
-# Node blast9 (Sop/blast)
-opadd -e -n blast blast9
-oplocate -x -12.186999999999999 -y -5.14236 blast9
-opspareds "" blast9
-opparm -V 20.5.370 blast9 group ( '@prim_type=leftside' ) grouptype ( guess ) computenorms ( off ) negate ( on ) fillhole ( off ) removegrp ( off )
-chlock blast9 -*
-chautoscope blast9 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b on blast9
-nbop __netbox2 add blast9
-opexprlanguage -s hscript blast9
-opuserdata -n '___Version___' -v '20.5.370' blast9
-
-# Node blast10 (Sop/blast)
-opadd -e -n blast blast10
-oplocate -x -7.3011999999999997 -y -8.3048300000000008 blast10
-opspareds "" blast10
-opparm -V 20.5.370 blast10 group ( '@prim_type=rightside' ) grouptype ( guess ) computenorms ( off ) negate ( on ) fillhole ( off ) removegrp ( off )
-chlock blast10 -*
-chautoscope blast10 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off blast10
-nbop __netbox3 add blast10
-opexprlanguage -s hscript blast10
-opuserdata -n '___Version___' -v '20.5.370' blast10
-
-# Node extract_silhouette1 (labs::Sop/extract_silhouette::1.0)
-opadd -e -n labs::extract_silhouette::1.0 extract_silhouette1
-oplocate -x -12.186999999999999 -y -8.0549800000000005 extract_silhouette1
-opspareds "" extract_silhouette1
-opparm -V 370 extract_silhouette1 iExtractMode ( 0 ) mTraceAxis ( 2 ) campath ( "" ) removeoutsidesilhouette ( on ) bResample ( off ) length ( 0.1 )
-chlock extract_silhouette1 -*
-chautoscope extract_silhouette1 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b on extract_silhouette1
-nbop __netbox2 add extract_silhouette1
-opexprlanguage -s hscript extract_silhouette1
-opuserdata -n '___Version___' -v '370' extract_silhouette1
-
-# Node extrudevolume8 (Sop/extrudevolume)
-opadd -e -n extrudevolume extrudevolume8
-oplocate -x -12.196999999999999 -y -9.0549800000000005 extrudevolume8
-opspareds "" extrudevolume8
-opparm extrudevolume8 depth ( -0.24 ) basenormal ( 0 0 1 ) flat ( on ) labelparm ( 'Base Extension (Second Output)' ) basepadding ( 0.1 ) baselift ( 1 ) folder0 ( 0 ) outputtopgrp ( off ) topgrp ( extrudeTop ) outputbasegrp ( off ) basegrp ( extrudeBase ) outputsidegrp ( off ) sidegrp ( extrudeSide ) outputtopseamgrp ( off ) topseamgrp ( extrudeTopSeam ) outputbaseseamgrp ( off ) baseseamgrp ( extrudeBaseSeam )
-chlock extrudevolume8 -*
-chautoscope extrudevolume8 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b on extrudevolume8
-nbop __netbox2 add extrudevolume8
-opexprlanguage -s hscript extrudevolume8
-opuserdata -n '___Version___' -v '' extrudevolume8
-
-# Node merge8 (Sop/merge)
-opadd -e -n merge merge8
-oplocate -x 3.6793 -y -13.3642 merge8
-opspareds "" merge8
-opparm -V 20.5.370 merge8
-chlock merge8 -*
-chautoscope merge8 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off merge8
-nbop __netbox2 add merge8
-opexprlanguage -s hscript merge8
-opuserdata -n '___Version___' -v '20.5.370' merge8
-
-# Node fuse3 (Sop/fuse::2.0)
-opadd -e -n fuse::2.0 fuse3
-oplocate -x 3.68045 -y -14.277200000000001 fuse3
-opspareds "" fuse3
-opparm fuse3  numpointattribs ( 0 ) numgroups ( 0 )
-opparm -V 20.5.370 fuse3 querygroup ( "" ) usetargetgroup ( off ) targetgroup ( "" ) modifyboth ( off ) posattrib ( P ) snapgroup ( 0 ) snaptype ( distancesnap ) algorithm ( lowest ) usetol3d ( on ) tol3d ( 0.001 ) targetptattrib ( snap_to ) targetclass ( point ) usepositionsnapmethod ( on ) positionsnapmethod ( average ) positionsnapweightname ( weight ) useradiusattrib ( off ) radiusattrib ( pscale ) usematchattrib ( off ) matchattrib ( name ) matchtype ( match ) matchtol ( 0 ) gridtype ( spacing ) gridspacing ( 0.1 0.1 0.1 ) gridlines ( 10 10 10 ) gridpow2 ( 3 3 3 ) gridoffset ( 0 0 0 ) gridround ( nearest ) usegridtol ( on ) gridtol ( 10 ) consolidategroup ( 0 ) consolidatesnappedpoints ( on ) keepconsolidatedpoints ( off ) deldegen ( on ) deldegenpoints ( on ) delunusedpoints ( off ) outputgroup ( 0 ) recomputenml ( on ) createsnappedgroup ( off ) snappedgroupname ( snapped_points ) createsnappedattrib ( off ) snappedattribname ( snapped_to ) numpointattribs ( 0 ) numgroups ( 0 )
-chlock fuse3 -*
-chautoscope fuse3 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off fuse3
-nbop __netbox2 add fuse3
-opexprlanguage -s hscript fuse3
-opuserdata -n '___Version___' -v '20.5.370' fuse3
-
-# Node reverse2 (Sop/reverse)
-opadd -e -n reverse reverse2
-oplocate -x -7.1770899999999997 -y -11.9123 reverse2
-opspareds "" reverse2
-opparm -V 20.5.370 reverse2 group ( "" ) vtxsort ( reverseu ) vtxuoff ( 0 ) vtxvoff ( 0 )
-chlock reverse2 -*
-chautoscope reverse2 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off reverse2
-nbop __netbox3 add reverse2
-opexprlanguage -s hscript reverse2
-opuserdata -n '___Version___' -v '20.5.370' reverse2
-
-# Node box1 (Sop/box)
-opadd -e -n box box1
-oplocate -x 9.8782599999999992 -y -10.7005 box1
-opspareds "" box1
-opparm -V 20.5.370 box1 type ( polymesh ) surftype ( quads ) consolidatepts ( on ) size ( 1 1 1 ) t ( 0 0 0 ) r ( 0 0 0 ) scale ( 1 ) divrate ( 2 2 2 ) orderrate ( 4 4 4 ) dodivs ( off ) divs ( 3 3 3 ) rebar ( off ) orientedbbox ( off ) vertexnormals ( off )
-chlock box1 -*
-chautoscope box1 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off box1
-nbop __netbox2 add box1
-opexprlanguage -s hscript box1
-opuserdata -n '___Version___' -v '20.5.370' box1
-
-# Node attribwrangle1 (Sop/attribwrangle)
-opadd -e -n attribwrangle attribwrangle1
-oplocate -x 9.8037100000000006 -y -11.740399999999999 attribwrangle1
-opspareds "" attribwrangle1
-opparm attribwrangle1  bindings ( 0 ) groupbindings ( 0 )
-opparm attribwrangle1 folder0 ( 0 0 ) group ( "" ) grouptype ( guess ) class ( point ) vex_numcount ( 10 ) vex_threadjobsize ( 1024 ) snippet ( "" ) exportlist ( * ) vex_strict ( off ) autobind ( on ) bindings ( 0 ) groupautobind ( on ) groupbindings ( 0 ) vex_cwdpath ( . ) vex_outputmask ( * ) vex_updatenmls ( off ) vex_matchattrib ( id ) vex_inplace ( off ) vex_selectiongroup ( "" ) vex_precision ( auto )
-chlock attribwrangle1 -*
-chautoscope attribwrangle1 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off attribwrangle1
-nbop __netbox2 add attribwrangle1
-opexprlanguage -s hscript attribwrangle1
-opuserdata -n '___Version___' -v '' attribwrangle1
-
-# Node normal1 (Sop/normal)
-opadd -e -n normal normal1
-oplocate -x -0.168742 -y -18.745000000000001 normal1
-opspareds "" normal1
-opparm -V 20.5.370 normal1 group ( "" ) grouptype ( guess ) overridenormal ( off ) normalattrib ( N ) construct ( 0 ) docompute ( on ) type ( typevertex ) cuspangle ( 60 ) method ( 1 ) origifzero ( on ) modify ( 0 ) normalize ( off ) reverse ( off )
-chlock normal1 -*
-chautoscope normal1 -*
-opset -d on -r on -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off normal1
-opexprlanguage -s hscript normal1
-opuserdata -n '___Version___' -v '20.5.370' normal1
-
-# Node group1 (Sop/groupcreate)
-opadd -e -n groupcreate group1
-oplocate -x -0.168742 -y -16.9497 group1
-opspareds "" group1
-opparm -V 20.5.370 group1 groupname ( group1 ) grouptype ( edge ) mergeop ( replace ) folder0 ( 0 ) groupbase ( off ) basegroup ( "" ) ordered ( off ) geotype ( all ) switcher3 ( 0 ) groupbounding ( off ) boundtype ( usebbox ) size ( 1 1 1 ) t ( 0 0 0 ) initbounds ( 0 ) includenotwhollycontained ( off ) iso ( 0 ) invertvolume ( off ) switcher4 ( 0 ) groupnormal ( off ) camerapath ( "" ) nonplanar ( off ) nonplanartol ( 0.001 ) dir ( 0 0 1 ) angle ( 180 ) oppositenormals ( off ) switcher5 ( 0 ) groupedges ( on ) dominedgeangle ( off ) minedgeangle ( 20 ) domaxedgeangle ( on ) maxedgeangle ( 360 ) edgeanglebetweenedges ( off ) dominedgelen ( off ) minedgelen ( 0 ) domaxedgelen ( off ) maxedgelen ( 0 ) dodepth ( off ) edgestep ( 0 ) edgeptgrp ( 0 ) unshared ( off ) boundarygroups ( off ) switcher6 ( 0 ) grouprandom ( off ) globalseed ( 1 ) useseedattrib ( off ) seedattrib ( id ) percent ( 50 )
-chlock group1 -*
-chautoscope group1 -*
-opset -d off -r off -h on -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off group1
-opexprlanguage -s hscript group1
-opuserdata -n '___Version___' -v '20.5.370' group1
-
-# Node dissolve1 (Sop/dissolve::2.0)
-opadd -e -n dissolve::2.0 dissolve1
-oplocate -x -0.168742 -y -17.836200000000002 dissolve1
-opspareds "" dissolve1
-opparm -V 20.5.370 dissolve1 group ( group1 ) invertsel ( delete ) compnorms ( off ) reminlinepts ( on ) coltol ( 45 ) remunusedpts ( on ) bridge ( bridge ) deldegeneratebridges ( off ) boundarycurves ( off )
-chlock dissolve1 -*
-chautoscope dissolve1 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off dissolve1
-opexprlanguage -s hscript dissolve1
-opuserdata -n '___Version___' -v '20.5.370' dissolve1
-
-# Node testgeometry_tommy1 (Sop/testgeometry_tommy)
-opadd -e -n testgeometry_tommy testgeometry_tommy1
-oplocate -x -2.1566000000000001 -y -14.5367 testgeometry_tommy1
-opspareds "" testgeometry_tommy1
-opparm testgeometry_tommy1 t ( 0 0 0 ) r ( 0 0 0 ) scale ( 1 ) res ( 0 ) switch_clothing ( on ) switch_textures ( on )
-chlock testgeometry_tommy1 -*
-chautoscope testgeometry_tommy1 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off testgeometry_tommy1
-opexprlanguage -s hscript testgeometry_tommy1
-opuserdata -n '___Version___' -v '' testgeometry_tommy1
-opuserdata -n '___toolcount___' -v '1' testgeometry_tommy1
-opuserdata -n '___toolid___' -v 'sop_testgeometry_tommy' testgeometry_tommy1
-
-# Node transform9 (Sop/xform)
-opadd -e -n xform transform9
-oplocate -x 1.72566 -y -19.836200000000002 transform9
-opspareds "" transform9
-opparm -V 20.5.370 transform9 group ( "" ) grouptype ( guess ) xOrd ( srt ) rOrd ( xyz ) t ( 0 0 0 ) r ( 0 0 0 ) s ( 1 1 -1 ) shear ( 0 0 0 ) scale ( 1 ) parmgroup_pivotxform ( 0 ) p ( 0 0 0 ) pr ( 0 0 0 ) parmgroup_prexform ( 0 ) prexform_xOrd ( srt ) prexform_rOrd ( xyz ) prexform_t ( 0 0 0 ) prexform_r ( 0 0 0 ) prexform_s ( 1 1 1 ) prexform_shear ( 0 0 0 ) movecentroid ( 0 ) movepivot ( 0 ) attribs ( * ) updatenmls ( off ) updateaffectednmls ( on ) vlength ( on ) invertxform ( off ) addattrib ( off ) outputattrib ( xform ) outputmerge ( post )
-chlock transform9 -*
-chautoscope transform9 -* +tx +ty +tz +rx +ry +rz +sx +sy +sz
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off transform9
-opexprlanguage -s hscript transform9
-opuserdata -n '___Version___' -v '20.5.370' transform9
-
-# Node reverse3 (Sop/reverse)
-opadd -e -n reverse reverse3
-oplocate -x 1.72566 -y -20.836200000000002 reverse3
-opspareds "" reverse3
-opparm -V 20.5.370 reverse3 group ( "" ) vtxsort ( reverseu ) vtxuoff ( 0 ) vtxvoff ( 0 )
-chlock reverse3 -*
-chautoscope reverse3 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off reverse3
-opexprlanguage -s hscript reverse3
-opuserdata -n '___Version___' -v '20.5.370' reverse3
-
-# Node switchif1 (Sop/switchif)
-opadd -e -n switchif switchif1
-oplocate -x 8.1594999999999995 -y 1.55375 switchif1
-opspareds '    parm {         name    "mergecondition"         baseparm         label   "Use Second Input If"         export  none     }     parm {         name    "testinput"         baseparm         label   "Test Input"         export  none     }     multiparm {         name    "tests"         label    "Number of Tests"         baseparm         default 1          parm {             name    "enable#"             baseparm             label   "enable#"             nolabel             joinnext             export  none         }         parm {             name    "type#"             baseparm             label   "Test Type"             export  none         }         parm {             name    "expr#"             baseparm             label   "Enable"             export  none         }         parm {             name    "attribtype#"             baseparm             label   "Enable When"             export  none         }         parm {             name    "attribowner#"             baseparm             label   "Class"             export  none         }         parm {             name    "attributes#"             baseparm             label   "Attributes"             export  none         }         parm {             name    "attribvaltype#"             baseparm             label   "Of Type"             export  none         }         parm {             name    "attribfloatcomp#"             baseparm             label   "Is"             export  none         }         parm {             name    "attribstringcomp#"             baseparm             label   "Is"             export  none         }         parm {             name    "attribval#"             baseparm             label   "Value"             export  none         }         parm {             name    "attribsval#"             baseparm             label   "Value"             export  none         }         parm {             name    "counttype#"             baseparm             label   "Enable When"             export  none         }         parm {             name    "countgroup#"             baseparm             label   "In Group"             export  none         }         parm {             name    "countcomp#"             baseparm             label   "Is"             export  none         }         parm {             name    "countval#"             baseparm             label   "Value"             export  none         }         parm {             name    "hasinputtype#"             baseparm             label   "Enable When"             export  none         }     }      parm {         name    "spare_input0"         label   "Spare Input 0"         type    oppath         default { "" }         help    "Refer to this in expressions as -1, such as: npoints(-1)"         parmtag { "cook_dependent" "1" }         parmtag { "opfilter" "!!SOP!!" }         parmtag { "oprelative" "." }     } ' switchif1
-opparm switchif1  tests ( 1 )
-chblockbegin
-chadd -t 0 0 switchif1 expr1
-chkey -t 0 -v 1 -m 0 -a 0 -A 0 -T a  -F 'detail(-1,"ivalue",0)==0' switchif1/expr1
-chblockend
-opparm -V 20.5.370 switchif1 mergecondition ( all ) testinput ( first ) tests ( 1 ) enable1 ( on ) type1 ( expr ) expr1 ( expr1 ) attribtype1 ( all ) attribowner1 ( point ) attributes1 ( "" ) attribvaltype1 ( flt ) attribfloatcomp1 ( equal ) attribstringcomp1 ( equal ) attribval1 ( 0 ) attribsval1 ( "" ) counttype1 ( points ) countgroup1 ( "" ) countcomp1 ( equal ) countval1 ( 0 ) hasinputtype1 ( wired ) spare_input0 ( ../foreach_count1/ )
-chlock switchif1 -*
-chautoscope switchif1 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off switchif1
-nbop __netbox2 add switchif1
-opexprlanguage -s hscript switchif1
-opuserdata -n '___Version___' -v '20.5.370' switchif1
-
-# Node object_merge1 (Sop/object_merge)
-opadd -e -n object_merge object_merge1
-oplocate -x 7.4426600000000001 -y 2.8725100000000001 object_merge1
-opspareds "" object_merge1
-opparm object_merge1  numobj ( 1 )
-opparm -V 20.5.370 object_merge1 numobj ( 1 ) _separator ( ) xformtype ( object ) xformpath ( "" ) invertxform ( off ) createptgroups ( off ) ptgroupprefix ( _ptgrp_ ) createprimgroups ( off ) primgroupprefix ( _primgrp_ ) verbosegroups ( off ) suffixfirstgroup ( on ) createptstring ( off ) createprimstring ( off ) pathattrib ( objname ) pack ( off ) pivot ( centroid ) viewportlod ( full ) addpath ( on ) enable1 ( on ) objpath1 ( ../Slope_Intermediate_var/ ) group1 ( "" ) expand1 ( off )
-chlock object_merge1 -*
-chautoscope object_merge1 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off object_merge1
-nbop __netbox2 add object_merge1
-opexprlanguage -s hscript object_merge1
-opuserdata -n '___Version___' -v '20.5.370' object_merge1
-
-# Node object_merge2 (Sop/object_merge)
-opadd -e -n object_merge object_merge2
-oplocate -x 9.0882299999999994 -y 3.20716 object_merge2
-opspareds "" object_merge2
-opparm object_merge2  numobj ( 1 )
-opparm -V 20.5.370 object_merge2 numobj ( 1 ) _separator ( ) xformtype ( object ) xformpath ( "" ) invertxform ( off ) createptgroups ( off ) ptgroupprefix ( _ptgrp_ ) createprimgroups ( off ) primgroupprefix ( _primgrp_ ) verbosegroups ( off ) suffixfirstgroup ( on ) createptstring ( off ) createprimstring ( off ) pathattrib ( objname ) pack ( off ) pivot ( centroid ) viewportlod ( full ) addpath ( on ) enable1 ( on ) objpath1 ( ../Slope_Entrance_var/ ) group1 ( "" ) expand1 ( off )
-chlock object_merge2 -*
-chautoscope object_merge2 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off object_merge2
-nbop __netbox2 add object_merge2
-opexprlanguage -s hscript object_merge2
-opuserdata -n '___Version___' -v '20.5.370' object_merge2
-
-# Node switchif2 (Sop/switchif)
-opadd -e -n switchif switchif2
-oplocate -x 10.8521 -y 1.55375 switchif2
-opspareds '    parm {         name    "mergecondition"         baseparm         label   "Use Second Input If"         export  none     }     parm {         name    "testinput"         baseparm         label   "Test Input"         export  none     }     multiparm {         name    "tests"         label    "Number of Tests"         baseparm         default 1          parm {             name    "enable#"             baseparm             label   "enable#"             nolabel             joinnext             export  none         }         parm {             name    "type#"             baseparm             label   "Test Type"             export  none         }         parm {             name    "expr#"             baseparm             label   "Enable"             export  none         }         parm {             name    "attribtype#"             baseparm             label   "Enable When"             export  none         }         parm {             name    "attribowner#"             baseparm             label   "Class"             export  none         }         parm {             name    "attributes#"             baseparm             label   "Attributes"             export  none         }         parm {             name    "attribvaltype#"             baseparm             label   "Of Type"             export  none         }         parm {             name    "attribfloatcomp#"             baseparm             label   "Is"             export  none         }         parm {             name    "attribstringcomp#"             baseparm             label   "Is"             export  none         }         parm {             name    "attribval#"             baseparm             label   "Value"             export  none         }         parm {             name    "attribsval#"             baseparm             label   "Value"             export  none         }         parm {             name    "counttype#"             baseparm             label   "Enable When"             export  none         }         parm {             name    "countgroup#"             baseparm             label   "In Group"             export  none         }         parm {             name    "countcomp#"             baseparm             label   "Is"             export  none         }         parm {             name    "countval#"             baseparm             label   "Value"             export  none         }         parm {             name    "hasinputtype#"             baseparm             label   "Enable When"             export  none         }     }      parm {         name    "spare_input0"         label   "Spare Input 0"         type    oppath         default { "" }         help    "Refer to this in expressions as -1, such as: npoints(-1)"         parmtag { "cook_dependent" "1" }         parmtag { "opfilter" "!!SOP!!" }         parmtag { "oprelative" "." }     } ' switchif2
-opparm switchif2  tests ( 1 )
-chblockbegin
-chadd -t 0 0 switchif2 expr1
-chkey -t 0 -v 1 -m 0 -a 0 -A 0 -T a  -F 'detail(-1,"iteration",0)==(detail(-1,"numiterations",0)-1)' switchif2/expr1
-chblockend
-opparm -V 20.5.370 switchif2 mergecondition ( all ) testinput ( first ) tests ( 1 ) enable1 ( on ) type1 ( expr ) expr1 ( expr1 ) attribtype1 ( all ) attribowner1 ( point ) attributes1 ( "" ) attribvaltype1 ( flt ) attribfloatcomp1 ( equal ) attribstringcomp1 ( equal ) attribval1 ( 0 ) attribsval1 ( "" ) counttype1 ( points ) countgroup1 ( "" ) countcomp1 ( equal ) countval1 ( 0 ) hasinputtype1 ( wired ) spare_input0 ( ../foreach_count1/ )
-chlock switchif2 -*
-chautoscope switchif2 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off switchif2
-nbop __netbox2 add switchif2
-opexprlanguage -s hscript switchif2
-opuserdata -n '___Version___' -v '20.5.370' switchif2
-
-# Node object_merge3 (Sop/object_merge)
-opadd -e -n object_merge object_merge3
-oplocate -x 11.581099999999999 -y 2.8725100000000001 object_merge3
-opspareds "" object_merge3
-opparm object_merge3  numobj ( 1 )
-opparm -V 20.5.370 object_merge3 numobj ( 1 ) _separator ( ) xformtype ( object ) xformpath ( "" ) invertxform ( off ) createptgroups ( off ) ptgroupprefix ( _ptgrp_ ) createprimgroups ( off ) primgroupprefix ( _primgrp_ ) verbosegroups ( off ) suffixfirstgroup ( on ) createptstring ( off ) createprimstring ( off ) pathattrib ( objname ) pack ( off ) pivot ( centroid ) viewportlod ( full ) addpath ( on ) enable1 ( on ) objpath1 ( ../Slope_Exit/ ) group1 ( "" ) expand1 ( off )
-chlock object_merge3 -*
-chautoscope object_merge3 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off object_merge3
-nbop __netbox2 add object_merge3
-opexprlanguage -s hscript object_merge3
-opuserdata -n '___Version___' -v '20.5.370' object_merge3
-
-# Node extract_silhouette2 (labs::Sop/extract_silhouette::1.0)
-opadd -e -n labs::extract_silhouette::1.0 extract_silhouette2
-oplocate -x -13.189 -y -11.1952 extract_silhouette2
-opspareds "" extract_silhouette2
-opparm -V 370 extract_silhouette2 iExtractMode ( 0 ) mTraceAxis ( 2 ) campath ( "" ) removeoutsidesilhouette ( off ) bResample ( off ) length ( 0.1 )
-chlock extract_silhouette2 -*
-chautoscope extract_silhouette2 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off extract_silhouette2
-nbop __netbox2 add extract_silhouette2
-opexprlanguage -s hscript extract_silhouette2
-opuserdata -n '___Version___' -v '370' extract_silhouette2
-
-# Node extrudevolume6 (Sop/extrudevolume)
-opadd -e -n extrudevolume extrudevolume6
-oplocate -x -13.189 -y -11.972099999999999 extrudevolume6
-opspareds "" extrudevolume6
-opparm extrudevolume6 depth ( -1 ) basenormal ( 0 0 1 ) flat ( on ) labelparm ( 'Base Extension (Second Output)' ) basepadding ( 0.1 ) baselift ( 1 ) folder0 ( 0 ) outputtopgrp ( off ) topgrp ( extrudeTop ) outputbasegrp ( off ) basegrp ( extrudeBase ) outputsidegrp ( off ) sidegrp ( extrudeSide ) outputtopseamgrp ( off ) topseamgrp ( extrudeTopSeam ) outputbaseseamgrp ( off ) baseseamgrp ( extrudeBaseSeam )
-chlock extrudevolume6 -*
-chautoscope extrudevolume6 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off extrudevolume6
-nbop __netbox2 add extrudevolume6
-opexprlanguage -s hscript extrudevolume6
-opuserdata -n '___Version___' -v '' extrudevolume6
-
-# Node boolean2 (Sop/boolean::2.0)
-opadd -e -n boolean::2.0 boolean2
-oplocate -x -15.7943 -y -16.577200000000001 boolean2
-opspareds "" boolean2
-opparm -V 20.5.370 boolean2 inputa ( 0 ) agroup ( "" ) asurface ( surface ) resolvea ( on ) inputb ( 0 ) bgroup ( "" ) bsurface ( solid ) resolveb ( on ) output ( 0 ) booleanop ( intersect ) subtractchoices ( aminusb ) shatterchoices ( apieces ) opencurvesonly ( on ) generateaaseams ( on ) generatebbseams ( on ) generateabseams ( on ) adepth ( 1 1000 ) bdepth ( 1 1000 ) windingop ( arange ) mergenbrs ( off ) detriangulate ( all ) removeinlinepoints ( on ) uniqueseams ( off ) correctnormals ( on ) useaxapolys ( off ) axapolys ( axapolys ) useaxbpolys ( off ) axbpolys ( axbpolys ) useaxalist ( off ) axalist ( axalist ) useaxblist ( off ) axblist ( axblist ) collapsetinyedges ( on ) lengththreshold ( 1e-5 ) outputprimgroups ( 0 ) useapolys ( off ) apolys ( apolys ) useainsideb ( off ) ainsideb ( ainsideb ) useaoutsideb ( off ) aoutsideb ( aoutsideb ) usebpolys ( off ) bpolys ( bpolys ) usebinsidea ( off ) binsidea ( binsidea ) useboutsidea ( off ) boutsidea ( boutsidea ) useaboverlap ( off ) aboverlap ( aboverlap ) useaonlypieces ( off ) aonlypieces ( apieces ) usebonlypieces ( off ) bonlypieces ( bpieces ) useabpieces ( off ) abpieces ( abpieces ) usereversedpolys ( off ) reversedpolys ( reversed ) outputedgegroups ( 0 ) useaaseamedges ( off ) aaseamedges ( aseams ) usebbseamedges ( off ) bbseamedges ( bseams ) useabseamedges ( off ) abseamedges ( abseams )
-chlock boolean2 -*
-chautoscope boolean2 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off boolean2
-opexprlanguage -s hscript boolean2
-opuserdata -n '___Version___' -v '20.5.370' boolean2
-
-# Node matchsize5 (Sop/matchsize)
-opadd -e -n matchsize matchsize5
-oplocate -x -13.167199999999999 -y -12.972099999999999 matchsize5
-opspareds "" matchsize5
-opparm matchsize5 group ( "" ) grouptype ( guess ) sepparm ( ) justifytarget ( auto ) doboundgroup ( off ) folder2 ( 0 ) sourcegroup ( "" ) sourcegrouptype ( guess ) refgroup ( "" ) refgrouptype ( guess ) folder1 ( 0 ) t ( 0 0 0 ) size ( 1 1 1 ) folder0 ( 0 ) dotranslate ( on ) justify_x ( none ) goal_x ( same ) offset_x ( 0 ) justify_y ( none ) goal_y ( same ) offset_y ( 0 ) justify_z ( center ) goal_z ( same ) offset_z ( 0 ) doscale ( off ) uniformscale ( on ) scale_axis ( min ) scale_x ( on ) scale_y ( on ) scale_z ( on ) restorexform ( off ) restoreattrib ( xform ) stashxform ( off ) stashattrib ( xform ) stashmerge ( replace )
-chlock matchsize5 -*
-chautoscope matchsize5 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off matchsize5
-nbop __netbox2 add matchsize5
-opexprlanguage -s hscript matchsize5
-opuserdata -n '___Version___' -v '' matchsize5
-
-# Node extrudevolume7 (Sop/extrudevolume)
-opadd -e -n extrudevolume extrudevolume7
-oplocate -x -10.8477 -y -14.802 extrudevolume7
-opspareds "" extrudevolume7
-chblockbegin
-chadd -t 0 0 extrudevolume7 depth
-chkey -t 0 -v 0.10000000000000001 -m 0 -a 0 -A 0 -T a  -F 'ch("../Params/CenterMargin")' extrudevolume7/depth
-chblockend
-opparm extrudevolume7 depth ( depth ) basenormal ( 0 0 1 ) flat ( on ) labelparm ( 'Base Extension (Second Output)' ) basepadding ( 0.1 ) baselift ( 1 ) folder0 ( 0 ) outputtopgrp ( off ) topgrp ( extrudeTop ) outputbasegrp ( off ) basegrp ( extrudeBase ) outputsidegrp ( off ) sidegrp ( extrudeSide ) outputtopseamgrp ( off ) topseamgrp ( extrudeTopSeam ) outputbaseseamgrp ( off ) baseseamgrp ( extrudeBaseSeam )
-chlock extrudevolume7 -*
-chautoscope extrudevolume7 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off extrudevolume7
-nbop __netbox2 add extrudevolume7
-opexprlanguage -s hscript extrudevolume7
-opuserdata -n '___Version___' -v '' extrudevolume7
-
-# Node box2 (Sop/box)
-opadd -e -n box box2
-oplocate -x -19.040900000000001 -y -10.891299999999999 box2
-opspareds "" box2
-chblockbegin
-chadd -t 0 0 box2 sizex
-chkey -t 0 -v 2.3999999999999999 -m 0 -a 0 -A 0 -T a  -F 'ch("../Params/SlopeLength")' box2/sizex
-chadd -t 0 0 box2 sizey
-chkey -t 0 -v 4.2999999999999998 -m 0 -a 0 -A 0 -T a  -F 'ch("../Params/Elevation") * (ch("../Params/NumFloors")-1)' box2/sizey
-chblockend
-opparm -V 20.5.370 box2 type ( polymesh ) surftype ( quads ) consolidatepts ( on ) size ( sizex sizey 17 ) t ( 0 0 0 ) r ( 0 0 0 ) scale ( 1 ) divrate ( 2 2 2 ) orderrate ( 4 4 4 ) dodivs ( off ) divs ( 3 3 3 ) rebar ( off ) orientedbbox ( off ) vertexnormals ( off )
-chlock box2 -*
-chautoscope box2 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off box2
-opexprlanguage -s hscript box2
-opuserdata -n '___Version___' -v '20.5.370' box2
-
-# Node boolean3 (Sop/boolean::2.0)
-opadd -e -n boolean::2.0 boolean3
-oplocate -x -14.1919 -y -14.802 boolean3
-opspareds "" boolean3
-opparm -V 20.5.370 boolean3 inputa ( 0 ) agroup ( "" ) asurface ( solid ) resolvea ( on ) inputb ( 0 ) bgroup ( "" ) bsurface ( solid ) resolveb ( on ) output ( 0 ) booleanop ( union ) subtractchoices ( aminusb ) shatterchoices ( apieces ) opencurvesonly ( on ) generateaaseams ( on ) generatebbseams ( on ) generateabseams ( on ) adepth ( 1 1000 ) bdepth ( 1 1000 ) windingop ( arange ) mergenbrs ( off ) detriangulate ( all ) removeinlinepoints ( on ) uniqueseams ( off ) correctnormals ( on ) useaxapolys ( off ) axapolys ( axapolys ) useaxbpolys ( off ) axbpolys ( axbpolys ) useaxalist ( off ) axalist ( axalist ) useaxblist ( off ) axblist ( axblist ) collapsetinyedges ( on ) lengththreshold ( 1e-5 ) outputprimgroups ( 0 ) useapolys ( off ) apolys ( apolys ) useainsideb ( off ) ainsideb ( ainsideb ) useaoutsideb ( off ) aoutsideb ( aoutsideb ) usebpolys ( off ) bpolys ( bpolys ) usebinsidea ( off ) binsidea ( binsidea ) useboutsidea ( off ) boutsidea ( boutsidea ) useaboverlap ( off ) aboverlap ( aboverlap ) useaonlypieces ( off ) aonlypieces ( apieces ) usebonlypieces ( off ) bonlypieces ( bpieces ) useabpieces ( off ) abpieces ( abpieces ) usereversedpolys ( off ) reversedpolys ( reversed ) outputedgegroups ( 0 ) useaaseamedges ( off ) aaseamedges ( aseams ) usebbseamedges ( off ) bbseamedges ( bseams ) useabseamedges ( off ) abseamedges ( abseams )
-chlock boolean3 -*
-chautoscope boolean3 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off boolean3
-nbop __netbox2 add boolean3
-opexprlanguage -s hscript boolean3
-opuserdata -n '___Version___' -v '20.5.370' boolean3
-
-# Node reverse4 (Sop/reverse)
-opadd -e -n reverse reverse4
-oplocate -x -19.040900000000001 -y -13.2958 reverse4
-opspareds "" reverse4
-opparm -V 20.5.370 reverse4 group ( "" ) vtxsort ( reverseu ) vtxuoff ( 0 ) vtxvoff ( 0 )
-chlock reverse4 -*
-chautoscope reverse4 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b on reverse4
-opexprlanguage -s hscript reverse4
-opuserdata -n '___Version___' -v '20.5.370' reverse4
-
-# Node matchsize6 (Sop/matchsize)
-opadd -e -n matchsize matchsize6
-oplocate -x -19.040900000000001 -y -11.891299999999999 matchsize6
-opspareds "" matchsize6
-chblockbegin
-chadd -t 0 0 matchsize6 offset_x
-chkey -t 0 -v 0 -m 0 -a 0 -A 0 -T a  -F '-ch("../Params/Width")' matchsize6/offset_x
-chblockend
-opparm matchsize6 group ( "" ) grouptype ( guess ) sepparm ( ) justifytarget ( auto ) doboundgroup ( off ) folder2 ( 0 ) sourcegroup ( "" ) sourcegrouptype ( guess ) refgroup ( "" ) refgrouptype ( guess ) folder1 ( 0 ) t ( 0 0 0 ) size ( 1 1 1 ) folder0 ( 0 ) dotranslate ( on ) justify_x ( max ) goal_x ( same ) offset_x ( offset_x ) justify_y ( min ) goal_y ( same ) offset_y ( 0 ) justify_z ( center ) goal_z ( same ) offset_z ( 0 ) doscale ( off ) uniformscale ( on ) scale_axis ( min ) scale_x ( on ) scale_y ( on ) scale_z ( on ) restorexform ( off ) restoreattrib ( xform ) stashxform ( off ) stashattrib ( xform ) stashmerge ( replace )
-chlock matchsize6 -*
-chautoscope matchsize6 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off matchsize6
-opexprlanguage -s hscript matchsize6
-opuserdata -n '___Version___' -v '' matchsize6
-
-# Node matchsize7 (Sop/matchsize)
-opadd -e -n matchsize matchsize7
-oplocate -x -10.106199999999999 -y -15.802 matchsize7
-opspareds "" matchsize7
-opparm matchsize7 group ( "" ) grouptype ( guess ) sepparm ( ) justifytarget ( auto ) doboundgroup ( off ) folder2 ( 0 ) sourcegroup ( "" ) sourcegrouptype ( guess ) refgroup ( "" ) refgrouptype ( guess ) folder1 ( 0 ) t ( 0 0 0 ) size ( 1 1 1 ) folder0 ( 0 ) dotranslate ( on ) justify_x ( none ) goal_x ( same ) offset_x ( 0 ) justify_y ( none ) goal_y ( same ) offset_y ( 0 ) justify_z ( max ) goal_z ( same ) offset_z ( 0 ) doscale ( off ) uniformscale ( on ) scale_axis ( min ) scale_x ( on ) scale_y ( on ) scale_z ( on ) restorexform ( off ) restoreattrib ( xform ) stashxform ( off ) stashattrib ( xform ) stashmerge ( replace )
-chlock matchsize7 -*
-chautoscope matchsize7 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off matchsize7
-opexprlanguage -s hscript matchsize7
-opuserdata -n '___Version___' -v '' matchsize7
-
 # Node Slope_Exit (Sop/subnet)
 opadd -e -n subnet Slope_Exit
 oplocate -x -15.7668 -y 3.0510000000000002 Slope_Exit
@@ -847,8 +210,7 @@ opspareds "" Slope_Exit
 opparm -V 20.5.370 Slope_Exit label1 ( 'Sub-Network Input #1' ) label2 ( 'Sub-Network Input #2' ) label3 ( 'Sub-Network Input #3' ) label4 ( 'Sub-Network Input #4' )
 chlock Slope_Exit -*
 chautoscope Slope_Exit -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off Slope_Exit
-nbop __netbox2 add Slope_Exit
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b on Slope_Exit
 opexprlanguage -s hscript Slope_Exit
 opuserdata -n '___Version___' -v '20.5.370' Slope_Exit
 opcf Slope_Exit
@@ -931,7 +293,7 @@ chkey -t 0 -v 1 -m 0 -a 0 -A 0 -T a  -F 'ch("../../Params/Width")' Elbow3/Width
 chadd -t 0 0 Elbow3 CornerType
 chkey -t 0 -v 1 -m 0 -a 0 -A 0 -T a  -F 'ch("../../Params/CornerType")' Elbow3/CornerType
 chblockend
-opparm Elbow3 Direction ( "" ) Width ( Width ) CornerType ( CornerType )
+opparm Elbow3 Direction ( 0 ) Width ( Width ) CornerType ( CornerType )
 chlock Elbow3 -*
 chautoscope Elbow3 -*
 opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off Elbow3
@@ -978,7 +340,7 @@ chkey -t 0 -v 1 -m 0 -a 0 -A 0 -T a  -F 'ch("../../Params/Width")' Elbow4/Width
 chadd -t 0 0 Elbow4 CornerType
 chkey -t 0 -v 1 -m 0 -a 0 -A 0 -T a  -F 'ch("../../Params/CornerType")' Elbow4/CornerType
 chblockend
-opparm Elbow4 Direction ( "" ) Width ( Width ) CornerType ( CornerType )
+opparm Elbow4 Direction ( 0 ) Width ( Width ) CornerType ( CornerType )
 chlock Elbow4 -*
 chautoscope Elbow4 -*
 opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off Elbow4
@@ -1027,8 +389,7 @@ opspareds "" Slope_Entrance
 opparm -V 20.5.370 Slope_Entrance label1 ( 'Sub-Network Input #1' ) label2 ( 'Sub-Network Input #2' ) label3 ( 'Sub-Network Input #3' ) label4 ( 'Sub-Network Input #4' )
 chlock Slope_Entrance -*
 chautoscope Slope_Entrance -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off Slope_Entrance
-nbop __netbox2 add Slope_Entrance
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b on Slope_Entrance
 opexprlanguage -s hscript Slope_Entrance
 opuserdata -n '___Version___' -v '20.5.370' Slope_Entrance
 opcf Slope_Entrance
@@ -1073,7 +434,7 @@ chkey -t 0 -v 1 -m 0 -a 0 -A 0 -T a  -F 'ch("../../Params/Width")' Elbow1/Width
 chadd -t 0 0 Elbow1 CornerType
 chkey -t 0 -v 1 -m 0 -a 0 -A 0 -T a  -F 'ch("../../Params/CornerType")' Elbow1/CornerType
 chblockend
-opparm Elbow1 Direction ( "" ) Width ( Width ) CornerType ( CornerType )
+opparm Elbow1 Direction ( 0 ) Width ( Width ) CornerType ( CornerType )
 chlock Elbow1 -*
 chautoscope Elbow1 -*
 opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off Elbow1
@@ -1196,8 +557,7 @@ opspareds "" Slope_Intermediate
 opparm -V 20.5.370 Slope_Intermediate label1 ( 'Sub-Network Input #1' ) label2 ( 'Sub-Network Input #2' ) label3 ( 'Sub-Network Input #3' ) label4 ( 'Sub-Network Input #4' )
 chlock Slope_Intermediate -*
 chautoscope Slope_Intermediate -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off Slope_Intermediate
-nbop __netbox2 add Slope_Intermediate
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b on Slope_Intermediate
 opexprlanguage -s hscript Slope_Intermediate
 opuserdata -n '___Version___' -v '20.5.370' Slope_Intermediate
 opcf Slope_Intermediate
@@ -1231,7 +591,7 @@ chkey -t 0 -v 1 -m 0 -a 0 -A 0 -T a  -F 'ch("../../Params/Width")' Elbow1/Width
 chadd -t 0 0 Elbow1 CornerType
 chkey -t 0 -v 1 -m 0 -a 0 -A 0 -T a  -F 'ch("../../Params/CornerType")' Elbow1/CornerType
 chblockend
-opparm Elbow1 Direction ( "" ) Width ( Width ) CornerType ( CornerType )
+opparm Elbow1 Direction ( 0 ) Width ( Width ) CornerType ( CornerType )
 chlock Elbow1 -*
 chautoscope Elbow1 -*
 opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off Elbow1
@@ -1352,64 +712,6 @@ opuserdata -n '___Version___' -v '20.5.370' transform1
 oporder -e Straight1 Elbow1 matchsize2 blast6 attribwrangle6 merge5 blast7 attribwrangle7 transform7 transform8 output0 transform1 
 opcf ..
 
-# Node Center_Shear_Wall (Sop/subnet)
-opadd -e -n subnet Center_Shear_Wall
-oplocate -x -15.7668 -y 1.4144399999999999 Center_Shear_Wall
-opspareds "" Center_Shear_Wall
-opparm -V 20.5.370 Center_Shear_Wall label1 ( 'Sub-Network Input #1' ) label2 ( 'Sub-Network Input #2' ) label3 ( 'Sub-Network Input #3' ) label4 ( 'Sub-Network Input #4' )
-chlock Center_Shear_Wall -*
-chautoscope Center_Shear_Wall -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off Center_Shear_Wall
-nbop __netbox2 add Center_Shear_Wall
-opexprlanguage -s hscript Center_Shear_Wall
-opuserdata -n '___Version___' -v '20.5.370' Center_Shear_Wall
-opcf Center_Shear_Wall
-
-# Node grid1 (Sop/grid)
-opadd -e -n grid grid1
-oplocate -x -1.11759e-08 -y 5.8601599999999996 grid1
-opspareds "" grid1
-chblockbegin
-chadd -t 0 0 grid1 sizex
-chkey -t 0 -v 2 -m 0 -a 0 -A 0 -T a  -F 'ch("../../Params/SlopeLength")' grid1/sizex
-chadd -t 0 0 grid1 sizey
-chkey -t 0 -v 10 -m 0 -a 0 -A 0 -T a  -F 'ch("../../Params/Elevation") * (ch("../../Params/NumFloors"))' grid1/sizey
-chblockend
-opparm -V 20.5.370 grid1 type ( poly ) surftype ( quads ) orient ( xy ) size ( sizex sizey ) t ( 0 0 0 ) r ( 0 0 0 ) rows ( 2 ) cols ( 2 ) orderu ( 4 ) orderv ( 4 ) interpu ( on ) interpv ( on )
-chlock grid1 -*
-chautoscope grid1 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off grid1
-opexprlanguage -s hscript grid1
-opuserdata -n '___Version___' -v '20.5.370' grid1
-
-# Node matchsize4 (Sop/matchsize)
-opadd -e -n matchsize matchsize4
-oplocate -x 0 -y 4.5424300000000004 matchsize4
-opspareds "" matchsize4
-chblockbegin
-chadd -t 0 0 matchsize4 offset_x
-chkey -t 0 -v -0.49199999999999999 -m 0 -a 0 -A 0 -T a  -F '-ch("../../Params/Width")' matchsize4/offset_x
-chblockend
-opparm matchsize4 group ( "" ) grouptype ( guess ) sepparm ( ) justifytarget ( auto ) doboundgroup ( off ) folder2 ( 0 ) sourcegroup ( "" ) sourcegrouptype ( guess ) refgroup ( "" ) refgrouptype ( guess ) folder1 ( 0 ) t ( 0 0 0 ) size ( 1 1 1 ) folder0 ( 0 ) dotranslate ( on ) justify_x ( max ) goal_x ( same ) offset_x ( offset_x ) justify_y ( min ) goal_y ( same ) offset_y ( 0 ) justify_z ( center ) goal_z ( same ) offset_z ( 0 ) doscale ( off ) uniformscale ( on ) scale_axis ( min ) scale_x ( on ) scale_y ( on ) scale_z ( on ) restorexform ( off ) restoreattrib ( xform ) stashxform ( off ) stashattrib ( xform ) stashmerge ( replace )
-chlock matchsize4 -*
-chautoscope matchsize4 -*
-opset -d on -r on -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off matchsize4
-opexprlanguage -s hscript matchsize4
-opuserdata -n '___Version___' -v '' matchsize4
-
-# Node output0 (Sop/output)
-opadd -e -n output output0
-oplocate -x -2.7755599999999997e-17 -y 2.7758699999999998 output0
-opspareds "" output0
-opparm -V 20.5.370 output0 outputidx ( 0 )
-chlock output0 -*
-chautoscope output0 -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off output0
-opexprlanguage -s hscript output0
-opuserdata -n '___Version___' -v '20.5.370' output0
-oporder -e grid1 matchsize4 output0 
-opcf ..
-
 # Node Slope_Entrance_var (Sop/subnet)
 opadd -e -n subnet Slope_Entrance_var
 oplocate -x -12.490600000000001 -y 4.64323 Slope_Entrance_var
@@ -1417,8 +719,7 @@ opspareds "" Slope_Entrance_var
 opparm -V 20.5.370 Slope_Entrance_var label1 ( 'Sub-Network Input #1' ) label2 ( 'Sub-Network Input #2' ) label3 ( 'Sub-Network Input #3' ) label4 ( 'Sub-Network Input #4' )
 chlock Slope_Entrance_var -*
 chautoscope Slope_Entrance_var -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off Slope_Entrance_var
-nbop __netbox2 add Slope_Entrance_var
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b on Slope_Entrance_var
 opexprlanguage -s hscript Slope_Entrance_var
 opuserdata -n '___Version___' -v '20.5.370' Slope_Entrance_var
 opcf Slope_Entrance_var
@@ -1463,7 +764,7 @@ chkey -t 0 -v 1 -m 0 -a 0 -A 0 -T a  -F 'ch("../../Params/Width")' Elbow1/Width
 chadd -t 0 0 Elbow1 CornerType
 chkey -t 0 -v 1 -m 0 -a 0 -A 0 -T a  -F 'ch("../../Params/CornerType")' Elbow1/CornerType
 chblockend
-opparm Elbow1 Direction ( "" ) Width ( Width ) CornerType ( CornerType )
+opparm Elbow1 Direction ( 0 ) Width ( Width ) CornerType ( CornerType )
 chlock Elbow1 -*
 chautoscope Elbow1 -*
 opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off Elbow1
@@ -1637,8 +938,7 @@ opspareds "" Slope_Intermediate_var
 opparm -V 20.5.370 Slope_Intermediate_var label1 ( 'Sub-Network Input #1' ) label2 ( 'Sub-Network Input #2' ) label3 ( 'Sub-Network Input #3' ) label4 ( 'Sub-Network Input #4' )
 chlock Slope_Intermediate_var -*
 chautoscope Slope_Intermediate_var -*
-opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off Slope_Intermediate_var
-nbop __netbox2 add Slope_Intermediate_var
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b on Slope_Intermediate_var
 opexprlanguage -s hscript Slope_Intermediate_var
 opuserdata -n '___Version___' -v '20.5.370' Slope_Intermediate_var
 opcf Slope_Intermediate_var
@@ -1672,7 +972,7 @@ chkey -t 0 -v 1 -m 0 -a 0 -A 0 -T a  -F 'ch("../../Params/Width")' Elbow1/Width
 chadd -t 0 0 Elbow1 CornerType
 chkey -t 0 -v 1 -m 0 -a 0 -A 0 -T a  -F 'ch("../../Params/CornerType")' Elbow1/CornerType
 chblockend
-opparm Elbow1 Direction ( "" ) Width ( Width ) CornerType ( CornerType )
+opparm Elbow1 Direction ( 0 ) Width ( Width ) CornerType ( CornerType )
 chlock Elbow1 -*
 chautoscope Elbow1 -*
 opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off Elbow1
@@ -1844,9 +1144,2427 @@ opuserdata -n '___Version___' -v '' attribwrangle8
 oporder -e Straight1 Elbow1 matchsize2 blast6 attribwrangle6 merge5 blast7 attribwrangle7 transform7 transform8 output0 transform1 Straight2 transform2 blast1 attribwrangle8 
 opcf ..
 
+# Node Stair (Sop/subnet)
+opadd -e -n subnet Stair
+oplocate -x -2.3538299999999999 -y -3.9639700000000002 Stair
+opspareds '    parm {         name    "label1"         baseparm         label   "Input #1 Label"         export  all     }     parm {         name    "label2"         baseparm         label   "Input #2 Label"         export  all     }     parm {         name    "label3"         baseparm         label   "Input #3 Label"         export  all     }     parm {         name    "label4"         baseparm         label   "Input #4 Label"         export  all     }     parm {         name    "NumFloors"         label   "NumFloors"         type    integer         default { "3" }         range   { 0 10 }         parmtag { "script_callback_language" "python" }     }     parm {         name    "Width"         label   "Width"         type    float         default { "1.6" }         range   { 0! 10 }         parmtag { "script_callback_language" "python" }     }     parm {         name    "Elevation"         label   "Elevation"         type    float         default { "3" }         range   { 0! 10 }         parmtag { "script_callback_language" "python" }     }     parm {         name    "CornerType"         label   "CornerType"         type    ordinal         default { "0" }         menu {             "0" "Rect"             "1" "Arc"         }         parmtag { "script_callback_language" "python" }     }     parm {         name    "GroundFloor"         label   "GroundFloor"         type    integer         default { "0" }         range   { 0 10 }         parmtag { "script_callback_language" "python" }     }     parm {         name    "SlopeLength"         label   "SlopeLength"         type    float         default { "2" }         range   { 0 10 }         parmtag { "script_callback_language" "python" }     }     parm {         name    "CenterMargin"         label   "CenterMargin"         type    float         default { "0.25" }         range   { 0 10 }         parmtag { "script_callback_language" "python" }     }     parm {         name    "Rotation"         label   "Rotation"         type    ordinal         default { "0" }         menu usetokenvalue {             "2" "CW"             "1" "CCW"         }         parmtag { "script_callback_language" "python" }     }     parm {         name    "Open"         label   "Open"         type    ordinal         default { "0" }         menu {             "0" "Front"             "1" "Left"             "2" "Right"         }         parmtag { "script_callback_language" "python" }     }     parm {         name    "HandrailWidth"         label   "HandrailWidth"         type    float         default { "0.1" }         range   { 0 10 }         parmtag { "script_callback_language" "python" }     }     parm {         name    "HandraiHeight"         label   "HandraiHeight"         type    float         default { "1.2" }         range   { 0 10 }         parmtag { "script_callback_language" "python" }     } ' Stair
+opparm -V 20.5.370 Stair label1 ( 'Sub-Network Input #1' ) label2 ( 'Sub-Network Input #2' ) label3 ( 'Sub-Network Input #3' ) label4 ( 'Sub-Network Input #4' ) NumFloors ( 3 ) Width ( 1.6 ) Elevation ( 2.5 ) CornerType ( 0 ) GroundFloor ( 0 ) SlopeLength ( 2 ) CenterMargin ( 0.18 ) Rotation ( 1 ) Open ( 0 ) HandrailWidth ( 0.1 ) HandraiHeight ( 1.15 )
+chlock Stair -*
+chautoscope Stair -*
+opset -d on -r on -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off Stair
+opexprlanguage -s hscript Stair
+opuserdata -n '___Version___' -v '20.5.370' Stair
+opcf Stair
+
+# Network Box __netbox3
+nbadd __netbox3
+nblocate -x -3.79777 -y -4.66148 __netbox3
+nbsize -w 4.35536 -h 7.97926 __netbox3
+nbset  -m off __netbox3
+nbcolor -c 0.52 0.52 0.52 __netbox3
+
+# Network Box __netbox2
+nbadd __netbox2
+nblocate -x 2.23698 -y -1.21166 __netbox2
+nbsize -w 2.8 -h 2.60814 __netbox2
+nbset  -m off __netbox2
+nbcolor -c 0.52 0.52 0.52 __netbox2
+
+# Node fuse1 (Sop/fuse::2.0)
+opadd -e -n fuse::2.0 fuse1
+oplocate -x -10.0304 -y 1.9481299999999999 fuse1
+opspareds "" fuse1
+opparm fuse1  numpointattribs ( 0 ) numgroups ( 0 )
+opparm -V 20.5.370 fuse1 querygroup ( "" ) usetargetgroup ( off ) targetgroup ( "" ) modifyboth ( off ) posattrib ( P ) snapgroup ( 0 ) snaptype ( distancesnap ) algorithm ( lowest ) usetol3d ( on ) tol3d ( 0.001 ) targetptattrib ( snap_to ) targetclass ( point ) usepositionsnapmethod ( on ) positionsnapmethod ( average ) positionsnapweightname ( weight ) useradiusattrib ( off ) radiusattrib ( pscale ) usematchattrib ( off ) matchattrib ( name ) matchtype ( match ) matchtol ( 0 ) gridtype ( spacing ) gridspacing ( 0.1 0.1 0.1 ) gridlines ( 10 10 10 ) gridpow2 ( 3 3 3 ) gridoffset ( 0 0 0 ) gridround ( nearest ) usegridtol ( on ) gridtol ( 10 ) consolidategroup ( 0 ) consolidatesnappedpoints ( on ) keepconsolidatedpoints ( off ) deldegen ( on ) deldegenpoints ( on ) delunusedpoints ( off ) outputgroup ( 0 ) recomputenml ( on ) createsnappedgroup ( off ) snappedgroupname ( snapped_points ) createsnappedattrib ( off ) snappedattribname ( snapped_to ) numpointattribs ( 0 ) numgroups ( 0 )
+chlock fuse1 -*
+chautoscope fuse1 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b on fuse1
+opexprlanguage -s hscript fuse1
+opuserdata -n '___Version___' -v '20.5.370' fuse1
+
+# Node null1 (Sop/null)
+opadd -e -n null null1
+oplocate -x 0 -y 4.4358599999999999 null1
+opspareds "" null1
+opparm -V 20.5.370 null1 copyinput ( on ) cacheinput ( off )
+chlock null1 -*
+chautoscope null1 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off null1
+opexprlanguage -s hscript null1
+opuserdata -n '___Version___' -v '20.5.370' null1
+
+# Node extrudevolume4 (Sop/extrudevolume)
+opadd -e -n extrudevolume extrudevolume4
+oplocate -x -10.0304 -y 1.0367999999999999 extrudevolume4
+opspareds "" extrudevolume4
+opparm extrudevolume4 depth ( 1.6 ) basenormal ( 0 1 0 ) flat ( on ) labelparm ( 'Base Extension (Second Output)' ) basepadding ( 0.1 ) baselift ( 1 ) folder0 ( 0 ) outputtopgrp ( off ) topgrp ( extrudeTop ) outputbasegrp ( off ) basegrp ( extrudeBase ) outputsidegrp ( off ) sidegrp ( extrudeSide ) outputtopseamgrp ( off ) topseamgrp ( extrudeTopSeam ) outputbaseseamgrp ( off ) baseseamgrp ( extrudeBaseSeam )
+chlock extrudevolume4 -*
+chautoscope extrudevolume4 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b on extrudevolume4
+opexprlanguage -s hscript extrudevolume4
+opuserdata -n '___Version___' -v '' extrudevolume4
+
+# Node blast9 (Sop/blast)
+opadd -e -n blast blast9
+oplocate -x -10.0304 -y 2.8559600000000001 blast9
+opspareds "" blast9
+opparm -V 20.5.370 blast9 group ( '@prim_type=leftside' ) grouptype ( guess ) computenorms ( off ) negate ( on ) fillhole ( off ) removegrp ( off )
+chlock blast9 -*
+chautoscope blast9 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b on blast9
+opexprlanguage -s hscript blast9
+opuserdata -n '___Version___' -v '20.5.370' blast9
+
+# Node extract_silhouette1 (labs::Sop/extract_silhouette::1.0)
+opadd -e -n labs::extract_silhouette::1.0 extract_silhouette1
+oplocate -x -10.0304 -y -0.056660000000000002 extract_silhouette1
+opspareds "" extract_silhouette1
+opparm -V 370 extract_silhouette1 iExtractMode ( 0 ) mTraceAxis ( 2 ) campath ( "" ) removeoutsidesilhouette ( on ) bResample ( off ) length ( 0.1 )
+chlock extract_silhouette1 -*
+chautoscope extract_silhouette1 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b on extract_silhouette1
+opexprlanguage -s hscript extract_silhouette1
+opuserdata -n '___Version___' -v '370' extract_silhouette1
+
+# Node extrudevolume8 (Sop/extrudevolume)
+opadd -e -n extrudevolume extrudevolume8
+oplocate -x -10.0404 -y -1.0566599999999999 extrudevolume8
+opspareds "" extrudevolume8
+opparm extrudevolume8 depth ( -0.24 ) basenormal ( 0 0 1 ) flat ( on ) labelparm ( 'Base Extension (Second Output)' ) basepadding ( 0.1 ) baselift ( 1 ) folder0 ( 0 ) outputtopgrp ( off ) topgrp ( extrudeTop ) outputbasegrp ( off ) basegrp ( extrudeBase ) outputsidegrp ( off ) sidegrp ( extrudeSide ) outputtopseamgrp ( off ) topseamgrp ( extrudeTopSeam ) outputbaseseamgrp ( off ) baseseamgrp ( extrudeBaseSeam )
+chlock extrudevolume8 -*
+chautoscope extrudevolume8 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b on extrudevolume8
+opexprlanguage -s hscript extrudevolume8
+opuserdata -n '___Version___' -v '' extrudevolume8
+
+# Node merge8 (Sop/merge)
+opadd -e -n merge merge8
+oplocate -x -0.311755 -y -8.6063700000000001 merge8
+opspareds "" merge8
+opparm -V 20.5.370 merge8
+chlock merge8 -*
+chautoscope merge8 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off merge8
+opexprlanguage -s hscript merge8
+opuserdata -n '___Version___' -v '20.5.370' merge8
+
+# Node fuse3 (Sop/fuse::2.0)
+opadd -e -n fuse::2.0 fuse3
+oplocate -x -0.31060500000000002 -y -9.5193700000000003 fuse3
+opspareds "" fuse3
+opparm fuse3  numpointattribs ( 0 ) numgroups ( 0 )
+opparm -V 20.5.370 fuse3 querygroup ( "" ) usetargetgroup ( off ) targetgroup ( "" ) modifyboth ( off ) posattrib ( P ) snapgroup ( 0 ) snaptype ( distancesnap ) algorithm ( lowest ) usetol3d ( on ) tol3d ( 0.001 ) targetptattrib ( snap_to ) targetclass ( point ) usepositionsnapmethod ( on ) positionsnapmethod ( average ) positionsnapweightname ( weight ) useradiusattrib ( off ) radiusattrib ( pscale ) usematchattrib ( off ) matchattrib ( name ) matchtype ( match ) matchtol ( 0 ) gridtype ( spacing ) gridspacing ( 0.1 0.1 0.1 ) gridlines ( 10 10 10 ) gridpow2 ( 3 3 3 ) gridoffset ( 0 0 0 ) gridround ( nearest ) usegridtol ( on ) gridtol ( 10 ) consolidategroup ( 0 ) consolidatesnappedpoints ( on ) keepconsolidatedpoints ( off ) deldegen ( on ) deldegenpoints ( on ) delunusedpoints ( off ) outputgroup ( 0 ) recomputenml ( on ) createsnappedgroup ( off ) snappedgroupname ( snapped_points ) createsnappedattrib ( off ) snappedattribname ( snapped_to ) numpointattribs ( 0 ) numgroups ( 0 )
+chlock fuse3 -*
+chautoscope fuse3 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off fuse3
+opexprlanguage -s hscript fuse3
+opuserdata -n '___Version___' -v '20.5.370' fuse3
+
+# Node normal1 (Sop/normal)
+opadd -e -n normal normal1
+oplocate -x -0.31060500000000002 -y -12.7248 normal1
+opspareds "" normal1
+opparm -V 20.5.370 normal1 group ( "" ) grouptype ( guess ) overridenormal ( off ) normalattrib ( N ) construct ( 0 ) docompute ( on ) type ( typevertex ) cuspangle ( 60 ) method ( 1 ) origifzero ( on ) modify ( 0 ) normalize ( off ) reverse ( off )
+chlock normal1 -*
+chautoscope normal1 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off normal1
+opexprlanguage -s hscript normal1
+opuserdata -n '___Version___' -v '20.5.370' normal1
+
+# Node group1 (Sop/groupcreate)
+opadd -e -n groupcreate group1
+oplocate -x -0.31060500000000002 -y -10.8148 group1
+opspareds "" group1
+opparm -V 20.5.370 group1 groupname ( group1 ) grouptype ( edge ) mergeop ( replace ) folder0 ( 0 ) groupbase ( off ) basegroup ( "" ) ordered ( off ) geotype ( all ) switcher3 ( 0 ) groupbounding ( off ) boundtype ( usebbox ) size ( 1 1 1 ) t ( 0 0 0 ) initbounds ( 0 ) includenotwhollycontained ( off ) iso ( 0 ) invertvolume ( off ) switcher4 ( 0 ) groupnormal ( off ) camerapath ( "" ) nonplanar ( off ) nonplanartol ( 0.001 ) dir ( 0 0 1 ) angle ( 180 ) oppositenormals ( off ) switcher5 ( 0 ) groupedges ( on ) dominedgeangle ( off ) minedgeangle ( 20 ) domaxedgeangle ( on ) maxedgeangle ( 360 ) edgeanglebetweenedges ( off ) dominedgelen ( off ) minedgelen ( 0 ) domaxedgelen ( off ) maxedgelen ( 0 ) dodepth ( off ) edgestep ( 0 ) edgeptgrp ( 0 ) unshared ( off ) boundarygroups ( off ) switcher6 ( 0 ) grouprandom ( off ) globalseed ( 1 ) useseedattrib ( off ) seedattrib ( id ) percent ( 50 )
+chlock group1 -*
+chautoscope group1 -*
+opset -d off -r off -h on -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off group1
+opexprlanguage -s hscript group1
+opuserdata -n '___Version___' -v '20.5.370' group1
+
+# Node dissolve1 (Sop/dissolve::2.0)
+opadd -e -n dissolve::2.0 dissolve1
+oplocate -x -0.31060500000000002 -y -11.7013 dissolve1
+opspareds "" dissolve1
+opparm -V 20.5.370 dissolve1 group ( group1 ) invertsel ( delete ) compnorms ( off ) reminlinepts ( on ) coltol ( 45 ) remunusedpts ( on ) bridge ( bridge ) deldegeneratebridges ( off ) boundarycurves ( off )
+chlock dissolve1 -*
+chautoscope dissolve1 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off dissolve1
+opexprlanguage -s hscript dissolve1
+opuserdata -n '___Version___' -v '20.5.370' dissolve1
+
+# Node extract_silhouette2 (labs::Sop/extract_silhouette::1.0)
+opadd -e -n labs::extract_silhouette::1.0 extract_silhouette2
+oplocate -x -11.055 -y -4.0345800000000001 extract_silhouette2
+opspareds "" extract_silhouette2
+opparm -V 370 extract_silhouette2 iExtractMode ( 0 ) mTraceAxis ( 2 ) campath ( "" ) removeoutsidesilhouette ( off ) bResample ( off ) length ( 0.1 )
+chlock extract_silhouette2 -*
+chautoscope extract_silhouette2 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off extract_silhouette2
+opexprlanguage -s hscript extract_silhouette2
+opuserdata -n '___Version___' -v '370' extract_silhouette2
+
+# Node extrudevolume6 (Sop/extrudevolume)
+opadd -e -n extrudevolume extrudevolume6
+oplocate -x -11.055 -y -4.8114800000000004 extrudevolume6
+opspareds "" extrudevolume6
+opparm extrudevolume6 depth ( -1 ) basenormal ( 0 0 1 ) flat ( on ) labelparm ( 'Base Extension (Second Output)' ) basepadding ( 0.1 ) baselift ( 1 ) folder0 ( 0 ) outputtopgrp ( off ) topgrp ( extrudeTop ) outputbasegrp ( off ) basegrp ( extrudeBase ) outputsidegrp ( off ) sidegrp ( extrudeSide ) outputtopseamgrp ( off ) topseamgrp ( extrudeTopSeam ) outputbaseseamgrp ( off ) baseseamgrp ( extrudeBaseSeam )
+chlock extrudevolume6 -*
+chautoscope extrudevolume6 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off extrudevolume6
+opexprlanguage -s hscript extrudevolume6
+opuserdata -n '___Version___' -v '' extrudevolume6
+
+# Node boolean2 (Sop/boolean::2.0)
+opadd -e -n boolean::2.0 boolean2
+oplocate -x -12.7624 -y -8.8043800000000001 boolean2
+opspareds "" boolean2
+opparm -V 20.5.370 boolean2 inputa ( 0 ) agroup ( "" ) asurface ( surface ) resolvea ( on ) inputb ( 0 ) bgroup ( "" ) bsurface ( solid ) resolveb ( on ) output ( 0 ) booleanop ( intersect ) subtractchoices ( aminusb ) shatterchoices ( apieces ) opencurvesonly ( on ) generateaaseams ( on ) generatebbseams ( on ) generateabseams ( on ) adepth ( 1 1000 ) bdepth ( 1 1000 ) windingop ( arange ) mergenbrs ( off ) detriangulate ( all ) removeinlinepoints ( on ) uniqueseams ( off ) correctnormals ( on ) useaxapolys ( off ) axapolys ( axapolys ) useaxbpolys ( off ) axbpolys ( axbpolys ) useaxalist ( off ) axalist ( axalist ) useaxblist ( off ) axblist ( axblist ) collapsetinyedges ( on ) lengththreshold ( 1e-5 ) outputprimgroups ( 0 ) useapolys ( off ) apolys ( apolys ) useainsideb ( off ) ainsideb ( ainsideb ) useaoutsideb ( off ) aoutsideb ( aoutsideb ) usebpolys ( off ) bpolys ( bpolys ) usebinsidea ( off ) binsidea ( binsidea ) useboutsidea ( off ) boutsidea ( boutsidea ) useaboverlap ( off ) aboverlap ( aboverlap ) useaonlypieces ( off ) aonlypieces ( apieces ) usebonlypieces ( off ) bonlypieces ( bpieces ) useabpieces ( off ) abpieces ( abpieces ) usereversedpolys ( off ) reversedpolys ( reversed ) outputedgegroups ( 0 ) useaaseamedges ( off ) aaseamedges ( aseams ) usebbseamedges ( off ) bbseamedges ( bseams ) useabseamedges ( off ) abseamedges ( abseams )
+chlock boolean2 -*
+chautoscope boolean2 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off boolean2
+opexprlanguage -s hscript boolean2
+opuserdata -n '___Version___' -v '20.5.370' boolean2
+
+# Node matchsize5 (Sop/matchsize)
+opadd -e -n matchsize matchsize5
+oplocate -x -11.033200000000001 -y -5.8114800000000004 matchsize5
+opspareds "" matchsize5
+opparm matchsize5 group ( "" ) grouptype ( guess ) sepparm ( ) justifytarget ( auto ) doboundgroup ( off ) folder2 ( 0 ) sourcegroup ( "" ) sourcegrouptype ( guess ) refgroup ( "" ) refgrouptype ( guess ) folder1 ( 0 ) t ( 0 0 0 ) size ( 1 1 1 ) folder0 ( 0 ) dotranslate ( on ) justify_x ( none ) goal_x ( same ) offset_x ( 0 ) justify_y ( none ) goal_y ( same ) offset_y ( 0 ) justify_z ( center ) goal_z ( same ) offset_z ( 0 ) doscale ( off ) uniformscale ( on ) scale_axis ( min ) scale_x ( on ) scale_y ( on ) scale_z ( on ) restorexform ( off ) restoreattrib ( xform ) stashxform ( off ) stashattrib ( xform ) stashmerge ( replace )
+chlock matchsize5 -*
+chautoscope matchsize5 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off matchsize5
+opexprlanguage -s hscript matchsize5
+opuserdata -n '___Version___' -v '' matchsize5
+
+# Node extrudevolume7 (Sop/extrudevolume)
+opadd -e -n extrudevolume extrudevolume7
+oplocate -x -12.7624 -y -9.7512799999999995 extrudevolume7
+opspareds "" extrudevolume7
+chblockbegin
+chadd -t 0 0 extrudevolume7 depth
+chkey -t 0 -v 0.10000000000000001 -m 0 -a 0 -A 0 -T a  -F 'ch("../CenterMargin")' extrudevolume7/depth
+chblockend
+opparm extrudevolume7 depth ( depth ) basenormal ( 0 0 1 ) flat ( on ) labelparm ( 'Base Extension (Second Output)' ) basepadding ( 0.1 ) baselift ( 1 ) folder0 ( 0 ) outputtopgrp ( off ) topgrp ( extrudeTop ) outputbasegrp ( off ) basegrp ( extrudeBase ) outputsidegrp ( off ) sidegrp ( extrudeSide ) outputtopseamgrp ( off ) topseamgrp ( extrudeTopSeam ) outputbaseseamgrp ( off ) baseseamgrp ( extrudeBaseSeam )
+chlock extrudevolume7 -*
+chautoscope extrudevolume7 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off extrudevolume7
+opexprlanguage -s hscript extrudevolume7
+opuserdata -n '___Version___' -v '' extrudevolume7
+
+# Node box2 (Sop/box)
+opadd -e -n box box2
+oplocate -x -16.8843 -y -2.8929800000000001 box2
+opspareds "" box2
+chblockbegin
+chadd -t 0 0 box2 sizex
+chkey -t 0 -v 2.3999999999999999 -m 0 -a 0 -A 0 -T a  -F 'ch("../SlopeLength")' box2/sizex
+chadd -t 0 0 box2 sizey
+chkey -t 0 -v 4.2999999999999998 -m 0 -a 0 -A 0 -T a  -F 'ch("../Elevation") * (ch("../NumFloors")-1)' box2/sizey
+chblockend
+opparm -V 20.5.370 box2 type ( polymesh ) surftype ( quads ) consolidatepts ( on ) size ( sizex sizey 17 ) t ( 0 0 0 ) r ( 0 0 0 ) scale ( 1 ) divrate ( 2 2 2 ) orderrate ( 4 4 4 ) dodivs ( off ) divs ( 3 3 3 ) rebar ( off ) orientedbbox ( off ) vertexnormals ( off )
+chlock box2 -*
+chautoscope box2 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off box2
+opexprlanguage -s hscript box2
+opuserdata -n '___Version___' -v '20.5.370' box2
+
+# Node boolean3 (Sop/boolean::2.0)
+opadd -e -n boolean::2.0 boolean3
+oplocate -x -12.0579 -y -7.6413799999999998 boolean3
+opspareds "" boolean3
+opparm -V 20.5.370 boolean3 inputa ( 0 ) agroup ( "" ) asurface ( solid ) resolvea ( on ) inputb ( 0 ) bgroup ( "" ) bsurface ( solid ) resolveb ( on ) output ( 0 ) booleanop ( union ) subtractchoices ( aminusb ) shatterchoices ( apieces ) opencurvesonly ( on ) generateaaseams ( on ) generatebbseams ( on ) generateabseams ( on ) adepth ( 1 1000 ) bdepth ( 1 1000 ) windingop ( arange ) mergenbrs ( off ) detriangulate ( all ) removeinlinepoints ( on ) uniqueseams ( off ) correctnormals ( on ) useaxapolys ( off ) axapolys ( axapolys ) useaxbpolys ( off ) axbpolys ( axbpolys ) useaxalist ( off ) axalist ( axalist ) useaxblist ( off ) axblist ( axblist ) collapsetinyedges ( on ) lengththreshold ( 1e-5 ) outputprimgroups ( 0 ) useapolys ( off ) apolys ( apolys ) useainsideb ( off ) ainsideb ( ainsideb ) useaoutsideb ( off ) aoutsideb ( aoutsideb ) usebpolys ( off ) bpolys ( bpolys ) usebinsidea ( off ) binsidea ( binsidea ) useboutsidea ( off ) boutsidea ( boutsidea ) useaboverlap ( off ) aboverlap ( aboverlap ) useaonlypieces ( off ) aonlypieces ( apieces ) usebonlypieces ( off ) bonlypieces ( bpieces ) useabpieces ( off ) abpieces ( abpieces ) usereversedpolys ( off ) reversedpolys ( reversed ) outputedgegroups ( 0 ) useaaseamedges ( off ) aaseamedges ( aseams ) usebbseamedges ( off ) bbseamedges ( bseams ) useabseamedges ( off ) abseamedges ( abseams )
+chlock boolean3 -*
+chautoscope boolean3 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off boolean3
+opexprlanguage -s hscript boolean3
+opuserdata -n '___Version___' -v '20.5.370' boolean3
+
+# Node reverse4 (Sop/reverse)
+opadd -e -n reverse reverse4
+oplocate -x -16.8843 -y -5.2974800000000002 reverse4
+opspareds "" reverse4
+opparm -V 20.5.370 reverse4 group ( "" ) vtxsort ( reverseu ) vtxuoff ( 0 ) vtxvoff ( 0 )
+chlock reverse4 -*
+chautoscope reverse4 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b on reverse4
+opexprlanguage -s hscript reverse4
+opuserdata -n '___Version___' -v '20.5.370' reverse4
+
+# Node matchsize6 (Sop/matchsize)
+opadd -e -n matchsize matchsize6
+oplocate -x -16.8843 -y -3.8929800000000001 matchsize6
+opspareds "" matchsize6
+chblockbegin
+chadd -t 0 0 matchsize6 offset_x
+chkey -t 0 -v 0 -m 0 -a 0 -A 0 -T a  -F 'ch("../Width")' matchsize6/offset_x
+chblockend
+opparm matchsize6 group ( "" ) grouptype ( guess ) sepparm ( ) justifytarget ( auto ) doboundgroup ( off ) folder2 ( 0 ) sourcegroup ( "" ) sourcegrouptype ( guess ) refgroup ( "" ) refgrouptype ( guess ) folder1 ( 0 ) t ( 0 0 0 ) size ( 1 1 1 ) folder0 ( 0 ) dotranslate ( on ) justify_x ( min ) goal_x ( same ) offset_x ( offset_x ) justify_y ( min ) goal_y ( same ) offset_y ( 0 ) justify_z ( center ) goal_z ( same ) offset_z ( 0 ) doscale ( off ) uniformscale ( on ) scale_axis ( min ) scale_x ( on ) scale_y ( on ) scale_z ( on ) restorexform ( off ) restoreattrib ( xform ) stashxform ( off ) stashattrib ( xform ) stashmerge ( replace )
+chlock matchsize6 -*
+chautoscope matchsize6 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off matchsize6
+opexprlanguage -s hscript matchsize6
+opuserdata -n '___Version___' -v '' matchsize6
+
+# Node matchsize7 (Sop/matchsize)
+opadd -e -n matchsize matchsize7
+oplocate -x -12.7624 -y -10.648999999999999 matchsize7
+opspareds "" matchsize7
+opparm matchsize7 group ( "" ) grouptype ( guess ) sepparm ( ) justifytarget ( auto ) doboundgroup ( off ) folder2 ( 0 ) sourcegroup ( "" ) sourcegrouptype ( guess ) refgroup ( "" ) refgrouptype ( guess ) folder1 ( 0 ) t ( 0 0 0 ) size ( 1 1 1 ) folder0 ( 0 ) dotranslate ( on ) justify_x ( none ) goal_x ( same ) offset_x ( 0 ) justify_y ( none ) goal_y ( same ) offset_y ( 0 ) justify_z ( center ) goal_z ( same ) offset_z ( 0 ) doscale ( off ) uniformscale ( on ) scale_axis ( min ) scale_x ( on ) scale_y ( on ) scale_z ( on ) restorexform ( off ) restoreattrib ( xform ) stashxform ( off ) stashattrib ( xform ) stashmerge ( replace )
+chlock matchsize7 -*
+chautoscope matchsize7 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off matchsize7
+opexprlanguage -s hscript matchsize7
+opuserdata -n '___Version___' -v '' matchsize7
+
+# Node StairSkeleton (Sop/subnet)
+opadd -e -n subnet StairSkeleton
+oplocate -x -1.11759e-08 -y 5.6756599999999997 StairSkeleton
+opspareds '    parm {         name    "label1"         baseparm         label   "Input #1 Label"         export  all     }     parm {         name    "label2"         baseparm         label   "Input #2 Label"         export  all     }     parm {         name    "label3"         baseparm         label   "Input #3 Label"         export  all     }     parm {         name    "label4"         baseparm         label   "Input #4 Label"         export  all     }     parm {         name    "NumFloors"         label   "NumFloors"         type    integer         default { "3" }         range   { 0 10 }         parmtag { "script_callback_language" "python" }     }     parm {         name    "Width"         label   "Width"         type    float         default { "1.6" }         range   { 0! 10 }         parmtag { "script_callback_language" "python" }     }     parm {         name    "Elevation"         label   "Elevation"         type    float         default { "3" }         range   { 0! 10 }         parmtag { "script_callback_language" "python" }     }     parm {         name    "CornerType"         label   "CornerType"         type    ordinal         default { "0" }         menu {             "0" "Rect"             "1" "Arc"         }         parmtag { "script_callback_language" "python" }     }     parm {         name    "GroundFloor"         label   "GroundFloor"         type    integer         default { "0" }         range   { 0 10 }         parmtag { "script_callback_language" "python" }     }     parm {         name    "SlopeLength"         label   "SlopeLength"         type    float         default { "2" }         range   { 0 10 }         parmtag { "script_callback_language" "python" }     }     parm {         name    "CenterMargin"         label   "CenterMargin"         type    float         default { "0.25" }         range   { 0 10 }         parmtag { "script_callback_language" "python" }     }     parm {         name    "Rotation"         label   "Rotation"         type    ordinal         default { "0" }         menu usetokenvalue {             "2" "CW"             "1" "CCW"         }         parmtag { "script_callback_language" "python" }     }     parm {         name    "Open"         label   "Open"         type    ordinal         default { "0" }         menu {             "0" "Front"             "1" "Left"             "2" "Right"         }         parmtag { "script_callback_language" "python" }     } ' StairSkeleton
+chblockbegin
+chadd -t 0 0 StairSkeleton NumFloors
+chkey -t 0 -v 3 -m 0 -a 0 -A 0 -T a  -F 'ch("../NumFloors")' StairSkeleton/NumFloors
+chadd -t 0 0 StairSkeleton Width
+chkey -t 0 -v 1 -m 0 -a 0 -A 0 -T a  -F 'ch("../Width")' StairSkeleton/Width
+chadd -t 0 0 StairSkeleton Elevation
+chkey -t 0 -v 3 -m 0 -a 0 -A 0 -T a  -F 'ch("../Elevation")' StairSkeleton/Elevation
+chadd -t 0 0 StairSkeleton CornerType
+chkey -t 0 -v 0 -m 0 -a 0 -A 0 -T a  -F 'ch("../CornerType")' StairSkeleton/CornerType
+chadd -t 0 0 StairSkeleton GroundFloor
+chkey -t 0 -v 0 -m 0 -a 0 -A 0 -T a  -F 'ch("../GroundFloor")' StairSkeleton/GroundFloor
+chadd -t 0 0 StairSkeleton SlopeLength
+chkey -t 0 -v 2 -m 0 -a 0 -A 0 -T a  -F 'ch("../SlopeLength")' StairSkeleton/SlopeLength
+chadd -t 0 0 StairSkeleton CenterMargin
+chkey -t 0 -v 0.25 -m 0 -a 0 -A 0 -T a  -F 'ch("../CenterMargin")' StairSkeleton/CenterMargin
+chadd -t 0 0 StairSkeleton Rotation
+chkey -t 0 -v 1 -m 0 -a 0 -A 0 -T a  -F 'ch("../Rotation")' StairSkeleton/Rotation
+chadd -t 0 0 StairSkeleton Open
+chkey -t 0 -v 2 -m 0 -a 0 -A 0 -T a  -F 'ch("../Open")' StairSkeleton/Open
+chblockend
+opparm -V 20.5.370 StairSkeleton label1 ( 'Sub-Network Input #1' ) label2 ( 'Sub-Network Input #2' ) label3 ( 'Sub-Network Input #3' ) label4 ( 'Sub-Network Input #4' ) NumFloors ( NumFloors ) Width ( Width ) Elevation ( Elevation ) CornerType ( CornerType ) GroundFloor ( GroundFloor ) SlopeLength ( SlopeLength ) CenterMargin ( CenterMargin ) Rotation ( Rotation ) Open ( Open )
+chlock StairSkeleton -*
+chautoscope StairSkeleton -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off StairSkeleton
+opexprlanguage -s hscript StairSkeleton
+opuserdata -n '___Version___' -v '20.5.370' StairSkeleton
+opcf StairSkeleton
+
+# Node output0 (Sop/output)
+opadd -e -n output output0
+oplocate -x -0.039083899999999998 -y -8.0340500000000006 output0
+opspareds "" output0
+opparm -V 20.5.370 output0 outputidx ( 0 )
+chlock output0 -*
+chautoscope output0 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off output0
+opexprlanguage -s hscript output0
+opuserdata -n '___Version___' -v '20.5.370' output0
+
+# Node transform3 (Sop/xform)
+opadd -e -n xform transform3
+oplocate -x 2.1180400000000001 -y -1.3767 transform3
+opspareds '    parm {         name    "group"         baseparm         label   "Group"         export  none         bindselector everything "Transform Geometry"             "Select the geometry to transform and press Enter to complete. Middle mouse to select. Left mouse to select and drag."             0 1 0xffffffff 1 grouptype 0     }     parm {         name    "grouptype"         baseparm         label   "Group Type"         export  none     }     parm {         name    "xOrd"         baseparm         label   "Transform Order"         joinnext         export  none     }     parm {         name    "rOrd"         baseparm         label   "Rotate Order"         nolabel         export  none     }     parm {         name    "t"         baseparm         label   "Translate"         export  none     }     parm {         name    "r"         baseparm         label   "Rotate"         export  none     }     parm {         name    "s"         baseparm         label   "Scale"         export  none     }     parm {         name    "shear"         baseparm         label   "Shear"         export  none     }     parm {         name    "scale"         baseparm         label   "Uniform Scale"         export  none     }     groupcollapsible {         name    "parmgroup_pivotxform2"         label   "Pivot Transform"         grouptag { "group_type" "collapsible" }         grouptag { "sidefx::switcher" "parmgroup_pivotxform" }          parm {             name    "p"             baseparm             label   "Pivot Translate"             export  none         }         parm {             name    "pr"             baseparm             label   "Pivot Rotate"             export  none         }     }      groupcollapsible {         name    "parmgroup_prexform2"         label   "Pre-Transform"         grouptag { "group_type" "collapsible" }         grouptag { "sidefx::switcher" "parmgroup_prexform" }          parm {             name    "prexform_xOrd"             baseparm             label   "Pre-Transform Order"             joinnext             export  none         }         parm {             name    "prexform_rOrd"             baseparm             label   "Pre-Rotate Order"             nolabel             export  none         }         parm {             name    "prexform_t"             baseparm             label   "Pre-Translate"             export  none         }         parm {             name    "prexform_r"             baseparm             label   "Pre-Rotate"             export  none         }         parm {             name    "prexform_s"             baseparm             label   "Pre-Scale"             export  none         }         parm {             name    "prexform_shear"             baseparm             label   "Pre-Shear"             export  none         }     }      parm {         name    "movecentroid"         baseparm         label   "Move Centroid to Origin"         joinnext         export  none     }     parm {         name    "movepivot"         baseparm         label   "Move Pivot to Centroid"         export  none     }     parm {         name    "attribs"         baseparm         label   "Attributes"         export  none     }     parm {         name    "updatenmls"         baseparm         label   "Recompute Point Normals"         export  none     }     parm {         name    "updateaffectednmls"         baseparm         label   "Recompute Affected Normals"         export  none     }     parm {         name    "vlength"         baseparm         label   "Preserve Normal Length"         export  none     }     parm {         name    "invertxform"         baseparm         label   "Invert Transformation"         export  none     }     parm {         name    "addattrib"         baseparm         label   "Output Attribute"         nolabel         joinnext         export  none     }     parm {         name    "outputattrib"         baseparm         label   "Output Attribute"         joinnext         export  none     }     parm {         name    "outputmerge"         baseparm         label   "Combine"         nolabel         export  none     }     parm {         name    "spare_input0"         label   "Spare Input 0"         type    oppath         default { "" }         help    "Refer to this in expressions as -1, such as: npoints(-1)"         parmtag { "cook_dependent" "1" }         parmtag { "opfilter" "!!SOP!!" }         parmtag { "oprelative" "." }     } ' transform3
+chblockbegin
+chadd -t 0 0 transform3 ty
+chkey -t 0 -v 0 -m 0 -a 0 -A 0 -T a  -F 'detail(-1, "value", 0) * ch("../Elevation")' transform3/ty
+chadd -t 0 0 transform3 tz
+chkey -t 0 -v 5 -m 0 -a 0 -A 0 -T a  -F 'if(ch("../Rotation")==1,1.0,-1.0)* 0.5*(ch("../Width")+ch("../CenterMargin"))' transform3/tz
+chblockend
+opparm -V 20.5.370 transform3 group ( "" ) grouptype ( guess ) xOrd ( srt ) rOrd ( xyz ) t ( 0 ty tz ) r ( 0 0 0 ) s ( 1 1 1 ) shear ( 0 0 0 ) scale ( 1 ) parmgroup_pivotxform ( 0 ) p ( 0 0 0 ) pr ( 0 0 0 ) parmgroup_prexform ( 0 ) prexform_xOrd ( srt ) prexform_rOrd ( xyz ) prexform_t ( 0 0 0 ) prexform_r ( 0 0 0 ) prexform_s ( 1 1 1 ) prexform_shear ( 0 0 0 ) movecentroid ( 0 ) movepivot ( 0 ) attribs ( * ) updatenmls ( off ) updateaffectednmls ( on ) vlength ( on ) invertxform ( off ) addattrib ( off ) outputattrib ( xform ) outputmerge ( post ) parmgroup_pivotxform2 ( 0 ) parmgroup_prexform2 ( 0 ) spare_input0 ( ../foreach_count3/ )
+chlock transform3 -*
+chautoscope transform3 -* +tx +ty +tz +rx +ry +rz +sx +sy +sz
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off transform3
+opexprlanguage -s hscript transform3
+opuserdata -n '___Version___' -v '20.5.370' transform3
+
+# Node foreach_end3 (Sop/block_end)
+opadd -e -n block_end foreach_end3
+oplocate -x -0.037483900000000001 -y -6.2924199999999999 foreach_end3
+opspareds "" foreach_end3
+chblockbegin
+chadd -t 0 0 foreach_end3 iterations
+chkey -t 0 -v 3 -m 0 -a 0 -A 0 -T a  -F 'ch("../NumFloors")-1' foreach_end3/iterations
+chadd -t 0 0 foreach_end3 startvalue
+chkey -t 0 -v 0 -m 0 -a 0 -A 0 -T a  -F '-ch("../GroundFloor")' foreach_end3/startvalue
+chblockend
+opparm -V 20.5.370 foreach_end3 itermethod ( count ) method ( merge ) iterations ( iterations ) startvalue ( startvalue ) increment ( 1 ) class ( point ) useattrib ( on ) attrib ( "" ) usemaxiter ( off ) maxiter ( 10 ) blockpath ( ../foreach_begin3 ) templatepath ( ../foreach_begin3 ) resetcookpass ( 0 ) dosinglepass ( off ) singlepass ( 0 ) stopcondition ( 0 ) multithread ( off )
+chlock foreach_end3 -*
+chautoscope foreach_end3 -*
+opcolor -c 0.75 0.40000000596046448 0 foreach_end3
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F off -c on -e on -b off foreach_end3
+opexprlanguage -s hscript foreach_end3
+opuserdata -n '___Version___' -v '20.5.370' foreach_end3
+
+# Node foreach_begin3 (Sop/block_begin)
+opadd -e -n block_begin foreach_begin3
+oplocate -x 0.0015999899999999999 -y 3.88157 foreach_begin3
+opspareds "" foreach_begin3
+opparm -V 20.5.370 foreach_begin3 method ( input ) blockpath ( ../foreach_end3 ) resetcookpass ( 0 ) createmetablock ( 0 ) label1 ( 'iteration, numiterations, value, ivalue' )
+chlock foreach_begin3 -*
+chautoscope foreach_begin3 -*
+opcolor -c 0.75 0.40000000596046448 0 foreach_begin3
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F off -c on -e on -b off foreach_begin3
+opexprlanguage -s hscript foreach_begin3
+opuserdata -n '___Version___' -v '20.5.370' foreach_begin3
+
+# Node foreach_count3 (Sop/block_begin)
+opadd -e -n block_begin foreach_count3
+oplocate -x 6.03024 -y 3.88157 foreach_count3
+opspareds "" foreach_count3
+opparm -V 20.5.370 foreach_count3 method ( metadata ) blockpath ( ../foreach_end3 ) resetcookpass ( 0 ) createmetablock ( 0 ) label1 ( 'iteration, numiterations, value, ivalue' )
+chlock foreach_count3 -*
+chautoscope foreach_count3 -*
+opcolor -c 0.75 0.40000000596046448 0 foreach_count3
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F off -c on -e on -b off foreach_count3
+opexprlanguage -s hscript foreach_count3
+opuserdata -n '___Version___' -v '20.5.370' foreach_count3
+
+# Node copytopoints3 (Sop/copytopoints::2.0)
+opadd -e -n copytopoints::2.0 copytopoints3
+oplocate -x -0.039083899999999998 -y -4.7190899999999996 copytopoints3
+opspareds "" copytopoints3
+opparm copytopoints3  targetattribs ( 3 )
+opparm -V 20.5.370 copytopoints3 sourcegroup ( "" ) sourcegrouptype ( guess ) targetgroup ( "" ) useidattrib ( off ) idattrib ( name ) pack ( off ) pivot ( centroid ) viewportlod ( full ) transform ( on ) useimplicitn ( on ) resettargetattribs ( 0 ) targetattribs ( 3 ) useapply1 ( on ) applyto1 ( points ) applymethod1 ( copy ) applyattribs1 ( *,^v,^Alpha,^N,^up,^pscale,^scale,^orient,^rot,^pivot,^trans,^transform ) useapply2 ( on ) applyto2 ( points ) applymethod2 ( mult ) applyattribs2 ( Alpha ) useapply3 ( on ) applyto3 ( points ) applymethod3 ( add ) applyattribs3 ( v )
+chlock copytopoints3 -*
+chautoscope copytopoints3 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off copytopoints3
+opexprlanguage -s hscript copytopoints3
+opuserdata -n '___Version___' -v '20.5.370' copytopoints3
+
+# Node add3 (Sop/add)
+opadd -e -n add add3
+oplocate -x -1.11759e-08 -y 5.1336700000000004 add3
+opspareds "" add3
+opparm add3  points ( 1 ) prims ( 1 )
+opparm -V 20.5.370 add3 stdswitcher ( 0 0 0 ) keep ( off ) points ( 1 ) remove ( off ) switcher ( 0 0 ) prims ( 1 ) group ( "" ) add ( all ) inc ( 2 ) attrname ( "" ) closedall ( off ) addparticlesystem ( off ) particlegroup ( "" ) appendunusedtoparticlesystem ( off ) prim0 ( "" ) closed0 ( off ) usept0 ( on ) pt0 ( 0 0 0 ) weight0 ( 1 )
+chlock add3 -*
+chautoscope add3 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off add3
+opexprlanguage -s hscript add3
+opuserdata -n '___Version___' -v '20.5.370' add3
+
+# Node merge2 (Sop/merge)
+opadd -e -n merge merge2
+oplocate -x 2.2522799999999998 -y -3.3088000000000002 merge2
+opspareds "" merge2
+opparm -V 20.5.370 merge2
+chlock merge2 -*
+chautoscope merge2 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off merge2
+opexprlanguage -s hscript merge2
+opuserdata -n '___Version___' -v '20.5.370' merge2
+
+# Node StairSkeleton_Entrance (Sop/subnet)
+opadd -e -n subnet StairSkeleton_Entrance
+oplocate -x -4.7112499999999997 -y 4.8985799999999999 StairSkeleton_Entrance
+opspareds '    parm {         name    "label1"         baseparm         label   "Input #1 Label"         export  all     }     parm {         name    "label2"         baseparm         label   "Input #2 Label"         export  all     }     parm {         name    "label3"         baseparm         label   "Input #3 Label"         export  all     }     parm {         name    "label4"         baseparm         label   "Input #4 Label"         export  all     }     parm {         name    "Width"         label   "Width"         type    float         default { "1.6" }         range   { 0! 10 }         parmtag { "script_callback_language" "python" }     }     parm {         name    "Elevation"         label   "Elevation"         type    float         default { "3" }         range   { 0! 10 }         parmtag { "script_callback_language" "python" }     }     parm {         name    "SlopeLength"         label   "SlopeLength"         type    float         default { "2" }         range   { 0 10 }         parmtag { "script_callback_language" "python" }     }     parm {         name    "CenterMargin"         label   "CenterMargin"         type    float         default { "0.25" }         range   { 0 10 }         parmtag { "script_callback_language" "python" }     }     parm {         name    "Rotation"         label   "Rotation"         type    ordinal         default { "0" }         menu usetokenvalue {             "2" "CW"             "1" "CCW"         }         parmtag { "script_callback_language" "python" }     }     parm {         name    "CornerType"         label   "CornerType"         type    ordinal         default { "0" }         menu {             "0" "Rect"             "1" "Arc"         }         parmtag { "script_callback_language" "python" }     } ' StairSkeleton_Entrance
+chblockbegin
+chadd -t 0 0 StairSkeleton_Entrance Width
+chkey -t 0 -v 1 -m 0 -a 0 -A 0 -T a  -F 'ch("../Width")' StairSkeleton_Entrance/Width
+chadd -t 0 0 StairSkeleton_Entrance Elevation
+chkey -t 0 -v 3 -m 0 -a 0 -A 0 -T a  -F 'ch("../Elevation")' StairSkeleton_Entrance/Elevation
+chadd -t 0 0 StairSkeleton_Entrance SlopeLength
+chkey -t 0 -v 2 -m 0 -a 0 -A 0 -T a  -F 'ch("../SlopeLength")' StairSkeleton_Entrance/SlopeLength
+chadd -t 0 0 StairSkeleton_Entrance CenterMargin
+chkey -t 0 -v 0.25 -m 0 -a 0 -A 0 -T a  -F 'ch("../CenterMargin")' StairSkeleton_Entrance/CenterMargin
+chadd -t 0 0 StairSkeleton_Entrance Rotation
+chkey -t 0 -v 2 -m 0 -a 0 -A 0 -T a  -F 'ch("../Rotation")' StairSkeleton_Entrance/Rotation
+chadd -t 0 0 StairSkeleton_Entrance CornerType
+chkey -t 0 -v 0 -m 0 -a 0 -A 0 -T a  -F 'ch("../CornerType")' StairSkeleton_Entrance/CornerType
+chblockend
+opparm -V 20.5.370 StairSkeleton_Entrance label1 ( 'Sub-Network Input #1' ) label2 ( 'Sub-Network Input #2' ) label3 ( 'Sub-Network Input #3' ) label4 ( 'Sub-Network Input #4' ) Width ( Width ) Elevation ( Elevation ) SlopeLength ( SlopeLength ) CenterMargin ( CenterMargin ) Rotation ( Rotation ) CornerType ( CornerType )
+chlock StairSkeleton_Entrance -*
+chautoscope StairSkeleton_Entrance -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off StairSkeleton_Entrance
+opexprlanguage -s hscript StairSkeleton_Entrance
+opuserdata -n '___Version___' -v '20.5.370' StairSkeleton_Entrance
+opcf StairSkeleton_Entrance
+
+# Node output0 (Sop/output)
+opadd -e -n output output0
+oplocate -x -1.11759e-08 -y -5.9938000000000002 output0
+opspareds "" output0
+opparm -V 20.5.370 output0 outputidx ( 0 )
+chlock output0 -*
+chautoscope output0 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off output0
+opexprlanguage -s hscript output0
+opuserdata -n '___Version___' -v '20.5.370' output0
+
+# Node Straight1 (Sop/Straight)
+opadd -e -n Straight Straight1
+oplocate -x 4.1365600000000002 -y 3.3977400000000002 Straight1
+opspareds "" Straight1
+chblockbegin
+chadd -t 0 0 Straight1 Length
+chkey -t 0 -v 0.25 -m 0 -a 0 -A 0 -T a  -F 'ch("../CenterMargin")' Straight1/Length
+chadd -t 0 0 Straight1 Width
+chkey -t 0 -v 1 -m 0 -a 0 -A 0 -T a  -F 'ch("../Width")' Straight1/Width
+chblockend
+opparm Straight1 Length ( Length ) Width ( Width ) Elevation ( 0 )
+chlock Straight1 -*
+chautoscope Straight1 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off Straight1
+opexprlanguage -s hscript Straight1
+opuserdata -n '___Version___' -v '' Straight1
+
+# Node attribwrangle4 (Sop/attribwrangle)
+opadd -e -n attribwrangle attribwrangle4
+oplocate -x 1.9019200000000001 -y 1.3578399999999999 attribwrangle4
+opspareds "" attribwrangle4
+opparm attribwrangle4  bindings ( 0 ) groupbindings ( 0 )
+opparm attribwrangle4 folder0 ( 0 0 ) group ( "" ) grouptype ( guess ) class ( point ) vex_numcount ( 10 ) vex_threadjobsize ( 1024 ) snippet ( 'vector pos = point(1, "P", 0);\nvector dir = point(1, "P", 1) - pos;\n\n//printf( "%f\\n", dir );\n\nmatrix transform = dihedral( set(1,0,0), dir );\ntranslate( transform,  pos );\n\n@P *= transform;\n' ) exportlist ( * ) vex_strict ( off ) autobind ( on ) bindings ( 0 ) groupautobind ( on ) groupbindings ( 0 ) vex_cwdpath ( . ) vex_outputmask ( * ) vex_updatenmls ( off ) vex_matchattrib ( id ) vex_inplace ( off ) vex_selectiongroup ( "" ) vex_precision ( auto )
+chlock attribwrangle4 -*
+chautoscope attribwrangle4 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off attribwrangle4
+opexprlanguage -s hscript attribwrangle4
+opuserdata -n '___Version___' -v '' attribwrangle4
+
+# Node blast3 (Sop/blast)
+opadd -e -n blast blast3
+oplocate -x 1.9049199999999999 -y 2.4923299999999999 blast3
+opspareds "" blast3
+opparm -V 20.5.370 blast3 group ( 'handle end' ) grouptype ( guess ) computenorms ( off ) negate ( on ) fillhole ( off ) removegrp ( off )
+chlock blast3 -*
+chautoscope blast3 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off blast3
+opexprlanguage -s hscript blast3
+opuserdata -n '___Version___' -v '20.5.370' blast3
+
+# Node transform1 (Sop/xform)
+opadd -e -n xform transform1
+oplocate -x 4.1365600000000002 -y 2.3788900000000002 transform1
+opspareds "" transform1
+opparm -V 20.5.370 transform1 group ( "" ) grouptype ( guess ) xOrd ( srt ) rOrd ( xyz ) t ( 0 0 0 ) r ( 0 0 0 ) s ( 1 1 1 ) shear ( 0 0 0 ) scale ( 1 ) parmgroup_pivotxform ( 0 ) p ( 0 0 0 ) pr ( 0 0 0 ) parmgroup_prexform ( 0 ) prexform_xOrd ( srt ) prexform_rOrd ( xyz ) prexform_t ( 0 0 0 ) prexform_r ( 0 0 0 ) prexform_s ( 1 1 1 ) prexform_shear ( 0 0 0 ) movecentroid ( 0 ) movepivot ( 0 ) attribs ( * ) updatenmls ( off ) updateaffectednmls ( on ) vlength ( on ) invertxform ( off ) addattrib ( off ) outputattrib ( xform ) outputmerge ( post )
+chlock transform1 -*
+chautoscope transform1 -* +tx +ty +tz +rx +ry +rz +sx +sy +sz
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off transform1
+opexprlanguage -s hscript transform1
+opuserdata -n '___Version___' -v '20.5.370' transform1
+
+# Node SlopeSkeleton_Base (Sop/subnet)
+opadd -e -n subnet SlopeSkeleton_Base
+oplocate -x -1.11759e-08 -y 4.0988699999999998 SlopeSkeleton_Base
+opspareds '    parm {         name    "label1"         baseparm         label   "Input #1 Label"         export  all     }     parm {         name    "label2"         baseparm         label   "Input #2 Label"         export  all     }     parm {         name    "label3"         baseparm         label   "Input #3 Label"         export  all     }     parm {         name    "label4"         baseparm         label   "Input #4 Label"         export  all     }     parm {         name    "Width"         label   "Width"         type    float         default { "1" }         range   { 0! 10 }         parmtag { "script_callback_language" "python" }     }     parm {         name    "Elevation"         label   "Elevation"         type    float         default { "3" }         range   { 0! 10 }         parmtag { "script_callback_language" "python" }     }     parm {         name    "SlopeLength"         label   "SlopeLength"         type    float         default { "2" }         range   { 0 10 }         parmtag { "script_callback_language" "python" }     }     parm {         name    "FromDirection"         label   "FromDirection"         type    ordinal         default { "0" }         menu {             "0" "Front"             "1" "Left"             "2" "Right"         }         parmtag { "script_callback_language" "python" }     }     parm {         name    "ToDirection"         label   "ToDirection"         type    ordinal         default { "0" }         menu {             "0" "Front"             "1" "Left"             "2" "Right"         }         parmtag { "script_callback_language" "python" }     }     parm {         name    "CornerType"         label   "CornerType"         type    ordinal         default { "0" }         menu {             "0" "Rect"             "1" "Arc"         }         parmtag { "script_callback_language" "python" }     } ' SlopeSkeleton_Base
+chblockbegin
+chadd -t 0 0 SlopeSkeleton_Base Width
+chkey -t 0 -v 1 -m 0 -a 0 -A 0 -T a  -F 'ch("../Width")' SlopeSkeleton_Base/Width
+chadd -t 0 0 SlopeSkeleton_Base Elevation
+chkey -t 0 -v 3 -m 0 -a 0 -A 0 -T a  -F 'ch("../Elevation")' SlopeSkeleton_Base/Elevation
+chadd -t 0 0 SlopeSkeleton_Base SlopeLength
+chkey -t 0 -v 2 -m 0 -a 0 -A 0 -T a  -F 'ch("../SlopeLength")' SlopeSkeleton_Base/SlopeLength
+chadd -t 0 0 SlopeSkeleton_Base ToDirection
+chkey -t 0 -v 2 -m 0 -a 0 -A 0 -T a  -F 'ch("../Rotation")' SlopeSkeleton_Base/ToDirection
+chadd -t 0 0 SlopeSkeleton_Base CornerType
+chkey -t 0 -v 0 -m 0 -a 0 -A 0 -T a  -F 'ch("../CornerType")' SlopeSkeleton_Base/CornerType
+chblockend
+opparm -V 20.5.370 SlopeSkeleton_Base label1 ( 'Sub-Network Input #1' ) label2 ( 'Sub-Network Input #2' ) label3 ( 'Sub-Network Input #3' ) label4 ( 'Sub-Network Input #4' ) Width ( Width ) Elevation ( Elevation ) SlopeLength ( SlopeLength ) FromDirection ( 0 ) ToDirection ( ToDirection ) CornerType ( CornerType )
+chlock SlopeSkeleton_Base -*
+chautoscope SlopeSkeleton_Base -*
+opset -d on -r on -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off SlopeSkeleton_Base
+opexprlanguage -s hscript SlopeSkeleton_Base
+opuserdata -n '___Version___' -v '20.5.370' SlopeSkeleton_Base
+opcf SlopeSkeleton_Base
+
+# Network Box __netbox1
+nbadd __netbox1
+nblocate -x -4.81558 -y -0.635033 __netbox1
+nbsize -w 6.46819 -h 4.04307 __netbox1
+nbset  -m off __netbox1
+nbcolor -c 0.52 0.52 0.52 __netbox1
+
+# Network Box __netbox2
+nbadd __netbox2
+nblocate -x 8.85908 -y -3.05816 __netbox2
+nbsize -w 6.46819 -h 4.04307 __netbox2
+nbset  -m off __netbox2
+nbcolor -c 0.52 0.52 0.52 __netbox2
+
+# Node output0 (Sop/output)
+opadd -e -n output output0
+oplocate -x -0.11806899999999999 -y -8.5848899999999997 output0
+opspareds "" output0
+opparm -V 20.5.370 output0 outputidx ( 0 )
+chlock output0 -*
+chautoscope output0 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off output0
+opexprlanguage -s hscript output0
+opuserdata -n '___Version___' -v '20.5.370' output0
+
+# Node Slope (Sop/Straight)
+opadd -e -n Straight Slope
+oplocate -x 3.0630899999999999 -y 1.6083499999999999 Slope
+opspareds "" Slope
+chblockbegin
+chadd -t 0 0 Slope Length
+chkey -t 0 -v 2 -m 0 -a 0 -A 0 -T a  -F 'ch("../SlopeLength")' Slope/Length
+chadd -t 0 0 Slope Width
+chkey -t 0 -v 1 -m 0 -a 0 -A 0 -T a  -F 'ch("../Width")' Slope/Width
+chadd -t 0 0 Slope Elevation
+chkey -t 0 -v 0 -m 0 -a 0 -A 0 -T a  -F '0.5 * ch("../Elevation")' Slope/Elevation
+chblockend
+opparm Slope Length ( Length ) Width ( Width ) Elevation ( Elevation )
+chlock Slope -*
+chautoscope Slope -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off Slope
+opexprlanguage -s hscript Slope
+opuserdata -n '___Version___' -v '' Slope
+
+# Node Landing (Sop/Straight)
+opadd -e -n Straight Landing
+oplocate -x -4.4155800000000003 -y 2.9080300000000001 Landing
+opspareds "" Landing
+chblockbegin
+chadd -t 0 0 Landing Length
+chkey -t 0 -v 2 -m 0 -a 0 -A 0 -T a  -F 'ch("../Width")' Landing/Length
+chadd -t 0 0 Landing Width
+chkey -t 0 -v 1 -m 0 -a 0 -A 0 -T a  -F 'ch("../Width")' Landing/Width
+chblockend
+opparm Landing Length ( Length ) Width ( Width ) Elevation ( 0 )
+chlock Landing -*
+chautoscope Landing -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off Landing
+nbop __netbox1 add Landing
+opexprlanguage -s hscript Landing
+opuserdata -n '___Version___' -v '' Landing
+
+# Node merge4 (Sop/merge)
+opadd -e -n merge merge4
+oplocate -x -0.11921900000000001 -y -5.1919300000000002 merge4
+opspareds "" merge4
+opparm -V 20.5.370 merge4
+chlock merge4 -*
+chautoscope merge4 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off merge4
+opexprlanguage -s hscript merge4
+opuserdata -n '___Version___' -v '20.5.370' merge4
+
+# Node attribwrangle4 (Sop/attribwrangle)
+opadd -e -n attribwrangle attribwrangle4
+oplocate -x 1.64917 -y -1.61761 attribwrangle4
+opspareds "" attribwrangle4
+opparm attribwrangle4  bindings ( 0 ) groupbindings ( 0 )
+opparm attribwrangle4 folder0 ( 0 0 ) group ( "" ) grouptype ( guess ) class ( point ) vex_numcount ( 10 ) vex_threadjobsize ( 1024 ) snippet ( 'vector pos = point(1, "P", 0);\nvector dir = point(1, "P", 1) - pos;\n\n//printf( "%f\\n", dir );\n\nmatrix transform = dihedral( set(1,0,0), dir );\ntranslate( transform,  pos );\n\n@P *= transform;\n' ) exportlist ( * ) vex_strict ( off ) autobind ( on ) bindings ( 0 ) groupautobind ( on ) groupbindings ( 0 ) vex_cwdpath ( . ) vex_outputmask ( * ) vex_updatenmls ( off ) vex_matchattrib ( id ) vex_inplace ( off ) vex_selectiongroup ( "" ) vex_precision ( auto )
+chlock attribwrangle4 -*
+chautoscope attribwrangle4 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off attribwrangle4
+opexprlanguage -s hscript attribwrangle4
+opuserdata -n '___Version___' -v '' attribwrangle4
+
+# Node attribwrangle5 (Sop/attribwrangle)
+opadd -e -n attribwrangle attribwrangle5
+oplocate -x 3.0600900000000002 -y -3.6809599999999998 attribwrangle5
+opspareds "" attribwrangle5
+opparm attribwrangle5  bindings ( 0 ) groupbindings ( 0 )
+opparm attribwrangle5 folder0 ( 0 0 ) group ( "" ) grouptype ( guess ) class ( point ) vex_numcount ( 10 ) vex_threadjobsize ( 1024 ) snippet ( 'vector pos = point(1, "P", 0);\nvector dir = point(1, "P", 1) - pos;\n\n//printf( "%f\\n", dir );\n\nmatrix transform = dihedral( set(1,0,0), dir );\ntranslate( transform,  pos );\n\n@P *= transform;\n' ) exportlist ( * ) vex_strict ( off ) autobind ( on ) bindings ( 0 ) groupautobind ( on ) groupbindings ( 0 ) vex_cwdpath ( . ) vex_outputmask ( * ) vex_updatenmls ( off ) vex_matchattrib ( id ) vex_inplace ( off ) vex_selectiongroup ( "" ) vex_precision ( auto )
+chlock attribwrangle5 -*
+chautoscope attribwrangle5 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off attribwrangle5
+opexprlanguage -s hscript attribwrangle5
+opuserdata -n '___Version___' -v '' attribwrangle5
+
+# Node blast1 (Sop/blast)
+opadd -e -n blast blast1
+oplocate -x 3.0630899999999999 -y -2.56745 blast1
+opspareds "" blast1
+opparm -V 20.5.370 blast1 group ( 'end handle' ) grouptype ( guess ) computenorms ( off ) negate ( on ) fillhole ( off ) removegrp ( off )
+chlock blast1 -*
+chautoscope blast1 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off blast1
+opexprlanguage -s hscript blast1
+opuserdata -n '___Version___' -v '20.5.370' blast1
+
+# Node blast3 (Sop/blast)
+opadd -e -n blast blast3
+oplocate -x 1.6521699999999999 -y -0.57344899999999999 blast3
+opspareds "" blast3
+opparm -V 20.5.370 blast3 group ( 'handle end' ) grouptype ( guess ) computenorms ( off ) negate ( on ) fillhole ( off ) removegrp ( off )
+chlock blast3 -*
+chautoscope blast3 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off blast3
+opexprlanguage -s hscript blast3
+opuserdata -n '___Version___' -v '20.5.370' blast3
+
+# Node delete_handle (Sop/delete)
+opadd -e -n delete delete_handle
+oplocate -x -2.5341 -y -1.6166100000000001 delete_handle
+opspareds "" delete_handle
+chblockbegin
+chadd -t 0 0 delete_handle rangeend
+chkey -t 0 -v 0 -m 0 -a 0 -A 0 -T a  -F '$N' delete_handle/rangeend
+chblockend
+opparm -V 20.5.370 delete_handle group ( handle ) label0 ( 'Warning: Group Is NOT Filtered by Geometry Type' ) negate ( dele ) entity ( point ) geotype ( all ) stdswitcher ( 0 0 0 0 0 ) affectnumber ( on ) groupop ( pattern ) filter ( 1 ) pattern ( !* ) range ( 0 rangeend ) select ( 1 2 ) affectvolume ( off ) boundtype ( usebbox ) size ( 1 1 1 ) t ( 0 0 0 ) affectnormal ( off ) dir ( 0 0 1 ) angle ( 180 ) camerapath ( "" ) affectdegenerate ( off ) degenerate ( off ) zaf ( off ) doopen ( off ) tol ( 0.001 ) userandom ( off ) globalseed ( 1 ) useseedattrib ( off ) seedattrib ( id ) percent ( 50 ) removegrp ( on ) keeppoints ( off )
+chlock delete_handle -*
+chautoscope delete_handle -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off delete_handle
+opexprlanguage -s hscript delete_handle
+opuserdata -n '___Version___' -v '20.5.370' delete_handle
+
+# Node delete_handle1 (Sop/delete)
+opadd -e -n delete delete_handle1
+oplocate -x 0.65261199999999997 -y -2.56745 delete_handle1
+opspareds "" delete_handle1
+chblockbegin
+chadd -t 0 0 delete_handle1 rangeend
+chkey -t 0 -v 0 -m 0 -a 0 -A 0 -T a  -F '$N' delete_handle1/rangeend
+chblockend
+opparm -V 20.5.370 delete_handle1 group ( handle ) label0 ( 'Warning: Group Is NOT Filtered by Geometry Type' ) negate ( dele ) entity ( point ) geotype ( all ) stdswitcher ( 0 0 0 0 0 ) affectnumber ( on ) groupop ( pattern ) filter ( 1 ) pattern ( !* ) range ( 0 rangeend ) select ( 1 2 ) affectvolume ( off ) boundtype ( usebbox ) size ( 1 1 1 ) t ( 0 0 0 ) affectnormal ( off ) dir ( 0 0 1 ) angle ( 180 ) camerapath ( "" ) affectdegenerate ( off ) degenerate ( off ) zaf ( off ) doopen ( off ) tol ( 0.001 ) userandom ( off ) globalseed ( 1 ) useseedattrib ( off ) seedattrib ( id ) percent ( 50 ) removegrp ( on ) keeppoints ( off )
+chlock delete_handle1 -*
+chautoscope delete_handle1 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off delete_handle1
+opexprlanguage -s hscript delete_handle1
+opuserdata -n '___Version___' -v '20.5.370' delete_handle1
+
+# Node ElbowLeft (Sop/Elbow)
+opadd -e -n Elbow ElbowLeft
+oplocate -x -2.5341 -y 2.9080300000000001 ElbowLeft
+opspareds "" ElbowLeft
+chblockbegin
+chadd -t 0 0 ElbowLeft Width
+chkey -t 0 -v 1 -m 0 -a 0 -A 0 -T a  -F 'ch("../Width")' ElbowLeft/Width
+chadd -t 0 0 ElbowLeft CornerType
+chkey -t 0 -v 0 -m 0 -a 0 -A 0 -T a  -F 'ch("../CornerType")' ElbowLeft/CornerType
+chblockend
+opparm ElbowLeft Direction ( 0 ) Width ( Width ) CornerType ( CornerType )
+chlock ElbowLeft -*
+chautoscope ElbowLeft -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off ElbowLeft
+nbop __netbox1 add ElbowLeft
+opexprlanguage -s hscript ElbowLeft
+opuserdata -n '___Version___' -v '' ElbowLeft
+
+# Node ElbowRight (Sop/Elbow)
+opadd -e -n Elbow ElbowRight
+oplocate -x -0.74738800000000005 -y 2.9080300000000001 ElbowRight
+opspareds "" ElbowRight
+chblockbegin
+chadd -t 0 0 ElbowRight Width
+chkey -t 0 -v 1 -m 0 -a 0 -A 0 -T a  -F 'ch("../Width")' ElbowRight/Width
+chadd -t 0 0 ElbowRight CornerType
+chkey -t 0 -v 0 -m 0 -a 0 -A 0 -T a  -F 'ch("../CornerType")' ElbowRight/CornerType
+chblockend
+opparm ElbowRight Direction ( 1 ) Width ( Width ) CornerType ( CornerType )
+chlock ElbowRight -*
+chautoscope ElbowRight -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off ElbowRight
+nbop __netbox1 add ElbowRight
+opexprlanguage -s hscript ElbowRight
+opuserdata -n '___Version___' -v '' ElbowRight
+
+# Node switch1 (Sop/switch)
+opadd -e -n switch switch1
+oplocate -x -2.5341 -y 0.71364000000000005 switch1
+opspareds "" switch1
+chblockbegin
+chadd -t 0 0 switch1 input
+chkey -t 0 -v 0 -m 0 -a 0 -A 0 -T a  -F 'ch("../FromDirection")' switch1/input
+chblockend
+opparm -V 20.5.370 switch1 input ( input )
+chlock switch1 -*
+chautoscope switch1 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off switch1
+nbop __netbox1 add switch1
+opexprlanguage -s hscript switch1
+opuserdata -n '___Version___' -v '20.5.370' switch1
+
+# Node transform1 (Sop/xform)
+opadd -e -n xform transform1
+oplocate -x -2.5341 -y 1.74028 transform1
+opspareds "" transform1
+opparm -V 20.5.370 transform1 group ( "" ) grouptype ( guess ) xOrd ( srt ) rOrd ( xyz ) t ( 0 0 0 ) r ( 0 -90 0 ) s ( 1 1 1 ) shear ( 0 0 0 ) scale ( 1 ) parmgroup_pivotxform ( 0 ) p ( 0 0 0 ) pr ( 0 0 0 ) parmgroup_prexform ( 0 ) prexform_xOrd ( srt ) prexform_rOrd ( xyz ) prexform_t ( 0 0 0 ) prexform_r ( 0 0 0 ) prexform_s ( 1 1 1 ) prexform_shear ( 0 0 0 ) movecentroid ( 0 ) movepivot ( 0 ) attribs ( * ) updatenmls ( off ) updateaffectednmls ( on ) vlength ( on ) invertxform ( off ) addattrib ( off ) outputattrib ( xform ) outputmerge ( post )
+chlock transform1 -*
+chautoscope transform1 -* +tx +ty +tz +rx +ry +rz +sx +sy +sz
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off transform1
+nbop __netbox1 add transform1
+opexprlanguage -s hscript transform1
+opuserdata -n '___Version___' -v '20.5.370' transform1
+
+# Node transform2 (Sop/xform)
+opadd -e -n xform transform2
+oplocate -x -0.74738800000000005 -y 1.74028 transform2
+opspareds "" transform2
+opparm -V 20.5.370 transform2 group ( "" ) grouptype ( guess ) xOrd ( srt ) rOrd ( xyz ) t ( 0 0 0 ) r ( 0 90 0 ) s ( 1 1 1 ) shear ( 0 0 0 ) scale ( 1 ) parmgroup_pivotxform ( 0 ) p ( 0 0 0 ) pr ( 0 0 0 ) parmgroup_prexform ( 0 ) prexform_xOrd ( srt ) prexform_rOrd ( xyz ) prexform_t ( 0 0 0 ) prexform_r ( 0 0 0 ) prexform_s ( 1 1 1 ) prexform_shear ( 0 0 0 ) movecentroid ( 0 ) movepivot ( 0 ) attribs ( * ) updatenmls ( off ) updateaffectednmls ( on ) vlength ( on ) invertxform ( off ) addattrib ( off ) outputattrib ( xform ) outputmerge ( post )
+chlock transform2 -*
+chautoscope transform2 -* +tx +ty +tz +rx +ry +rz +sx +sy +sz
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off transform2
+nbop __netbox1 add transform2
+opexprlanguage -s hscript transform2
+opuserdata -n '___Version___' -v '20.5.370' transform2
+
+# Node matchsize1 (Sop/matchsize)
+opadd -e -n matchsize matchsize1
+oplocate -x -2.5341 -y -0.435033 matchsize1
+opspareds "" matchsize1
+opparm matchsize1 group ( "" ) grouptype ( guess ) sepparm ( ) justifytarget ( auto ) doboundgroup ( off ) folder2 ( 0 ) sourcegroup ( "" ) sourcegrouptype ( guess ) refgroup ( "" ) refgrouptype ( guess ) folder1 ( 0 ) t ( 0 0 0 ) size ( 1 1 1 ) folder0 ( 0 ) dotranslate ( on ) justify_x ( min ) goal_x ( same ) offset_x ( 0 ) justify_y ( center ) goal_y ( same ) offset_y ( 0 ) justify_z ( center ) goal_z ( same ) offset_z ( 0 ) doscale ( off ) uniformscale ( on ) scale_axis ( min ) scale_x ( on ) scale_y ( on ) scale_z ( on ) restorexform ( off ) restoreattrib ( xform ) stashxform ( off ) stashattrib ( xform ) stashmerge ( replace )
+chlock matchsize1 -*
+chautoscope matchsize1 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off matchsize1
+nbop __netbox1 add matchsize1
+opexprlanguage -s hscript matchsize1
+opuserdata -n '___Version___' -v '' matchsize1
+
+# Node Landing1 (Sop/Straight)
+opadd -e -n Straight Landing1
+oplocate -x 9.2590800000000009 -y 0.48490299999999997 Landing1
+opspareds "" Landing1
+chblockbegin
+chadd -t 0 0 Landing1 Length
+chkey -t 0 -v 2 -m 0 -a 0 -A 0 -T a  -F 'ch("../Width")' Landing1/Length
+chadd -t 0 0 Landing1 Width
+chkey -t 0 -v 1 -m 0 -a 0 -A 0 -T a  -F 'ch("../Width")' Landing1/Width
+chblockend
+opparm Landing1 Length ( Length ) Width ( Width ) Elevation ( 0 )
+chlock Landing1 -*
+chautoscope Landing1 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off Landing1
+nbop __netbox2 add Landing1
+opexprlanguage -s hscript Landing1
+opuserdata -n '___Version___' -v '' Landing1
+
+# Node ElbowLeft1 (Sop/Elbow)
+opadd -e -n Elbow ElbowLeft1
+oplocate -x 11.140599999999999 -y 0.48490299999999997 ElbowLeft1
+opspareds "" ElbowLeft1
+chblockbegin
+chadd -t 0 0 ElbowLeft1 Width
+chkey -t 0 -v 1 -m 0 -a 0 -A 0 -T a  -F 'ch("../Width")' ElbowLeft1/Width
+chadd -t 0 0 ElbowLeft1 CornerType
+chkey -t 0 -v 0 -m 0 -a 0 -A 0 -T a  -F 'ch("../CornerType")' ElbowLeft1/CornerType
+chblockend
+opparm ElbowLeft1 Direction ( 0 ) Width ( Width ) CornerType ( CornerType )
+chlock ElbowLeft1 -*
+chautoscope ElbowLeft1 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off ElbowLeft1
+nbop __netbox2 add ElbowLeft1
+opexprlanguage -s hscript ElbowLeft1
+opuserdata -n '___Version___' -v '' ElbowLeft1
+
+# Node ElbowRight1 (Sop/Elbow)
+opadd -e -n Elbow ElbowRight1
+oplocate -x 12.927300000000001 -y 0.48490299999999997 ElbowRight1
+opspareds "" ElbowRight1
+chblockbegin
+chadd -t 0 0 ElbowRight1 Width
+chkey -t 0 -v 1 -m 0 -a 0 -A 0 -T a  -F 'ch("../Width")' ElbowRight1/Width
+chadd -t 0 0 ElbowRight1 CornerType
+chkey -t 0 -v 0 -m 0 -a 0 -A 0 -T a  -F 'ch("../CornerType")' ElbowRight1/CornerType
+chblockend
+opparm ElbowRight1 Direction ( 1 ) Width ( Width ) CornerType ( CornerType )
+chlock ElbowRight1 -*
+chautoscope ElbowRight1 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off ElbowRight1
+nbop __netbox2 add ElbowRight1
+opexprlanguage -s hscript ElbowRight1
+opuserdata -n '___Version___' -v '' ElbowRight1
+
+# Node switch2 (Sop/switch)
+opadd -e -n switch switch2
+oplocate -x 11.140599999999999 -y -1.70949 switch2
+opspareds "" switch2
+chblockbegin
+chadd -t 0 0 switch2 input
+chkey -t 0 -v 0 -m 0 -a 0 -A 0 -T a  -F 'ch("../ToDirection")' switch2/input
+chblockend
+opparm -V 20.5.370 switch2 input ( input )
+chlock switch2 -*
+chautoscope switch2 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off switch2
+nbop __netbox2 add switch2
+opexprlanguage -s hscript switch2
+opuserdata -n '___Version___' -v '20.5.370' switch2
+
+# Node transform3 (Sop/xform)
+opadd -e -n xform transform3
+oplocate -x 11.140599999999999 -y -0.68284699999999998 transform3
+opspareds "" transform3
+opparm -V 20.5.370 transform3 group ( "" ) grouptype ( guess ) xOrd ( srt ) rOrd ( xyz ) t ( 0 0 0 ) r ( 0 0 0 ) s ( 1 1 1 ) shear ( 0 0 0 ) scale ( 1 ) parmgroup_pivotxform ( 0 ) p ( 0 0 0 ) pr ( 0 0 0 ) parmgroup_prexform ( 0 ) prexform_xOrd ( srt ) prexform_rOrd ( xyz ) prexform_t ( 0 0 0 ) prexform_r ( 0 0 0 ) prexform_s ( 1 1 1 ) prexform_shear ( 0 0 0 ) movecentroid ( 0 ) movepivot ( 0 ) attribs ( * ) updatenmls ( off ) updateaffectednmls ( on ) vlength ( on ) invertxform ( off ) addattrib ( off ) outputattrib ( xform ) outputmerge ( post )
+chlock transform3 -*
+chautoscope transform3 -* +tx +ty +tz +rx +ry +rz +sx +sy +sz
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off transform3
+nbop __netbox2 add transform3
+opexprlanguage -s hscript transform3
+opuserdata -n '___Version___' -v '20.5.370' transform3
+
+# Node transform4 (Sop/xform)
+opadd -e -n xform transform4
+oplocate -x 12.927300000000001 -y -0.68284699999999998 transform4
+opspareds "" transform4
+opparm -V 20.5.370 transform4 group ( "" ) grouptype ( guess ) xOrd ( srt ) rOrd ( xyz ) t ( 0 0 0 ) r ( 0 0 0 ) s ( 1 1 1 ) shear ( 0 0 0 ) scale ( 1 ) parmgroup_pivotxform ( 0 ) p ( 0 0 0 ) pr ( 0 0 0 ) parmgroup_prexform ( 0 ) prexform_xOrd ( srt ) prexform_rOrd ( xyz ) prexform_t ( 0 0 0 ) prexform_r ( 0 0 0 ) prexform_s ( 1 1 1 ) prexform_shear ( 0 0 0 ) movecentroid ( 0 ) movepivot ( 0 ) attribs ( * ) updatenmls ( off ) updateaffectednmls ( on ) vlength ( on ) invertxform ( off ) addattrib ( off ) outputattrib ( xform ) outputmerge ( post )
+chlock transform4 -*
+chautoscope transform4 -* +tx +ty +tz +rx +ry +rz +sx +sy +sz
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off transform4
+nbop __netbox2 add transform4
+opexprlanguage -s hscript transform4
+opuserdata -n '___Version___' -v '20.5.370' transform4
+
+# Node matchsize2 (Sop/matchsize)
+opadd -e -n matchsize matchsize2
+oplocate -x 11.140599999999999 -y -2.8581599999999998 matchsize2
+opspareds "" matchsize2
+opparm matchsize2 group ( "" ) grouptype ( guess ) sepparm ( ) justifytarget ( auto ) doboundgroup ( off ) folder2 ( 0 ) sourcegroup ( "" ) sourcegrouptype ( guess ) refgroup ( "" ) refgrouptype ( guess ) folder1 ( 0 ) t ( 0 0 0 ) size ( 1 1 1 ) folder0 ( 0 ) dotranslate ( on ) justify_x ( min ) goal_x ( same ) offset_x ( 0 ) justify_y ( center ) goal_y ( same ) offset_y ( 0 ) justify_z ( none ) goal_z ( same ) offset_z ( 0 ) doscale ( off ) uniformscale ( on ) scale_axis ( min ) scale_x ( on ) scale_y ( on ) scale_z ( on ) restorexform ( off ) restoreattrib ( xform ) stashxform ( off ) stashattrib ( xform ) stashmerge ( replace )
+chlock matchsize2 -*
+chautoscope matchsize2 -*
+opset -d on -r on -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off matchsize2
+nbop __netbox2 add matchsize2
+opexprlanguage -s hscript matchsize2
+opuserdata -n '___Version___' -v '' matchsize2
+
+# Node delete_end (Sop/delete)
+opadd -e -n delete delete_end
+oplocate -x -2.5341 -y -2.6967699999999999 delete_end
+opspareds "" delete_end
+chblockbegin
+chadd -t 0 0 delete_end rangeend
+chkey -t 0 -v 0 -m 0 -a 0 -A 0 -T a  -F '$N' delete_end/rangeend
+chblockend
+opparm -V 20.5.370 delete_end group ( end ) label0 ( 'Warning: Group Is NOT Filtered by Geometry Type' ) negate ( dele ) entity ( point ) geotype ( all ) stdswitcher ( 0 0 0 0 0 ) affectnumber ( on ) groupop ( pattern ) filter ( 1 ) pattern ( !* ) range ( 0 rangeend ) select ( 1 2 ) affectvolume ( off ) boundtype ( usebbox ) size ( 1 1 1 ) t ( 0 0 0 ) affectnormal ( off ) dir ( 0 0 1 ) angle ( 180 ) camerapath ( "" ) affectdegenerate ( off ) degenerate ( off ) zaf ( off ) doopen ( off ) tol ( 0.001 ) userandom ( off ) globalseed ( 1 ) useseedattrib ( off ) seedattrib ( id ) percent ( 50 ) removegrp ( on ) keeppoints ( off )
+chlock delete_end -*
+chautoscope delete_end -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off delete_end
+opexprlanguage -s hscript delete_end
+opuserdata -n '___Version___' -v '20.5.370' delete_end
+
+# Node delete_end1 (Sop/delete)
+opadd -e -n delete delete_end1
+oplocate -x 0.64961599999999997 -y -3.56745 delete_end1
+opspareds "" delete_end1
+chblockbegin
+chadd -t 0 0 delete_end1 rangeend
+chkey -t 0 -v 0 -m 0 -a 0 -A 0 -T a  -F '$N' delete_end1/rangeend
+chblockend
+opparm -V 20.5.370 delete_end1 group ( end ) label0 ( 'Warning: Group Is NOT Filtered by Geometry Type' ) negate ( dele ) entity ( point ) geotype ( all ) stdswitcher ( 0 0 0 0 0 ) affectnumber ( on ) groupop ( pattern ) filter ( 1 ) pattern ( !* ) range ( 0 rangeend ) select ( 1 2 ) affectvolume ( off ) boundtype ( usebbox ) size ( 1 1 1 ) t ( 0 0 0 ) affectnormal ( off ) dir ( 0 0 1 ) angle ( 180 ) camerapath ( "" ) affectdegenerate ( off ) degenerate ( off ) zaf ( off ) doopen ( off ) tol ( 0.001 ) userandom ( off ) globalseed ( 1 ) useseedattrib ( off ) seedattrib ( id ) percent ( 50 ) removegrp ( on ) keeppoints ( off )
+chlock delete_end1 -*
+chautoscope delete_end1 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off delete_end1
+opexprlanguage -s hscript delete_end1
+opuserdata -n '___Version___' -v '20.5.370' delete_end1
+oporder -e output0 Slope Landing merge4 attribwrangle4 attribwrangle5 blast1 blast3 delete_handle delete_handle1 ElbowLeft ElbowRight switch1 transform1 transform2 matchsize1 Landing1 ElbowLeft1 ElbowRight1 switch2 transform3 transform4 matchsize2 delete_end delete_end1 
+opcf ..
+
+# Node delete_handle (Sop/delete)
+opadd -e -n delete delete_handle
+oplocate -x -1.11759e-08 -y 2.4923299999999999 delete_handle
+opspareds "" delete_handle
+chblockbegin
+chadd -t 0 0 delete_handle rangeend
+chkey -t 0 -v 0 -m 0 -a 0 -A 0 -T a  -F '$N' delete_handle/rangeend
+chblockend
+opparm -V 20.5.370 delete_handle group ( handle ) label0 ( 'Warning: Group Is NOT Filtered by Geometry Type' ) negate ( dele ) entity ( point ) geotype ( all ) stdswitcher ( 0 0 0 0 0 ) affectnumber ( on ) groupop ( pattern ) filter ( 1 ) pattern ( !* ) range ( 0 rangeend ) select ( 1 2 ) affectvolume ( off ) boundtype ( usebbox ) size ( 1 1 1 ) t ( 0 0 0 ) affectnormal ( off ) dir ( 0 0 1 ) angle ( 180 ) camerapath ( "" ) affectdegenerate ( off ) degenerate ( off ) zaf ( off ) doopen ( off ) tol ( 0.001 ) userandom ( off ) globalseed ( 1 ) useseedattrib ( off ) seedattrib ( id ) percent ( 50 ) removegrp ( on ) keeppoints ( off )
+chlock delete_handle -*
+chautoscope delete_handle -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off delete_handle
+opexprlanguage -s hscript delete_handle
+opuserdata -n '___Version___' -v '20.5.370' delete_handle
+
+# Node delete_end (Sop/delete)
+opadd -e -n delete delete_end
+oplocate -x -1.11759e-08 -y 1.35884 delete_end
+opspareds "" delete_end
+chblockbegin
+chadd -t 0 0 delete_end rangeend
+chkey -t 0 -v 0 -m 0 -a 0 -A 0 -T a  -F '$N' delete_end/rangeend
+chblockend
+opparm -V 20.5.370 delete_end group ( end ) label0 ( 'Warning: Group Is NOT Filtered by Geometry Type' ) negate ( dele ) entity ( point ) geotype ( all ) stdswitcher ( 0 0 0 0 0 ) affectnumber ( on ) groupop ( pattern ) filter ( 1 ) pattern ( !* ) range ( 0 rangeend ) select ( 1 2 ) affectvolume ( off ) boundtype ( usebbox ) size ( 1 1 1 ) t ( 0 0 0 ) affectnormal ( off ) dir ( 0 0 1 ) angle ( 180 ) camerapath ( "" ) affectdegenerate ( off ) degenerate ( off ) zaf ( off ) doopen ( off ) tol ( 0.001 ) userandom ( off ) globalseed ( 1 ) useseedattrib ( off ) seedattrib ( id ) percent ( 50 ) removegrp ( on ) keeppoints ( off )
+chlock delete_end -*
+chautoscope delete_end -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off delete_end
+opexprlanguage -s hscript delete_end
+opuserdata -n '___Version___' -v '20.5.370' delete_end
+
+# Node merge1 (Sop/merge)
+opadd -e -n merge merge1
+oplocate -x -0.0011500099999999999 -y -2.07301 merge1
+opspareds "" merge1
+opparm -V 20.5.370 merge1
+chlock merge1 -*
+chautoscope merge1 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off merge1
+opexprlanguage -s hscript merge1
+opuserdata -n '___Version___' -v '20.5.370' merge1
+
+# Node attribwrangle5 (Sop/attribwrangle)
+opadd -e -n attribwrangle attribwrangle5
+oplocate -x 3.4581599999999999 -y -1.1494800000000001 attribwrangle5
+opspareds "" attribwrangle5
+opparm attribwrangle5  bindings ( 0 ) groupbindings ( 0 )
+opparm attribwrangle5 folder0 ( 0 0 ) group ( "" ) grouptype ( guess ) class ( point ) vex_numcount ( 10 ) vex_threadjobsize ( 1024 ) snippet ( 'vector pos = point(1, "P", 0);\nvector dir = point(1, "P", 1) - pos;\n\n//printf( "%f\\n", dir );\n\nmatrix transform = dihedral( set(1,0,0), dir );\ntranslate( transform,  pos );\n\n@P *= transform;\n' ) exportlist ( * ) vex_strict ( off ) autobind ( on ) bindings ( 0 ) groupautobind ( on ) groupbindings ( 0 ) vex_cwdpath ( . ) vex_outputmask ( * ) vex_updatenmls ( off ) vex_matchattrib ( id ) vex_inplace ( off ) vex_selectiongroup ( "" ) vex_precision ( auto )
+chlock attribwrangle5 -*
+chautoscope attribwrangle5 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b on attribwrangle5
+opexprlanguage -s hscript attribwrangle5
+opuserdata -n '___Version___' -v '' attribwrangle5
+
+# Node blast4 (Sop/blast)
+opadd -e -n blast blast4
+oplocate -x 3.46116 -y 0.267731 blast4
+opspareds "" blast4
+opparm -V 20.5.370 blast4 group ( 'handle end' ) grouptype ( guess ) computenorms ( off ) negate ( on ) fillhole ( off ) removegrp ( off )
+chlock blast4 -*
+chautoscope blast4 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b on blast4
+opexprlanguage -s hscript blast4
+opuserdata -n '___Version___' -v '20.5.370' blast4
+
+# Node Straight2 (Sop/Straight)
+opadd -e -n Straight Straight2
+oplocate -x 6.0499999999999998 -y 0.267731 Straight2
+opspareds "" Straight2
+chblockbegin
+chadd -t 0 0 Straight2 Length
+chkey -t 0 -v 1 -m 0 -a 0 -A 0 -T a  -F 'ch("../Width")' Straight2/Length
+chadd -t 0 0 Straight2 Width
+chkey -t 0 -v 1 -m 0 -a 0 -A 0 -T a  -F 'ch("../Width")' Straight2/Width
+chblockend
+opparm Straight2 Length ( Length ) Width ( Width ) Elevation ( 0 )
+chlock Straight2 -*
+chautoscope Straight2 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b on Straight2
+opexprlanguage -s hscript Straight2
+opuserdata -n '___Version___' -v '' Straight2
+
+# Node blast1 (Sop/blast)
+opadd -e -n blast blast1
+oplocate -x -1.11759e-08 -y -3.6656399999999998 blast1
+opspareds "" blast1
+opparm -V 20.5.370 blast1 group ( start ) grouptype ( guess ) computenorms ( off ) negate ( off ) fillhole ( off ) removegrp ( off )
+chlock blast1 -*
+chautoscope blast1 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off blast1
+opexprlanguage -s hscript blast1
+opuserdata -n '___Version___' -v '20.5.370' blast1
+oporder -e output0 Straight1 attribwrangle4 blast3 transform1 SlopeSkeleton_Base delete_handle delete_end merge1 attribwrangle5 blast4 Straight2 blast1 
+opcf ..
+
+# Node StairSkeleton_Intermediate (Sop/subnet)
+opadd -e -n subnet StairSkeleton_Intermediate
+oplocate -x -4.7112499999999997 -y 3.5846900000000002 StairSkeleton_Intermediate
+opspareds '    parm {         name    "label1"         baseparm         label   "Input #1 Label"         export  all     }     parm {         name    "label2"         baseparm         label   "Input #2 Label"         export  all     }     parm {         name    "label3"         baseparm         label   "Input #3 Label"         export  all     }     parm {         name    "label4"         baseparm         label   "Input #4 Label"         export  all     }     parm {         name    "Width"         label   "Width"         type    float         default { "1.6" }         range   { 0! 10 }         parmtag { "script_callback_language" "python" }     }     parm {         name    "Elevation"         label   "Elevation"         type    float         default { "3" }         range   { 0! 10 }         parmtag { "script_callback_language" "python" }     }     parm {         name    "SlopeLength"         label   "SlopeLength"         type    float         default { "2" }         range   { 0 10 }         parmtag { "script_callback_language" "python" }     }     parm {         name    "CenterMargin"         label   "CenterMargin"         type    float         default { "0.25" }         range   { 0 10 }         parmtag { "script_callback_language" "python" }     }     parm {         name    "Rotation"         label   "Rotation"         type    ordinal         default { "0" }         menu usetokenvalue {             "2" "CW"             "1" "CCW"         }         parmtag { "script_callback_language" "python" }     }     parm {         name    "CornerType"         label   "CornerType"         type    ordinal         default { "0" }         menu {             "0" "Rect"             "1" "Arc"         }         parmtag { "script_callback_language" "python" }     } ' StairSkeleton_Intermediate
+chblockbegin
+chadd -t 0 0 StairSkeleton_Intermediate Width
+chkey -t 0 -v 1 -m 0 -a 0 -A 0 -T a  -F 'ch("../Width")' StairSkeleton_Intermediate/Width
+chadd -t 0 0 StairSkeleton_Intermediate Elevation
+chkey -t 0 -v 3 -m 0 -a 0 -A 0 -T a  -F 'ch("../Elevation")' StairSkeleton_Intermediate/Elevation
+chadd -t 0 0 StairSkeleton_Intermediate SlopeLength
+chkey -t 0 -v 2 -m 0 -a 0 -A 0 -T a  -F 'ch("../SlopeLength")' StairSkeleton_Intermediate/SlopeLength
+chadd -t 0 0 StairSkeleton_Intermediate CenterMargin
+chkey -t 0 -v 0.25 -m 0 -a 0 -A 0 -T a  -F 'ch("../CenterMargin")' StairSkeleton_Intermediate/CenterMargin
+chadd -t 0 0 StairSkeleton_Intermediate Rotation
+chkey -t 0 -v 2 -m 0 -a 0 -A 0 -T a  -F 'ch("../Rotation")' StairSkeleton_Intermediate/Rotation
+chadd -t 0 0 StairSkeleton_Intermediate CornerType
+chkey -t 0 -v 0 -m 0 -a 0 -A 0 -T a  -F 'ch("../CornerType")' StairSkeleton_Intermediate/CornerType
+chblockend
+opparm -V 20.5.370 StairSkeleton_Intermediate label1 ( 'Sub-Network Input #1' ) label2 ( 'Sub-Network Input #2' ) label3 ( 'Sub-Network Input #3' ) label4 ( 'Sub-Network Input #4' ) Width ( Width ) Elevation ( Elevation ) SlopeLength ( SlopeLength ) CenterMargin ( CenterMargin ) Rotation ( Rotation ) CornerType ( CornerType )
+chlock StairSkeleton_Intermediate -*
+chautoscope StairSkeleton_Intermediate -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off StairSkeleton_Intermediate
+opexprlanguage -s hscript StairSkeleton_Intermediate
+opuserdata -n '___Version___' -v '20.5.370' StairSkeleton_Intermediate
+opcf StairSkeleton_Intermediate
+
+# Node output0 (Sop/output)
+opadd -e -n output output0
+oplocate -x -1.11759e-08 -y -5.9938000000000002 output0
+opspareds "" output0
+opparm -V 20.5.370 output0 outputidx ( 0 )
+chlock output0 -*
+chautoscope output0 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off output0
+opexprlanguage -s hscript output0
+opuserdata -n '___Version___' -v '20.5.370' output0
+
+# Node Straight1 (Sop/Straight)
+opadd -e -n Straight Straight1
+oplocate -x 4.1365600000000002 -y 3.3977400000000002 Straight1
+opspareds "" Straight1
+chblockbegin
+chadd -t 0 0 Straight1 Length
+chkey -t 0 -v 0.25 -m 0 -a 0 -A 0 -T a  -F 'ch("../CenterMargin")' Straight1/Length
+chadd -t 0 0 Straight1 Width
+chkey -t 0 -v 1 -m 0 -a 0 -A 0 -T a  -F 'ch("../Width")' Straight1/Width
+chblockend
+opparm Straight1 Length ( Length ) Width ( Width ) Elevation ( 0 )
+chlock Straight1 -*
+chautoscope Straight1 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off Straight1
+opexprlanguage -s hscript Straight1
+opuserdata -n '___Version___' -v '' Straight1
+
+# Node attribwrangle4 (Sop/attribwrangle)
+opadd -e -n attribwrangle attribwrangle4
+oplocate -x 1.9019200000000001 -y 1.3578399999999999 attribwrangle4
+opspareds "" attribwrangle4
+opparm attribwrangle4  bindings ( 0 ) groupbindings ( 0 )
+opparm attribwrangle4 folder0 ( 0 0 ) group ( "" ) grouptype ( guess ) class ( point ) vex_numcount ( 10 ) vex_threadjobsize ( 1024 ) snippet ( 'vector pos = point(1, "P", 0);\nvector dir = point(1, "P", 1) - pos;\n\n//printf( "%f\\n", dir );\n\nmatrix transform = dihedral( set(1,0,0), dir );\ntranslate( transform,  pos );\n\n@P *= transform;\n' ) exportlist ( * ) vex_strict ( off ) autobind ( on ) bindings ( 0 ) groupautobind ( on ) groupbindings ( 0 ) vex_cwdpath ( . ) vex_outputmask ( * ) vex_updatenmls ( off ) vex_matchattrib ( id ) vex_inplace ( off ) vex_selectiongroup ( "" ) vex_precision ( auto )
+chlock attribwrangle4 -*
+chautoscope attribwrangle4 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off attribwrangle4
+opexprlanguage -s hscript attribwrangle4
+opuserdata -n '___Version___' -v '' attribwrangle4
+
+# Node blast3 (Sop/blast)
+opadd -e -n blast blast3
+oplocate -x 1.9049199999999999 -y 2.4923299999999999 blast3
+opspareds "" blast3
+opparm -V 20.5.370 blast3 group ( 'handle end' ) grouptype ( guess ) computenorms ( off ) negate ( on ) fillhole ( off ) removegrp ( off )
+chlock blast3 -*
+chautoscope blast3 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off blast3
+opexprlanguage -s hscript blast3
+opuserdata -n '___Version___' -v '20.5.370' blast3
+
+# Node transform1 (Sop/xform)
+opadd -e -n xform transform1
+oplocate -x 4.1365600000000002 -y 2.3788900000000002 transform1
+opspareds "" transform1
+opparm -V 20.5.370 transform1 group ( "" ) grouptype ( guess ) xOrd ( srt ) rOrd ( xyz ) t ( 0 0 0 ) r ( 0 0 0 ) s ( 1 1 1 ) shear ( 0 0 0 ) scale ( 1 ) parmgroup_pivotxform ( 0 ) p ( 0 0 0 ) pr ( 0 0 0 ) parmgroup_prexform ( 0 ) prexform_xOrd ( srt ) prexform_rOrd ( xyz ) prexform_t ( 0 0 0 ) prexform_r ( 0 0 0 ) prexform_s ( 1 1 1 ) prexform_shear ( 0 0 0 ) movecentroid ( 0 ) movepivot ( 0 ) attribs ( * ) updatenmls ( off ) updateaffectednmls ( on ) vlength ( on ) invertxform ( off ) addattrib ( off ) outputattrib ( xform ) outputmerge ( post )
+chlock transform1 -*
+chautoscope transform1 -* +tx +ty +tz +rx +ry +rz +sx +sy +sz
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off transform1
+opexprlanguage -s hscript transform1
+opuserdata -n '___Version___' -v '20.5.370' transform1
+
+# Node SlopeSkeleton_Base (Sop/subnet)
+opadd -e -n subnet SlopeSkeleton_Base
+oplocate -x -1.11759e-08 -y 4.0988699999999998 SlopeSkeleton_Base
+opspareds '    parm {         name    "label1"         baseparm         label   "Input #1 Label"         export  all     }     parm {         name    "label2"         baseparm         label   "Input #2 Label"         export  all     }     parm {         name    "label3"         baseparm         label   "Input #3 Label"         export  all     }     parm {         name    "label4"         baseparm         label   "Input #4 Label"         export  all     }     parm {         name    "Width"         label   "Width"         type    float         default { "1" }         range   { 0! 10 }         parmtag { "script_callback_language" "python" }     }     parm {         name    "Elevation"         label   "Elevation"         type    float         default { "3" }         range   { 0! 10 }         parmtag { "script_callback_language" "python" }     }     parm {         name    "SlopeLength"         label   "SlopeLength"         type    float         default { "2" }         range   { 0 10 }         parmtag { "script_callback_language" "python" }     }     parm {         name    "FromDirection"         label   "FromDirection"         type    ordinal         default { "0" }         menu {             "0" "Front"             "1" "Left"             "2" "Right"         }         parmtag { "script_callback_language" "python" }     }     parm {         name    "ToDirection"         label   "ToDirection"         type    ordinal         default { "0" }         menu {             "0" "Front"             "1" "Left"             "2" "Right"         }         parmtag { "script_callback_language" "python" }     }     parm {         name    "CornerType"         label   "CornerType"         type    ordinal         default { "0" }         menu {             "0" "Rect"             "1" "Arc"         }         parmtag { "script_callback_language" "python" }     } ' SlopeSkeleton_Base
+chblockbegin
+chadd -t 0 0 SlopeSkeleton_Base Width
+chkey -t 0 -v 1 -m 0 -a 0 -A 0 -T a  -F 'ch("../Width")' SlopeSkeleton_Base/Width
+chadd -t 0 0 SlopeSkeleton_Base Elevation
+chkey -t 0 -v 3 -m 0 -a 0 -A 0 -T a  -F 'ch("../Elevation")' SlopeSkeleton_Base/Elevation
+chadd -t 0 0 SlopeSkeleton_Base SlopeLength
+chkey -t 0 -v 2 -m 0 -a 0 -A 0 -T a  -F 'ch("../SlopeLength")' SlopeSkeleton_Base/SlopeLength
+chadd -t 0 0 SlopeSkeleton_Base FromDirection
+chkey -t 0 -v 0 -m 0 -a 0 -A 0 -T a  -F 'ch("../Rotation")' SlopeSkeleton_Base/FromDirection
+chadd -t 0 0 SlopeSkeleton_Base ToDirection
+chkey -t 0 -v 2 -m 0 -a 0 -A 0 -T a  -F 'ch("../Rotation")' SlopeSkeleton_Base/ToDirection
+chadd -t 0 0 SlopeSkeleton_Base CornerType
+chkey -t 0 -v 0 -m 0 -a 0 -A 0 -T a  -F 'ch("../CornerType")' SlopeSkeleton_Base/CornerType
+chblockend
+opparm -V 20.5.370 SlopeSkeleton_Base label1 ( 'Sub-Network Input #1' ) label2 ( 'Sub-Network Input #2' ) label3 ( 'Sub-Network Input #3' ) label4 ( 'Sub-Network Input #4' ) Width ( Width ) Elevation ( Elevation ) SlopeLength ( SlopeLength ) FromDirection ( FromDirection ) ToDirection ( ToDirection ) CornerType ( CornerType )
+chlock SlopeSkeleton_Base -*
+chautoscope SlopeSkeleton_Base -*
+opset -d on -r on -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off SlopeSkeleton_Base
+opexprlanguage -s hscript SlopeSkeleton_Base
+opuserdata -n '___Version___' -v '20.5.370' SlopeSkeleton_Base
+opcf SlopeSkeleton_Base
+
+# Network Box __netbox1
+nbadd __netbox1
+nblocate -x -4.81558 -y -0.635033 __netbox1
+nbsize -w 6.46819 -h 4.04307 __netbox1
+nbset  -m off __netbox1
+nbcolor -c 0.52 0.52 0.52 __netbox1
+
+# Network Box __netbox2
+nbadd __netbox2
+nblocate -x 8.85908 -y -3.05816 __netbox2
+nbsize -w 6.46819 -h 4.04307 __netbox2
+nbset  -m off __netbox2
+nbcolor -c 0.52 0.52 0.52 __netbox2
+
+# Node output0 (Sop/output)
+opadd -e -n output output0
+oplocate -x -0.11806899999999999 -y -8.5848899999999997 output0
+opspareds "" output0
+opparm -V 20.5.370 output0 outputidx ( 0 )
+chlock output0 -*
+chautoscope output0 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off output0
+opexprlanguage -s hscript output0
+opuserdata -n '___Version___' -v '20.5.370' output0
+
+# Node Slope (Sop/Straight)
+opadd -e -n Straight Slope
+oplocate -x 3.0630899999999999 -y 1.6083499999999999 Slope
+opspareds "" Slope
+chblockbegin
+chadd -t 0 0 Slope Length
+chkey -t 0 -v 2 -m 0 -a 0 -A 0 -T a  -F 'ch("../SlopeLength")' Slope/Length
+chadd -t 0 0 Slope Width
+chkey -t 0 -v 1 -m 0 -a 0 -A 0 -T a  -F 'ch("../Width")' Slope/Width
+chadd -t 0 0 Slope Elevation
+chkey -t 0 -v 0 -m 0 -a 0 -A 0 -T a  -F '0.5 * ch("../Elevation")' Slope/Elevation
+chblockend
+opparm Slope Length ( Length ) Width ( Width ) Elevation ( Elevation )
+chlock Slope -*
+chautoscope Slope -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off Slope
+opexprlanguage -s hscript Slope
+opuserdata -n '___Version___' -v '' Slope
+
+# Node Landing (Sop/Straight)
+opadd -e -n Straight Landing
+oplocate -x -4.4155800000000003 -y 2.9080300000000001 Landing
+opspareds "" Landing
+chblockbegin
+chadd -t 0 0 Landing Length
+chkey -t 0 -v 2 -m 0 -a 0 -A 0 -T a  -F 'ch("../Width")' Landing/Length
+chadd -t 0 0 Landing Width
+chkey -t 0 -v 1 -m 0 -a 0 -A 0 -T a  -F 'ch("../Width")' Landing/Width
+chblockend
+opparm Landing Length ( Length ) Width ( Width ) Elevation ( 0 )
+chlock Landing -*
+chautoscope Landing -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off Landing
+nbop __netbox1 add Landing
+opexprlanguage -s hscript Landing
+opuserdata -n '___Version___' -v '' Landing
+
+# Node merge4 (Sop/merge)
+opadd -e -n merge merge4
+oplocate -x -0.11921900000000001 -y -5.1919300000000002 merge4
+opspareds "" merge4
+opparm -V 20.5.370 merge4
+chlock merge4 -*
+chautoscope merge4 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off merge4
+opexprlanguage -s hscript merge4
+opuserdata -n '___Version___' -v '20.5.370' merge4
+
+# Node attribwrangle4 (Sop/attribwrangle)
+opadd -e -n attribwrangle attribwrangle4
+oplocate -x 1.64917 -y -1.61761 attribwrangle4
+opspareds "" attribwrangle4
+opparm attribwrangle4  bindings ( 0 ) groupbindings ( 0 )
+opparm attribwrangle4 folder0 ( 0 0 ) group ( "" ) grouptype ( guess ) class ( point ) vex_numcount ( 10 ) vex_threadjobsize ( 1024 ) snippet ( 'vector pos = point(1, "P", 0);\nvector dir = point(1, "P", 1) - pos;\n\n//printf( "%f\\n", dir );\n\nmatrix transform = dihedral( set(1,0,0), dir );\ntranslate( transform,  pos );\n\n@P *= transform;\n' ) exportlist ( * ) vex_strict ( off ) autobind ( on ) bindings ( 0 ) groupautobind ( on ) groupbindings ( 0 ) vex_cwdpath ( . ) vex_outputmask ( * ) vex_updatenmls ( off ) vex_matchattrib ( id ) vex_inplace ( off ) vex_selectiongroup ( "" ) vex_precision ( auto )
+chlock attribwrangle4 -*
+chautoscope attribwrangle4 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off attribwrangle4
+opexprlanguage -s hscript attribwrangle4
+opuserdata -n '___Version___' -v '' attribwrangle4
+
+# Node attribwrangle5 (Sop/attribwrangle)
+opadd -e -n attribwrangle attribwrangle5
+oplocate -x 3.0600900000000002 -y -3.6809599999999998 attribwrangle5
+opspareds "" attribwrangle5
+opparm attribwrangle5  bindings ( 0 ) groupbindings ( 0 )
+opparm attribwrangle5 folder0 ( 0 0 ) group ( "" ) grouptype ( guess ) class ( point ) vex_numcount ( 10 ) vex_threadjobsize ( 1024 ) snippet ( 'vector pos = point(1, "P", 0);\nvector dir = point(1, "P", 1) - pos;\n\n//printf( "%f\\n", dir );\n\nmatrix transform = dihedral( set(1,0,0), dir );\ntranslate( transform,  pos );\n\n@P *= transform;\n' ) exportlist ( * ) vex_strict ( off ) autobind ( on ) bindings ( 0 ) groupautobind ( on ) groupbindings ( 0 ) vex_cwdpath ( . ) vex_outputmask ( * ) vex_updatenmls ( off ) vex_matchattrib ( id ) vex_inplace ( off ) vex_selectiongroup ( "" ) vex_precision ( auto )
+chlock attribwrangle5 -*
+chautoscope attribwrangle5 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off attribwrangle5
+opexprlanguage -s hscript attribwrangle5
+opuserdata -n '___Version___' -v '' attribwrangle5
+
+# Node blast1 (Sop/blast)
+opadd -e -n blast blast1
+oplocate -x 3.0630899999999999 -y -2.56745 blast1
+opspareds "" blast1
+opparm -V 20.5.370 blast1 group ( 'end handle' ) grouptype ( guess ) computenorms ( off ) negate ( on ) fillhole ( off ) removegrp ( off )
+chlock blast1 -*
+chautoscope blast1 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off blast1
+opexprlanguage -s hscript blast1
+opuserdata -n '___Version___' -v '20.5.370' blast1
+
+# Node blast3 (Sop/blast)
+opadd -e -n blast blast3
+oplocate -x 1.6521699999999999 -y -0.57344899999999999 blast3
+opspareds "" blast3
+opparm -V 20.5.370 blast3 group ( 'handle end' ) grouptype ( guess ) computenorms ( off ) negate ( on ) fillhole ( off ) removegrp ( off )
+chlock blast3 -*
+chautoscope blast3 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off blast3
+opexprlanguage -s hscript blast3
+opuserdata -n '___Version___' -v '20.5.370' blast3
+
+# Node delete_handle (Sop/delete)
+opadd -e -n delete delete_handle
+oplocate -x -2.5341 -y -1.6166100000000001 delete_handle
+opspareds "" delete_handle
+chblockbegin
+chadd -t 0 0 delete_handle rangeend
+chkey -t 0 -v 0 -m 0 -a 0 -A 0 -T a  -F '$N' delete_handle/rangeend
+chblockend
+opparm -V 20.5.370 delete_handle group ( handle ) label0 ( 'Warning: Group Is NOT Filtered by Geometry Type' ) negate ( dele ) entity ( point ) geotype ( all ) stdswitcher ( 0 0 0 0 0 ) affectnumber ( on ) groupop ( pattern ) filter ( 1 ) pattern ( !* ) range ( 0 rangeend ) select ( 1 2 ) affectvolume ( off ) boundtype ( usebbox ) size ( 1 1 1 ) t ( 0 0 0 ) affectnormal ( off ) dir ( 0 0 1 ) angle ( 180 ) camerapath ( "" ) affectdegenerate ( off ) degenerate ( off ) zaf ( off ) doopen ( off ) tol ( 0.001 ) userandom ( off ) globalseed ( 1 ) useseedattrib ( off ) seedattrib ( id ) percent ( 50 ) removegrp ( on ) keeppoints ( off )
+chlock delete_handle -*
+chautoscope delete_handle -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off delete_handle
+opexprlanguage -s hscript delete_handle
+opuserdata -n '___Version___' -v '20.5.370' delete_handle
+
+# Node delete_handle1 (Sop/delete)
+opadd -e -n delete delete_handle1
+oplocate -x 0.65261199999999997 -y -2.56745 delete_handle1
+opspareds "" delete_handle1
+chblockbegin
+chadd -t 0 0 delete_handle1 rangeend
+chkey -t 0 -v 0 -m 0 -a 0 -A 0 -T a  -F '$N' delete_handle1/rangeend
+chblockend
+opparm -V 20.5.370 delete_handle1 group ( handle ) label0 ( 'Warning: Group Is NOT Filtered by Geometry Type' ) negate ( dele ) entity ( point ) geotype ( all ) stdswitcher ( 0 0 0 0 0 ) affectnumber ( on ) groupop ( pattern ) filter ( 1 ) pattern ( !* ) range ( 0 rangeend ) select ( 1 2 ) affectvolume ( off ) boundtype ( usebbox ) size ( 1 1 1 ) t ( 0 0 0 ) affectnormal ( off ) dir ( 0 0 1 ) angle ( 180 ) camerapath ( "" ) affectdegenerate ( off ) degenerate ( off ) zaf ( off ) doopen ( off ) tol ( 0.001 ) userandom ( off ) globalseed ( 1 ) useseedattrib ( off ) seedattrib ( id ) percent ( 50 ) removegrp ( on ) keeppoints ( off )
+chlock delete_handle1 -*
+chautoscope delete_handle1 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off delete_handle1
+opexprlanguage -s hscript delete_handle1
+opuserdata -n '___Version___' -v '20.5.370' delete_handle1
+
+# Node ElbowLeft (Sop/Elbow)
+opadd -e -n Elbow ElbowLeft
+oplocate -x -2.5341 -y 2.9080300000000001 ElbowLeft
+opspareds "" ElbowLeft
+chblockbegin
+chadd -t 0 0 ElbowLeft Width
+chkey -t 0 -v 1 -m 0 -a 0 -A 0 -T a  -F 'ch("../Width")' ElbowLeft/Width
+chadd -t 0 0 ElbowLeft CornerType
+chkey -t 0 -v 0 -m 0 -a 0 -A 0 -T a  -F 'ch("../CornerType")' ElbowLeft/CornerType
+chblockend
+opparm ElbowLeft Direction ( 0 ) Width ( Width ) CornerType ( CornerType )
+chlock ElbowLeft -*
+chautoscope ElbowLeft -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off ElbowLeft
+nbop __netbox1 add ElbowLeft
+opexprlanguage -s hscript ElbowLeft
+opuserdata -n '___Version___' -v '' ElbowLeft
+
+# Node ElbowRight (Sop/Elbow)
+opadd -e -n Elbow ElbowRight
+oplocate -x -0.74738800000000005 -y 2.9080300000000001 ElbowRight
+opspareds "" ElbowRight
+chblockbegin
+chadd -t 0 0 ElbowRight Width
+chkey -t 0 -v 1 -m 0 -a 0 -A 0 -T a  -F 'ch("../Width")' ElbowRight/Width
+chadd -t 0 0 ElbowRight CornerType
+chkey -t 0 -v 0 -m 0 -a 0 -A 0 -T a  -F 'ch("../CornerType")' ElbowRight/CornerType
+chblockend
+opparm ElbowRight Direction ( 1 ) Width ( Width ) CornerType ( CornerType )
+chlock ElbowRight -*
+chautoscope ElbowRight -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off ElbowRight
+nbop __netbox1 add ElbowRight
+opexprlanguage -s hscript ElbowRight
+opuserdata -n '___Version___' -v '' ElbowRight
+
+# Node switch1 (Sop/switch)
+opadd -e -n switch switch1
+oplocate -x -2.5341 -y 0.71364000000000005 switch1
+opspareds "" switch1
+chblockbegin
+chadd -t 0 0 switch1 input
+chkey -t 0 -v 0 -m 0 -a 0 -A 0 -T a  -F 'ch("../FromDirection")' switch1/input
+chblockend
+opparm -V 20.5.370 switch1 input ( input )
+chlock switch1 -*
+chautoscope switch1 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off switch1
+nbop __netbox1 add switch1
+opexprlanguage -s hscript switch1
+opuserdata -n '___Version___' -v '20.5.370' switch1
+
+# Node transform1 (Sop/xform)
+opadd -e -n xform transform1
+oplocate -x -2.5341 -y 1.74028 transform1
+opspareds "" transform1
+opparm -V 20.5.370 transform1 group ( "" ) grouptype ( guess ) xOrd ( srt ) rOrd ( xyz ) t ( 0 0 0 ) r ( 0 -90 0 ) s ( 1 1 1 ) shear ( 0 0 0 ) scale ( 1 ) parmgroup_pivotxform ( 0 ) p ( 0 0 0 ) pr ( 0 0 0 ) parmgroup_prexform ( 0 ) prexform_xOrd ( srt ) prexform_rOrd ( xyz ) prexform_t ( 0 0 0 ) prexform_r ( 0 0 0 ) prexform_s ( 1 1 1 ) prexform_shear ( 0 0 0 ) movecentroid ( 0 ) movepivot ( 0 ) attribs ( * ) updatenmls ( off ) updateaffectednmls ( on ) vlength ( on ) invertxform ( off ) addattrib ( off ) outputattrib ( xform ) outputmerge ( post )
+chlock transform1 -*
+chautoscope transform1 -* +tx +ty +tz +rx +ry +rz +sx +sy +sz
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off transform1
+nbop __netbox1 add transform1
+opexprlanguage -s hscript transform1
+opuserdata -n '___Version___' -v '20.5.370' transform1
+
+# Node transform2 (Sop/xform)
+opadd -e -n xform transform2
+oplocate -x -0.74738800000000005 -y 1.74028 transform2
+opspareds "" transform2
+opparm -V 20.5.370 transform2 group ( "" ) grouptype ( guess ) xOrd ( srt ) rOrd ( xyz ) t ( 0 0 0 ) r ( 0 90 0 ) s ( 1 1 1 ) shear ( 0 0 0 ) scale ( 1 ) parmgroup_pivotxform ( 0 ) p ( 0 0 0 ) pr ( 0 0 0 ) parmgroup_prexform ( 0 ) prexform_xOrd ( srt ) prexform_rOrd ( xyz ) prexform_t ( 0 0 0 ) prexform_r ( 0 0 0 ) prexform_s ( 1 1 1 ) prexform_shear ( 0 0 0 ) movecentroid ( 0 ) movepivot ( 0 ) attribs ( * ) updatenmls ( off ) updateaffectednmls ( on ) vlength ( on ) invertxform ( off ) addattrib ( off ) outputattrib ( xform ) outputmerge ( post )
+chlock transform2 -*
+chautoscope transform2 -* +tx +ty +tz +rx +ry +rz +sx +sy +sz
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off transform2
+nbop __netbox1 add transform2
+opexprlanguage -s hscript transform2
+opuserdata -n '___Version___' -v '20.5.370' transform2
+
+# Node matchsize1 (Sop/matchsize)
+opadd -e -n matchsize matchsize1
+oplocate -x -2.5341 -y -0.435033 matchsize1
+opspareds "" matchsize1
+opparm matchsize1 group ( "" ) grouptype ( guess ) sepparm ( ) justifytarget ( auto ) doboundgroup ( off ) folder2 ( 0 ) sourcegroup ( "" ) sourcegrouptype ( guess ) refgroup ( "" ) refgrouptype ( guess ) folder1 ( 0 ) t ( 0 0 0 ) size ( 1 1 1 ) folder0 ( 0 ) dotranslate ( on ) justify_x ( min ) goal_x ( same ) offset_x ( 0 ) justify_y ( center ) goal_y ( same ) offset_y ( 0 ) justify_z ( center ) goal_z ( same ) offset_z ( 0 ) doscale ( off ) uniformscale ( on ) scale_axis ( min ) scale_x ( on ) scale_y ( on ) scale_z ( on ) restorexform ( off ) restoreattrib ( xform ) stashxform ( off ) stashattrib ( xform ) stashmerge ( replace )
+chlock matchsize1 -*
+chautoscope matchsize1 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off matchsize1
+nbop __netbox1 add matchsize1
+opexprlanguage -s hscript matchsize1
+opuserdata -n '___Version___' -v '' matchsize1
+
+# Node Landing1 (Sop/Straight)
+opadd -e -n Straight Landing1
+oplocate -x 9.2590800000000009 -y 0.48490299999999997 Landing1
+opspareds "" Landing1
+chblockbegin
+chadd -t 0 0 Landing1 Length
+chkey -t 0 -v 2 -m 0 -a 0 -A 0 -T a  -F 'ch("../Width")' Landing1/Length
+chadd -t 0 0 Landing1 Width
+chkey -t 0 -v 1 -m 0 -a 0 -A 0 -T a  -F 'ch("../Width")' Landing1/Width
+chblockend
+opparm Landing1 Length ( Length ) Width ( Width ) Elevation ( 0 )
+chlock Landing1 -*
+chautoscope Landing1 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off Landing1
+nbop __netbox2 add Landing1
+opexprlanguage -s hscript Landing1
+opuserdata -n '___Version___' -v '' Landing1
+
+# Node ElbowLeft1 (Sop/Elbow)
+opadd -e -n Elbow ElbowLeft1
+oplocate -x 11.140599999999999 -y 0.48490299999999997 ElbowLeft1
+opspareds "" ElbowLeft1
+chblockbegin
+chadd -t 0 0 ElbowLeft1 Width
+chkey -t 0 -v 1 -m 0 -a 0 -A 0 -T a  -F 'ch("../Width")' ElbowLeft1/Width
+chadd -t 0 0 ElbowLeft1 CornerType
+chkey -t 0 -v 0 -m 0 -a 0 -A 0 -T a  -F 'ch("../CornerType")\n' ElbowLeft1/CornerType
+chblockend
+opparm ElbowLeft1 Direction ( 0 ) Width ( Width ) CornerType ( CornerType )
+chlock ElbowLeft1 -*
+chautoscope ElbowLeft1 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off ElbowLeft1
+nbop __netbox2 add ElbowLeft1
+opexprlanguage -s hscript ElbowLeft1
+opuserdata -n '___Version___' -v '' ElbowLeft1
+
+# Node ElbowRight1 (Sop/Elbow)
+opadd -e -n Elbow ElbowRight1
+oplocate -x 12.927300000000001 -y 0.48490299999999997 ElbowRight1
+opspareds "" ElbowRight1
+chblockbegin
+chadd -t 0 0 ElbowRight1 Width
+chkey -t 0 -v 1 -m 0 -a 0 -A 0 -T a  -F 'ch("../Width")' ElbowRight1/Width
+chadd -t 0 0 ElbowRight1 CornerType
+chkey -t 0 -v 0 -m 0 -a 0 -A 0 -T a  -F 'ch("../CornerType")' ElbowRight1/CornerType
+chblockend
+opparm ElbowRight1 Direction ( 1 ) Width ( Width ) CornerType ( CornerType )
+chlock ElbowRight1 -*
+chautoscope ElbowRight1 -*
+opset -d on -r on -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off ElbowRight1
+nbop __netbox2 add ElbowRight1
+opexprlanguage -s hscript ElbowRight1
+opuserdata -n '___Version___' -v '' ElbowRight1
+
+# Node switch2 (Sop/switch)
+opadd -e -n switch switch2
+oplocate -x 11.140599999999999 -y -1.70949 switch2
+opspareds "" switch2
+chblockbegin
+chadd -t 0 0 switch2 input
+chkey -t 0 -v 0 -m 0 -a 0 -A 0 -T a  -F 'ch("../ToDirection")' switch2/input
+chblockend
+opparm -V 20.5.370 switch2 input ( input )
+chlock switch2 -*
+chautoscope switch2 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off switch2
+nbop __netbox2 add switch2
+opexprlanguage -s hscript switch2
+opuserdata -n '___Version___' -v '20.5.370' switch2
+
+# Node transform3 (Sop/xform)
+opadd -e -n xform transform3
+oplocate -x 11.140599999999999 -y -0.68284699999999998 transform3
+opspareds "" transform3
+opparm -V 20.5.370 transform3 group ( "" ) grouptype ( guess ) xOrd ( srt ) rOrd ( xyz ) t ( 0 0 0 ) r ( 0 0 0 ) s ( 1 1 1 ) shear ( 0 0 0 ) scale ( 1 ) parmgroup_pivotxform ( 0 ) p ( 0 0 0 ) pr ( 0 0 0 ) parmgroup_prexform ( 0 ) prexform_xOrd ( srt ) prexform_rOrd ( xyz ) prexform_t ( 0 0 0 ) prexform_r ( 0 0 0 ) prexform_s ( 1 1 1 ) prexform_shear ( 0 0 0 ) movecentroid ( 0 ) movepivot ( 0 ) attribs ( * ) updatenmls ( off ) updateaffectednmls ( on ) vlength ( on ) invertxform ( off ) addattrib ( off ) outputattrib ( xform ) outputmerge ( post )
+chlock transform3 -*
+chautoscope transform3 -* +tx +ty +tz +rx +ry +rz +sx +sy +sz
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off transform3
+nbop __netbox2 add transform3
+opexprlanguage -s hscript transform3
+opuserdata -n '___Version___' -v '20.5.370' transform3
+
+# Node transform4 (Sop/xform)
+opadd -e -n xform transform4
+oplocate -x 12.927300000000001 -y -0.68284699999999998 transform4
+opspareds "" transform4
+opparm -V 20.5.370 transform4 group ( "" ) grouptype ( guess ) xOrd ( srt ) rOrd ( xyz ) t ( 0 0 0 ) r ( 0 0 0 ) s ( 1 1 1 ) shear ( 0 0 0 ) scale ( 1 ) parmgroup_pivotxform ( 0 ) p ( 0 0 0 ) pr ( 0 0 0 ) parmgroup_prexform ( 0 ) prexform_xOrd ( srt ) prexform_rOrd ( xyz ) prexform_t ( 0 0 0 ) prexform_r ( 0 0 0 ) prexform_s ( 1 1 1 ) prexform_shear ( 0 0 0 ) movecentroid ( 0 ) movepivot ( 0 ) attribs ( * ) updatenmls ( off ) updateaffectednmls ( on ) vlength ( on ) invertxform ( off ) addattrib ( off ) outputattrib ( xform ) outputmerge ( post )
+chlock transform4 -*
+chautoscope transform4 -* +tx +ty +tz +rx +ry +rz +sx +sy +sz
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off transform4
+nbop __netbox2 add transform4
+opexprlanguage -s hscript transform4
+opuserdata -n '___Version___' -v '20.5.370' transform4
+
+# Node matchsize2 (Sop/matchsize)
+opadd -e -n matchsize matchsize2
+oplocate -x 11.140599999999999 -y -2.8581599999999998 matchsize2
+opspareds "" matchsize2
+opparm matchsize2 group ( "" ) grouptype ( guess ) sepparm ( ) justifytarget ( auto ) doboundgroup ( off ) folder2 ( 0 ) sourcegroup ( "" ) sourcegrouptype ( guess ) refgroup ( "" ) refgrouptype ( guess ) folder1 ( 0 ) t ( 0 0 0 ) size ( 1 1 1 ) folder0 ( 0 ) dotranslate ( on ) justify_x ( min ) goal_x ( same ) offset_x ( 0 ) justify_y ( center ) goal_y ( same ) offset_y ( 0 ) justify_z ( none ) goal_z ( same ) offset_z ( 0 ) doscale ( off ) uniformscale ( on ) scale_axis ( min ) scale_x ( on ) scale_y ( on ) scale_z ( on ) restorexform ( off ) restoreattrib ( xform ) stashxform ( off ) stashattrib ( xform ) stashmerge ( replace )
+chlock matchsize2 -*
+chautoscope matchsize2 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off matchsize2
+nbop __netbox2 add matchsize2
+opexprlanguage -s hscript matchsize2
+opuserdata -n '___Version___' -v '' matchsize2
+
+# Node delete_end (Sop/delete)
+opadd -e -n delete delete_end
+oplocate -x -2.5341 -y -2.6967699999999999 delete_end
+opspareds "" delete_end
+chblockbegin
+chadd -t 0 0 delete_end rangeend
+chkey -t 0 -v 0 -m 0 -a 0 -A 0 -T a  -F '$N' delete_end/rangeend
+chblockend
+opparm -V 20.5.370 delete_end group ( end ) label0 ( 'Warning: Group Is NOT Filtered by Geometry Type' ) negate ( dele ) entity ( point ) geotype ( all ) stdswitcher ( 0 0 0 0 0 ) affectnumber ( on ) groupop ( pattern ) filter ( 1 ) pattern ( !* ) range ( 0 rangeend ) select ( 1 2 ) affectvolume ( off ) boundtype ( usebbox ) size ( 1 1 1 ) t ( 0 0 0 ) affectnormal ( off ) dir ( 0 0 1 ) angle ( 180 ) camerapath ( "" ) affectdegenerate ( off ) degenerate ( off ) zaf ( off ) doopen ( off ) tol ( 0.001 ) userandom ( off ) globalseed ( 1 ) useseedattrib ( off ) seedattrib ( id ) percent ( 50 ) removegrp ( on ) keeppoints ( off )
+chlock delete_end -*
+chautoscope delete_end -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off delete_end
+opexprlanguage -s hscript delete_end
+opuserdata -n '___Version___' -v '20.5.370' delete_end
+
+# Node delete_end1 (Sop/delete)
+opadd -e -n delete delete_end1
+oplocate -x 0.64961599999999997 -y -3.56745 delete_end1
+opspareds "" delete_end1
+chblockbegin
+chadd -t 0 0 delete_end1 rangeend
+chkey -t 0 -v 0 -m 0 -a 0 -A 0 -T a  -F '$N' delete_end1/rangeend
+chblockend
+opparm -V 20.5.370 delete_end1 group ( end ) label0 ( 'Warning: Group Is NOT Filtered by Geometry Type' ) negate ( dele ) entity ( point ) geotype ( all ) stdswitcher ( 0 0 0 0 0 ) affectnumber ( on ) groupop ( pattern ) filter ( 1 ) pattern ( !* ) range ( 0 rangeend ) select ( 1 2 ) affectvolume ( off ) boundtype ( usebbox ) size ( 1 1 1 ) t ( 0 0 0 ) affectnormal ( off ) dir ( 0 0 1 ) angle ( 180 ) camerapath ( "" ) affectdegenerate ( off ) degenerate ( off ) zaf ( off ) doopen ( off ) tol ( 0.001 ) userandom ( off ) globalseed ( 1 ) useseedattrib ( off ) seedattrib ( id ) percent ( 50 ) removegrp ( on ) keeppoints ( off )
+chlock delete_end1 -*
+chautoscope delete_end1 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off delete_end1
+opexprlanguage -s hscript delete_end1
+opuserdata -n '___Version___' -v '20.5.370' delete_end1
+oporder -e output0 Slope Landing merge4 attribwrangle4 attribwrangle5 blast1 blast3 delete_handle delete_handle1 ElbowLeft ElbowRight switch1 transform1 transform2 matchsize1 Landing1 ElbowLeft1 ElbowRight1 switch2 transform3 transform4 matchsize2 delete_end delete_end1 
+opcf ..
+
+# Node delete_handle (Sop/delete)
+opadd -e -n delete delete_handle
+oplocate -x -1.11759e-08 -y 2.4923299999999999 delete_handle
+opspareds "" delete_handle
+chblockbegin
+chadd -t 0 0 delete_handle rangeend
+chkey -t 0 -v 0 -m 0 -a 0 -A 0 -T a  -F '$N' delete_handle/rangeend
+chblockend
+opparm -V 20.5.370 delete_handle group ( handle ) label0 ( 'Warning: Group Is NOT Filtered by Geometry Type' ) negate ( dele ) entity ( point ) geotype ( all ) stdswitcher ( 0 0 0 0 0 ) affectnumber ( on ) groupop ( pattern ) filter ( 1 ) pattern ( !* ) range ( 0 rangeend ) select ( 1 2 ) affectvolume ( off ) boundtype ( usebbox ) size ( 1 1 1 ) t ( 0 0 0 ) affectnormal ( off ) dir ( 0 0 1 ) angle ( 180 ) camerapath ( "" ) affectdegenerate ( off ) degenerate ( off ) zaf ( off ) doopen ( off ) tol ( 0.001 ) userandom ( off ) globalseed ( 1 ) useseedattrib ( off ) seedattrib ( id ) percent ( 50 ) removegrp ( on ) keeppoints ( off )
+chlock delete_handle -*
+chautoscope delete_handle -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off delete_handle
+opexprlanguage -s hscript delete_handle
+opuserdata -n '___Version___' -v '20.5.370' delete_handle
+
+# Node delete_end (Sop/delete)
+opadd -e -n delete delete_end
+oplocate -x -1.11759e-08 -y 1.35884 delete_end
+opspareds "" delete_end
+chblockbegin
+chadd -t 0 0 delete_end rangeend
+chkey -t 0 -v 0 -m 0 -a 0 -A 0 -T a  -F '$N' delete_end/rangeend
+chblockend
+opparm -V 20.5.370 delete_end group ( end ) label0 ( 'Warning: Group Is NOT Filtered by Geometry Type' ) negate ( dele ) entity ( point ) geotype ( all ) stdswitcher ( 0 0 0 0 0 ) affectnumber ( on ) groupop ( pattern ) filter ( 1 ) pattern ( !* ) range ( 0 rangeend ) select ( 1 2 ) affectvolume ( off ) boundtype ( usebbox ) size ( 1 1 1 ) t ( 0 0 0 ) affectnormal ( off ) dir ( 0 0 1 ) angle ( 180 ) camerapath ( "" ) affectdegenerate ( off ) degenerate ( off ) zaf ( off ) doopen ( off ) tol ( 0.001 ) userandom ( off ) globalseed ( 1 ) useseedattrib ( off ) seedattrib ( id ) percent ( 50 ) removegrp ( on ) keeppoints ( off )
+chlock delete_end -*
+chautoscope delete_end -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off delete_end
+opexprlanguage -s hscript delete_end
+opuserdata -n '___Version___' -v '20.5.370' delete_end
+
+# Node merge1 (Sop/merge)
+opadd -e -n merge merge1
+oplocate -x -0.0011500099999999999 -y -2.07301 merge1
+opspareds "" merge1
+opparm -V 20.5.370 merge1
+chlock merge1 -*
+chautoscope merge1 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off merge1
+opexprlanguage -s hscript merge1
+opuserdata -n '___Version___' -v '20.5.370' merge1
+
+# Node attribwrangle5 (Sop/attribwrangle)
+opadd -e -n attribwrangle attribwrangle5
+oplocate -x 3.4581599999999999 -y -1.1494800000000001 attribwrangle5
+opspareds "" attribwrangle5
+opparm attribwrangle5  bindings ( 0 ) groupbindings ( 0 )
+opparm attribwrangle5 folder0 ( 0 0 ) group ( "" ) grouptype ( guess ) class ( point ) vex_numcount ( 10 ) vex_threadjobsize ( 1024 ) snippet ( 'vector pos = point(1, "P", 0);\nvector dir = point(1, "P", 1) - pos;\n\n//printf( "%f\\n", dir );\n\nmatrix transform = dihedral( set(1,0,0), dir );\ntranslate( transform,  pos );\n\n@P *= transform;\n' ) exportlist ( * ) vex_strict ( off ) autobind ( on ) bindings ( 0 ) groupautobind ( on ) groupbindings ( 0 ) vex_cwdpath ( . ) vex_outputmask ( * ) vex_updatenmls ( off ) vex_matchattrib ( id ) vex_inplace ( off ) vex_selectiongroup ( "" ) vex_precision ( auto )
+chlock attribwrangle5 -*
+chautoscope attribwrangle5 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b on attribwrangle5
+opexprlanguage -s hscript attribwrangle5
+opuserdata -n '___Version___' -v '' attribwrangle5
+
+# Node blast4 (Sop/blast)
+opadd -e -n blast blast4
+oplocate -x 3.46116 -y 0.267731 blast4
+opspareds "" blast4
+opparm -V 20.5.370 blast4 group ( 'handle end' ) grouptype ( guess ) computenorms ( off ) negate ( on ) fillhole ( off ) removegrp ( off )
+chlock blast4 -*
+chautoscope blast4 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b on blast4
+opexprlanguage -s hscript blast4
+opuserdata -n '___Version___' -v '20.5.370' blast4
+
+# Node Straight2 (Sop/Straight)
+opadd -e -n Straight Straight2
+oplocate -x 6.0499999999999998 -y 0.267731 Straight2
+opspareds "" Straight2
+chblockbegin
+chadd -t 0 0 Straight2 Length
+chkey -t 0 -v 1 -m 0 -a 0 -A 0 -T a  -F 'ch("../Width")' Straight2/Length
+chadd -t 0 0 Straight2 Width
+chkey -t 0 -v 1 -m 0 -a 0 -A 0 -T a  -F 'ch("../Width")' Straight2/Width
+chblockend
+opparm Straight2 Length ( Length ) Width ( Width ) Elevation ( 0 )
+chlock Straight2 -*
+chautoscope Straight2 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b on Straight2
+opexprlanguage -s hscript Straight2
+opuserdata -n '___Version___' -v '' Straight2
+
+# Node blast1 (Sop/blast)
+opadd -e -n blast blast1
+oplocate -x -1.11759e-08 -y -3.6656399999999998 blast1
+opspareds "" blast1
+opparm -V 20.5.370 blast1 group ( start ) grouptype ( guess ) computenorms ( off ) negate ( off ) fillhole ( off ) removegrp ( off )
+chlock blast1 -*
+chautoscope blast1 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off blast1
+opexprlanguage -s hscript blast1
+opuserdata -n '___Version___' -v '20.5.370' blast1
+oporder -e output0 Straight1 attribwrangle4 blast3 transform1 SlopeSkeleton_Base delete_handle delete_end merge1 attribwrangle5 blast4 Straight2 blast1 
+opcf ..
+
+# Node object_merge1 (Sop/object_merge)
+opadd -e -n object_merge object_merge1
+oplocate -x 3.2995999999999999 -y 2.4353099999999999 object_merge1
+opspareds "" object_merge1
+opparm object_merge1  numobj ( 1 )
+opparm -V 20.5.370 object_merge1 numobj ( 1 ) _separator ( ) xformtype ( object ) xformpath ( "" ) invertxform ( off ) createptgroups ( off ) ptgroupprefix ( _ptgrp_ ) createprimgroups ( off ) primgroupprefix ( _primgrp_ ) verbosegroups ( off ) suffixfirstgroup ( on ) createptstring ( off ) createprimstring ( off ) pathattrib ( objname ) pack ( off ) pivot ( centroid ) viewportlod ( full ) addpath ( on ) enable1 ( on ) objpath1 ( ../StairSkeleton_Intermediate ) group1 ( "" ) expand1 ( off )
+chlock object_merge1 -*
+chautoscope object_merge1 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off object_merge1
+opexprlanguage -s hscript object_merge1
+opuserdata -n '___Version___' -v '20.5.370' object_merge1
+
+# Node transform7 (Sop/xform)
+opadd -e -n xform transform7
+oplocate -x 4.4229799999999999 -y -1.3767 transform7
+opspareds '    parm {         name    "group"         baseparm         label   "Group"         export  none         bindselector everything "Transform Geometry"             "Select the geometry to transform and press Enter to complete. Middle mouse to select. Left mouse to select and drag."             0 1 0xffffffff 1 grouptype 0     }     parm {         name    "grouptype"         baseparm         label   "Group Type"         export  none     }     parm {         name    "xOrd"         baseparm         label   "Transform Order"         joinnext         export  none     }     parm {         name    "rOrd"         baseparm         label   "Rotate Order"         nolabel         export  none     }     parm {         name    "t"         baseparm         label   "Translate"         export  none     }     parm {         name    "r"         baseparm         label   "Rotate"         export  none     }     parm {         name    "s"         baseparm         label   "Scale"         export  none     }     parm {         name    "shear"         baseparm         label   "Shear"         export  none     }     parm {         name    "scale"         baseparm         label   "Uniform Scale"         export  none     }     groupcollapsible {         name    "parmgroup_pivotxform2"         label   "Pivot Transform"         grouptag { "group_type" "collapsible" }         grouptag { "sidefx::switcher" "parmgroup_pivotxform" }          parm {             name    "p"             baseparm             label   "Pivot Translate"             export  none         }         parm {             name    "pr"             baseparm             label   "Pivot Rotate"             export  none         }     }      groupcollapsible {         name    "parmgroup_prexform2"         label   "Pre-Transform"         grouptag { "group_type" "collapsible" }         grouptag { "sidefx::switcher" "parmgroup_prexform" }          parm {             name    "prexform_xOrd"             baseparm             label   "Pre-Transform Order"             joinnext             export  none         }         parm {             name    "prexform_rOrd"             baseparm             label   "Pre-Rotate Order"             nolabel             export  none         }         parm {             name    "prexform_t"             baseparm             label   "Pre-Translate"             export  none         }         parm {             name    "prexform_r"             baseparm             label   "Pre-Rotate"             export  none         }         parm {             name    "prexform_s"             baseparm             label   "Pre-Scale"             export  none         }         parm {             name    "prexform_shear"             baseparm             label   "Pre-Shear"             export  none         }     }      parm {         name    "movecentroid"         baseparm         label   "Move Centroid to Origin"         joinnext         export  none     }     parm {         name    "movepivot"         baseparm         label   "Move Pivot to Centroid"         export  none     }     parm {         name    "attribs"         baseparm         label   "Attributes"         export  none     }     parm {         name    "updatenmls"         baseparm         label   "Recompute Point Normals"         export  none     }     parm {         name    "updateaffectednmls"         baseparm         label   "Recompute Affected Normals"         export  none     }     parm {         name    "vlength"         baseparm         label   "Preserve Normal Length"         export  none     }     parm {         name    "invertxform"         baseparm         label   "Invert Transformation"         export  none     }     parm {         name    "addattrib"         baseparm         label   "Output Attribute"         nolabel         joinnext         export  none     }     parm {         name    "outputattrib"         baseparm         label   "Output Attribute"         joinnext         export  none     }     parm {         name    "outputmerge"         baseparm         label   "Combine"         nolabel         export  none     }     parm {         name    "spare_input0"         label   "Spare Input 0"         type    oppath         default { "" }         help    "Refer to this in expressions as -1, such as: npoints(-1)"         parmtag { "cook_dependent" "1" }         parmtag { "opfilter" "!!SOP!!" }         parmtag { "oprelative" "." }     } ' transform7
+chblockbegin
+chadd -t 0 0 transform7 tx
+chkey -t 0 -v 0 -m 0 -a 0 -A 0 -T a  -F '$SIZEX' transform7/tx
+chadd -t 0 0 transform7 ty
+chkey -t 0 -v 0 -m 0 -a 0 -A 0 -T a  -F '(detail(-1, "value", 0)+0.5) * ch("../Elevation")' transform7/ty
+chadd -t 0 0 transform7 tz
+chkey -t 0 -v 5 -m 0 -a 0 -A 0 -T a  -F 'if(ch("../Rotation")==1,-1,1)*0.5*(ch("../Width")+ch("../CenterMargin"))' transform7/tz
+chblockend
+opparm -V 20.5.370 transform7 group ( "" ) grouptype ( guess ) xOrd ( srt ) rOrd ( xyz ) t ( tx ty tz ) r ( 0 180 0 ) s ( 1 1 1 ) shear ( 0 0 0 ) scale ( 1 ) parmgroup_pivotxform ( 0 ) p ( 0 0 0 ) pr ( 0 0 0 ) parmgroup_prexform ( 0 ) prexform_xOrd ( srt ) prexform_rOrd ( xyz ) prexform_t ( 0 0 0 ) prexform_r ( 0 0 0 ) prexform_s ( 1 1 1 ) prexform_shear ( 0 0 0 ) movecentroid ( 0 ) movepivot ( 0 ) attribs ( * ) updatenmls ( off ) updateaffectednmls ( on ) vlength ( on ) invertxform ( off ) addattrib ( off ) outputattrib ( xform ) outputmerge ( post ) parmgroup_pivotxform2 ( 0 ) parmgroup_prexform2 ( 0 ) spare_input0 ( ../foreach_count3/ )
+chlock transform7 -*
+chautoscope transform7 -* +tx +ty +tz +rx +ry +rz +sx +sy +sz
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off transform7
+opexprlanguage -s hscript transform7
+opuserdata -n '___Version___' -v '20.5.370' transform7
+
+# Node blast7 (Sop/blast)
+opadd -e -n blast blast7
+oplocate -x 2.1180400000000001 -y -7.0161600000000002 blast7
+opspareds "" blast7
+opparm -V 20.5.370 blast7 group ( handle ) grouptype ( guess ) computenorms ( off ) negate ( on ) fillhole ( off ) removegrp ( off )
+chlock blast7 -*
+chautoscope blast7 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off blast7
+opexprlanguage -s hscript blast7
+opuserdata -n '___Version___' -v '20.5.370' blast7
+
+# Node object_merge7 (Sop/object_merge)
+opadd -e -n object_merge object_merge7
+oplocate -x 1.14859 -y 2.4353099999999999 object_merge7
+opspareds "" object_merge7
+opparm object_merge7  numobj ( 1 )
+opparm -V 20.5.370 object_merge7 numobj ( 1 ) _separator ( ) xformtype ( object ) xformpath ( "" ) invertxform ( off ) createptgroups ( off ) ptgroupprefix ( _ptgrp_ ) createprimgroups ( off ) primgroupprefix ( _primgrp_ ) verbosegroups ( off ) suffixfirstgroup ( on ) createptstring ( off ) createprimstring ( off ) pathattrib ( objname ) pack ( off ) pivot ( centroid ) viewportlod ( full ) addpath ( on ) enable1 ( on ) objpath1 ( ../StairSkeleton_Entrance/ ) group1 ( "" ) expand1 ( off )
+chlock object_merge7 -*
+chautoscope object_merge7 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off object_merge7
+opexprlanguage -s hscript object_merge7
+opuserdata -n '___Version___' -v '20.5.370' object_merge7
+
+# Node switchif5 (Sop/switchif)
+opadd -e -n switchif switchif5
+oplocate -x 4.4229799999999999 -y 0.096304399999999998 switchif5
+opspareds '    parm {         name    "mergecondition"         baseparm         label   "Use Second Input If"         export  none     }     parm {         name    "testinput"         baseparm         label   "Test Input"         export  none     }     multiparm {         name    "tests"         label    "Number of Tests"         baseparm         default 1          parm {             name    "enable#"             baseparm             label   "enable#"             nolabel             joinnext             export  none         }         parm {             name    "type#"             baseparm             label   "Test Type"             export  none         }         parm {             name    "expr#"             baseparm             label   "Enable"             export  none         }         parm {             name    "attribtype#"             baseparm             label   "Enable When"             export  none         }         parm {             name    "attribowner#"             baseparm             label   "Class"             export  none         }         parm {             name    "attributes#"             baseparm             label   "Attributes"             export  none         }         parm {             name    "attribvaltype#"             baseparm             label   "Of Type"             export  none         }         parm {             name    "attribfloatcomp#"             baseparm             label   "Is"             export  none         }         parm {             name    "attribstringcomp#"             baseparm             label   "Is"             export  none         }         parm {             name    "attribval#"             baseparm             label   "Value"             export  none         }         parm {             name    "attribsval#"             baseparm             label   "Value"             export  none         }         parm {             name    "counttype#"             baseparm             label   "Enable When"             export  none         }         parm {             name    "countgroup#"             baseparm             label   "In Group"             export  none         }         parm {             name    "countcomp#"             baseparm             label   "Is"             export  none         }         parm {             name    "countval#"             baseparm             label   "Value"             export  none         }         parm {             name    "hasinputtype#"             baseparm             label   "Enable When"             export  none         }     }      parm {         name    "spare_input0"         label   "Spare Input 0"         type    oppath         default { "" }         help    "Refer to this in expressions as -1, such as: npoints(-1)"         parmtag { "cook_dependent" "1" }         parmtag { "opfilter" "!!SOP!!" }         parmtag { "oprelative" "." }     } ' switchif5
+opparm switchif5  tests ( 1 )
+chblockbegin
+chadd -t 0 0 switchif5 expr1
+chkey -t 0 -v 1 -m 0 -a 0 -A 0 -T a  -F 'detail(-1,"iteration",0)==(detail(-1,"numiterations",0)-1)' switchif5/expr1
+chblockend
+opparm -V 20.5.370 switchif5 mergecondition ( all ) testinput ( first ) tests ( 1 ) enable1 ( on ) type1 ( expr ) expr1 ( expr1 ) attribtype1 ( all ) attribowner1 ( point ) attributes1 ( "" ) attribvaltype1 ( flt ) attribfloatcomp1 ( equal ) attribstringcomp1 ( equal ) attribval1 ( 0 ) attribsval1 ( "" ) counttype1 ( points ) countgroup1 ( "" ) countcomp1 ( equal ) countval1 ( 0 ) hasinputtype1 ( wired ) spare_input0 ( ../foreach_count3 )
+chlock switchif5 -*
+chautoscope switchif5 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off switchif5
+opexprlanguage -s hscript switchif5
+opuserdata -n '___Version___' -v '20.5.370' switchif5
+
+# Node StairSkeleton_Exit (Sop/subnet)
+opadd -e -n subnet StairSkeleton_Exit
+oplocate -x -4.7112499999999997 -y 2.1954899999999999 StairSkeleton_Exit
+opspareds '    parm {         name    "label1"         baseparm         label   "Input #1 Label"         export  all     }     parm {         name    "label2"         baseparm         label   "Input #2 Label"         export  all     }     parm {         name    "label3"         baseparm         label   "Input #3 Label"         export  all     }     parm {         name    "label4"         baseparm         label   "Input #4 Label"         export  all     }     parm {         name    "Width"         label   "Width"         type    float         default { "1.6" }         range   { 0! 10 }         parmtag { "script_callback_language" "python" }     }     parm {         name    "Elevation"         label   "Elevation"         type    float         default { "3" }         range   { 0! 10 }         parmtag { "script_callback_language" "python" }     }     parm {         name    "SlopeLength"         label   "SlopeLength"         type    float         default { "2" }         range   { 0 10 }         parmtag { "script_callback_language" "python" }     }     parm {         name    "CenterMargin"         label   "CenterMargin"         type    float         default { "0.25" }         range   { 0 10 }         parmtag { "script_callback_language" "python" }     }     parm {         name    "Rotation"         label   "Rotation"         type    ordinal         default { "0" }         menu usetokenvalue {             "2" "CW"             "1" "CCW"         }         parmtag { "script_callback_language" "python" }     }     parm {         name    "CornerType"         label   "CornerType"         type    ordinal         default { "0" }         menu {             "0" "Rect"             "1" "Arc"         }         parmtag { "script_callback_language" "python" }     } ' StairSkeleton_Exit
+chblockbegin
+chadd -t 0 0 StairSkeleton_Exit Width
+chkey -t 0 -v 1 -m 0 -a 0 -A 0 -T a  -F 'ch("../Width")' StairSkeleton_Exit/Width
+chadd -t 0 0 StairSkeleton_Exit Elevation
+chkey -t 0 -v 3 -m 0 -a 0 -A 0 -T a  -F 'ch("../Elevation")' StairSkeleton_Exit/Elevation
+chadd -t 0 0 StairSkeleton_Exit SlopeLength
+chkey -t 0 -v 2 -m 0 -a 0 -A 0 -T a  -F 'ch("../SlopeLength")' StairSkeleton_Exit/SlopeLength
+chadd -t 0 0 StairSkeleton_Exit CenterMargin
+chkey -t 0 -v 0.25 -m 0 -a 0 -A 0 -T a  -F 'ch("../CenterMargin")' StairSkeleton_Exit/CenterMargin
+chadd -t 0 0 StairSkeleton_Exit Rotation
+chkey -t 0 -v 2 -m 0 -a 0 -A 0 -T a  -F 'ch("../Rotation")' StairSkeleton_Exit/Rotation
+chadd -t 0 0 StairSkeleton_Exit CornerType
+chkey -t 0 -v 0 -m 0 -a 0 -A 0 -T a  -F 'ch("../CornerType")' StairSkeleton_Exit/CornerType
+chblockend
+opparm -V 20.5.370 StairSkeleton_Exit label1 ( 'Sub-Network Input #1' ) label2 ( 'Sub-Network Input #2' ) label3 ( 'Sub-Network Input #3' ) label4 ( 'Sub-Network Input #4' ) Width ( Width ) Elevation ( Elevation ) SlopeLength ( SlopeLength ) CenterMargin ( CenterMargin ) Rotation ( Rotation ) CornerType ( CornerType )
+chlock StairSkeleton_Exit -*
+chautoscope StairSkeleton_Exit -*
+opset -d on -r on -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off StairSkeleton_Exit
+opexprlanguage -s hscript StairSkeleton_Exit
+opuserdata -n '___Version___' -v '20.5.370' StairSkeleton_Exit
+opcf StairSkeleton_Exit
+
+# Node output0 (Sop/output)
+opadd -e -n output output0
+oplocate -x -1.11759e-08 -y -5.9938000000000002 output0
+opspareds "" output0
+opparm -V 20.5.370 output0 outputidx ( 0 )
+chlock output0 -*
+chautoscope output0 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off output0
+opexprlanguage -s hscript output0
+opuserdata -n '___Version___' -v '20.5.370' output0
+
+# Node Straight1 (Sop/Straight)
+opadd -e -n Straight Straight1
+oplocate -x 4.1365600000000002 -y 3.3977400000000002 Straight1
+opspareds "" Straight1
+chblockbegin
+chadd -t 0 0 Straight1 Length
+chkey -t 0 -v 0.25 -m 0 -a 0 -A 0 -T a  -F 'ch("../CenterMargin")' Straight1/Length
+chadd -t 0 0 Straight1 Width
+chkey -t 0 -v 1 -m 0 -a 0 -A 0 -T a  -F 'ch("../Width")' Straight1/Width
+chblockend
+opparm Straight1 Length ( Length ) Width ( Width ) Elevation ( 0 )
+chlock Straight1 -*
+chautoscope Straight1 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off Straight1
+opexprlanguage -s hscript Straight1
+opuserdata -n '___Version___' -v '' Straight1
+
+# Node attribwrangle4 (Sop/attribwrangle)
+opadd -e -n attribwrangle attribwrangle4
+oplocate -x 1.9019200000000001 -y 1.3578399999999999 attribwrangle4
+opspareds "" attribwrangle4
+opparm attribwrangle4  bindings ( 0 ) groupbindings ( 0 )
+opparm attribwrangle4 folder0 ( 0 0 ) group ( "" ) grouptype ( guess ) class ( point ) vex_numcount ( 10 ) vex_threadjobsize ( 1024 ) snippet ( 'vector pos = point(1, "P", 0);\nvector dir = point(1, "P", 1) - pos;\n\n//printf( "%f\\n", dir );\n\nmatrix transform = dihedral( set(1,0,0), dir );\ntranslate( transform,  pos );\n\n@P *= transform;\n' ) exportlist ( * ) vex_strict ( off ) autobind ( on ) bindings ( 0 ) groupautobind ( on ) groupbindings ( 0 ) vex_cwdpath ( . ) vex_outputmask ( * ) vex_updatenmls ( off ) vex_matchattrib ( id ) vex_inplace ( off ) vex_selectiongroup ( "" ) vex_precision ( auto )
+chlock attribwrangle4 -*
+chautoscope attribwrangle4 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off attribwrangle4
+opexprlanguage -s hscript attribwrangle4
+opuserdata -n '___Version___' -v '' attribwrangle4
+
+# Node blast3 (Sop/blast)
+opadd -e -n blast blast3
+oplocate -x 1.9049199999999999 -y 2.4923299999999999 blast3
+opspareds "" blast3
+opparm -V 20.5.370 blast3 group ( 'handle end' ) grouptype ( guess ) computenorms ( off ) negate ( on ) fillhole ( off ) removegrp ( off )
+chlock blast3 -*
+chautoscope blast3 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off blast3
+opexprlanguage -s hscript blast3
+opuserdata -n '___Version___' -v '20.5.370' blast3
+
+# Node transform1 (Sop/xform)
+opadd -e -n xform transform1
+oplocate -x 4.1365600000000002 -y 2.3788900000000002 transform1
+opspareds "" transform1
+opparm -V 20.5.370 transform1 group ( "" ) grouptype ( guess ) xOrd ( srt ) rOrd ( xyz ) t ( 0 0 0 ) r ( 0 0 0 ) s ( 1 1 1 ) shear ( 0 0 0 ) scale ( 1 ) parmgroup_pivotxform ( 0 ) p ( 0 0 0 ) pr ( 0 0 0 ) parmgroup_prexform ( 0 ) prexform_xOrd ( srt ) prexform_rOrd ( xyz ) prexform_t ( 0 0 0 ) prexform_r ( 0 0 0 ) prexform_s ( 1 1 1 ) prexform_shear ( 0 0 0 ) movecentroid ( 0 ) movepivot ( 0 ) attribs ( * ) updatenmls ( off ) updateaffectednmls ( on ) vlength ( on ) invertxform ( off ) addattrib ( off ) outputattrib ( xform ) outputmerge ( post )
+chlock transform1 -*
+chautoscope transform1 -* +tx +ty +tz +rx +ry +rz +sx +sy +sz
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off transform1
+opexprlanguage -s hscript transform1
+opuserdata -n '___Version___' -v '20.5.370' transform1
+
+# Node SlopeSkeleton_Base (Sop/subnet)
+opadd -e -n subnet SlopeSkeleton_Base
+oplocate -x -1.11759e-08 -y 4.0988699999999998 SlopeSkeleton_Base
+opspareds '    parm {         name    "label1"         baseparm         label   "Input #1 Label"         export  all     }     parm {         name    "label2"         baseparm         label   "Input #2 Label"         export  all     }     parm {         name    "label3"         baseparm         label   "Input #3 Label"         export  all     }     parm {         name    "label4"         baseparm         label   "Input #4 Label"         export  all     }     parm {         name    "Width"         label   "Width"         type    float         default { "1" }         range   { 0! 10 }         parmtag { "script_callback_language" "python" }     }     parm {         name    "Elevation"         label   "Elevation"         type    float         default { "3" }         range   { 0! 10 }         parmtag { "script_callback_language" "python" }     }     parm {         name    "SlopeLength"         label   "SlopeLength"         type    float         default { "2" }         range   { 0 10 }         parmtag { "script_callback_language" "python" }     }     parm {         name    "FromDirection"         label   "FromDirection"         type    ordinal         default { "0" }         menu {             "0" "Front"             "1" "Left"             "2" "Right"         }         parmtag { "script_callback_language" "python" }     }     parm {         name    "ToDirection"         label   "ToDirection"         type    ordinal         default { "0" }         menu {             "0" "Front"             "1" "Left"             "2" "Right"         }         parmtag { "script_callback_language" "python" }     }     parm {         name    "CornerType"         label   "CornerType"         type    ordinal         default { "0" }         menu {             "0" "Rect"             "1" "Arc"         }         parmtag { "script_callback_language" "python" }     } ' SlopeSkeleton_Base
+chblockbegin
+chadd -t 0 0 SlopeSkeleton_Base Width
+chkey -t 0 -v 1 -m 0 -a 0 -A 0 -T a  -F 'ch("../Width")' SlopeSkeleton_Base/Width
+chadd -t 0 0 SlopeSkeleton_Base Elevation
+chkey -t 0 -v 3 -m 0 -a 0 -A 0 -T a  -F 'ch("../Elevation")' SlopeSkeleton_Base/Elevation
+chadd -t 0 0 SlopeSkeleton_Base SlopeLength
+chkey -t 0 -v 2 -m 0 -a 0 -A 0 -T a  -F 'ch("../SlopeLength")' SlopeSkeleton_Base/SlopeLength
+chadd -t 0 0 SlopeSkeleton_Base FromDirection
+chkey -t 0 -v 0 -m 0 -a 0 -A 0 -T a  -F 'ch("../Rotation")' SlopeSkeleton_Base/FromDirection
+chadd -t 0 0 SlopeSkeleton_Base ToDirection
+chkey -t 0 -v 2 -m 0 -a 0 -A 0 -T a  -F 'ch("../Rotation")' SlopeSkeleton_Base/ToDirection
+chadd -t 0 0 SlopeSkeleton_Base CornerType
+chkey -t 0 -v 0 -m 0 -a 0 -A 0 -T a  -F 'ch("../CornerType")' SlopeSkeleton_Base/CornerType
+chblockend
+opparm -V 20.5.370 SlopeSkeleton_Base label1 ( 'Sub-Network Input #1' ) label2 ( 'Sub-Network Input #2' ) label3 ( 'Sub-Network Input #3' ) label4 ( 'Sub-Network Input #4' ) Width ( Width ) Elevation ( Elevation ) SlopeLength ( SlopeLength ) FromDirection ( FromDirection ) ToDirection ( ToDirection ) CornerType ( CornerType )
+chlock SlopeSkeleton_Base -*
+chautoscope SlopeSkeleton_Base -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off SlopeSkeleton_Base
+opexprlanguage -s hscript SlopeSkeleton_Base
+opuserdata -n '___Version___' -v '20.5.370' SlopeSkeleton_Base
+opcf SlopeSkeleton_Base
+
+# Network Box __netbox1
+nbadd __netbox1
+nblocate -x -4.81558 -y -0.635033 __netbox1
+nbsize -w 6.46819 -h 4.04307 __netbox1
+nbset  -m off __netbox1
+nbcolor -c 0.52 0.52 0.52 __netbox1
+
+# Network Box __netbox2
+nbadd __netbox2
+nblocate -x 8.85908 -y -3.05816 __netbox2
+nbsize -w 6.46819 -h 4.04307 __netbox2
+nbset  -m off __netbox2
+nbcolor -c 0.52 0.52 0.52 __netbox2
+
+# Node output0 (Sop/output)
+opadd -e -n output output0
+oplocate -x -0.11806899999999999 -y -8.5848899999999997 output0
+opspareds "" output0
+opparm -V 20.5.370 output0 outputidx ( 0 )
+chlock output0 -*
+chautoscope output0 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off output0
+opexprlanguage -s hscript output0
+opuserdata -n '___Version___' -v '20.5.370' output0
+
+# Node Slope (Sop/Straight)
+opadd -e -n Straight Slope
+oplocate -x 3.0630899999999999 -y 1.6083499999999999 Slope
+opspareds "" Slope
+chblockbegin
+chadd -t 0 0 Slope Length
+chkey -t 0 -v 2 -m 0 -a 0 -A 0 -T a  -F 'ch("../SlopeLength")' Slope/Length
+chadd -t 0 0 Slope Width
+chkey -t 0 -v 1 -m 0 -a 0 -A 0 -T a  -F 'ch("../Width")' Slope/Width
+chadd -t 0 0 Slope Elevation
+chkey -t 0 -v 0 -m 0 -a 0 -A 0 -T a  -F '0.5 * ch("../Elevation")' Slope/Elevation
+chblockend
+opparm Slope Length ( Length ) Width ( Width ) Elevation ( Elevation )
+chlock Slope -*
+chautoscope Slope -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off Slope
+opexprlanguage -s hscript Slope
+opuserdata -n '___Version___' -v '' Slope
+
+# Node Elbow1 (Sop/Elbow)
+opadd -e -n Elbow Elbow1
+oplocate -x 6.8983499999999998 -y -0.75802999999999998 Elbow1
+opspareds "" Elbow1
+chblockbegin
+chadd -t 0 0 Elbow1 Width
+chkey -t 0 -v 1 -m 0 -a 0 -A 0 -T a  -F 'ch("../Width")' Elbow1/Width
+chadd -t 0 0 Elbow1 CornerType
+chkey -t 0 -v 1 -m 0 -a 0 -A 0 -T a  -F 'ch("../CornerType")' Elbow1/CornerType
+chblockend
+opparm Elbow1 Direction ( 0 ) Width ( Width ) CornerType ( CornerType )
+chlock Elbow1 -*
+chautoscope Elbow1 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off Elbow1
+opexprlanguage -s hscript Elbow1
+opuserdata -n '___Version___' -v '' Elbow1
+
+# Node Landing (Sop/Straight)
+opadd -e -n Straight Landing
+oplocate -x -4.4155800000000003 -y 2.9080300000000001 Landing
+opspareds "" Landing
+chblockbegin
+chadd -t 0 0 Landing Length
+chkey -t 0 -v 2 -m 0 -a 0 -A 0 -T a  -F 'ch("../Width")' Landing/Length
+chadd -t 0 0 Landing Width
+chkey -t 0 -v 1 -m 0 -a 0 -A 0 -T a  -F 'ch("../Width")' Landing/Width
+chblockend
+opparm Landing Length ( Length ) Width ( Width ) Elevation ( 0 )
+chlock Landing -*
+chautoscope Landing -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off Landing
+nbop __netbox1 add Landing
+opexprlanguage -s hscript Landing
+opuserdata -n '___Version___' -v '' Landing
+
+# Node merge4 (Sop/merge)
+opadd -e -n merge merge4
+oplocate -x -0.11921900000000001 -y -5.1919300000000002 merge4
+opspareds "" merge4
+opparm -V 20.5.370 merge4
+chlock merge4 -*
+chautoscope merge4 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off merge4
+opexprlanguage -s hscript merge4
+opuserdata -n '___Version___' -v '20.5.370' merge4
+
+# Node attribwrangle4 (Sop/attribwrangle)
+opadd -e -n attribwrangle attribwrangle4
+oplocate -x 1.64917 -y -1.61761 attribwrangle4
+opspareds "" attribwrangle4
+opparm attribwrangle4  bindings ( 0 ) groupbindings ( 0 )
+opparm attribwrangle4 folder0 ( 0 0 ) group ( "" ) grouptype ( guess ) class ( point ) vex_numcount ( 10 ) vex_threadjobsize ( 1024 ) snippet ( 'vector pos = point(1, "P", 0);\nvector dir = point(1, "P", 1) - pos;\n\n//printf( "%f\\n", dir );\n\nmatrix transform = dihedral( set(1,0,0), dir );\ntranslate( transform,  pos );\n\n@P *= transform;\n' ) exportlist ( * ) vex_strict ( off ) autobind ( on ) bindings ( 0 ) groupautobind ( on ) groupbindings ( 0 ) vex_cwdpath ( . ) vex_outputmask ( * ) vex_updatenmls ( off ) vex_matchattrib ( id ) vex_inplace ( off ) vex_selectiongroup ( "" ) vex_precision ( auto )
+chlock attribwrangle4 -*
+chautoscope attribwrangle4 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off attribwrangle4
+opexprlanguage -s hscript attribwrangle4
+opuserdata -n '___Version___' -v '' attribwrangle4
+
+# Node attribwrangle5 (Sop/attribwrangle)
+opadd -e -n attribwrangle attribwrangle5
+oplocate -x 3.0600900000000002 -y -3.6809599999999998 attribwrangle5
+opspareds "" attribwrangle5
+opparm attribwrangle5  bindings ( 0 ) groupbindings ( 0 )
+opparm attribwrangle5 folder0 ( 0 0 ) group ( "" ) grouptype ( guess ) class ( point ) vex_numcount ( 10 ) vex_threadjobsize ( 1024 ) snippet ( 'vector pos = point(1, "P", 0);\nvector dir = point(1, "P", 1) - pos;\n\n//printf( "%f\\n", dir );\n\nmatrix transform = dihedral( set(1,0,0), dir );\ntranslate( transform,  pos );\n\n@P *= transform;\n' ) exportlist ( * ) vex_strict ( off ) autobind ( on ) bindings ( 0 ) groupautobind ( on ) groupbindings ( 0 ) vex_cwdpath ( . ) vex_outputmask ( * ) vex_updatenmls ( off ) vex_matchattrib ( id ) vex_inplace ( off ) vex_selectiongroup ( "" ) vex_precision ( auto )
+chlock attribwrangle5 -*
+chautoscope attribwrangle5 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off attribwrangle5
+opexprlanguage -s hscript attribwrangle5
+opuserdata -n '___Version___' -v '' attribwrangle5
+
+# Node blast1 (Sop/blast)
+opadd -e -n blast blast1
+oplocate -x 3.0630899999999999 -y -2.56745 blast1
+opspareds "" blast1
+opparm -V 20.5.370 blast1 group ( 'end handle' ) grouptype ( guess ) computenorms ( off ) negate ( on ) fillhole ( off ) removegrp ( off )
+chlock blast1 -*
+chautoscope blast1 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off blast1
+opexprlanguage -s hscript blast1
+opuserdata -n '___Version___' -v '20.5.370' blast1
+
+# Node blast3 (Sop/blast)
+opadd -e -n blast blast3
+oplocate -x 1.6521699999999999 -y -0.57344899999999999 blast3
+opspareds "" blast3
+opparm -V 20.5.370 blast3 group ( 'handle end' ) grouptype ( guess ) computenorms ( off ) negate ( on ) fillhole ( off ) removegrp ( off )
+chlock blast3 -*
+chautoscope blast3 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off blast3
+opexprlanguage -s hscript blast3
+opuserdata -n '___Version___' -v '20.5.370' blast3
+
+# Node delete_handle (Sop/delete)
+opadd -e -n delete delete_handle
+oplocate -x -2.5341 -y -1.6166100000000001 delete_handle
+opspareds "" delete_handle
+chblockbegin
+chadd -t 0 0 delete_handle rangeend
+chkey -t 0 -v 0 -m 0 -a 0 -A 0 -T a  -F '$N' delete_handle/rangeend
+chblockend
+opparm -V 20.5.370 delete_handle group ( handle ) label0 ( 'Warning: Group Is NOT Filtered by Geometry Type' ) negate ( dele ) entity ( point ) geotype ( all ) stdswitcher ( 0 0 0 0 0 ) affectnumber ( on ) groupop ( pattern ) filter ( 1 ) pattern ( !* ) range ( 0 rangeend ) select ( 1 2 ) affectvolume ( off ) boundtype ( usebbox ) size ( 1 1 1 ) t ( 0 0 0 ) affectnormal ( off ) dir ( 0 0 1 ) angle ( 180 ) camerapath ( "" ) affectdegenerate ( off ) degenerate ( off ) zaf ( off ) doopen ( off ) tol ( 0.001 ) userandom ( off ) globalseed ( 1 ) useseedattrib ( off ) seedattrib ( id ) percent ( 50 ) removegrp ( on ) keeppoints ( off )
+chlock delete_handle -*
+chautoscope delete_handle -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off delete_handle
+opexprlanguage -s hscript delete_handle
+opuserdata -n '___Version___' -v '20.5.370' delete_handle
+
+# Node delete_handle1 (Sop/delete)
+opadd -e -n delete delete_handle1
+oplocate -x 0.65261199999999997 -y -2.56745 delete_handle1
+opspareds "" delete_handle1
+chblockbegin
+chadd -t 0 0 delete_handle1 rangeend
+chkey -t 0 -v 0 -m 0 -a 0 -A 0 -T a  -F '$N' delete_handle1/rangeend
+chblockend
+opparm -V 20.5.370 delete_handle1 group ( handle ) label0 ( 'Warning: Group Is NOT Filtered by Geometry Type' ) negate ( dele ) entity ( point ) geotype ( all ) stdswitcher ( 0 0 0 0 0 ) affectnumber ( on ) groupop ( pattern ) filter ( 1 ) pattern ( !* ) range ( 0 rangeend ) select ( 1 2 ) affectvolume ( off ) boundtype ( usebbox ) size ( 1 1 1 ) t ( 0 0 0 ) affectnormal ( off ) dir ( 0 0 1 ) angle ( 180 ) camerapath ( "" ) affectdegenerate ( off ) degenerate ( off ) zaf ( off ) doopen ( off ) tol ( 0.001 ) userandom ( off ) globalseed ( 1 ) useseedattrib ( off ) seedattrib ( id ) percent ( 50 ) removegrp ( on ) keeppoints ( off )
+chlock delete_handle1 -*
+chautoscope delete_handle1 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off delete_handle1
+opexprlanguage -s hscript delete_handle1
+opuserdata -n '___Version___' -v '20.5.370' delete_handle1
+
+# Node ElbowLeft (Sop/Elbow)
+opadd -e -n Elbow ElbowLeft
+oplocate -x -2.5341 -y 2.9080300000000001 ElbowLeft
+opspareds "" ElbowLeft
+chblockbegin
+chadd -t 0 0 ElbowLeft Width
+chkey -t 0 -v 1 -m 0 -a 0 -A 0 -T a  -F 'ch("../Width")' ElbowLeft/Width
+chadd -t 0 0 ElbowLeft CornerType
+chkey -t 0 -v 0 -m 0 -a 0 -A 0 -T a  -F 'ch("../CornerType")' ElbowLeft/CornerType
+chblockend
+opparm ElbowLeft Direction ( 0 ) Width ( Width ) CornerType ( CornerType )
+chlock ElbowLeft -*
+chautoscope ElbowLeft -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off ElbowLeft
+nbop __netbox1 add ElbowLeft
+opexprlanguage -s hscript ElbowLeft
+opuserdata -n '___Version___' -v '' ElbowLeft
+
+# Node ElbowRight (Sop/Elbow)
+opadd -e -n Elbow ElbowRight
+oplocate -x -0.74738800000000005 -y 2.9080300000000001 ElbowRight
+opspareds "" ElbowRight
+chblockbegin
+chadd -t 0 0 ElbowRight Width
+chkey -t 0 -v 1 -m 0 -a 0 -A 0 -T a  -F 'ch("../Width")' ElbowRight/Width
+chadd -t 0 0 ElbowRight CornerType
+chkey -t 0 -v 0 -m 0 -a 0 -A 0 -T a  -F 'ch("../CornerType")' ElbowRight/CornerType
+chblockend
+opparm ElbowRight Direction ( 1 ) Width ( Width ) CornerType ( CornerType )
+chlock ElbowRight -*
+chautoscope ElbowRight -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off ElbowRight
+nbop __netbox1 add ElbowRight
+opexprlanguage -s hscript ElbowRight
+opuserdata -n '___Version___' -v '' ElbowRight
+
+# Node switch1 (Sop/switch)
+opadd -e -n switch switch1
+oplocate -x -2.5341 -y 0.71364000000000005 switch1
+opspareds "" switch1
+chblockbegin
+chadd -t 0 0 switch1 input
+chkey -t 0 -v 0 -m 0 -a 0 -A 0 -T a  -F 'ch("../FromDirection")' switch1/input
+chblockend
+opparm -V 20.5.370 switch1 input ( input )
+chlock switch1 -*
+chautoscope switch1 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off switch1
+nbop __netbox1 add switch1
+opexprlanguage -s hscript switch1
+opuserdata -n '___Version___' -v '20.5.370' switch1
+
+# Node transform1 (Sop/xform)
+opadd -e -n xform transform1
+oplocate -x -2.5341 -y 1.74028 transform1
+opspareds "" transform1
+opparm -V 20.5.370 transform1 group ( "" ) grouptype ( guess ) xOrd ( srt ) rOrd ( xyz ) t ( 0 0 0 ) r ( 0 -90 0 ) s ( 1 1 1 ) shear ( 0 0 0 ) scale ( 1 ) parmgroup_pivotxform ( 0 ) p ( 0 0 0 ) pr ( 0 0 0 ) parmgroup_prexform ( 0 ) prexform_xOrd ( srt ) prexform_rOrd ( xyz ) prexform_t ( 0 0 0 ) prexform_r ( 0 0 0 ) prexform_s ( 1 1 1 ) prexform_shear ( 0 0 0 ) movecentroid ( 0 ) movepivot ( 0 ) attribs ( * ) updatenmls ( off ) updateaffectednmls ( on ) vlength ( on ) invertxform ( off ) addattrib ( off ) outputattrib ( xform ) outputmerge ( post )
+chlock transform1 -*
+chautoscope transform1 -* +tx +ty +tz +rx +ry +rz +sx +sy +sz
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off transform1
+nbop __netbox1 add transform1
+opexprlanguage -s hscript transform1
+opuserdata -n '___Version___' -v '20.5.370' transform1
+
+# Node transform2 (Sop/xform)
+opadd -e -n xform transform2
+oplocate -x -0.74738800000000005 -y 1.74028 transform2
+opspareds "" transform2
+opparm -V 20.5.370 transform2 group ( "" ) grouptype ( guess ) xOrd ( srt ) rOrd ( xyz ) t ( 0 0 0 ) r ( 0 90 0 ) s ( 1 1 1 ) shear ( 0 0 0 ) scale ( 1 ) parmgroup_pivotxform ( 0 ) p ( 0 0 0 ) pr ( 0 0 0 ) parmgroup_prexform ( 0 ) prexform_xOrd ( srt ) prexform_rOrd ( xyz ) prexform_t ( 0 0 0 ) prexform_r ( 0 0 0 ) prexform_s ( 1 1 1 ) prexform_shear ( 0 0 0 ) movecentroid ( 0 ) movepivot ( 0 ) attribs ( * ) updatenmls ( off ) updateaffectednmls ( on ) vlength ( on ) invertxform ( off ) addattrib ( off ) outputattrib ( xform ) outputmerge ( post )
+chlock transform2 -*
+chautoscope transform2 -* +tx +ty +tz +rx +ry +rz +sx +sy +sz
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off transform2
+nbop __netbox1 add transform2
+opexprlanguage -s hscript transform2
+opuserdata -n '___Version___' -v '20.5.370' transform2
+
+# Node matchsize1 (Sop/matchsize)
+opadd -e -n matchsize matchsize1
+oplocate -x -2.5341 -y -0.435033 matchsize1
+opspareds "" matchsize1
+opparm matchsize1 group ( "" ) grouptype ( guess ) sepparm ( ) justifytarget ( auto ) doboundgroup ( off ) folder2 ( 0 ) sourcegroup ( "" ) sourcegrouptype ( guess ) refgroup ( "" ) refgrouptype ( guess ) folder1 ( 0 ) t ( 0 0 0 ) size ( 1 1 1 ) folder0 ( 0 ) dotranslate ( on ) justify_x ( min ) goal_x ( same ) offset_x ( 0 ) justify_y ( center ) goal_y ( same ) offset_y ( 0 ) justify_z ( center ) goal_z ( same ) offset_z ( 0 ) doscale ( off ) uniformscale ( on ) scale_axis ( min ) scale_x ( on ) scale_y ( on ) scale_z ( on ) restorexform ( off ) restoreattrib ( xform ) stashxform ( off ) stashattrib ( xform ) stashmerge ( replace )
+chlock matchsize1 -*
+chautoscope matchsize1 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off matchsize1
+nbop __netbox1 add matchsize1
+opexprlanguage -s hscript matchsize1
+opuserdata -n '___Version___' -v '' matchsize1
+
+# Node Landing1 (Sop/Straight)
+opadd -e -n Straight Landing1
+oplocate -x 9.2590800000000009 -y 0.48490299999999997 Landing1
+opspareds "" Landing1
+chblockbegin
+chadd -t 0 0 Landing1 Length
+chkey -t 0 -v 2 -m 0 -a 0 -A 0 -T a  -F 'ch("../Width")' Landing1/Length
+chadd -t 0 0 Landing1 Width
+chkey -t 0 -v 1 -m 0 -a 0 -A 0 -T a  -F 'ch("../Width")' Landing1/Width
+chblockend
+opparm Landing1 Length ( Length ) Width ( Width ) Elevation ( 0 )
+chlock Landing1 -*
+chautoscope Landing1 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off Landing1
+nbop __netbox2 add Landing1
+opexprlanguage -s hscript Landing1
+opuserdata -n '___Version___' -v '' Landing1
+
+# Node ElbowLeft1 (Sop/Elbow)
+opadd -e -n Elbow ElbowLeft1
+oplocate -x 11.140599999999999 -y 0.48490299999999997 ElbowLeft1
+opspareds "" ElbowLeft1
+chblockbegin
+chadd -t 0 0 ElbowLeft1 Width
+chkey -t 0 -v 1 -m 0 -a 0 -A 0 -T a  -F 'ch("../Width")' ElbowLeft1/Width
+chadd -t 0 0 ElbowLeft1 CornerType
+chkey -t 0 -v 0 -m 0 -a 0 -A 0 -T a  -F 'ch("../CornerType")' ElbowLeft1/CornerType
+chblockend
+opparm ElbowLeft1 Direction ( 0 ) Width ( Width ) CornerType ( CornerType )
+chlock ElbowLeft1 -*
+chautoscope ElbowLeft1 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off ElbowLeft1
+nbop __netbox2 add ElbowLeft1
+opexprlanguage -s hscript ElbowLeft1
+opuserdata -n '___Version___' -v '' ElbowLeft1
+
+# Node ElbowRight1 (Sop/Elbow)
+opadd -e -n Elbow ElbowRight1
+oplocate -x 12.927300000000001 -y 0.48490299999999997 ElbowRight1
+opspareds "" ElbowRight1
+chblockbegin
+chadd -t 0 0 ElbowRight1 Width
+chkey -t 0 -v 1 -m 0 -a 0 -A 0 -T a  -F 'ch("../Width")' ElbowRight1/Width
+chadd -t 0 0 ElbowRight1 CornerType
+chkey -t 0 -v 0 -m 0 -a 0 -A 0 -T a  -F 'ch("../CornerType")' ElbowRight1/CornerType
+chblockend
+opparm ElbowRight1 Direction ( 1 ) Width ( Width ) CornerType ( CornerType )
+chlock ElbowRight1 -*
+chautoscope ElbowRight1 -*
+opset -d on -r on -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off ElbowRight1
+nbop __netbox2 add ElbowRight1
+opexprlanguage -s hscript ElbowRight1
+opuserdata -n '___Version___' -v '' ElbowRight1
+
+# Node switch2 (Sop/switch)
+opadd -e -n switch switch2
+oplocate -x 11.140599999999999 -y -1.70949 switch2
+opspareds "" switch2
+chblockbegin
+chadd -t 0 0 switch2 input
+chkey -t 0 -v 0 -m 0 -a 0 -A 0 -T a  -F 'ch("../ToDirection")' switch2/input
+chblockend
+opparm -V 20.5.370 switch2 input ( input )
+chlock switch2 -*
+chautoscope switch2 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off switch2
+nbop __netbox2 add switch2
+opexprlanguage -s hscript switch2
+opuserdata -n '___Version___' -v '20.5.370' switch2
+
+# Node transform3 (Sop/xform)
+opadd -e -n xform transform3
+oplocate -x 11.140599999999999 -y -0.68284699999999998 transform3
+opspareds "" transform3
+opparm -V 20.5.370 transform3 group ( "" ) grouptype ( guess ) xOrd ( srt ) rOrd ( xyz ) t ( 0 0 0 ) r ( 0 0 0 ) s ( 1 1 1 ) shear ( 0 0 0 ) scale ( 1 ) parmgroup_pivotxform ( 0 ) p ( 0 0 0 ) pr ( 0 0 0 ) parmgroup_prexform ( 0 ) prexform_xOrd ( srt ) prexform_rOrd ( xyz ) prexform_t ( 0 0 0 ) prexform_r ( 0 0 0 ) prexform_s ( 1 1 1 ) prexform_shear ( 0 0 0 ) movecentroid ( 0 ) movepivot ( 0 ) attribs ( * ) updatenmls ( off ) updateaffectednmls ( on ) vlength ( on ) invertxform ( off ) addattrib ( off ) outputattrib ( xform ) outputmerge ( post )
+chlock transform3 -*
+chautoscope transform3 -* +tx +ty +tz +rx +ry +rz +sx +sy +sz
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off transform3
+nbop __netbox2 add transform3
+opexprlanguage -s hscript transform3
+opuserdata -n '___Version___' -v '20.5.370' transform3
+
+# Node transform4 (Sop/xform)
+opadd -e -n xform transform4
+oplocate -x 12.927300000000001 -y -0.68284699999999998 transform4
+opspareds "" transform4
+opparm -V 20.5.370 transform4 group ( "" ) grouptype ( guess ) xOrd ( srt ) rOrd ( xyz ) t ( 0 0 0 ) r ( 0 0 0 ) s ( 1 1 1 ) shear ( 0 0 0 ) scale ( 1 ) parmgroup_pivotxform ( 0 ) p ( 0 0 0 ) pr ( 0 0 0 ) parmgroup_prexform ( 0 ) prexform_xOrd ( srt ) prexform_rOrd ( xyz ) prexform_t ( 0 0 0 ) prexform_r ( 0 0 0 ) prexform_s ( 1 1 1 ) prexform_shear ( 0 0 0 ) movecentroid ( 0 ) movepivot ( 0 ) attribs ( * ) updatenmls ( off ) updateaffectednmls ( on ) vlength ( on ) invertxform ( off ) addattrib ( off ) outputattrib ( xform ) outputmerge ( post )
+chlock transform4 -*
+chautoscope transform4 -* +tx +ty +tz +rx +ry +rz +sx +sy +sz
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off transform4
+nbop __netbox2 add transform4
+opexprlanguage -s hscript transform4
+opuserdata -n '___Version___' -v '20.5.370' transform4
+
+# Node matchsize2 (Sop/matchsize)
+opadd -e -n matchsize matchsize2
+oplocate -x 11.140599999999999 -y -2.8581599999999998 matchsize2
+opspareds "" matchsize2
+opparm matchsize2 group ( "" ) grouptype ( guess ) sepparm ( ) justifytarget ( auto ) doboundgroup ( off ) folder2 ( 0 ) sourcegroup ( "" ) sourcegrouptype ( guess ) refgroup ( "" ) refgrouptype ( guess ) folder1 ( 0 ) t ( 0 0 0 ) size ( 1 1 1 ) folder0 ( 0 ) dotranslate ( on ) justify_x ( min ) goal_x ( same ) offset_x ( 0 ) justify_y ( center ) goal_y ( same ) offset_y ( 0 ) justify_z ( none ) goal_z ( same ) offset_z ( 0 ) doscale ( off ) uniformscale ( on ) scale_axis ( min ) scale_x ( on ) scale_y ( on ) scale_z ( on ) restorexform ( off ) restoreattrib ( xform ) stashxform ( off ) stashattrib ( xform ) stashmerge ( replace )
+chlock matchsize2 -*
+chautoscope matchsize2 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off matchsize2
+nbop __netbox2 add matchsize2
+opexprlanguage -s hscript matchsize2
+opuserdata -n '___Version___' -v '' matchsize2
+
+# Node delete_end (Sop/delete)
+opadd -e -n delete delete_end
+oplocate -x -2.5341 -y -2.6967699999999999 delete_end
+opspareds "" delete_end
+chblockbegin
+chadd -t 0 0 delete_end rangeend
+chkey -t 0 -v 0 -m 0 -a 0 -A 0 -T a  -F '$N' delete_end/rangeend
+chblockend
+opparm -V 20.5.370 delete_end group ( end ) label0 ( 'Warning: Group Is NOT Filtered by Geometry Type' ) negate ( dele ) entity ( point ) geotype ( all ) stdswitcher ( 0 0 0 0 0 ) affectnumber ( on ) groupop ( pattern ) filter ( 1 ) pattern ( !* ) range ( 0 rangeend ) select ( 1 2 ) affectvolume ( off ) boundtype ( usebbox ) size ( 1 1 1 ) t ( 0 0 0 ) affectnormal ( off ) dir ( 0 0 1 ) angle ( 180 ) camerapath ( "" ) affectdegenerate ( off ) degenerate ( off ) zaf ( off ) doopen ( off ) tol ( 0.001 ) userandom ( off ) globalseed ( 1 ) useseedattrib ( off ) seedattrib ( id ) percent ( 50 ) removegrp ( on ) keeppoints ( off )
+chlock delete_end -*
+chautoscope delete_end -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off delete_end
+opexprlanguage -s hscript delete_end
+opuserdata -n '___Version___' -v '20.5.370' delete_end
+
+# Node delete_end1 (Sop/delete)
+opadd -e -n delete delete_end1
+oplocate -x 0.64961599999999997 -y -3.56745 delete_end1
+opspareds "" delete_end1
+chblockbegin
+chadd -t 0 0 delete_end1 rangeend
+chkey -t 0 -v 0 -m 0 -a 0 -A 0 -T a  -F '$N' delete_end1/rangeend
+chblockend
+opparm -V 20.5.370 delete_end1 group ( end ) label0 ( 'Warning: Group Is NOT Filtered by Geometry Type' ) negate ( dele ) entity ( point ) geotype ( all ) stdswitcher ( 0 0 0 0 0 ) affectnumber ( on ) groupop ( pattern ) filter ( 1 ) pattern ( !* ) range ( 0 rangeend ) select ( 1 2 ) affectvolume ( off ) boundtype ( usebbox ) size ( 1 1 1 ) t ( 0 0 0 ) affectnormal ( off ) dir ( 0 0 1 ) angle ( 180 ) camerapath ( "" ) affectdegenerate ( off ) degenerate ( off ) zaf ( off ) doopen ( off ) tol ( 0.001 ) userandom ( off ) globalseed ( 1 ) useseedattrib ( off ) seedattrib ( id ) percent ( 50 ) removegrp ( on ) keeppoints ( off )
+chlock delete_end1 -*
+chautoscope delete_end1 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off delete_end1
+opexprlanguage -s hscript delete_end1
+opuserdata -n '___Version___' -v '20.5.370' delete_end1
+oporder -e output0 Slope Elbow1 Landing merge4 attribwrangle4 attribwrangle5 blast1 blast3 delete_handle delete_handle1 ElbowLeft ElbowRight switch1 transform1 transform2 matchsize1 Landing1 ElbowLeft1 ElbowRight1 switch2 transform3 transform4 matchsize2 delete_end delete_end1 
+opcf ..
+
+# Node delete_handle (Sop/delete)
+opadd -e -n delete delete_handle
+oplocate -x -1.11759e-08 -y 2.4923299999999999 delete_handle
+opspareds "" delete_handle
+chblockbegin
+chadd -t 0 0 delete_handle rangeend
+chkey -t 0 -v 0 -m 0 -a 0 -A 0 -T a  -F '$N' delete_handle/rangeend
+chblockend
+opparm -V 20.5.370 delete_handle group ( handle ) label0 ( 'Warning: Group Is NOT Filtered by Geometry Type' ) negate ( dele ) entity ( point ) geotype ( all ) stdswitcher ( 0 0 0 0 0 ) affectnumber ( on ) groupop ( pattern ) filter ( 1 ) pattern ( !* ) range ( 0 rangeend ) select ( 1 2 ) affectvolume ( off ) boundtype ( usebbox ) size ( 1 1 1 ) t ( 0 0 0 ) affectnormal ( off ) dir ( 0 0 1 ) angle ( 180 ) camerapath ( "" ) affectdegenerate ( off ) degenerate ( off ) zaf ( off ) doopen ( off ) tol ( 0.001 ) userandom ( off ) globalseed ( 1 ) useseedattrib ( off ) seedattrib ( id ) percent ( 50 ) removegrp ( on ) keeppoints ( off )
+chlock delete_handle -*
+chautoscope delete_handle -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off delete_handle
+opexprlanguage -s hscript delete_handle
+opuserdata -n '___Version___' -v '20.5.370' delete_handle
+
+# Node delete_end (Sop/delete)
+opadd -e -n delete delete_end
+oplocate -x -1.11759e-08 -y 1.35884 delete_end
+opspareds "" delete_end
+chblockbegin
+chadd -t 0 0 delete_end rangeend
+chkey -t 0 -v 0 -m 0 -a 0 -A 0 -T a  -F '$N' delete_end/rangeend
+chblockend
+opparm -V 20.5.370 delete_end group ( end ) label0 ( 'Warning: Group Is NOT Filtered by Geometry Type' ) negate ( dele ) entity ( point ) geotype ( all ) stdswitcher ( 0 0 0 0 0 ) affectnumber ( on ) groupop ( pattern ) filter ( 1 ) pattern ( !* ) range ( 0 rangeend ) select ( 1 2 ) affectvolume ( off ) boundtype ( usebbox ) size ( 1 1 1 ) t ( 0 0 0 ) affectnormal ( off ) dir ( 0 0 1 ) angle ( 180 ) camerapath ( "" ) affectdegenerate ( off ) degenerate ( off ) zaf ( off ) doopen ( off ) tol ( 0.001 ) userandom ( off ) globalseed ( 1 ) useseedattrib ( off ) seedattrib ( id ) percent ( 50 ) removegrp ( on ) keeppoints ( off )
+chlock delete_end -*
+chautoscope delete_end -*
+opset -d off -r off -h off -f off -y off -t on -l off -s off -u off -F on -c on -e on -b off delete_end
+opexprlanguage -s hscript delete_end
+opuserdata -n '___Version___' -v '20.5.370' delete_end
+
+# Node merge1 (Sop/merge)
+opadd -e -n merge merge1
+oplocate -x -0.0011500099999999999 -y -2.07301 merge1
+opspareds "" merge1
+opparm -V 20.5.370 merge1
+chlock merge1 -*
+chautoscope merge1 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off merge1
+opexprlanguage -s hscript merge1
+opuserdata -n '___Version___' -v '20.5.370' merge1
+
+# Node attribwrangle5 (Sop/attribwrangle)
+opadd -e -n attribwrangle attribwrangle5
+oplocate -x 3.9929800000000002 -y -1.1494800000000001 attribwrangle5
+opspareds "" attribwrangle5
+opparm attribwrangle5  bindings ( 0 ) groupbindings ( 0 )
+opparm attribwrangle5 folder0 ( 0 0 ) group ( "" ) grouptype ( guess ) class ( point ) vex_numcount ( 10 ) vex_threadjobsize ( 1024 ) snippet ( 'vector pos = point(1, "P", 0);\nvector dir = point(1, "P", 1) - pos;\n\n//printf( "%f\\n", dir );\n\nmatrix transform = dihedral( set(1,0,0), dir );\ntranslate( transform,  pos );\n\n@P *= transform;\n' ) exportlist ( * ) vex_strict ( off ) autobind ( on ) bindings ( 0 ) groupautobind ( on ) groupbindings ( 0 ) vex_cwdpath ( . ) vex_outputmask ( * ) vex_updatenmls ( off ) vex_matchattrib ( id ) vex_inplace ( off ) vex_selectiongroup ( "" ) vex_precision ( auto )
+chlock attribwrangle5 -*
+chautoscope attribwrangle5 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off attribwrangle5
+opexprlanguage -s hscript attribwrangle5
+opuserdata -n '___Version___' -v '' attribwrangle5
+
+# Node blast4 (Sop/blast)
+opadd -e -n blast blast4
+oplocate -x 3.9959799999999999 -y 0.267731 blast4
+opspareds "" blast4
+opparm -V 20.5.370 blast4 group ( 'handle end' ) grouptype ( guess ) computenorms ( off ) negate ( on ) fillhole ( off ) removegrp ( off )
+chlock blast4 -*
+chautoscope blast4 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off blast4
+opexprlanguage -s hscript blast4
+opuserdata -n '___Version___' -v '20.5.370' blast4
+
+# Node Straight2 (Sop/Straight)
+opadd -e -n Straight Straight2
+oplocate -x 6.5848199999999997 -y 0.267731 Straight2
+opspareds "" Straight2
+chblockbegin
+chadd -t 0 0 Straight2 Length
+chkey -t 0 -v 1 -m 0 -a 0 -A 0 -T a  -F 'ch("../Width")' Straight2/Length
+chadd -t 0 0 Straight2 Width
+chkey -t 0 -v 1 -m 0 -a 0 -A 0 -T a  -F 'ch("../Width")' Straight2/Width
+chblockend
+opparm Straight2 Length ( Length ) Width ( Width ) Elevation ( 0 )
+chlock Straight2 -*
+chautoscope Straight2 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off Straight2
+opexprlanguage -s hscript Straight2
+opuserdata -n '___Version___' -v '' Straight2
+
+# Node blast1 (Sop/blast)
+opadd -e -n blast blast1
+oplocate -x -1.11759e-08 -y -3.6656399999999998 blast1
+opspareds "" blast1
+opparm -V 20.5.370 blast1 group ( start ) grouptype ( guess ) computenorms ( off ) negate ( off ) fillhole ( off ) removegrp ( off )
+chlock blast1 -*
+chautoscope blast1 -*
+opset -d on -r on -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off blast1
+opexprlanguage -s hscript blast1
+opuserdata -n '___Version___' -v '20.5.370' blast1
+
+# Node delete_handle1 (Sop/delete)
+opadd -e -n delete delete_handle1
+oplocate -x 1.4326700000000001 -y 0.267731 delete_handle1
+opspareds "" delete_handle1
+chblockbegin
+chadd -t 0 0 delete_handle1 rangeend
+chkey -t 0 -v 0 -m 0 -a 0 -A 0 -T a  -F '$N' delete_handle1/rangeend
+chblockend
+opparm -V 20.5.370 delete_handle1 group ( handle ) label0 ( 'Warning: Group Is NOT Filtered by Geometry Type' ) negate ( dele ) entity ( point ) geotype ( all ) stdswitcher ( 0 0 0 0 0 ) affectnumber ( on ) groupop ( pattern ) filter ( 1 ) pattern ( !* ) range ( 0 rangeend ) select ( 1 2 ) affectvolume ( off ) boundtype ( usebbox ) size ( 1 1 1 ) t ( 0 0 0 ) affectnormal ( off ) dir ( 0 0 1 ) angle ( 180 ) camerapath ( "" ) affectdegenerate ( off ) degenerate ( off ) zaf ( off ) doopen ( off ) tol ( 0.001 ) userandom ( off ) globalseed ( 1 ) useseedattrib ( off ) seedattrib ( id ) percent ( 50 ) removegrp ( on ) keeppoints ( off )
+chlock delete_handle1 -*
+chautoscope delete_handle1 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off delete_handle1
+opexprlanguage -s hscript delete_handle1
+opuserdata -n '___Version___' -v '20.5.370' delete_handle1
+
+# Node delete_end1 (Sop/delete)
+opadd -e -n delete delete_end1
+oplocate -x 1.4326700000000001 -y -0.86575899999999995 delete_end1
+opspareds "" delete_end1
+chblockbegin
+chadd -t 0 0 delete_end1 rangeend
+chkey -t 0 -v 0 -m 0 -a 0 -A 0 -T a  -F '$N' delete_end1/rangeend
+chblockend
+opparm -V 20.5.370 delete_end1 group ( end ) label0 ( 'Warning: Group Is NOT Filtered by Geometry Type' ) negate ( dele ) entity ( point ) geotype ( all ) stdswitcher ( 0 0 0 0 0 ) affectnumber ( on ) groupop ( pattern ) filter ( 1 ) pattern ( !* ) range ( 0 rangeend ) select ( 1 2 ) affectvolume ( off ) boundtype ( usebbox ) size ( 1 1 1 ) t ( 0 0 0 ) affectnormal ( off ) dir ( 0 0 1 ) angle ( 180 ) camerapath ( "" ) affectdegenerate ( off ) degenerate ( off ) zaf ( off ) doopen ( off ) tol ( 0.001 ) userandom ( off ) globalseed ( 1 ) useseedattrib ( off ) seedattrib ( id ) percent ( 50 ) removegrp ( on ) keeppoints ( off )
+chlock delete_end1 -*
+chautoscope delete_end1 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off delete_end1
+opexprlanguage -s hscript delete_end1
+opuserdata -n '___Version___' -v '20.5.370' delete_end1
+oporder -e output0 Straight1 attribwrangle4 blast3 transform1 SlopeSkeleton_Base delete_handle delete_end merge1 attribwrangle5 blast4 Straight2 blast1 delete_handle1 delete_end1 
+opcf ..
+
+# Node object_merge8 (Sop/object_merge)
+opadd -e -n object_merge object_merge8
+oplocate -x 5.4487699999999997 -y 2.4353099999999999 object_merge8
+opspareds "" object_merge8
+opparm object_merge8  numobj ( 1 )
+opparm -V 20.5.370 object_merge8 numobj ( 1 ) _separator ( ) xformtype ( object ) xformpath ( "" ) invertxform ( off ) createptgroups ( off ) ptgroupprefix ( _ptgrp_ ) createprimgroups ( off ) primgroupprefix ( _primgrp_ ) verbosegroups ( off ) suffixfirstgroup ( on ) createptstring ( off ) createprimstring ( off ) pathattrib ( objname ) pack ( off ) pivot ( centroid ) viewportlod ( full ) addpath ( on ) enable1 ( on ) objpath1 ( ../StairSkeleton_Exit/ ) group1 ( "" ) expand1 ( off )
+chlock object_merge8 -*
+chautoscope object_merge8 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off object_merge8
+opexprlanguage -s hscript object_merge8
+opuserdata -n '___Version___' -v '20.5.370' object_merge8
+
+# Node switchif1 (Sop/switchif)
+opadd -e -n switchif switchif1
+oplocate -x 2.1180400000000001 -y 0.096304399999999998 switchif1
+opspareds '    parm {         name    "mergecondition"         baseparm         label   "Use Second Input If"         export  none     }     parm {         name    "testinput"         baseparm         label   "Test Input"         export  none     }     multiparm {         name    "tests"         label    "Number of Tests"         baseparm         default 1          parm {             name    "enable#"             baseparm             label   "enable#"             nolabel             joinnext             export  none         }         parm {             name    "type#"             baseparm             label   "Test Type"             export  none         }         parm {             name    "expr#"             baseparm             label   "Enable"             export  none         }         parm {             name    "attribtype#"             baseparm             label   "Enable When"             export  none         }         parm {             name    "attribowner#"             baseparm             label   "Class"             export  none         }         parm {             name    "attributes#"             baseparm             label   "Attributes"             export  none         }         parm {             name    "attribvaltype#"             baseparm             label   "Of Type"             export  none         }         parm {             name    "attribfloatcomp#"             baseparm             label   "Is"             export  none         }         parm {             name    "attribstringcomp#"             baseparm             label   "Is"             export  none         }         parm {             name    "attribval#"             baseparm             label   "Value"             export  none         }         parm {             name    "attribsval#"             baseparm             label   "Value"             export  none         }         parm {             name    "counttype#"             baseparm             label   "Enable When"             export  none         }         parm {             name    "countgroup#"             baseparm             label   "In Group"             export  none         }         parm {             name    "countcomp#"             baseparm             label   "Is"             export  none         }         parm {             name    "countval#"             baseparm             label   "Value"             export  none         }         parm {             name    "hasinputtype#"             baseparm             label   "Enable When"             export  none         }     }      parm {         name    "spare_input0"         label   "Spare Input 0"         type    oppath         default { "" }         help    "Refer to this in expressions as -1, such as: npoints(-1)"         parmtag { "cook_dependent" "1" }         parmtag { "opfilter" "!!SOP!!" }         parmtag { "oprelative" "." }     } ' switchif1
+opparm switchif1  tests ( 1 )
+chblockbegin
+chadd -t 0 0 switchif1 expr1
+chkey -t 0 -v 1 -m 0 -a 0 -A 0 -T a  -F 'detail(-1,"ivalue",0)!=0' switchif1/expr1
+chblockend
+opparm -V 20.5.370 switchif1 mergecondition ( all ) testinput ( first ) tests ( 1 ) enable1 ( on ) type1 ( expr ) expr1 ( expr1 ) attribtype1 ( all ) attribowner1 ( point ) attributes1 ( "" ) attribvaltype1 ( flt ) attribfloatcomp1 ( equal ) attribstringcomp1 ( equal ) attribval1 ( 0 ) attribsval1 ( "" ) counttype1 ( points ) countgroup1 ( "" ) countcomp1 ( equal ) countval1 ( 0 ) hasinputtype1 ( wired ) spare_input0 ( ../foreach_count3/ )
+chlock switchif1 -*
+chautoscope switchif1 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off switchif1
+opexprlanguage -s hscript switchif1
+opuserdata -n '___Version___' -v '20.5.370' switchif1
+oporder -e output0 transform3 foreach_end3 foreach_begin3 foreach_count3 copytopoints3 add3 merge2 StairSkeleton_Entrance StairSkeleton_Intermediate object_merge1 transform7 blast7 object_merge7 switchif5 StairSkeleton_Exit object_merge8 switchif1 
+opcf ..
+
+# Node grid1 (Sop/grid)
+opadd -e -n grid grid1
+oplocate -x -13.768000000000001 -y -1.8976299999999999 grid1
+opspareds "" grid1
+chblockbegin
+chadd -t 0 0 grid1 sizex
+chkey -t 0 -v 2 -m 0 -a 0 -A 0 -T a  -F 'ch("../SlopeLength")' grid1/sizex
+chadd -t 0 0 grid1 sizey
+chkey -t 0 -v 10 -m 0 -a 0 -A 0 -T a  -F 'ch("../Elevation") * ch("../NumFloors")' grid1/sizey
+chblockend
+opparm -V 20.5.370 grid1 type ( poly ) surftype ( quads ) orient ( xy ) size ( sizex sizey ) t ( 0 0 0 ) r ( 0 0 0 ) rows ( 2 ) cols ( 2 ) orderu ( 4 ) orderv ( 4 ) interpu ( on ) interpv ( on )
+chlock grid1 -*
+chautoscope grid1 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off grid1
+opexprlanguage -s hscript grid1
+opuserdata -n '___Version___' -v '20.5.370' grid1
+
+# Node matchsize4 (Sop/matchsize)
+opadd -e -n matchsize matchsize4
+oplocate -x -13.768000000000001 -y -2.7250800000000002 matchsize4
+opspareds "" matchsize4
+chblockbegin
+chadd -t 0 0 matchsize4 offset_x
+chkey -t 0 -v -0.49199999999999999 -m 0 -a 0 -A 0 -T a  -F 'ch("../Width")' matchsize4/offset_x
+chblockend
+opparm matchsize4 group ( "" ) grouptype ( guess ) sepparm ( ) justifytarget ( auto ) doboundgroup ( off ) folder2 ( 0 ) sourcegroup ( "" ) sourcegrouptype ( guess ) refgroup ( "" ) refgrouptype ( guess ) folder1 ( 0 ) t ( 0 0 0 ) size ( 1 1 1 ) folder0 ( 0 ) dotranslate ( on ) justify_x ( min ) goal_x ( same ) offset_x ( offset_x ) justify_y ( min ) goal_y ( same ) offset_y ( 0 ) justify_z ( center ) goal_z ( same ) offset_z ( 0 ) doscale ( off ) uniformscale ( on ) scale_axis ( min ) scale_x ( on ) scale_y ( on ) scale_z ( on ) restorexform ( off ) restoreattrib ( xform ) stashxform ( off ) stashattrib ( xform ) stashmerge ( replace )
+chlock matchsize4 -*
+chautoscope matchsize4 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off matchsize4
+opexprlanguage -s hscript matchsize4
+opuserdata -n '___Version___' -v '' matchsize4
+
+# Node extrudevolume3 (Sop/extrudevolume)
+opadd -e -n extrudevolume extrudevolume3
+oplocate -x -2.6090900000000001 -y -1.82426 extrudevolume3
+opspareds "" extrudevolume3
+chblockbegin
+chadd -t 0 0 extrudevolume3 depth
+chkey -t 0 -v 1.6000000000000001 -m 0 -a 0 -A 0 -T a  -F 'ch("../HandraiHeight")' extrudevolume3/depth
+chblockend
+opparm extrudevolume3 depth ( depth ) basenormal ( 0 1 0 ) flat ( on ) labelparm ( 'Base Extension (Second Output)' ) basepadding ( 0.1 ) baselift ( 1 ) folder0 ( 0 ) outputtopgrp ( off ) topgrp ( extrudeTop ) outputbasegrp ( off ) basegrp ( extrudeBase ) outputsidegrp ( off ) sidegrp ( extrudeSide ) outputtopseamgrp ( off ) topseamgrp ( extrudeTopSeam ) outputbaseseamgrp ( off ) baseseamgrp ( extrudeBaseSeam )
+chlock extrudevolume3 -*
+chautoscope extrudevolume3 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off extrudevolume3
+nbop __netbox3 add extrudevolume3
+opexprlanguage -s hscript extrudevolume3
+opuserdata -n '___Version___' -v '' extrudevolume3
+
+# Node fuse2 (Sop/fuse::2.0)
+opadd -e -n fuse::2.0 fuse2
+oplocate -x -2.6090900000000001 -y -0.24792900000000001 fuse2
+opspareds "" fuse2
+opparm fuse2  numpointattribs ( 0 ) numgroups ( 0 )
+opparm -V 20.5.370 fuse2 querygroup ( "" ) usetargetgroup ( off ) targetgroup ( "" ) modifyboth ( off ) posattrib ( P ) snapgroup ( 0 ) snaptype ( distancesnap ) algorithm ( lowest ) usetol3d ( on ) tol3d ( 0.001 ) targetptattrib ( snap_to ) targetclass ( point ) usepositionsnapmethod ( on ) positionsnapmethod ( average ) positionsnapweightname ( weight ) useradiusattrib ( off ) radiusattrib ( pscale ) usematchattrib ( off ) matchattrib ( name ) matchtype ( match ) matchtol ( 0 ) gridtype ( spacing ) gridspacing ( 0.1 0.1 0.1 ) gridlines ( 10 10 10 ) gridpow2 ( 3 3 3 ) gridoffset ( 0 0 0 ) gridround ( nearest ) usegridtol ( on ) gridtol ( 10 ) consolidategroup ( 0 ) consolidatesnappedpoints ( on ) keepconsolidatedpoints ( off ) deldegen ( on ) deldegenpoints ( on ) delunusedpoints ( off ) outputgroup ( 0 ) recomputenml ( on ) createsnappedgroup ( off ) snappedgroupname ( snapped_points ) createsnappedattrib ( off ) snappedattribname ( snapped_to ) numpointattribs ( 0 ) numgroups ( 0 )
+chlock fuse2 -*
+chautoscope fuse2 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off fuse2
+nbop __netbox3 add fuse2
+opexprlanguage -s hscript fuse2
+opuserdata -n '___Version___' -v '20.5.370' fuse2
+
+# Node polyextrude5 (Sop/polyextrude::2.0)
+opadd -e -n polyextrude::2.0 polyextrude5
+oplocate -x -2.61808 -y -5.7253400000000001 polyextrude5
+opspareds "" polyextrude5
+opparm polyextrude5  thicknessramp ( 2 ) twistramp ( 2 )
+chblockbegin
+chadd -t 0 0 polyextrude5 dist
+chkey -t 0 -v 0.17199999999999999 -m 0 -a 0 -A 0 -T a  -F 'ch("../HandrailWidth")' polyextrude5/dist
+chblockend
+opparm -V 20.5.370 polyextrude5 group ( "" ) splittype ( components ) usesplitgroup ( off ) splitgroup ( "" ) extrusionmode ( primnormal ) ptnormalsrc ( precompute ) ptnormalattrib ( N ) dist ( dist ) inset ( 0 ) twist ( 0 ) divs ( 1 ) spinetype ( straight ) stdswitcher ( 0 0 0 ) xformsection ( 0 ) xformfront ( off ) xformspace ( local ) rst ( srt ) xyz ( xyz ) translate ( 0 0 0 ) rotate ( 0 0 0 ) scale ( 1 1 1 ) shear ( 0 0 0 ) pivotxformsection ( 0 ) pivot ( 0 0 0 ) pivotrotate ( 0 0 0 ) prexformsection ( 0 ) prexform_rst ( srt ) prexform_xyz ( xyz ) prexform_translate ( 0 0 0 ) prexform_rotate ( 0 0 0 ) prexform_scale ( 1 1 1 ) prexform_shear ( 0 0 0 ) outputsection ( 0 ) outputfront ( on ) outputfrontgrp ( off ) frontgrp ( extrudeFront ) outputback ( on ) outputbackgrp ( off ) backgrp ( extrudeBack ) outputside ( on ) outputsidegrp ( off ) sidegrp ( extrudeSide ) outputfrontseamgrp ( off ) frontseamgrp ( extrudeFrontSeam ) outputbackseamgrp ( off ) backseamgrp ( extrudeBackSeam ) preservegroups ( on ) insettingsection ( 0 ) limitinset ( on ) commonlimit ( on ) normalsection ( 0 ) addvertexnomrals ( off ) cuspangle ( 60 ) cuspfront ( on ) cuspback ( on ) uvssection ( 0 ) genuvs ( on ) uvstyle ( proprtional ) uvscaling ( matchuv ) shapecontrolsection ( 0 ) frontmagnitude ( 1 ) backmagnitude ( 1 ) frontstiffness ( 0 ) backstiffness ( 0 ) interpolation ( rotatingframe ) spacing ( arclengthuniform ) externalspinesection ( 0 ) reversespinedirection ( off ) axialrotation ( 0 ) frontblend ( 0.1 ) backblend ( 0.1 ) thicknesssection ( 0 ) thicknessscale ( 1 ) usethicknessattrib ( on ) thicknessattrib ( thickness ) usethicknessramp ( on ) thicknessramp ( 2 ) twistsection ( 0 ) usetwistattrib ( on ) twistattrib ( twist ) usetwistramp ( on ) twistramp ( 2 ) twistscale ( 180 ) localattribs ( 0 ) uselocalzscaleattrib ( off ) localzscaleattrib ( zscale ) uselocalinsetscaleattrib ( off ) localinsetscaleattrib ( insetscale ) uselocaltwistattrib ( off ) localtwistscaleattrib ( twistscale ) uselocaldivsattrib ( off ) locadivscaleattrib ( divsscale ) localframeattribs ( 0 ) uselocalxattrib ( off ) localxattrib ( localx ) uselocalzattirb ( off ) localzattirb ( localz ) uselocalctrattrib ( off ) localctrattrib ( localctr ) thicknessramp1pos ( 0 ) thicknessramp1value ( 1 ) thicknessramp1interp ( catmull-rom ) thicknessramp2pos ( 1 ) thicknessramp2value ( 1 ) thicknessramp2interp ( catmull-rom ) twistramp1pos ( 0 ) twistramp1value ( 0.5 ) twistramp1interp ( catmull-rom ) twistramp2pos ( 1 ) twistramp2value ( 0.5 ) twistramp2interp ( catmull-rom )
+chlock polyextrude5 -*
+chautoscope polyextrude5 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off polyextrude5
+nbop __netbox3 add polyextrude5
+opexprlanguage -s hscript polyextrude5
+opuserdata -n '___Version___' -v '20.5.370' polyextrude5
+
+# Node blast8 (Sop/blast)
+opadd -e -n blast blast8
+oplocate -x 2.6369799999999999 -y 0.89648000000000005 blast8
+opspareds "" blast8
+opparm -V 20.5.370 blast8 group ( '@prim_type=floor' ) grouptype ( guess ) computenorms ( off ) negate ( on ) fillhole ( off ) removegrp ( off )
+chlock blast8 -*
+chautoscope blast8 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off blast8
+nbop __netbox2 add blast8
+opexprlanguage -s hscript blast8
+opuserdata -n '___Version___' -v '20.5.370' blast8
+
+# Node blast10 (Sop/blast)
+opadd -e -n blast blast10
+oplocate -x -3.6146699999999998 -y 1.7655000000000001 blast10
+opspareds "" blast10
+opparm -V 20.5.370 blast10 group ( leftside ) grouptype ( guess ) computenorms ( off ) negate ( on ) fillhole ( off ) removegrp ( off )
+chlock blast10 -*
+chautoscope blast10 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off blast10
+nbop __netbox3 add blast10
+opexprlanguage -s hscript blast10
+opuserdata -n '___Version___' -v '20.5.370' blast10
+
+# Node reverse2 (Sop/reverse)
+opadd -e -n reverse reverse2
+oplocate -x -3.2764099999999998 -y -3.8345400000000001 reverse2
+opspareds "" reverse2
+opparm -V 20.5.370 reverse2 group ( "" ) vtxsort ( reverseu ) vtxuoff ( 0 ) vtxvoff ( 0 )
+chlock reverse2 -*
+chautoscope reverse2 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off reverse2
+nbop __netbox3 add reverse2
+opexprlanguage -s hscript reverse2
+opuserdata -n '___Version___' -v '20.5.370' reverse2
+
 # Node join2 (Sop/join)
 opadd -e -n join join2
-oplocate -x -7.3011999999999997 -y -9.8830899999999993 join2
+oplocate -x -2.6090900000000001 -y -1.0760400000000001 join2
 opspareds "" join2
 opparm -V 20.5.370 join2 group ( "" ) blend ( on ) tolerance ( 1 ) bias ( 0.5 ) knotmult ( off ) proximity ( on ) dir ( ujoin ) joinop ( all ) inc ( 2 ) loop ( off ) prim ( off ) onlyconnected ( off )
 chlock join2 -*
@@ -1858,7 +3576,7 @@ opuserdata -n '___Version___' -v '20.5.370' join2
 
 # Node fuse4 (Sop/fuse::2.0)
 opadd -e -n fuse::2.0 fuse4
-oplocate -x 6.7480200000000004 -y -9.9261700000000008 fuse4
+oplocate -x 2.6369799999999999 -y -0.03986 fuse4
 opspareds "" fuse4
 opparm fuse4  numpointattribs ( 0 ) numgroups ( 0 )
 opparm -V 20.5.370 fuse4 querygroup ( "" ) usetargetgroup ( off ) targetgroup ( "" ) modifyboth ( off ) posattrib ( P ) snapgroup ( 0 ) snaptype ( distancesnap ) algorithm ( lowest ) usetol3d ( on ) tol3d ( 0.001 ) targetptattrib ( snap_to ) targetclass ( point ) usepositionsnapmethod ( on ) positionsnapmethod ( average ) positionsnapweightname ( weight ) useradiusattrib ( off ) radiusattrib ( pscale ) usematchattrib ( off ) matchattrib ( name ) matchtype ( match ) matchtol ( 0 ) gridtype ( spacing ) gridspacing ( 0.1 0.1 0.1 ) gridlines ( 10 10 10 ) gridpow2 ( 3 3 3 ) gridoffset ( 0 0 0 ) gridround ( nearest ) usegridtol ( on ) gridtol ( 10 ) consolidategroup ( 0 ) consolidatesnappedpoints ( on ) keepconsolidatedpoints ( off ) deldegen ( on ) deldegenpoints ( on ) delunusedpoints ( off ) outputgroup ( 0 ) recomputenml ( on ) createsnappedgroup ( off ) snappedgroupname ( snapped_points ) createsnappedattrib ( off ) snappedattribname ( snapped_to ) numpointattribs ( 0 ) numgroups ( 0 )
@@ -1869,17 +3587,167 @@ nbop __netbox2 add fuse4
 opexprlanguage -s hscript fuse4
 opuserdata -n '___Version___' -v '20.5.370' fuse4
 
-# Sticky Note __stickynote1
-python -c 'hou.pwd().createStickyNote("__stickynote1")'
-python -c 'hou.pwd().findStickyNote("__stickynote1").setColor(hou.Color((1, 0.969, 0.522)))'
-python -c 'hou.pwd().findStickyNote("__stickynote1").setText("https://gamecgben.blogspot.com/2018/02/houdini.html")'
-python -c 'hou.pwd().findStickyNote("__stickynote1").setTextSize(0)'
-python -c 'hou.pwd().findStickyNote("__stickynote1").setTextColor(hou.Color((0, 0, 0)))'
-python -c 'hou.pwd().findStickyNote("__stickynote1").setDrawBackground(True)'
-python -c 'hou.pwd().findStickyNote("__stickynote1").setPosition(hou.Vector2(4.68045, -18.1554))'
-python -c 'hou.pwd().findStickyNote("__stickynote1").setSize(hou.Vector2(5.30586, 2.5))'
-python -c 'hou.pwd().findStickyNote("__stickynote1").setMinimized(False)'
-oporder -e extrude_along_normal create_y_up_normal_attribute polyextrude1 polyextrude2 reverse1 merge1 wall boolean1 slope_outline1 transform1 merge2 join1 extrudevolume2 blast1 Params extrudevolume3 fuse1 foreach_end1 foreach_begin1 foreach_count1 null1 copytopoints1 add1 transform matchsize1 transform5 matchsize3 merge6 extrudevolume4 fuse2 polyextrude5 blast8 blast9 blast10 extract_silhouette1 extrudevolume8 merge8 fuse3 reverse2 box1 attribwrangle1 normal1 group1 dissolve1 testgeometry_tommy1 transform9 reverse3 switchif1 object_merge1 object_merge2 switchif2 object_merge3 extract_silhouette2 extrudevolume6 boolean2 matchsize5 extrudevolume7 box2 boolean3 reverse4 matchsize6 matchsize7 Slope_Exit Slope_Entrance Slope_Intermediate Center_Shear_Wall Slope_Entrance_var Slope_Intermediate_var join2 fuse4 
+# Node switchif3 (Sop/switchif)
+opadd -e -n switchif switchif3
+oplocate -x -2.6090900000000001 -y 0.61973100000000003 switchif3
+opspareds "" switchif3
+opparm switchif3  tests ( 1 )
+chblockbegin
+chadd -t 0 0 switchif3 expr1
+chkey -t 0 -v 1 -m 0 -a 0 -A 0 -T a  -F 'ch("../StairSkeleton/Rotation")==1' switchif3/expr1
+chblockend
+opparm -V 20.5.370 switchif3 mergecondition ( all ) testinput ( first ) tests ( 1 ) enable1 ( on ) type1 ( expr ) expr1 ( expr1 ) attribtype1 ( all ) attribowner1 ( point ) attributes1 ( "" ) attribvaltype1 ( flt ) attribfloatcomp1 ( equal ) attribstringcomp1 ( equal ) attribval1 ( 0 ) attribsval1 ( "" ) counttype1 ( points ) countgroup1 ( "" ) countcomp1 ( equal ) countval1 ( 0 ) hasinputtype1 ( wired )
+chlock switchif3 -*
+chautoscope switchif3 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off switchif3
+nbop __netbox3 add switchif3
+opexprlanguage -s hscript switchif3
+opuserdata -n '___Version___' -v '20.5.370' switchif3
+
+# Node blast11 (Sop/blast)
+opadd -e -n blast blast11
+oplocate -x -1.5924100000000001 -y 1.7655000000000001 blast11
+opspareds "" blast11
+opparm -V 20.5.370 blast11 group ( rightside ) grouptype ( guess ) computenorms ( off ) negate ( on ) fillhole ( off ) removegrp ( off )
+chlock blast11 -*
+chautoscope blast11 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off blast11
+nbop __netbox3 add blast11
+opexprlanguage -s hscript blast11
+opuserdata -n '___Version___' -v '20.5.370' blast11
+
+# Node blast2 (Sop/blast)
+opadd -e -n blast blast2
+oplocate -x -2.6090900000000001 -y 2.8677800000000002 blast2
+opspareds "" blast2
+opparm -V 20.5.370 blast2 group ( '@prim_type=floor' ) grouptype ( guess ) computenorms ( off ) negate ( off ) fillhole ( off ) removegrp ( off )
+chlock blast2 -*
+chautoscope blast2 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off blast2
+nbop __netbox3 add blast2
+opexprlanguage -s hscript blast2
+opuserdata -n '___Version___' -v '20.5.370' blast2
+
+# Node extrudevolume1 (Sop/extrudevolume)
+opadd -e -n extrudevolume extrudevolume1
+oplocate -x 2.6369799999999999 -y -1.01166 extrudevolume1
+opspareds "" extrudevolume1
+opparm extrudevolume1 depth ( -0.1 ) basenormal ( 0 1 0 ) flat ( off ) labelparm ( 'Base Extension (Second Output)' ) basepadding ( 0.1 ) baselift ( 1 ) folder0 ( 0 ) outputtopgrp ( off ) topgrp ( extrudeTop ) outputbasegrp ( off ) basegrp ( extrudeBase ) outputsidegrp ( off ) sidegrp ( extrudeSide ) outputtopseamgrp ( off ) topseamgrp ( extrudeTopSeam ) outputbaseseamgrp ( off ) baseseamgrp ( extrudeBaseSeam )
+chlock extrudevolume1 -*
+chautoscope extrudevolume1 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off extrudevolume1
+nbop __netbox2 add extrudevolume1
+opexprlanguage -s hscript extrudevolume1
+opuserdata -n '___Version___' -v '' extrudevolume1
+
+# Node output0 (Sop/output)
+opadd -e -n output output0
+oplocate -x -0.31060500000000002 -y -15.194599999999999 output0
+opspareds "" output0
+opparm -V 20.5.370 output0 outputidx ( 0 )
+chlock output0 -*
+chautoscope output0 -*
+opset -d on -r on -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off output0
+opexprlanguage -s hscript output0
+opuserdata -n '___Version___' -v '20.5.370' output0
+
+# Node group2 (Sop/groupcreate)
+opadd -e -n groupcreate group2
+oplocate -x -4.6621800000000002 -y -7.0129400000000004 group2
+opspareds "" group2
+opparm -V 20.5.370 group2 groupname ( group1 ) grouptype ( edge ) mergeop ( replace ) folder0 ( 0 ) groupbase ( off ) basegroup ( "" ) ordered ( off ) geotype ( all ) switcher3 ( 0 ) groupbounding ( off ) boundtype ( usebbox ) size ( 1 1 1 ) t ( 0 0 0 ) initbounds ( 0 ) includenotwhollycontained ( off ) iso ( 0 ) invertvolume ( off ) switcher4 ( 0 ) groupnormal ( off ) camerapath ( "" ) nonplanar ( off ) nonplanartol ( 0.001 ) dir ( 0 0 1 ) angle ( 180 ) oppositenormals ( off ) switcher5 ( 0 ) groupedges ( on ) dominedgeangle ( off ) minedgeangle ( 20 ) domaxedgeangle ( on ) maxedgeangle ( 360 ) edgeanglebetweenedges ( off ) dominedgelen ( off ) minedgelen ( 0 ) domaxedgelen ( off ) maxedgelen ( 0 ) dodepth ( off ) edgestep ( 0 ) edgeptgrp ( 0 ) unshared ( off ) boundarygroups ( off ) switcher6 ( 0 ) grouprandom ( off ) globalseed ( 1 ) useseedattrib ( off ) seedattrib ( id ) percent ( 50 )
+chlock group2 -*
+chautoscope group2 -*
+opset -d off -r off -h on -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off group2
+opexprlanguage -s hscript group2
+opuserdata -n '___Version___' -v '20.5.370' group2
+
+# Node dissolve2 (Sop/dissolve::2.0)
+opadd -e -n dissolve::2.0 dissolve2
+oplocate -x -4.6621800000000002 -y -7.8994400000000002 dissolve2
+opspareds "" dissolve2
+opparm -V 20.5.370 dissolve2 group ( group1 ) invertsel ( delete ) compnorms ( off ) reminlinepts ( on ) coltol ( 45 ) remunusedpts ( on ) bridge ( bridge ) deldegeneratebridges ( off ) boundarycurves ( off )
+chlock dissolve2 -*
+chautoscope dissolve2 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off dissolve2
+opexprlanguage -s hscript dissolve2
+opuserdata -n '___Version___' -v '20.5.370' dissolve2
+
+# Node group3 (Sop/groupcreate)
+opadd -e -n groupcreate group3
+oplocate -x -8.4662600000000001 -y -10.347200000000001 group3
+opspareds "" group3
+opparm -V 20.5.370 group3 groupname ( group1 ) grouptype ( edge ) mergeop ( replace ) folder0 ( 0 ) groupbase ( off ) basegroup ( "" ) ordered ( off ) geotype ( all ) switcher3 ( 0 ) groupbounding ( off ) boundtype ( usebbox ) size ( 1 1 1 ) t ( 0 0 0 ) initbounds ( 0 ) includenotwhollycontained ( off ) iso ( 0 ) invertvolume ( off ) switcher4 ( 0 ) groupnormal ( off ) camerapath ( "" ) nonplanar ( off ) nonplanartol ( 0.001 ) dir ( 0 0 1 ) angle ( 180 ) oppositenormals ( off ) switcher5 ( 0 ) groupedges ( on ) dominedgeangle ( off ) minedgeangle ( 20 ) domaxedgeangle ( on ) maxedgeangle ( 360 ) edgeanglebetweenedges ( off ) dominedgelen ( off ) minedgelen ( 0 ) domaxedgelen ( off ) maxedgelen ( 0 ) dodepth ( off ) edgestep ( 0 ) edgeptgrp ( 0 ) unshared ( off ) boundarygroups ( off ) switcher6 ( 0 ) grouprandom ( off ) globalseed ( 1 ) useseedattrib ( off ) seedattrib ( id ) percent ( 50 )
+chlock group3 -*
+chautoscope group3 -*
+opset -d off -r off -h on -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off group3
+opexprlanguage -s hscript group3
+opuserdata -n '___Version___' -v '20.5.370' group3
+
+# Node dissolve3 (Sop/dissolve::2.0)
+opadd -e -n dissolve::2.0 dissolve3
+oplocate -x -8.4662600000000001 -y -11.233700000000001 dissolve3
+opspareds "" dissolve3
+opparm -V 20.5.370 dissolve3 group ( group1 ) invertsel ( delete ) compnorms ( off ) reminlinepts ( on ) coltol ( 45 ) remunusedpts ( on ) bridge ( bridge ) deldegeneratebridges ( off ) boundarycurves ( off )
+chlock dissolve3 -*
+chautoscope dissolve3 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off dissolve3
+opexprlanguage -s hscript dissolve3
+opuserdata -n '___Version___' -v '20.5.370' dissolve3
+
+# Node blast1 (Sop/blast)
+opadd -e -n blast blast1
+oplocate -x -2.6090900000000001 -y -2.6867700000000001 blast1
+opspareds "" blast1
+opparm -V 20.5.370 blast1 group ( '@prim_type=rightside' ) grouptype ( guess ) computenorms ( off ) negate ( off ) fillhole ( off ) removegrp ( off )
+chlock blast1 -*
+chautoscope blast1 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off blast1
+nbop __netbox3 add blast1
+opexprlanguage -s hscript blast1
+opuserdata -n '___Version___' -v '20.5.370' blast1
+
+# Node uvunwrap1 (Sop/uvunwrap)
+opadd -e -n uvunwrap uvunwrap1
+oplocate -x -0.31060500000000002 -y -13.8345 uvunwrap1
+opspareds "" uvunwrap1
+opparm -V 20.5.370 uvunwrap1 uvattrib ( uv ) group ( "" ) planegroup ( "" ) nplanes ( planes6 ) layout ( square ) scale ( none ) spacing ( 0 ) rOrd ( xyz ) r ( 0 0 0 )
+chlock uvunwrap1 -*
+chautoscope uvunwrap1 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off uvunwrap1
+opexprlanguage -s hscript uvunwrap1
+opuserdata -n '___Version___' -v '20.5.370' uvunwrap1
+
+# Node uvtexture1 (Sop/texture)
+opadd -e -n texture uvtexture1
+oplocate -x 2.2063100000000002 -y -13.8345 uvtexture1
+opspareds "" uvtexture1
+opparm -V 20.5.370 uvtexture1 uvattrib ( uv ) group ( "" ) type ( face ) axis ( y ) campath ( "" ) coord ( vertex ) s ( 1 1 1 ) offset ( 0 0 0 ) angle ( 0 ) fixseams ( off )
+chlock uvtexture1 -*
+chautoscope uvtexture1 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off uvtexture1
+opexprlanguage -s hscript uvtexture1
+opuserdata -n '___Version___' -v '20.5.370' uvtexture1
+
+# Node switchif4 (Sop/switchif)
+opadd -e -n switchif switchif4
+oplocate -x -2.6090900000000001 -y -4.6657400000000004 switchif4
+opspareds "" switchif4
+opparm switchif4  tests ( 1 )
+chblockbegin
+chadd -t 0 0 switchif4 expr1
+chkey -t 0 -v 1 -m 0 -a 0 -A 0 -T a  -F 'ch("../StairSkeleton/Rotation")==1' switchif4/expr1
+chblockend
+opparm -V 20.5.370 switchif4 mergecondition ( all ) testinput ( first ) tests ( 1 ) enable1 ( on ) type1 ( expr ) expr1 ( expr1 ) attribtype1 ( all ) attribowner1 ( point ) attributes1 ( "" ) attribvaltype1 ( flt ) attribfloatcomp1 ( equal ) attribstringcomp1 ( equal ) attribval1 ( 0 ) attribsval1 ( "" ) counttype1 ( points ) countgroup1 ( "" ) countcomp1 ( equal ) countval1 ( 0 ) hasinputtype1 ( wired )
+chlock switchif4 -*
+chautoscope switchif4 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off switchif4
+nbop __netbox3 add switchif4
+opexprlanguage -s hscript switchif4
+opuserdata -n '___Version___' -v '20.5.370' switchif4
+oporder -e fuse1 null1 extrudevolume4 blast9 extract_silhouette1 extrudevolume8 merge8 fuse3 normal1 group1 dissolve1 extract_silhouette2 extrudevolume6 boolean2 matchsize5 extrudevolume7 box2 boolean3 reverse4 matchsize6 matchsize7 StairSkeleton grid1 matchsize4 extrudevolume3 fuse2 polyextrude5 blast8 blast10 reverse2 join2 fuse4 switchif3 blast11 blast2 extrudevolume1 output0 group2 dissolve2 group3 dissolve3 blast1 uvunwrap1 uvtexture1 switchif4 
+opcf ..
+oporder -e extrude_along_normal create_y_up_normal_attribute polyextrude1 polyextrude2 reverse1 merge1 wall boolean1 slope_outline1 transform1 merge2 join1 extrudevolume2 blast1 Slope_Exit Slope_Entrance Slope_Intermediate Slope_Entrance_var Slope_Intermediate_var Stair 
 opcf ..
 
 # Node test_fence (Object/geo)
@@ -2344,7 +4212,7 @@ opset -S on test_outside_corridor
 opparm -V 20.5.370 test_outside_corridor stdswitcher ( 0 0 0 ) xOrd ( srt ) rOrd ( xyz ) t ( 0 0 0 ) r ( 0 0 0 ) s ( 1 1 1 ) p ( 0 0 0 ) pr ( 0 0 0 ) scale ( 1 ) pre_xform ( clean ) keeppos ( off ) childcomp ( off ) constraints_on ( off ) constraints_path ( "" ) lookatpath ( "" ) lookupobjpath ( "" ) lookup ( on ) pathobjpath ( "" ) roll ( 0 ) pos ( 0 ) uparmtype ( arc ) pathorient ( 1 ) up ( 0 1 0 ) bank ( 0 ) shop_materialpath ( "" ) shop_materialopts ( override ) tdisplay ( off ) display ( 1 ) use_dcolor ( off ) dcolor ( 1 1 1 ) picking ( on ) pickscript ( "" ) caching ( on ) vport_shadeopen ( off ) vport_displayassubdiv ( off ) vport_onionskin ( off ) stdswitcher4 ( 0 0 0 ) viewportlod ( full ) vm_rendervisibility ( * ) vm_rendersubd ( off ) vm_subdstyle ( mantra_catclark ) vm_subdgroup ( "" ) vm_osd_quality ( 1 ) vm_osd_vtxinterp ( 2 ) vm_osd_fvarinterp ( 4 ) folder0 ( 0 0 0 0 ) categories ( "" ) reflectmask ( * ) refractmask ( * ) lightmask ( * ) lightcategories ( * ) vm_lpetag ( "" ) vm_volumefilter ( box ) vm_volumefilterwidth ( 1 ) vm_matte ( off ) vm_rayshade ( off ) geo_velocityblur ( off ) geo_accelattribute ( accel ) vm_shadingquality ( 1 ) vm_flatness ( 0.05 ) vm_raypredice ( 0 ) vm_curvesurface ( off ) vm_rmbackface ( off ) shop_geometrypath ( "" ) vm_forcegeometry ( on ) vm_rendersubdcurves ( off ) vm_renderpoints ( 2 ) vm_renderpointsas ( 0 ) vm_usenforpoints ( off ) vm_pointscale ( 1 ) vm_pscalediameter ( off ) vm_metavolume ( off ) vm_coving ( 1 ) vm_materialoverride ( compact ) vm_overridedetail ( off ) vm_procuseroottransform ( on )
 chlock test_outside_corridor -*
 chautoscope test_outside_corridor -* +tx +ty +tz +rx +ry +rz +sx +sy +sz
-opset -d on -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off -x off test_outside_corridor
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off -x off test_outside_corridor
 opexprlanguage -s hscript test_outside_corridor
 opuserdata -n '___Version___' -v '20.5.370' test_outside_corridor
 opcf test_outside_corridor
@@ -2671,54 +4539,6 @@ opwire -n transform1 -1 merge2
 opwire -n merge2 -0 join1
 opwire -n join1 -0 extrudevolume2
 opwire -n extrudevolume2 -0 blast1
-opwire -n join2 -0 extrudevolume3
-opwire -n blast9 -0 fuse1
-opwire -n copytopoints1 -0 foreach_end1
-opwire -n add1 -0 foreach_begin1
-opwire -n foreach_end1 -0 null1
-opwire -n merge6 -0 copytopoints1
-opwire -n foreach_begin1 -1 copytopoints1
-opwire -n switchif1 -0 transform
-opwire -n transform -0 matchsize1
-opwire -n switchif2 -0 transform5
-opwire -n transform5 -0 matchsize3
-opwire -n matchsize1 -0 merge6
-opwire -n matchsize3 -1 merge6
-opwire -n fuse1 -0 extrudevolume4
-opwire -n blast10 -0 fuse2
-opwire -n reverse2 -0 polyextrude5
-opwire -n null1 -0 blast8
-opwire -n null1 -0 blast9
-opwire -n null1 -0 blast10
-opwire -n extrudevolume4 -0 extract_silhouette1
-opwire -n extract_silhouette1 -0 extrudevolume8
-opwire -n polyextrude5 -0 merge8
-opwire -n fuse4 -1 merge8
-opwire -n matchsize7 -2 merge8
-opwire -n merge8 -0 fuse3
-opwire -n extrudevolume3 -0 reverse2
-opwire -n foreach_end1 -0 box1
-opwire -n box1 -0 attribwrangle1
-opwire -n dissolve1 -0 normal1
-opwire -n fuse3 -0 group1
-opwire -n group1 -0 dissolve1
-opwire -n normal1 -0 transform9
-opwire -n transform9 -0 reverse3
-opwire -n object_merge1 -0 switchif1
-opwire -n object_merge2 -1 switchif1
-opwire -n object_merge1 -0 switchif2
-opwire -n object_merge3 -1 switchif2
-opwire -n extrudevolume3 -0 extract_silhouette2
-opwire -n extract_silhouette2 -0 extrudevolume6
-opwire -n Center_Shear_Wall -0 boolean2
-opwire -n boolean3 -1 boolean2
-opwire -n extrudevolume6 -0 matchsize5
-opwire -n boolean2 -0 extrudevolume7
-opwire -n matchsize5 -0 boolean3
-opwire -n reverse4 -1 boolean3
-opwire -n matchsize6 -0 reverse4
-opwire -n box2 -0 matchsize6
-opwire -n extrudevolume7 -0 matchsize7
 opcf Slope_Exit
 opwire -n matchsize8 -0 merge9
 opwire -n attribwrangle10 -1 merge9
@@ -2766,10 +4586,6 @@ opwire -n -o 1 Elbow1 -0 transform8
 opwire -n merge5 -0 output0
 opwire -n -o 1 Elbow1 -0 transform1
 opcf ..
-opcf Center_Shear_Wall
-opwire -n grid1 -0 matchsize4
-opwire -n matchsize4 -0 output0
-opcf ..
 opcf Slope_Entrance_var
 opwire -n merge4 -0 output0
 opwire -n transform6 -0 merge4
@@ -2811,8 +4627,206 @@ opwire -n attribwrangle7 -0 blast1
 opwire -n transform2 -0 attribwrangle8
 opwire -n blast1 -1 attribwrangle8
 opcf ..
+opcf Stair
+opwire -n blast9 -0 fuse1
+opwire -n StairSkeleton -0 null1
+opwire -n fuse1 -0 extrudevolume4
+opwire -n null1 -0 blast9
+opwire -n extrudevolume4 -0 extract_silhouette1
+opwire -n extract_silhouette1 -0 extrudevolume8
+opwire -n extrudevolume1 -0 merge8
+opwire -n dissolve3 -1 merge8
+opwire -n dissolve2 -2 merge8
+opwire -n merge8 -0 fuse3
+opwire -n dissolve1 -0 normal1
+opwire -n fuse3 -0 group1
+opwire -n group1 -0 dissolve1
+opwire -n blast1 -0 extract_silhouette2
+opwire -n extract_silhouette2 -0 extrudevolume6
+opwire -n matchsize4 -0 boolean2
+opwire -n boolean3 -1 boolean2
+opwire -n extrudevolume6 -0 matchsize5
+opwire -n boolean2 -0 extrudevolume7
+opwire -n matchsize5 -0 boolean3
+opwire -n reverse4 -1 boolean3
+opwire -n matchsize6 -0 reverse4
+opwire -n box2 -0 matchsize6
+opwire -n extrudevolume7 -0 matchsize7
+opcf StairSkeleton
+opwire -n foreach_end3 -0 output0
+opwire -n switchif1 -0 transform3
+opwire -n copytopoints3 -0 foreach_end3
+opwire -n add3 -0 foreach_begin3
+opwire -n merge2 -0 copytopoints3
+opwire -n foreach_begin3 -1 copytopoints3
+opwire -n transform3 -0 merge2
+opwire -n transform7 -1 merge2
+opcf StairSkeleton_Entrance
+opwire -n blast1 -0 output0
+opwire -n transform1 -0 attribwrangle4
+opwire -n blast3 -1 attribwrangle4
+opwire -n SlopeSkeleton_Base -0 blast3
+opwire -n -o 1 Straight1 -0 transform1
+opcf SlopeSkeleton_Base
+opwire -n merge4 -0 output0
+opwire -n delete_end -0 merge4
+opwire -n delete_end1 -1 merge4
+opwire -n attribwrangle5 -2 merge4
+opwire -n -o 1 Slope -0 attribwrangle4
+opwire -n blast3 -1 attribwrangle4
+opwire -n matchsize2 -0 attribwrangle5
+opwire -n blast1 -1 attribwrangle5
+opwire -n attribwrangle4 -0 blast1
+opwire -n matchsize1 -0 blast3
+opwire -n matchsize1 -0 delete_handle
+opwire -n attribwrangle4 -0 delete_handle1
+opwire -n -o 1 Landing -0 switch1
+opwire -n transform1 -1 switch1
+opwire -n transform2 -2 switch1
+opwire -n -o 1 ElbowLeft -0 transform1
+opwire -n -o 1 ElbowRight -0 transform2
+opwire -n switch1 -0 matchsize1
+opwire -n -o 1 Landing1 -0 switch2
+opwire -n transform3 -1 switch2
+opwire -n transform4 -2 switch2
+opwire -n -o 1 ElbowLeft1 -0 transform3
+opwire -n -o 1 ElbowRight1 -0 transform4
+opwire -n switch2 -0 matchsize2
+opwire -n delete_handle -0 delete_end
+opwire -n delete_handle1 -0 delete_end1
+opcf ..
+opwire -n SlopeSkeleton_Base -0 delete_handle
+opwire -n delete_handle -0 delete_end
+opwire -n delete_end -0 merge1
+opwire -n attribwrangle4 -1 merge1
+opwire -n attribwrangle5 -2 merge1
+opwire -n -o 1 Straight2 -0 attribwrangle5
+opwire -n blast4 -1 attribwrangle5
+opwire -n attribwrangle4 -0 blast4
+opwire -n merge1 -0 blast1
+opcf ..
+opcf StairSkeleton_Intermediate
+opwire -n blast1 -0 output0
+opwire -n transform1 -0 attribwrangle4
+opwire -n blast3 -1 attribwrangle4
+opwire -n SlopeSkeleton_Base -0 blast3
+opwire -n -o 1 Straight1 -0 transform1
+opcf SlopeSkeleton_Base
+opwire -n merge4 -0 output0
+opwire -n delete_end -0 merge4
+opwire -n delete_end1 -1 merge4
+opwire -n attribwrangle5 -2 merge4
+opwire -n -o 1 Slope -0 attribwrangle4
+opwire -n blast3 -1 attribwrangle4
+opwire -n matchsize2 -0 attribwrangle5
+opwire -n blast1 -1 attribwrangle5
+opwire -n attribwrangle4 -0 blast1
+opwire -n matchsize1 -0 blast3
+opwire -n matchsize1 -0 delete_handle
+opwire -n attribwrangle4 -0 delete_handle1
+opwire -n -o 1 Landing -0 switch1
+opwire -n transform1 -1 switch1
+opwire -n transform2 -2 switch1
+opwire -n -o 1 ElbowLeft -0 transform1
+opwire -n -o 1 ElbowRight -0 transform2
+opwire -n switch1 -0 matchsize1
+opwire -n -o 1 Landing1 -0 switch2
+opwire -n transform3 -1 switch2
+opwire -n transform4 -2 switch2
+opwire -n -o 1 ElbowLeft1 -0 transform3
+opwire -n -o 1 ElbowRight1 -0 transform4
+opwire -n switch2 -0 matchsize2
+opwire -n delete_handle -0 delete_end
+opwire -n delete_handle1 -0 delete_end1
+opcf ..
+opwire -n SlopeSkeleton_Base -0 delete_handle
+opwire -n delete_handle -0 delete_end
+opwire -n delete_end -0 merge1
+opwire -n attribwrangle4 -1 merge1
+opwire -n attribwrangle5 -2 merge1
+opwire -n -o 1 Straight2 -0 attribwrangle5
+opwire -n blast4 -1 attribwrangle5
+opwire -n attribwrangle4 -0 blast4
+opwire -n merge1 -0 blast1
+opcf ..
+opwire -n switchif5 -0 transform7
+opwire -n foreach_end3 -0 blast7
+opwire -n object_merge1 -0 switchif5
+opwire -n object_merge8 -1 switchif5
+opcf StairSkeleton_Exit
+opwire -n blast1 -0 output0
+opwire -n transform1 -0 attribwrangle4
+opwire -n blast3 -1 attribwrangle4
+opwire -n SlopeSkeleton_Base -0 blast3
+opwire -n -o 1 Straight1 -0 transform1
+opcf SlopeSkeleton_Base
+opwire -n merge4 -0 output0
+opwire -n delete_end -0 merge4
+opwire -n delete_end1 -1 merge4
+opwire -n attribwrangle5 -2 merge4
+opwire -n -o 1 Slope -0 attribwrangle4
+opwire -n blast3 -1 attribwrangle4
+opwire -n matchsize2 -0 attribwrangle5
+opwire -n blast1 -1 attribwrangle5
+opwire -n attribwrangle4 -0 blast1
+opwire -n matchsize1 -0 blast3
+opwire -n matchsize1 -0 delete_handle
+opwire -n attribwrangle4 -0 delete_handle1
+opwire -n -o 1 Landing -0 switch1
+opwire -n transform1 -1 switch1
+opwire -n transform2 -2 switch1
+opwire -n -o 1 ElbowLeft -0 transform1
+opwire -n -o 1 ElbowRight -0 transform2
+opwire -n switch1 -0 matchsize1
+opwire -n -o 1 Landing1 -0 switch2
+opwire -n transform3 -1 switch2
+opwire -n transform4 -2 switch2
+opwire -n -o 1 ElbowLeft1 -0 transform3
+opwire -n -o 1 ElbowRight1 -0 transform4
+opwire -n switch2 -0 matchsize2
+opwire -n delete_handle -0 delete_end
+opwire -n delete_handle1 -0 delete_end1
+opcf ..
+opwire -n SlopeSkeleton_Base -0 delete_handle
+opwire -n delete_handle -0 delete_end
+opwire -n delete_end -0 merge1
+opwire -n delete_end1 -1 merge1
+opwire -n attribwrangle5 -2 merge1
+opwire -n -o 1 Straight2 -0 attribwrangle5
+opwire -n blast4 -1 attribwrangle5
+opwire -n attribwrangle4 -0 blast4
+opwire -n merge1 -0 blast1
+opwire -n attribwrangle4 -0 delete_handle1
+opwire -n delete_handle1 -0 delete_end1
+opcf ..
+opwire -n object_merge7 -0 switchif1
+opwire -n object_merge1 -1 switchif1
+opcf ..
+opwire -n grid1 -0 matchsize4
+opwire -n join2 -0 extrudevolume3
+opwire -n switchif3 -0 fuse2
+opwire -n switchif4 -0 polyextrude5
+opwire -n null1 -0 blast8
+opwire -n blast2 -0 blast10
+opwire -n blast1 -0 reverse2
 opwire -n fuse2 -0 join2
 opwire -n blast8 -0 fuse4
+opwire -n blast10 -0 switchif3
+opwire -n blast11 -1 switchif3
+opwire -n blast2 -0 blast11
+opwire -n null1 -0 blast2
+opwire -n fuse4 -0 extrudevolume1
+opwire -n uvunwrap1 -0 output0
+opwire -n polyextrude5 -0 group2
+opwire -n group2 -0 dissolve2
+opwire -n matchsize7 -0 group3
+opwire -n group3 -0 dissolve3
+opwire -n extrudevolume3 -0 blast1
+opwire -n normal1 -0 uvunwrap1
+opwire -n normal1 -0 uvtexture1
+opwire -n reverse2 -0 switchif4
+opwire -n blast1 -1 switchif4
+opcf ..
 opcf ..
 opcf test_fence
 opwire -n resample6 -0 subnet1
