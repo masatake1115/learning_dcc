@@ -1,0 +1,32 @@
+// Get center
+vector center = vector(0.0);
+for( int i=0; i<npoints(1); ++i )
+    center += point(1, "P", i);
+center /= npoints(1);
+
+vector axis1 = normalize( point(1,"P",1) - point(1,"P",0) ) * 10.0;
+vector axis2 = normalize( point(1,"P",2) - point(1,"P",1) ) * 10.0;
+
+vector z_dir = abs(axis1.z) > abs(axis2.z) ? axis1 : axis2;
+vector x_dir = abs(axis1.z) <= abs(axis2.z) ? axis1 : axis2;
+
+
+if( z_dir.z < 0 )   z_dir = -z_dir;
+if( x_dir.x < 0 )   x_dir = -x_dir;
+
+int origin = addpoint(0, center );
+
+int prim_zdir = addprim( 0, "polyline" );
+addprimattrib(0, "Cd", {1,1,1});
+
+int z_end = addpoint( 0, z_dir + center );
+addvertex( 0, prim_zdir, origin );
+addvertex( 0, prim_zdir, z_end );
+setprimattrib( 0, "Cd", prim_zdir, {0,0,1} );
+
+
+int prim_xdir = addprim( 0, "polyline" );
+int x_end = addpoint( 0, x_dir + center );
+addvertex( 0, prim_xdir, origin );
+addvertex( 0, prim_xdir, x_end );
+setprimattrib( 0, "Cd", prim_xdir, {1,0,0} );
