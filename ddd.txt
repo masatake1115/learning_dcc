@@ -1,0 +1,317 @@
+# Automatically generated script
+\set noalias = 1
+set saved_path = `execute("oppwf")`
+opcf /
+
+# Node vex (/vex)
+
+# Node mat (/mat)
+
+# Node obj (/obj)
+opcf obj
+
+# Node Components (Object/geo)
+opadd -e -n geo Components
+oplocate -x -4.5833399999999997 -y 1.46434 Components
+opspareds '    group {         name    "stdswitcher4"         label   "Transform"         grouptag { "sidefx::switcher" "stdswitcher" }          parm {             name    "xOrd"             baseparm             label   "Transform Order"             joinnext             export  none         }         parm {             name    "rOrd"             baseparm             label   "Rotate Order"             nolabel             export  none         }         parm {             name    "t"             baseparm             label   "Translate"             export  all         }         parm {             name    "r"             baseparm             label   "Rotate"             export  all         }         parm {             name    "s"             baseparm             label   "Scale"             export  none         }         parm {             name    "p"             baseparm             label   "Pivot Translate"             export  none         }         parm {             name    "pr"             baseparm             label   "Pivot Rotate"             export  none         }         parm {             name    "scale"             baseparm             label   "Uniform Scale"             export  none         }         parm {             name    "pre_xform"             baseparm             label   "Modify Pre-Transform"             export  none         }         parm {             name    "keeppos"             baseparm             label   "Keep Position When Parenting"             export  none         }         parm {             name    "childcomp"             baseparm             label   "Child Compensation"             export  none         }         parm {             name    "constraints_on"             baseparm             label   "Enable Constraints"             export  none         }         parm {             name    "constraints_path"             baseparm             label   "Constraints"             export  none         }         parm {             name    "lookatpath"             baseparm             label   "Look At"             invisible             export  none         }         parm {             name    "lookupobjpath"             baseparm             label   "Look Up Object"             invisible             export  none         }         parm {             name    "lookup"             baseparm             label   "Look At Up Vector"             invisible             export  none         }         parm {             name    "pathobjpath"             baseparm             label   "Path Object"             invisible             export  none         }         parm {             name    "roll"             baseparm             label   "Roll"             invisible             export  none         }         parm {             name    "pos"             baseparm             label   "Position"             invisible             export  none         }         parm {             name    "uparmtype"             baseparm             label   "Parameterization"             invisible             export  none         }         parm {             name    "pathorient"             baseparm             label   "Orient Along Path"             invisible             export  none         }         parm {             name    "up"             baseparm             label   "Orient Up Vector"             invisible             export  none         }         parm {             name    "bank"             baseparm             label   "Auto-Bank factor"             invisible             export  none         }     }      group {         name    "stdswitcher4_1"         label   "Render"          parm {             name    "shop_materialpath"             baseparm             label   "Material"             export  none         }         parm {             name    "shop_materialopts"             baseparm             label   "Options"             invisible             export  none         }         parm {             name    "tdisplay"             baseparm             label   "Display"             joinnext             export  none         }         parm {             name    "display"             baseparm             label   "Display"             export  none         }         parm {             name    "viewportlod"             label   "Display As"             type    ordinal             default { "full" }             help    "Choose how the object\'s geometry should be rendered in the viewport"             menu {                 "full"      "Full Geometry"                 "points"    "Point Cloud"                 "box"       "Bounding Box"                 "centroid"  "Centroid"                 "hidden"    "Hidden"                 "subd"      "Subdivision Surface / Curves"             }             parmtag { "spare_category" "Render" }         }         parm {             name    "vm_rendervisibility"             label   "Render Visibility"             type    string             default { "*" }             menureplace {                 "*"                             "Visible to all"                 "primary"                       "Visible only to primary rays"                 "primary|shadow"                "Visible only to primary and shadow rays"                 "-primary"                      "Invisible to primary rays (Phantom)"                 "-diffuse"                      "Invisible to diffuse rays"                 "-diffuse&-reflect&-refract"    "Invisible to secondary rays"                 ""                              "Invisible (Unrenderable)"             }             parmtag { "mantra_class" "object" }             parmtag { "mantra_name" "rendervisibility" }             parmtag { "spare_category" "Render" }         }         parm {             name    "vm_rendersubd"             label   "Render Polygons As Subdivision (Mantra)"             type    toggle             default { "0" }             parmtag { "mantra_class" "object" }             parmtag { "mantra_name" "rendersubd" }             parmtag { "spare_category" "Geometry" }         }         parm {             name    "vm_subdstyle"             label   "Subdivision Style"             type    string             default { "mantra_catclark" }             hidewhen "{ vm_rendersubd == 0 }"             menu {                 "mantra_catclark"   "Mantra Catmull-Clark"                 "osd_catclark"      "OpenSubdiv Catmull-Clark"             }             parmtag { "mantra_class" "object" }             parmtag { "mantra_name" "subdstyle" }             parmtag { "spare_category" "Geometry" }         }         parm {             name    "vm_subdgroup"             label   "Subdivision Group"             type    string             default { "" }             hidewhen "{ vm_rendersubd == 0 }"             parmtag { "mantra_class" "object" }             parmtag { "mantra_name" "subdgroup" }             parmtag { "spare_category" "Geometry" }         }         parm {             name    "vm_osd_quality"             label   "Open Subdiv Quality"             type    float             default { "1" }             hidewhen "{ vm_rendersubd == 0 vm_subdstyle != osd_catclark }"             range   { 0 10 }             parmtag { "mantra_class" "object" }             parmtag { "mantra_name" "osd_quality" }             parmtag { "spare_category" "Geometry" }         }         parm {             name    "vm_osd_vtxinterp"             label   "OSD Vtx Interp"             type    integer             default { "2" }             hidewhen "{ vm_rendersubd == 0 vm_subdstyle != osd_catclark }"             menu {                 "0" "No vertex interpolation"                 "1" "Edges only"                 "2" "Edges and Corners"             }             range   { 0 10 }             parmtag { "mantra_class" "object" }             parmtag { "mantra_name" "osd_vtxinterp" }             parmtag { "spare_category" "Geometry" }         }         parm {             name    "vm_osd_fvarinterp"             label   "OSD FVar Interp"             type    integer             default { "4" }             hidewhen "{ vm_rendersubd == 0 vm_subdstyle != osd_catclark }"             menu {                 "0" "Smooth everywhere"                 "1" "Sharpen corners only"                 "2" "Sharpen edges and corners"                 "3" "Sharpen edges and propagated corners"                 "4" "Sharpen all boundaries"                 "5" "Bilinear interpolation"             }             range   { 0 10 }             parmtag { "mantra_class" "object" }             parmtag { "mantra_name" "osd_fvarinterp" }             parmtag { "spare_category" "Geometry" }         }         group {             name    "folder0"             label   "Shading"              parm {                 name    "categories"                 label   "Categories"                 type    string                 default { "" }                 help    "A list of tags which can be used to select the object"                 parmtag { "spare_category" "Shading" }             }             parm {                 name    "reflectmask"                 label   "Reflection Mask"                 type    oplist                 default { "*" }                 help    "Objects that will be reflected on this object."                 parmtag { "opexpand" "1" }                 parmtag { "opfilter" "!!OBJ/GEOMETRY!!" }                 parmtag { "oprelative" "/obj" }                 parmtag { "spare_category" "Shading" }             }             parm {                 name    "refractmask"                 label   "Refraction Mask"                 type    oplist                 default { "*" }                 help    "Objects that will be refracted on this object."                 parmtag { "opexpand" "1" }                 parmtag { "opfilter" "!!OBJ/GEOMETRY!!" }                 parmtag { "oprelative" "/obj" }                 parmtag { "spare_category" "Shading" }             }             parm {                 name    "lightmask"                 label   "Light Mask"                 type    oplist                 default { "*" }                 help    "Lights that illuminate this object."                 parmtag { "opexpand" "1" }                 parmtag { "opfilter" "!!OBJ/LIGHT!!" }                 parmtag { "oprelative" "/obj" }                 parmtag { "spare_category" "Shading" }             }             parm {                 name    "lightcategories"                 label   "Light Selection"                 type    string                 default { "*" }                 parmtag { "spare_category" "Shading" }             }             parm {                 name    "vm_lpetag"                 label   "LPE Tag"                 type    string                 default { "" }                 parmtag { "mantra_class" "object" }                 parmtag { "mantra_name" "lpetag" }                 parmtag { "spare_category" "Shading" }             }             parm {                 name    "vm_volumefilter"                 label   "Volume Filter"                 type    string                 default { "box" }                 menu {                     "box"       "Box Filter"                     "gaussian"  "Gaussian"                     "bartlett"  "Bartlett (triangle)"                     "catrom"    "Catmull-Rom"                     "hanning"   "Hanning"                     "blackman"  "Blackman"                     "sinc"      "Sinc (sharpening)"                 }                 parmtag { "mantra_class" "object" }                 parmtag { "mantra_name" "filter" }                 parmtag { "spare_category" "Shading" }             }             parm {                 name    "vm_volumefilterwidth"                 label   "Volume Filter Width"                 type    float                 default { "1" }                 range   { 0.001 5 }                 parmtag { "mantra_class" "object" }                 parmtag { "mantra_name" "filterwidth" }                 parmtag { "spare_category" "Shading" }             }             parm {                 name    "vm_matte"                 label   "Matte shading"                 type    toggle                 default { "0" }                 parmtag { "mantra_class" "object" }                 parmtag { "mantra_name" "matte" }                 parmtag { "spare_category" "Shading" }             }             parm {                 name    "vm_rayshade"                 label   "Raytrace Shading"                 type    toggle                 default { "0" }                 parmtag { "mantra_class" "object" }                 parmtag { "mantra_name" "rayshade" }                 parmtag { "spare_category" "Shading" }             }         }          group {             name    "folder0_1"             label   "Sampling"              parm {                 name    "geo_velocityblur"                 label   "Geometry Velocity Blur"                 type    ordinal                 default { "off" }                 disablewhen "{ allowmotionblur == 0 }"                 menu {                     "off"       "No Velocity Blur"                     "on"        "Velocity Blur"                     "accelblur" "Acceleration Blur"                 }             }             parm {                 name    "geo_accelattribute"                 label   "Acceleration Attribute"                 type    string                 default { "accel" }                 hidewhen "{ geo_velocityblur != accelblur }"                 parmtag { "spare_category" "Sampling" }             }         }          group {             name    "folder0_2"             label   "Dicing"              parm {                 name    "vm_shadingquality"                 label   "Shading Quality"                 type    float                 default { "1" }                 range   { 0 10 }                 parmtag { "mantra_class" "object" }                 parmtag { "mantra_name" "shadingquality" }                 parmtag { "spare_category" "Dicing" }             }             parm {                 name    "vm_flatness"                 label   "Dicing Flatness"                 type    float                 default { "0.05" }                 range   { 0 1 }                 parmtag { "mantra_class" "object" }                 parmtag { "mantra_name" "flatness" }                 parmtag { "spare_category" "Dicing" }             }             parm {                 name    "vm_raypredice"                 label   "Ray Predicing"                 type    integer                 default { "0" }                 menu {                     "0" "Disable Predicing"                     "1" "Full Predicing"                     "2" "Precompute Bounds"                 }                 range   { 0 10 }                 parmtag { "mantra_class" "object" }                 parmtag { "mantra_name" "raypredice" }                 parmtag { "spare_category" "Dicing" }             }             parm {                 name    "vm_curvesurface"                 label   "Shade Curves As Surfaces"                 type    toggle                 default { "0" }                 parmtag { "mantra_class" "object" }                 parmtag { "mantra_name" "curvesurface" }                 parmtag { "spare_category" "Dicing" }             }         }          group {             name    "folder0_3"             label   "Geometry"              parm {                 name    "vm_rmbackface"                 label   "Backface Removal"                 type    toggle                 default { "0" }                 parmtag { "mantra_class" "object" }                 parmtag { "mantra_name" "rmbackface" }                 parmtag { "spare_category" "Geometry" }             }             parm {                 name    "shop_geometrypath"                 label   "Procedural Shader"                 type    oppath                 default { "" }                 parmtag { "opfilter" "!!SHOP/GEOMETRY!!" }                 parmtag { "oprelative" "." }                 parmtag { "spare_category" "Geometry" }             }             parm {                 name    "vm_forcegeometry"                 label   "Force Procedural Geometry Output"                 type    toggle                 default { "1" }                 parmtag { "spare_category" "Geometry" }             }             parm {                 name    "vm_rendersubdcurves"                 label   "Render Polygon Curves As Subdivision (Mantra)"                 type    toggle                 default { "0" }                 parmtag { "mantra_class" "object" }                 parmtag { "mantra_name" "rendersubdcurves" }                 parmtag { "spare_category" "Geometry" }             }             parm {                 name    "vm_renderpoints"                 label   "Render As Points (Mantra)"                 type    integer                 default { "2" }                 menu {                     "0" "No Point Rendering"                     "1" "Render Only Points"                     "2" "Render Unconnected Points"                 }                 range   { 0 10 }                 parmtag { "mantra_class" "object" }                 parmtag { "mantra_name" "renderpoints" }                 parmtag { "spare_category" "Geometry" }             }             parm {                 name    "vm_renderpointsas"                 label   "Render Points As (Mantra)"                 type    integer                 default { "0" }                 disablewhen "{ vm_renderpoints == 0 }"                 menu {                     "0" "Spheres"                     "1" "Circles"                 }                 range   { 0 10 }                 parmtag { "mantra_class" "object" }                 parmtag { "mantra_name" "renderpointsas" }                 parmtag { "spare_category" "Geometry" }             }             parm {                 name    "vm_usenforpoints"                 label   "Use N For Point Rendering"                 type    toggle                 default { "0" }                 disablewhen "{ vm_renderpoints == 0 }"                 parmtag { "mantra_class" "object" }                 parmtag { "mantra_name" "usenforpoints" }                 parmtag { "spare_category" "Geometry" }             }             parm {                 name    "vm_pointscale"                 label   "Point Scale"                 type    float                 default { "1" }                 disablewhen "{ vm_renderpoints == 0 }"                 range   { 0! 10 }                 parmtag { "mantra_class" "object" }                 parmtag { "mantra_name" "pointscale" }                 parmtag { "spare_category" "Geometry" }             }             parm {                 name    "vm_pscalediameter"                 label   "Treat Point Scale as Diameter Instead of Radius"                 type    toggle                 default { "0" }                 parmtag { "mantra_class" "object" }                 parmtag { "mantra_name" "pscalediameter" }                 parmtag { "spare_category" "Geometry" }             }             parm {                 name    "vm_metavolume"                 label   "Metaballs as Volume"                 type    toggle                 default { "0" }                 parmtag { "mantra_class" "object" }                 parmtag { "mantra_name" "metavolume" }                 parmtag { "spare_category" "Geometry" }             }             parm {                 name    "vm_coving"                 label   "Coving"                 type    integer                 default { "1" }                 menu {                     "0" "Disable Coving"                     "1" "Coving for displacement/sub-d"                     "2" "Coving for all primitives"                 }                 range   { 0 10 }                 parmtag { "mantra_class" "object" }                 parmtag { "mantra_name" "coving" }                 parmtag { "spare_category" "Geometry" }             }             parm {                 name    "vm_materialoverride"                 label   "Material Override"                 type    string                 default { "compact" }                 menu {                     "none"      "Disabled"                     "full"      "Evaluate for Each Primitve/Point"                     "compact"   "Evaluate Once"                 }                 parmtag { "spare_category" "Geometry" }             }             parm {                 name    "vm_overridedetail"                 label   "Ignore Geometry Attribute Shaders"                 type    toggle                 default { "0" }                 parmtag { "mantra_class" "object" }                 parmtag { "mantra_name" "overridedetail" }                 parmtag { "spare_category" "Geometry" }             }             parm {                 name    "vm_procuseroottransform"                 label   "Proc Use Root Transform"                 type    toggle                 default { "1" }                 parmtag { "mantra_class" "object" }                 parmtag { "mantra_name" "procuseroottransform" }                 parmtag { "spare_category" "Geometry" }             }         }      }      group {         name    "stdswitcher4_2"         label   "Misc"          parm {             name    "use_dcolor"             baseparm             label   "Set Wireframe Color"             export  none         }         parm {             name    "dcolor"             baseparm             label   "Wireframe Color"             export  none         }         parm {             name    "picking"             baseparm             label   "Viewport Selecting Enabled"             export  none         }         parm {             name    "pickscript"             baseparm             label   "Select Script"             export  none         }         parm {             name    "caching"             baseparm             label   "Cache Object Transform"             export  none         }         parm {             name    "vport_shadeopen"             baseparm             label   "Shade Open Curves In Viewport"             export  none         }         parm {             name    "vport_displayassubdiv"             baseparm             label   "Display as Subdivision in Viewport"             invisible             export  none         }         parm {             name    "vport_onionskin"             baseparm             label   "Onion Skinning"             export  none         }     }  ' Components
+opset -S off Components
+opparm -V 20.5.370 Components stdswitcher ( 0 0 0 ) xOrd ( srt ) rOrd ( xyz ) t ( 0 0 0 ) r ( 0 0 0 ) s ( 1 1 1 ) p ( 0 0 0 ) pr ( 0 0 0 ) scale ( 1 ) pre_xform ( clean ) keeppos ( off ) childcomp ( off ) constraints_on ( off ) constraints_path ( "" ) lookatpath ( "" ) lookupobjpath ( "" ) lookup ( on ) pathobjpath ( "" ) roll ( 0 ) pos ( 0 ) uparmtype ( arc ) pathorient ( 1 ) up ( 0 1 0 ) bank ( 0 ) shop_materialpath ( "" ) shop_materialopts ( override ) tdisplay ( off ) display ( 1 ) use_dcolor ( off ) dcolor ( 1 1 1 ) picking ( off ) pickscript ( "" ) caching ( on ) vport_shadeopen ( off ) vport_displayassubdiv ( off ) vport_onionskin ( off ) stdswitcher4 ( 0 0 0 ) viewportlod ( full ) vm_rendervisibility ( * ) vm_rendersubd ( off ) vm_subdstyle ( mantra_catclark ) vm_subdgroup ( "" ) vm_osd_quality ( 1 ) vm_osd_vtxinterp ( 2 ) vm_osd_fvarinterp ( 4 ) folder0 ( 0 0 0 0 ) categories ( "" ) reflectmask ( * ) refractmask ( * ) lightmask ( * ) lightcategories ( * ) vm_lpetag ( "" ) vm_volumefilter ( box ) vm_volumefilterwidth ( 1 ) vm_matte ( off ) vm_rayshade ( off ) geo_velocityblur ( off ) geo_accelattribute ( accel ) vm_shadingquality ( 1 ) vm_flatness ( 0.05 ) vm_raypredice ( 0 ) vm_curvesurface ( off ) vm_rmbackface ( off ) shop_geometrypath ( "" ) vm_forcegeometry ( on ) vm_rendersubdcurves ( off ) vm_renderpoints ( 2 ) vm_renderpointsas ( 0 ) vm_usenforpoints ( off ) vm_pointscale ( 1 ) vm_pscalediameter ( off ) vm_metavolume ( off ) vm_coving ( 1 ) vm_materialoverride ( compact ) vm_overridedetail ( off ) vm_procuseroottransform ( on )
+chlock Components -*
+chautoscope Components -* +tx +ty +tz +rx +ry +rz +sx +sy +sz
+opset -d on -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off -x off Components
+opexprlanguage -s hscript Components
+opuserdata -n '___Version___' -v '20.5.370' Components
+opcf Components
+
+# Node WindowWithEaves (Sop/subnet)
+opadd -e -n subnet WindowWithEaves
+oplocate -x -1.49403 -y 1.22956 WindowWithEaves
+opspareds '    parm {         name    "label1"         baseparm         label   "Input #1 Label"         export  all     }     parm {         name    "label2"         baseparm         label   "Input #2 Label"         export  all     }     parm {         name    "label3"         baseparm         label   "Input #3 Label"         export  all     }     parm {         name    "label4"         baseparm         label   "Input #4 Label"         export  all     }     parm {         name    "Width"         label   "Width"         type    float         default { "1.2" }         range   { 0 10 }         parmtag { "script_callback_language" "python" }     }     parm {         name    "Height"         label   "Height"         type    float         default { "0.9" }         range   { 0 10 }         parmtag { "script_callback_language" "python" }     }     parm {         name    "Depth"         label   "Depth"         type    float         default { "0.05" }         range   { 0 10 }         parmtag { "script_callback_language" "python" }     }     parm {         name    "EavesExtension"         label   "EavesExtension"         type    vector         size    3         default { "0.15" "0.1" "0.1" }         range   { -1 1 }         parmtag { "script_callback_language" "python" }     }     parm {         name    "EnableTop"         label   "Top"         type    toggle         default { "1" }         parmtag { "script_callback_language" "python" }     }     parm {         name    "EnableBottom"         label   "Bottom"         type    toggle         default { "1" }         parmtag { "script_callback_language" "python" }     }     parm {         name    "WindowType"         label   "WindowType"         type    integer         default { "0" }         range   { 0! 1! }         parmtag { "script_callback_language" "python" }     } ' WindowWithEaves
+opparm -V 20.5.370 WindowWithEaves label1 ( 'Sub-Network Input #1' ) label2 ( 'Sub-Network Input #2' ) label3 ( 'Sub-Network Input #3' ) label4 ( 'Sub-Network Input #4' ) Width ( 1.2 ) Height ( 0.9 ) Depth ( 0.05 ) EavesExtension ( 0.15 0.1 0.1 ) EnableTop ( on ) EnableBottom ( on ) WindowType ( 1 )
+chlock WindowWithEaves -*
+chautoscope WindowWithEaves -*
+opset -d on -r on -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off WindowWithEaves
+opexprlanguage -s hscript WindowWithEaves
+opuserdata -n '___Version___' -v '20.5.370' WindowWithEaves
+opcf WindowWithEaves
+
+# Network Box __netbox1
+nbadd __netbox1
+nblocate -x 5.14308 -y 2.17674 __netbox1
+nbsize -w 2.8 -h 0.7 __netbox1
+nbset  -m off __netbox1
+nbcolor -c 0.52 0.52 0.52 __netbox1
+
+# Network Box __netbox2
+nbadd __netbox2
+nblocate -x 1.75464 -y 2.17674 __netbox2
+nbsize -w 2.8 -h 0.7 __netbox2
+nbset  -m off __netbox2
+nbcolor -c 0.52 0.52 0.52 __netbox2
+
+# Node output0 (Sop/output)
+opadd -e -n output output0
+oplocate -x -0.0186505 -y -1.9962200000000001 output0
+opspareds "" output0
+opparm -V 20.5.370 output0 outputidx ( 0 )
+chlock output0 -*
+chautoscope output0 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off output0
+opexprlanguage -s hscript output0
+opuserdata -n '___Version___' -v '20.5.370' output0
+
+# Node WindowFrame1 (Sop/WindowFrame)
+opadd -e -n WindowFrame WindowFrame1
+oplocate -x -2.1409400000000001 -y 4.3536099999999998 WindowFrame1
+opspareds "" WindowFrame1
+chblockbegin
+chadd -t 0 0 WindowFrame1 Width
+chkey -t 0 -v 0.5 -m 0 -a 0 -A 0 -T a  -F 'ch("../Width")' WindowFrame1/Width
+chadd -t 0 0 WindowFrame1 Height
+chkey -t 0 -v 1 -m 0 -a 0 -A 0 -T a  -F 'ch("../Height")' WindowFrame1/Height
+chblockend
+opparm WindowFrame1 Width ( Width ) Height ( Height ) Depth ( 0.05 ) SideFrameWidth ( 0.03 ) TopFrameWidth ( 0.05 ) BottomFrameWidth ( 0.05 )
+chlock WindowFrame1 -*
+chautoscope WindowFrame1 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off WindowFrame1
+opexprlanguage -s hscript WindowFrame1
+opuserdata -n '___Version___' -v '' WindowFrame1
+
+# Node eaves_base_shape (Sop/box)
+opadd -e -n box eaves_base_shape
+oplocate -x 3.7428599999999999 -y 5.0031100000000004 eaves_base_shape
+opspareds "" eaves_base_shape
+chblockbegin
+chadd -t 0 0 eaves_base_shape sizex
+chkey -t 0 -v 1.1000000000000001 -m 0 -a 0 -A 0 -T a  -F 'ch("../EavesExtensionx")' eaves_base_shape/sizex
+chadd -t 0 0 eaves_base_shape sizey
+chkey -t 0 -v 0.10000000000000001 -m 0 -a 0 -A 0 -T a  -F 'ch("../EavesExtensiony")' eaves_base_shape/sizey
+chadd -t 0 0 eaves_base_shape sizez
+chkey -t 0 -v 1 -m 0 -a 0 -A 0 -T a  -F 'ch("../EavesExtensionz")*2 + ch("../Width")' eaves_base_shape/sizez
+chblockend
+opparm -V 20.5.370 eaves_base_shape type ( polymesh ) surftype ( quads ) consolidatepts ( on ) size ( sizex sizey sizez ) t ( 0 0 0 ) r ( 0 0 0 ) scale ( 1 ) divrate ( 2 2 2 ) orderrate ( 4 4 4 ) dodivs ( off ) divs ( 3 3 3 ) rebar ( off ) orientedbbox ( off ) vertexnormals ( off )
+chlock eaves_base_shape -*
+chautoscope eaves_base_shape -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off eaves_base_shape
+opexprlanguage -s hscript eaves_base_shape
+opuserdata -n '___Version___' -v '20.5.370' eaves_base_shape
+
+# Node attribcreate1 (Sop/attribcreate::2.0)
+opadd -e -n attribcreate::2.0 attribcreate1
+oplocate -x 3.7394099999999999 -y 4.0509199999999996 attribcreate1
+opspareds "" attribcreate1
+opparm attribcreate1  numattr ( 1 )
+opparm -V 20.5.370 attribcreate1 group ( "" ) grouptype ( guess ) encodenames ( off ) numattr ( 1 ) enable1 ( on ) name1 ( component_type ) existing1 ( better ) createvarmap1 ( off ) varname1 ( "" ) class1 ( primitive ) savetoinfo1 ( off ) type1 ( index ) typeinfo1 ( guess ) precision1 ( auto ) size1 ( 1 ) default1v ( 0 0 0 0 ) writevalues1 ( on ) uselocal1 ( on ) value1v ( 0 0 0 0 ) string1 ( window_eaves ) numattr_spacerparm1 ( )
+chlock attribcreate1 -*
+chautoscope attribcreate1 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off attribcreate1
+opexprlanguage -s hscript attribcreate1
+opuserdata -n '___Version___' -v '20.5.370' attribcreate1
+
+# Node matchsize1 (Sop/matchsize)
+opadd -e -n matchsize matchsize1
+oplocate -x 5.5430799999999998 -y 2.3767399999999999 matchsize1
+opspareds "" matchsize1
+chblockbegin
+chadd -t 0 0 matchsize1 offset_x
+chkey -t 0 -v -0.045999999999999999 -m 0 -a 0 -A 0 -T a  -F '-ch("../Depth")' matchsize1/offset_x
+chadd -t 0 0 matchsize1 offset_y
+chkey -t 0 -v 0.92700000000000005 -m 0 -a 0 -A 0 -T a  -F 'ch("../Height")' matchsize1/offset_y
+chadd -t 0 0 matchsize1 offset_z
+chkey -t 0 -v 0 -m 0 -a 0 -A 0 -T a  -F 'ch("../Width")*0.5' matchsize1/offset_z
+chblockend
+opparm matchsize1 group ( "" ) grouptype ( guess ) sepparm ( ) justifytarget ( auto ) doboundgroup ( off ) folder2 ( 0 ) sourcegroup ( "" ) sourcegrouptype ( guess ) refgroup ( "" ) refgrouptype ( guess ) folder1 ( 0 ) t ( 0 0 0 ) size ( 1 1 1 ) folder0 ( 0 ) dotranslate ( on ) justify_x ( min ) goal_x ( same ) offset_x ( offset_x ) justify_y ( min ) goal_y ( same ) offset_y ( offset_y ) justify_z ( center ) goal_z ( same ) offset_z ( offset_z ) doscale ( off ) uniformscale ( on ) scale_axis ( min ) scale_x ( on ) scale_y ( on ) scale_z ( on ) restorexform ( off ) restoreattrib ( xform ) stashxform ( off ) stashattrib ( xform ) stashmerge ( replace )
+chlock matchsize1 -*
+chautoscope matchsize1 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off matchsize1
+nbop __netbox1 add matchsize1
+opexprlanguage -s hscript matchsize1
+opuserdata -n '___Version___' -v '' matchsize1
+
+# Node matchsize2 (Sop/matchsize)
+opadd -e -n matchsize matchsize2
+oplocate -x 2.1546400000000001 -y 2.3767499999999999 matchsize2
+opspareds "" matchsize2
+chblockbegin
+chadd -t 0 0 matchsize2 offset_x
+chkey -t 0 -v 0 -m 0 -a 0 -A 0 -T a  -F '-ch("../Depth")' matchsize2/offset_x
+chadd -t 0 0 matchsize2 offset_z
+chkey -t 0 -v 0 -m 0 -a 0 -A 0 -T a  -F 'ch("../Width")*0.5' matchsize2/offset_z
+chblockend
+opparm matchsize2 group ( "" ) grouptype ( guess ) sepparm ( ) justifytarget ( auto ) doboundgroup ( off ) folder2 ( 0 ) sourcegroup ( "" ) sourcegrouptype ( guess ) refgroup ( "" ) refgrouptype ( guess ) folder1 ( 0 ) t ( 0 0 0 ) size ( 1 1 1 ) folder0 ( 0 ) dotranslate ( on ) justify_x ( min ) goal_x ( same ) offset_x ( offset_x ) justify_y ( max ) goal_y ( same ) offset_y ( 0 ) justify_z ( center ) goal_z ( same ) offset_z ( offset_z ) doscale ( off ) uniformscale ( on ) scale_axis ( min ) scale_x ( on ) scale_y ( on ) scale_z ( on ) restorexform ( off ) restoreattrib ( xform ) stashxform ( off ) stashattrib ( xform ) stashmerge ( replace )
+chlock matchsize2 -*
+chautoscope matchsize2 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off matchsize2
+nbop __netbox2 add matchsize2
+opexprlanguage -s hscript matchsize2
+opuserdata -n '___Version___' -v '' matchsize2
+
+# Node merge1 (Sop/merge)
+opadd -e -n merge merge1
+oplocate -x -0.019800600000000002 -y 0.1217 merge1
+opspareds "" merge1
+opparm -V 20.5.370 merge1
+chlock merge1 -*
+chautoscope merge1 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off merge1
+opexprlanguage -s hscript merge1
+opuserdata -n '___Version___' -v '20.5.370' merge1
+
+# Node switchif1 (Sop/switchif)
+opadd -e -n switchif switchif1
+oplocate -x 2.1546400000000001 -y 1.4420599999999999 switchif1
+opspareds "" switchif1
+opparm switchif1  tests ( 1 )
+chblockbegin
+chadd -t 0 0 switchif1 expr1
+chkey -t 0 -v 1 -m 0 -a 0 -A 0 -T a  -F 'ch("../EnableBottom")' switchif1/expr1
+chblockend
+opparm -V 20.5.370 switchif1 mergecondition ( all ) testinput ( first ) tests ( 1 ) enable1 ( on ) type1 ( expr ) expr1 ( expr1 ) attribtype1 ( all ) attribowner1 ( point ) attributes1 ( "" ) attribvaltype1 ( flt ) attribfloatcomp1 ( equal ) attribstringcomp1 ( equal ) attribval1 ( 0 ) attribsval1 ( "" ) counttype1 ( points ) countgroup1 ( "" ) countcomp1 ( equal ) countval1 ( 0 ) hasinputtype1 ( wired )
+chlock switchif1 -*
+chautoscope switchif1 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off switchif1
+opexprlanguage -s hscript switchif1
+opuserdata -n '___Version___' -v '20.5.370' switchif1
+
+# Node switchif2 (Sop/switchif)
+opadd -e -n switchif switchif2
+oplocate -x 5.5430799999999998 -y 1.4420599999999999 switchif2
+opspareds "" switchif2
+opparm switchif2  tests ( 1 )
+chblockbegin
+chadd -t 0 0 switchif2 expr1
+chkey -t 0 -v 1 -m 0 -a 0 -A 0 -T a  -F 'ch("../EnableTop")' switchif2/expr1
+chblockend
+opparm -V 20.5.370 switchif2 mergecondition ( all ) testinput ( first ) tests ( 1 ) enable1 ( on ) type1 ( expr ) expr1 ( expr1 ) attribtype1 ( all ) attribowner1 ( point ) attributes1 ( "" ) attribvaltype1 ( flt ) attribfloatcomp1 ( equal ) attribstringcomp1 ( equal ) attribval1 ( 0 ) attribsval1 ( "" ) counttype1 ( points ) countgroup1 ( "" ) countcomp1 ( equal ) countval1 ( 0 ) hasinputtype1 ( wired )
+chlock switchif2 -*
+chautoscope switchif2 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off switchif2
+opexprlanguage -s hscript switchif2
+opuserdata -n '___Version___' -v '20.5.370' switchif2
+
+# Node SlidingDoor_Double1 (Sop/SlidingDoor_Double)
+opadd -e -n SlidingDoor_Double SlidingDoor_Double1
+oplocate -x 0.14426800000000001 -y 4.3536099999999998 SlidingDoor_Double1
+opspareds "" SlidingDoor_Double1
+chblockbegin
+chadd -t 0 0 SlidingDoor_Double1 Width
+chkey -t 0 -v 0.90000000000000002 -m 0 -a 0 -A 0 -T a  -F '(ch("../Width") + 0.04) *0.5' SlidingDoor_Double1/Width
+chadd -t 0 0 SlidingDoor_Double1 Height
+chkey -t 0 -v 1.8 -m 0 -a 0 -A 0 -T a  -F 'ch("../Height")' SlidingDoor_Double1/Height
+chblockend
+opparm SlidingDoor_Double1 folder1 ( 1 ) InvertSlide ( off ) Open ( 0 ) folder0 ( 1 ) Width ( Width ) Height ( Height ) Depth ( 0.05 ) SideFrameWidth ( 0.04 ) TopFrameWidth ( 0.05 ) BottomFrameWidth ( 0.05 )
+chlock SlidingDoor_Double1 -*
+chautoscope SlidingDoor_Double1 -*
+opset -d on -r on -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off SlidingDoor_Double1
+opexprlanguage -s hscript SlidingDoor_Double1
+opuserdata -n '___Version___' -v '' SlidingDoor_Double1
+
+# Node switch1 (Sop/switch)
+opadd -e -n switch switch1
+oplocate -x -1.2260599999999999 -y 3.1479400000000002 switch1
+opspareds "" switch1
+chblockbegin
+chadd -t 0 0 switch1 input
+chkey -t 0 -v 0 -m 0 -a 0 -A 0 -T a  -F 'ch("../WindowType")' switch1/input
+chblockend
+opparm -V 20.5.370 switch1 input ( input )
+chlock switch1 -*
+chautoscope switch1 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off switch1
+opexprlanguage -s hscript switch1
+opuserdata -n '___Version___' -v '20.5.370' switch1
+oporder -e output0 WindowFrame1 eaves_base_shape attribcreate1 matchsize1 matchsize2 merge1 switchif1 switchif2 SlidingDoor_Double1 switch1 
+opcf ..
+opcf ..
+opcf ..
+
+# Node out (/out)
+
+# Node ch (/ch)
+
+# Node shop (/shop)
+
+# Node img (/img)
+opcf img
+
+# Node comp1 (CopNet/img)
+opadd -e -n img comp1
+oplocate -x 1 -y 1 comp1
+opspareds "" comp1
+opparm -V 20.5.370 comp1
+chlock comp1 -*
+chautoscope comp1 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e off -b off comp1
+opexprlanguage -s hscript comp1
+opuserdata -n '___Version___' -v '20.5.370' comp1
+
+# Node copnet1 (CopNet/copnet)
+opadd -e -n copnet copnet1
+oplocate -x 0 -y 0 copnet1
+opspareds "" copnet1
+opparm -V 20.5.370 copnet1 setres ( off ) res ( 1024 1024 ) resmenu ( none ) setpixelscale ( off ) pixelscale ( 2 ) setborder ( off ) border ( wrap ) setprecision ( off ) precision ( b32 ) setvistile ( off ) vistile ( 3 )
+chlock copnet1 -*
+chautoscope copnet1 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off copnet1
+opexprlanguage -s hscript copnet1
+opuserdata -n '___Version___' -v '20.5.370' copnet1
+oporder -e comp1 copnet1 
+opcf ..
+
+# Node stage (/stage)
+
+# Node tasks (/tasks)
+opcf tasks
+
+# Node topnet1 (TopNet/topnet)
+opadd -e -n topnet topnet1
+oplocate -x 0 -y 0 topnet1
+opspareds "" topnet1
+opparm -V 20.5.370 topnet1 cookcontrolssection ( 0 ) generatestatic ( 0 ) cookbutton ( 0 ) dirtybutton ( 0 ) cancelbutton ( 0 ) taskgraphsection ( 0 ) checkpointformat ( 1 ) taskgraphfile ( '$HIP/$HIPNAME.taskgraph.$F.py' ) savetaskgraph ( 0 ) loadtaskgraph ( 0 ) taskgraphautosave ( off ) taskgraphsaverate ( 10 ) checkpointfile ( '$HIP/$HIPNAME.checkpoint.json' ) loadcheckpoint ( 0 ) checkpointload ( 0 ) checkpointenabled ( off ) checkpointrate ( 10 ) sep2 ( ) savegraphattribs ( on ) schedulersection ( 0 ) topscheduler ( localscheduler ) usedefaultlabel ( off ) defaultlabel ( '$OS.`@pdg_index`' ) sep1 ( ) regenerationtype ( 0 ) evaluationtime ( 0 ) customtime ( 0 ) savescenefile ( on )
+chlock topnet1 -*
+chautoscope topnet1 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c off -e on -b off topnet1
+opexprlanguage -s hscript topnet1
+opuserdata -n '___Version___' -v '20.5.370' topnet1
+opcf topnet1
+
+# Node localscheduler (Top/localscheduler)
+opadd -e -n localscheduler localscheduler
+oplocate -x 0 -y 0 localscheduler
+opspareds "" localscheduler
+opparm localscheduler  local_envmulti ( 0 )
+opparm -V 1 localscheduler folder0 ( 0 0 0 ) folder5 ( 0 ) maxprocsmenu ( 0 ) maxprocs ( 1 ) pdg_usemaxtasks ( off ) pdg_maxtasks ( 0 ) verbose ( off ) pdg_waitforfailures ( off ) folder4 ( 0 ) pdg_workingdir ( '$HIP' ) hythonbin ( 0 ) hythonbincustomuniversal ( "" ) pdg_workitemdatasource ( 0 ) pdg_compressworkitemdata ( on ) pdg_validateoutputs ( on ) pdg_checkexpectedoutputs ( on ) sepparm2 ( ) pdg_mapmode ( 0 ) pdg_usemapzone ( off ) pdg_mapzone ( '$PDG_PATHMAP_ZONE' ) folder1 ( 0 ) tempdirmenu ( 1 ) tempdirappendpid ( on ) tempdircustom ( '$HOUDINI_TEMP_DIR/$HIPNAME/pdgtemp' ) pdg_deletetempdir ( 0 ) socketcallbacks ( 1 ) pdg_rpcignoreerrors ( 0 ) pdg_rpcmaxerrors ( 5 ) pdg_rpctimeout ( 4 ) pdg_rpcretries ( 2 ) pdg_rpcbackoff ( 2 ) pdg_rpcbatch ( 1 ) pdg_rpcrelease ( on ) folder0_3 ( 0 ) local_single ( off ) local_is_CPU_number_set ( off ) local_CPUs_to_use ( 1 ) folder6 ( 0 ) local_useminfreemem ( 0 ) local_minfreemem ( 0 ) local_minfreemempct ( 0 ) folder2 ( 0 ) local_enabletimeout ( off ) local_maxtime ( 0 ) local_handletimeout ( 0 ) sepparm4 ( ) local_enablemaxmemory ( off ) local_maxmemory ( 0 ) local_handlememory ( 0 ) sepparm5 ( ) local_echandleby ( 0 ) local_echandleall ( on ) local_eccustomcode ( 1 ) sepparm ( ) local_maximumretries ( 3 ) local_addfailcountattr ( off ) local_failcountattr ( failurecount ) folder3 ( 0 ) local_usehoudinimaxthreads ( off ) local_houdinimaxthreads ( 0 ) local_requireswindow ( off ) local_skippackages ( on ) local_envunset ( "" ) local_env_file ( "" ) local_envmulti ( 0 )
+chlock localscheduler -*
+chautoscope localscheduler -*
+opset -d on -r on -h off -f off -y off -t off -l off -s off -u off -F on -c off -e on -b off localscheduler
+opexprlanguage -s hscript localscheduler
+opuserdata -n '___Version___' -v '1' localscheduler
+opcf ..
+opcf ..
+oporder -e obj out ch shop img vex mat stage tasks 
+
+opcf /
+opcf obj
+opcf Components
+opcf WindowWithEaves
+opwire -n merge1 -0 output0
+opwire -n eaves_base_shape -0 attribcreate1
+opwire -n attribcreate1 -0 matchsize1
+opwire -n attribcreate1 -0 matchsize2
+opwire -n switch1 -0 merge1
+opwire -n switchif1 -1 merge1
+opwire -n switchif2 -2 merge1
+opwire -n matchsize2 -1 switchif1
+opwire -n matchsize1 -1 switchif2
+opwire -n WindowFrame1 -0 switch1
+opwire -n SlidingDoor_Double1 -1 switch1
+opcf ..
+opcf ..
+opcf ..
+opcf img
+opcf ..
+opcf tasks
+opcf topnet1
+opcf ..
+opcf ..
+opcf $saved_path
