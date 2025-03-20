@@ -1,0 +1,525 @@
+# Automatically generated script
+\set noalias = 1
+set saved_path = `execute("oppwf")`
+opcf /
+
+# Node vex (/vex)
+
+# Node mat (/mat)
+
+# Node obj (/obj)
+opcf obj
+
+# Node test_deform (Object/geo)
+opadd -e -n geo test_deform
+oplocate -x -2.9400000000000004 -y -0.23000000596046455 test_deform
+opspareds '    group {         name    "stdswitcher4"         label   "Transform"         grouptag { "sidefx::switcher" "stdswitcher" }          parm {             name    "xOrd"             baseparm             label   "Transform Order"             joinnext             export  none         }         parm {             name    "rOrd"             baseparm             label   "Rotate Order"             nolabel             export  none         }         parm {             name    "t"             baseparm             label   "Translate"             export  all         }         parm {             name    "r"             baseparm             label   "Rotate"             export  all         }         parm {             name    "s"             baseparm             label   "Scale"             export  none         }         parm {             name    "p"             baseparm             label   "Pivot Translate"             export  none         }         parm {             name    "pr"             baseparm             label   "Pivot Rotate"             export  none         }         parm {             name    "scale"             baseparm             label   "Uniform Scale"             export  none         }         parm {             name    "pre_xform"             baseparm             label   "Modify Pre-Transform"             export  none         }         parm {             name    "keeppos"             baseparm             label   "Keep Position When Parenting"             export  none         }         parm {             name    "childcomp"             baseparm             label   "Child Compensation"             export  none         }         parm {             name    "constraints_on"             baseparm             label   "Enable Constraints"             export  none         }         parm {             name    "constraints_path"             baseparm             label   "Constraints"             export  none         }         parm {             name    "lookatpath"             baseparm             label   "Look At"             invisible             export  none         }         parm {             name    "lookupobjpath"             baseparm             label   "Look Up Object"             invisible             export  none         }         parm {             name    "lookup"             baseparm             label   "Look At Up Vector"             invisible             export  none         }         parm {             name    "pathobjpath"             baseparm             label   "Path Object"             invisible             export  none         }         parm {             name    "roll"             baseparm             label   "Roll"             invisible             export  none         }         parm {             name    "pos"             baseparm             label   "Position"             invisible             export  none         }         parm {             name    "uparmtype"             baseparm             label   "Parameterization"             invisible             export  none         }         parm {             name    "pathorient"             baseparm             label   "Orient Along Path"             invisible             export  none         }         parm {             name    "up"             baseparm             label   "Orient Up Vector"             invisible             export  none         }         parm {             name    "bank"             baseparm             label   "Auto-Bank factor"             invisible             export  none         }     }      group {         name    "stdswitcher4_1"         label   "Render"          parm {             name    "shop_materialpath"             baseparm             label   "Material"             export  none         }         parm {             name    "shop_materialopts"             baseparm             label   "Options"             invisible             export  none         }         parm {             name    "tdisplay"             baseparm             label   "Display"             joinnext             export  none         }         parm {             name    "display"             baseparm             label   "Display"             export  none         }         parm {             name    "viewportlod"             label   "Display As"             type    ordinal             default { "full" }             help    "Choose how the object\'s geometry should be rendered in the viewport"             menu {                 "full"      "Full Geometry"                 "points"    "Point Cloud"                 "box"       "Bounding Box"                 "centroid"  "Centroid"                 "hidden"    "Hidden"                 "subd"      "Subdivision Surface / Curves"             }             parmtag { "spare_category" "Render" }         }         parm {             name    "vm_rendervisibility"             label   "Render Visibility"             type    string             default { "*" }             menureplace {                 "*"                             "Visible to all"                 "primary"                       "Visible only to primary rays"                 "primary|shadow"                "Visible only to primary and shadow rays"                 "-primary"                      "Invisible to primary rays (Phantom)"                 "-diffuse"                      "Invisible to diffuse rays"                 "-diffuse&-reflect&-refract"    "Invisible to secondary rays"                 ""                              "Invisible (Unrenderable)"             }             parmtag { "mantra_class" "object" }             parmtag { "mantra_name" "rendervisibility" }             parmtag { "spare_category" "Render" }         }         parm {             name    "vm_rendersubd"             label   "Render Polygons As Subdivision (Mantra)"             type    toggle             default { "0" }             parmtag { "mantra_class" "object" }             parmtag { "mantra_name" "rendersubd" }             parmtag { "spare_category" "Geometry" }         }         parm {             name    "vm_subdstyle"             label   "Subdivision Style"             type    string             default { "mantra_catclark" }             hidewhen "{ vm_rendersubd == 0 }"             menu {                 "mantra_catclark"   "Mantra Catmull-Clark"                 "osd_catclark"      "OpenSubdiv Catmull-Clark"             }             parmtag { "mantra_class" "object" }             parmtag { "mantra_name" "subdstyle" }             parmtag { "spare_category" "Geometry" }         }         parm {             name    "vm_subdgroup"             label   "Subdivision Group"             type    string             default { "" }             hidewhen "{ vm_rendersubd == 0 }"             parmtag { "mantra_class" "object" }             parmtag { "mantra_name" "subdgroup" }             parmtag { "spare_category" "Geometry" }         }         parm {             name    "vm_osd_quality"             label   "Open Subdiv Quality"             type    float             default { "1" }             hidewhen "{ vm_rendersubd == 0 vm_subdstyle != osd_catclark }"             range   { 0 10 }             parmtag { "mantra_class" "object" }             parmtag { "mantra_name" "osd_quality" }             parmtag { "spare_category" "Geometry" }         }         parm {             name    "vm_osd_vtxinterp"             label   "OSD Vtx Interp"             type    integer             default { "2" }             hidewhen "{ vm_rendersubd == 0 vm_subdstyle != osd_catclark }"             menu {                 "0" "No vertex interpolation"                 "1" "Edges only"                 "2" "Edges and Corners"             }             range   { 0 10 }             parmtag { "mantra_class" "object" }             parmtag { "mantra_name" "osd_vtxinterp" }             parmtag { "spare_category" "Geometry" }         }         parm {             name    "vm_osd_fvarinterp"             label   "OSD FVar Interp"             type    integer             default { "4" }             hidewhen "{ vm_rendersubd == 0 vm_subdstyle != osd_catclark }"             menu {                 "0" "Smooth everywhere"                 "1" "Sharpen corners only"                 "2" "Sharpen edges and corners"                 "3" "Sharpen edges and propagated corners"                 "4" "Sharpen all boundaries"                 "5" "Bilinear interpolation"             }             range   { 0 10 }             parmtag { "mantra_class" "object" }             parmtag { "mantra_name" "osd_fvarinterp" }             parmtag { "spare_category" "Geometry" }         }         group {             name    "folder0"             label   "Shading"              parm {                 name    "categories"                 label   "Categories"                 type    string                 default { "" }                 help    "A list of tags which can be used to select the object"                 parmtag { "spare_category" "Shading" }             }             parm {                 name    "reflectmask"                 label   "Reflection Mask"                 type    oplist                 default { "*" }                 help    "Objects that will be reflected on this object."                 parmtag { "opexpand" "1" }                 parmtag { "opfilter" "!!OBJ/GEOMETRY!!" }                 parmtag { "oprelative" "/obj" }                 parmtag { "spare_category" "Shading" }             }             parm {                 name    "refractmask"                 label   "Refraction Mask"                 type    oplist                 default { "*" }                 help    "Objects that will be refracted on this object."                 parmtag { "opexpand" "1" }                 parmtag { "opfilter" "!!OBJ/GEOMETRY!!" }                 parmtag { "oprelative" "/obj" }                 parmtag { "spare_category" "Shading" }             }             parm {                 name    "lightmask"                 label   "Light Mask"                 type    oplist                 default { "*" }                 help    "Lights that illuminate this object."                 parmtag { "opexpand" "1" }                 parmtag { "opfilter" "!!OBJ/LIGHT!!" }                 parmtag { "oprelative" "/obj" }                 parmtag { "spare_category" "Shading" }             }             parm {                 name    "lightcategories"                 label   "Light Selection"                 type    string                 default { "*" }                 parmtag { "spare_category" "Shading" }             }             parm {                 name    "vm_lpetag"                 label   "LPE Tag"                 type    string                 default { "" }                 parmtag { "mantra_class" "object" }                 parmtag { "mantra_name" "lpetag" }                 parmtag { "spare_category" "Shading" }             }             parm {                 name    "vm_volumefilter"                 label   "Volume Filter"                 type    string                 default { "box" }                 menu {                     "box"       "Box Filter"                     "gaussian"  "Gaussian"                     "bartlett"  "Bartlett (triangle)"                     "catrom"    "Catmull-Rom"                     "hanning"   "Hanning"                     "blackman"  "Blackman"                     "sinc"      "Sinc (sharpening)"                 }                 parmtag { "mantra_class" "object" }                 parmtag { "mantra_name" "filter" }                 parmtag { "spare_category" "Shading" }             }             parm {                 name    "vm_volumefilterwidth"                 label   "Volume Filter Width"                 type    float                 default { "1" }                 range   { 0.001 5 }                 parmtag { "mantra_class" "object" }                 parmtag { "mantra_name" "filterwidth" }                 parmtag { "spare_category" "Shading" }             }             parm {                 name    "vm_matte"                 label   "Matte shading"                 type    toggle                 default { "0" }                 parmtag { "mantra_class" "object" }                 parmtag { "mantra_name" "matte" }                 parmtag { "spare_category" "Shading" }             }             parm {                 name    "vm_rayshade"                 label   "Raytrace Shading"                 type    toggle                 default { "0" }                 parmtag { "mantra_class" "object" }                 parmtag { "mantra_name" "rayshade" }                 parmtag { "spare_category" "Shading" }             }         }          group {             name    "folder0_1"             label   "Sampling"              parm {                 name    "geo_velocityblur"                 label   "Geometry Velocity Blur"                 type    ordinal                 default { "off" }                 disablewhen "{ allowmotionblur == 0 }"                 menu {                     "off"       "No Velocity Blur"                     "on"        "Velocity Blur"                     "accelblur" "Acceleration Blur"                 }             }             parm {                 name    "geo_accelattribute"                 label   "Acceleration Attribute"                 type    string                 default { "accel" }                 hidewhen "{ geo_velocityblur != accelblur }"                 parmtag { "spare_category" "Sampling" }             }         }          group {             name    "folder0_2"             label   "Dicing"              parm {                 name    "vm_shadingquality"                 label   "Shading Quality"                 type    float                 default { "1" }                 range   { 0 10 }                 parmtag { "mantra_class" "object" }                 parmtag { "mantra_name" "shadingquality" }                 parmtag { "spare_category" "Dicing" }             }             parm {                 name    "vm_flatness"                 label   "Dicing Flatness"                 type    float                 default { "0.05" }                 range   { 0 1 }                 parmtag { "mantra_class" "object" }                 parmtag { "mantra_name" "flatness" }                 parmtag { "spare_category" "Dicing" }             }             parm {                 name    "vm_raypredice"                 label   "Ray Predicing"                 type    integer                 default { "0" }                 menu {                     "0" "Disable Predicing"                     "1" "Full Predicing"                     "2" "Precompute Bounds"                 }                 range   { 0 10 }                 parmtag { "mantra_class" "object" }                 parmtag { "mantra_name" "raypredice" }                 parmtag { "spare_category" "Dicing" }             }             parm {                 name    "vm_curvesurface"                 label   "Shade Curves As Surfaces"                 type    toggle                 default { "0" }                 parmtag { "mantra_class" "object" }                 parmtag { "mantra_name" "curvesurface" }                 parmtag { "spare_category" "Dicing" }             }         }          group {             name    "folder0_3"             label   "Geometry"              parm {                 name    "vm_rmbackface"                 label   "Backface Removal"                 type    toggle                 default { "0" }                 parmtag { "mantra_class" "object" }                 parmtag { "mantra_name" "rmbackface" }                 parmtag { "spare_category" "Geometry" }             }             parm {                 name    "shop_geometrypath"                 label   "Procedural Shader"                 type    oppath                 default { "" }                 parmtag { "opfilter" "!!SHOP/GEOMETRY!!" }                 parmtag { "oprelative" "." }                 parmtag { "spare_category" "Geometry" }             }             parm {                 name    "vm_forcegeometry"                 label   "Force Procedural Geometry Output"                 type    toggle                 default { "1" }                 parmtag { "spare_category" "Geometry" }             }             parm {                 name    "vm_rendersubdcurves"                 label   "Render Polygon Curves As Subdivision (Mantra)"                 type    toggle                 default { "0" }                 parmtag { "mantra_class" "object" }                 parmtag { "mantra_name" "rendersubdcurves" }                 parmtag { "spare_category" "Geometry" }             }             parm {                 name    "vm_renderpoints"                 label   "Render As Points (Mantra)"                 type    integer                 default { "2" }                 menu {                     "0" "No Point Rendering"                     "1" "Render Only Points"                     "2" "Render Unconnected Points"                 }                 range   { 0 10 }                 parmtag { "mantra_class" "object" }                 parmtag { "mantra_name" "renderpoints" }                 parmtag { "spare_category" "Geometry" }             }             parm {                 name    "vm_renderpointsas"                 label   "Render Points As (Mantra)"                 type    integer                 default { "0" }                 disablewhen "{ vm_renderpoints == 0 }"                 menu {                     "0" "Spheres"                     "1" "Circles"                 }                 range   { 0 10 }                 parmtag { "mantra_class" "object" }                 parmtag { "mantra_name" "renderpointsas" }                 parmtag { "spare_category" "Geometry" }             }             parm {                 name    "vm_usenforpoints"                 label   "Use N For Point Rendering"                 type    toggle                 default { "0" }                 disablewhen "{ vm_renderpoints == 0 }"                 parmtag { "mantra_class" "object" }                 parmtag { "mantra_name" "usenforpoints" }                 parmtag { "spare_category" "Geometry" }             }             parm {                 name    "vm_pointscale"                 label   "Point Scale"                 type    float                 default { "1" }                 disablewhen "{ vm_renderpoints == 0 }"                 range   { 0! 10 }                 parmtag { "mantra_class" "object" }                 parmtag { "mantra_name" "pointscale" }                 parmtag { "spare_category" "Geometry" }             }             parm {                 name    "vm_pscalediameter"                 label   "Treat Point Scale as Diameter Instead of Radius"                 type    toggle                 default { "0" }                 parmtag { "mantra_class" "object" }                 parmtag { "mantra_name" "pscalediameter" }                 parmtag { "spare_category" "Geometry" }             }             parm {                 name    "vm_metavolume"                 label   "Metaballs as Volume"                 type    toggle                 default { "0" }                 parmtag { "mantra_class" "object" }                 parmtag { "mantra_name" "metavolume" }                 parmtag { "spare_category" "Geometry" }             }             parm {                 name    "vm_coving"                 label   "Coving"                 type    integer                 default { "1" }                 menu {                     "0" "Disable Coving"                     "1" "Coving for displacement/sub-d"                     "2" "Coving for all primitives"                 }                 range   { 0 10 }                 parmtag { "mantra_class" "object" }                 parmtag { "mantra_name" "coving" }                 parmtag { "spare_category" "Geometry" }             }             parm {                 name    "vm_materialoverride"                 label   "Material Override"                 type    string                 default { "compact" }                 menu {                     "none"      "Disabled"                     "full"      "Evaluate for Each Primitve/Point"                     "compact"   "Evaluate Once"                 }                 parmtag { "spare_category" "Geometry" }             }             parm {                 name    "vm_overridedetail"                 label   "Ignore Geometry Attribute Shaders"                 type    toggle                 default { "0" }                 parmtag { "mantra_class" "object" }                 parmtag { "mantra_name" "overridedetail" }                 parmtag { "spare_category" "Geometry" }             }             parm {                 name    "vm_procuseroottransform"                 label   "Proc Use Root Transform"                 type    toggle                 default { "1" }                 parmtag { "mantra_class" "object" }                 parmtag { "mantra_name" "procuseroottransform" }                 parmtag { "spare_category" "Geometry" }             }         }      }      group {         name    "stdswitcher4_2"         label   "Misc"          parm {             name    "use_dcolor"             baseparm             label   "Set Wireframe Color"             export  none         }         parm {             name    "dcolor"             baseparm             label   "Wireframe Color"             export  none         }         parm {             name    "picking"             baseparm             label   "Viewport Selecting Enabled"             export  none         }         parm {             name    "pickscript"             baseparm             label   "Select Script"             export  none         }         parm {             name    "caching"             baseparm             label   "Cache Object Transform"             export  none         }         parm {             name    "vport_shadeopen"             baseparm             label   "Shade Open Curves In Viewport"             export  none         }         parm {             name    "vport_displayassubdiv"             baseparm             label   "Display as Subdivision in Viewport"             invisible             export  none         }         parm {             name    "vport_onionskin"             baseparm             label   "Onion Skinning"             export  none         }     }  ' test_deform
+opset -S on test_deform
+opparm -V 20.5.370 test_deform stdswitcher ( 0 0 0 ) xOrd ( srt ) rOrd ( xyz ) t ( 0 0 0 ) r ( 0 0 0 ) s ( 1 1 1 ) p ( 0 0 0 ) pr ( 0 0 0 ) scale ( 1 ) pre_xform ( clean ) keeppos ( off ) childcomp ( off ) constraints_on ( off ) constraints_path ( "" ) lookatpath ( "" ) lookupobjpath ( "" ) lookup ( on ) pathobjpath ( "" ) roll ( 0 ) pos ( 0 ) uparmtype ( arc ) pathorient ( 1 ) up ( 0 1 0 ) bank ( 0 ) shop_materialpath ( "" ) shop_materialopts ( override ) tdisplay ( off ) display ( 1 ) use_dcolor ( off ) dcolor ( 1 1 1 ) picking ( on ) pickscript ( "" ) caching ( on ) vport_shadeopen ( off ) vport_displayassubdiv ( off ) vport_onionskin ( off ) stdswitcher4 ( 0 0 0 ) viewportlod ( full ) vm_rendervisibility ( * ) vm_rendersubd ( off ) vm_subdstyle ( mantra_catclark ) vm_subdgroup ( "" ) vm_osd_quality ( 1 ) vm_osd_vtxinterp ( 2 ) vm_osd_fvarinterp ( 4 ) folder0 ( 0 0 0 0 ) categories ( "" ) reflectmask ( * ) refractmask ( * ) lightmask ( * ) lightcategories ( * ) vm_lpetag ( "" ) vm_volumefilter ( box ) vm_volumefilterwidth ( 1 ) vm_matte ( off ) vm_rayshade ( off ) geo_velocityblur ( off ) geo_accelattribute ( accel ) vm_shadingquality ( 1 ) vm_flatness ( 0.05 ) vm_raypredice ( 0 ) vm_curvesurface ( off ) vm_rmbackface ( off ) shop_geometrypath ( "" ) vm_forcegeometry ( on ) vm_rendersubdcurves ( off ) vm_renderpoints ( 2 ) vm_renderpointsas ( 0 ) vm_usenforpoints ( off ) vm_pointscale ( 1 ) vm_pscalediameter ( off ) vm_metavolume ( off ) vm_coving ( 1 ) vm_materialoverride ( compact ) vm_overridedetail ( off ) vm_procuseroottransform ( on )
+chlock test_deform -*
+chautoscope test_deform -* +tx +ty +tz +rx +ry +rz +sx +sy +sz
+opset -d on -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off -x off test_deform
+opexprlanguage -s hscript test_deform
+opuserdata -n '___Version___' -v '20.5.370' test_deform
+opcf test_deform
+
+# Network Box __netbox1
+nbadd __netbox1
+nblocate -x -8.64956 -y -9.09557 __netbox1
+nbsize -w 13.9212 -h 11.383 __netbox1
+nbset  -m off __netbox1
+nbcolor -c 0 0 0 __netbox1
+
+# Network Box __netbox2
+nbadd __netbox2
+nblocate -x -14.7538 -y -4.90191 __netbox2
+nbsize -w 2.8 -h 1.67993 __netbox2
+nbset  -m off __netbox2
+nbcolor -c 0.52 0.52 0.52 __netbox2
+
+# Network Box __netbox3
+nbadd __netbox3
+nblocate -x -17.6787 -y -5.77779 __netbox3
+nbsize -w 2.8 -h 0.7 __netbox3
+nbset  -m off __netbox3
+nbcolor -c 0.52 0.52 0.52 __netbox3
+
+# Node Stair_BoundingBox (Sop/box)
+opadd -e -n box Stair_BoundingBox
+oplocate -x -6.7965999999999998 -y 0.58612900000000001 Stair_BoundingBox
+opspareds "" Stair_BoundingBox
+opparm -V 20.5.370 Stair_BoundingBox type ( polymesh ) surftype ( quads ) consolidatepts ( on ) size ( 1 1 1 ) t ( 0 0 0 ) r ( 0 0 0 ) scale ( 1 ) divrate ( 2 2 2 ) orderrate ( 4 4 4 ) dodivs ( off ) divs ( 3 3 3 ) rebar ( off ) orientedbbox ( off ) vertexnormals ( off )
+chlock Stair_BoundingBox -*
+chautoscope Stair_BoundingBox -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off Stair_BoundingBox
+nbop __netbox1 add Stair_BoundingBox
+opexprlanguage -s hscript Stair_BoundingBox
+opuserdata -n '___Version___' -v '20.5.370' Stair_BoundingBox
+
+# Node lattice1 (Sop/lattice)
+opadd -e -n lattice lattice1
+oplocate -x -4.1867200000000002 -y -3.49349 lattice1
+opspareds "" lattice1
+opparm -V 20.5.370 lattice1 group ( "" ) stdswitcher ( 0 0 ) divs ( 1 1 1 ) interptype ( bezier ) restgroup ( "" ) kernel ( wyvill ) radius ( 1 ) normthreshold ( 0 ) bspheres ( off )
+chlock lattice1 -*
+chautoscope lattice1 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off lattice1
+nbop __netbox1 add lattice1
+opexprlanguage -s hscript lattice1
+opuserdata -n '___Version___' -v '20.5.370' lattice1
+
+# Node bound1 (Sop/bound)
+opadd -e -n bound bound1
+oplocate -x -2.4158900000000001 -y -0.22808300000000001 bound1
+opspareds "" bound1
+opparm -V 20.5.370 bound1 group ( "" ) grouptype ( guess ) keepOriginal ( off ) createboundinggeo ( on ) createempty ( on ) separator ( ) boundtype ( off ) orientedbbox ( off ) refinementiterations ( 6 ) dodivs ( on ) divs ( 1 1 1 ) rebar ( off ) minsize ( 0 0 0 ) orient ( y ) accurate ( off ) minradius ( 0 ) orientedbrect ( off ) origin ( 0 0 0 ) dist ( 0 ) dir ( 0 1 0 ) minpad ( 0 0 0 ) maxpad ( 0 0 0 ) addboundsgroup ( off ) boundsgroup ( bounds ) addxformattrib ( off ) xformattrib ( xform ) addradiiattrib ( off ) radiiattrib ( radii )
+chlock bound1 -*
+chautoscope bound1 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off bound1
+nbop __netbox1 add bound1
+opexprlanguage -s hscript bound1
+opuserdata -n '___Version___' -v '20.5.370' bound1
+
+# Node edit1 (Sop/edit)
+opadd -e -n edit edit1
+oplocate -x 2.3125800000000001 -y -0.22808300000000001 edit1
+opspareds "" edit1
+opparm -V 20.5.370 edit1 group ( '6-11 13-15 22-31 41-47 57-63' ) grouptype ( points ) modeswitcher ( 0 0 ) switcher ( 0 0 ) xOrd ( srt ) rOrd ( xyz ) t ( 0 0 0 ) r ( 0 0 0 ) s ( 1 1 1 ) shear ( 0 0 0 ) parmgroup_pivotxform ( 0 ) p ( 0 0.1666666716337204 0 ) pr ( 0 0 0 ) parmgroup_prexform ( 0 ) prexform_xOrd ( srt ) prexform_rOrd ( xyz ) prexform_t ( 0 0 0 ) prexform_r ( 0 0 0 ) prexform_s ( 1 1 1 ) prexform_shear ( 0 0 0 ) parmgroup_lpivotxform ( 0 ) lp ( 0 0 0 ) lpr ( 0 0 0 ) parmgroup_lprexform ( 0 ) lprexform_xOrd ( srt ) lprexform_rOrd ( xyz ) lprexform_t ( 0 0 0 ) lprexform_r ( 0 0 0 ) lprexform_s ( 1 1 1 ) lprexform_shear ( 0 0 0 ) vlength ( on ) parmgroup_xformspace ( 0 ) xformspace ( global ) localframe ( component ) localspaceupvector ( 0 1 0 ) leadislandhint ( 47 ) slideonsurface ( off ) dist ( 0 ) leadnml ( on ) apply ( 0 ) softparmsgrouper ( 0 ) distmetric ( surface ) applyrolloff ( off ) distattr ( "" ) leadptattr ( "" ) rad ( 0 ) type ( cubic ) tandeg ( 0 0 ) kernel ( wyvill ) visualizefalloff ( state ) sculptswitcher ( 0 0 0 ) op ( smoothdeform ) axis ( normal ) vector ( 0 0 1 ) stencilaccum ( off ) stencilclear ( 0 ) resetnormal ( 0 ) flood ( 0 ) color ( off off ) fd ( 0.10000000149011612 ) bd ( -0.10000000149011612 ) shape ( circle ) bitmap ( butterfly1.pic ) bmpchan ( alpha ) sculptrad ( 0.10000000149011612 ) uvradius ( 0.10000000149011612 ) radiuspressure ( 1 ) usedepth ( off ) depth ( 0.1 0.1 ) brushangle ( 0 ) squash ( 1 ) opacity ( 1 ) opacitypresure ( 1 ) brushsplatter ( 0 ) papergrain ( 0 ) softedge ( 1 ) sculptkernel ( elendt ) uptype ( stroke ) upvector ( 0 1 0 ) projtype ( on ) useconnectivity ( on ) usenormals ( on ) realtime ( off ) dir ( 0 0 1 ) hitpos ( 0 0 0 ) hitprim ( 0 ) hituvw ( 0 0 0 ) hitpressure ( 1 ) hitpt ( 0 ) event ( nop ) useorient ( off ) doreflect ( off ) symaxis ( 1 0 0 ) symorig ( 0 0 0 ) symdist ( 0 ) symthreshold ( 1 ) symplanetol ( 9.999999747378752e-6 ) updatenmls ( on ) clearall ( 0 )
+chlock edit1 -*
+chautoscope edit1 -*
+opset -d off -r off -h on -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off edit1
+nbop __netbox1 add edit1
+opexprlanguage -s hscript edit1
+opuserdata -n '___Version___' -v '20.5.370' edit1
+
+# Node transform1 (Sop/xform)
+opadd -e -n xform transform1
+oplocate -x 2.8716400000000002 -y -2.0501399999999999 transform1
+opspareds "" transform1
+opparm -V 20.5.370 transform1 group ( "" ) grouptype ( guess ) xOrd ( srt ) rOrd ( xyz ) t ( 0 0 0 ) r ( 0 0 0 ) s ( 1 1 1 ) shear ( 0 0 0 ) scale ( 1 ) parmgroup_pivotxform ( 0 ) p ( 0 0 0 ) pr ( 0 0 0 ) parmgroup_prexform ( 0 ) prexform_xOrd ( srt ) prexform_rOrd ( xyz ) prexform_t ( 0 0 0 ) prexform_r ( 0 0 0 ) prexform_s ( 1 1 1 ) prexform_shear ( 0 0 0 ) movecentroid ( 0 ) movepivot ( 0 ) attribs ( * ) updatenmls ( off ) updateaffectednmls ( on ) vlength ( on ) invertxform ( off ) addattrib ( off ) outputattrib ( xform ) outputmerge ( post )
+chlock transform1 -*
+chautoscope transform1 -* +tx +ty +tz +rx +ry +rz +sx +sy +sz
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off transform1
+nbop __netbox1 add transform1
+opexprlanguage -s hscript transform1
+opuserdata -n '___Version___' -v '20.5.370' transform1
+
+# Node sphere1 (Sop/sphere)
+opadd -e -n sphere sphere1
+oplocate -x -4.1867200000000002 -y 1.78745 sphere1
+opspareds "" sphere1
+opparm -V 20.5.370 sphere1 type ( polymesh ) surftype ( quads ) rad ( 0.5 0.5 0.5 ) t ( 0 0 0 ) r ( 0 0 0 ) scale ( 1 ) orient ( y ) freq ( 2 ) rows ( 13 ) cols ( 24 ) orderu ( 4 ) orderv ( 4 ) imperfect ( on ) upole ( off ) accurate ( on ) triangularpoles ( on )
+chlock sphere1 -*
+chautoscope sphere1 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off sphere1
+nbop __netbox1 add sphere1
+opexprlanguage -s hscript sphere1
+opuserdata -n '___Version___' -v '20.5.370' sphere1
+
+# Node attribwrangle1 (Sop/attribwrangle)
+opadd -e -n attribwrangle attribwrangle1
+oplocate -x -0.74765899999999996 -y -1.84785 attribwrangle1
+opspareds "" attribwrangle1
+opparm attribwrangle1  bindings ( 0 ) groupbindings ( 0 )
+opparm attribwrangle1 folder0 ( 0 0 ) group ( "" ) grouptype ( guess ) class ( point ) vex_numcount ( 10 ) vex_threadjobsize ( 1024 ) snippet ( '@P.x *=1.0;' ) exportlist ( * ) vex_strict ( off ) autobind ( on ) bindings ( 0 ) groupautobind ( on ) groupbindings ( 0 ) vex_cwdpath ( . ) vex_outputmask ( * ) vex_updatenmls ( off ) vex_matchattrib ( id ) vex_inplace ( off ) vex_selectiongroup ( "" ) vex_precision ( auto )
+chlock attribwrangle1 -*
+chautoscope attribwrangle1 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off attribwrangle1
+nbop __netbox1 add attribwrangle1
+opexprlanguage -s hscript attribwrangle1
+opuserdata -n '___Version___' -v '' attribwrangle1
+
+# Node lattice2 (Sop/lattice)
+opadd -e -n lattice lattice2
+oplocate -x -6.7965999999999998 -y -3.0050699999999999 lattice2
+opspareds "" lattice2
+opparm -V 20.5.370 lattice2 group ( "" ) stdswitcher ( 0 0 ) divs ( 1 1 1 ) interptype ( bezier ) restgroup ( "" ) kernel ( wyvill ) radius ( 1 ) normthreshold ( 0 ) bspheres ( off )
+chlock lattice2 -*
+chautoscope lattice2 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off lattice2
+nbop __netbox1 add lattice2
+opexprlanguage -s hscript lattice2
+opuserdata -n '___Version___' -v '20.5.370' lattice2
+
+# Node transform_front (Sop/xform)
+opadd -e -n xform transform_front
+oplocate -x -6.6288 -y -6.4790900000000002 transform_front
+opspareds "" transform_front
+chblockbegin
+chadd -t 0 0 transform_front tx
+chkey -t 0 -v 2.5 -m 0 -a 0 -A 0 -T a  -F 'ch("../Param/ExtrudeFront")' transform_front/tx
+chblockend
+opparm -V 20.5.370 transform_front group ( 4 ) grouptype ( prims ) xOrd ( srt ) rOrd ( xyz ) t ( tx 0 0 ) r ( 0 0 0 ) s ( 1 1 1 ) shear ( 0 0 0 ) scale ( 1 ) parmgroup_pivotxform ( 0 ) p ( 0 0 0 ) pr ( 0 0 0 ) parmgroup_prexform ( 0 ) prexform_xOrd ( srt ) prexform_rOrd ( xyz ) prexform_t ( 0 0 0 ) prexform_r ( 0 0 0 ) prexform_s ( 1 1 1 ) prexform_shear ( 0 0 0 ) movecentroid ( 0 ) movepivot ( 0 ) attribs ( * ) updatenmls ( off ) updateaffectednmls ( on ) vlength ( on ) invertxform ( off ) addattrib ( off ) outputattrib ( xform ) outputmerge ( post )
+chlock transform_front -*
+chautoscope transform_front -* +tx +ty +tz +rx +ry +rz +sx +sy +sz
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off transform_front
+nbop __netbox1 add transform_front
+opexprlanguage -s hscript transform_front
+opuserdata -n '___Version___' -v '20.5.370' transform_front
+
+# Node transform_left (Sop/xform)
+opadd -e -n xform transform_left
+oplocate -x -8.2495600000000007 -y -7.6670499999999997 transform_left
+opspareds "" transform_left
+chblockbegin
+chadd -t 0 0 transform_left tz
+chkey -t 0 -v -1 -m 0 -a 0 -A 0 -T a  -F '-ch("../Param/ExtrudeSide")' transform_left/tz
+chblockend
+opparm -V 20.5.370 transform_left group ( 1 ) grouptype ( prims ) xOrd ( srt ) rOrd ( xyz ) t ( 0 0 tz ) r ( 0 0 0 ) s ( 1 1 1 ) shear ( 0 0 0 ) scale ( 1 ) parmgroup_pivotxform ( 0 ) p ( 0 0 0 ) pr ( 0 0 0 ) parmgroup_prexform ( 0 ) prexform_xOrd ( srt ) prexform_rOrd ( xyz ) prexform_t ( 0 0 0 ) prexform_r ( 0 0 0 ) prexform_s ( 1 1 1 ) prexform_shear ( 0 0 0 ) movecentroid ( 0 ) movepivot ( 0 ) attribs ( * ) updatenmls ( off ) updateaffectednmls ( on ) vlength ( on ) invertxform ( off ) addattrib ( off ) outputattrib ( xform ) outputmerge ( post )
+chlock transform_left -*
+chautoscope transform_left -* +tx +ty +tz +rx +ry +rz +sx +sy +sz
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off transform_left
+nbop __netbox1 add transform_left
+opexprlanguage -s hscript transform_left
+opuserdata -n '___Version___' -v '20.5.370' transform_left
+
+# Node Param (Sop/null)
+opadd -e -n null Param
+oplocate -x -11.2715 -y -0.36513400000000001 Param
+opspareds '    parm {         name    "copyinput"         baseparm         label   "Copy Input (Note: Input will be still cooked if disabled)"         export  none     }     parm {         name    "cacheinput"         baseparm         label   "Cache Input"         export  none     }     parm {         name    "ExtrudeFront"         label   "ExtrudeFront"         type    float         default { "0" }         range   { 0 10 }         parmtag { "script_callback_language" "python" }     }     parm {         name    "ExtrudeSide"         label   "ExtrudeSide"         type    float         default { "0" }         range   { 0 10 }         parmtag { "script_callback_language" "python" }     }     parm {         name    "Side"         label   "Side"         type    integer         default { "0" }         range   { 0! 1! }         parmtag { "script_callback_language" "python" }     } ' Param
+opparm -V 20.5.370 Param copyinput ( on ) cacheinput ( off ) ExtrudeFront ( 5.65 ) ExtrudeSide ( 0.96 ) Side ( 0 )
+chlock Param -*
+chautoscope Param -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off Param
+opexprlanguage -s hscript Param
+opuserdata -n '___Version___' -v '20.5.370' Param
+
+# Node transform_right (Sop/xform)
+opadd -e -n xform transform_right
+oplocate -x -5.0779300000000003 -y -7.6670499999999997 transform_right
+opspareds "" transform_right
+chblockbegin
+chadd -t 0 0 transform_right tz
+chkey -t 0 -v -1 -m 0 -a 0 -A 0 -T a  -F 'ch("../Param/ExtrudeSide")' transform_right/tz
+chblockend
+opparm -V 20.5.370 transform_right group ( 0 ) grouptype ( prims ) xOrd ( srt ) rOrd ( xyz ) t ( 0 0 tz ) r ( 0 0 0 ) s ( 1 1 1 ) shear ( 0 0 0 ) scale ( 1 ) parmgroup_pivotxform ( 0 ) p ( 0 0 0 ) pr ( 0 0 0 ) parmgroup_prexform ( 0 ) prexform_xOrd ( srt ) prexform_rOrd ( xyz ) prexform_t ( 0 0 0 ) prexform_r ( 0 0 0 ) prexform_s ( 1 1 1 ) prexform_shear ( 0 0 0 ) movecentroid ( 0 ) movepivot ( 0 ) attribs ( * ) updatenmls ( off ) updateaffectednmls ( on ) vlength ( on ) invertxform ( off ) addattrib ( off ) outputattrib ( xform ) outputmerge ( post )
+chlock transform_right -*
+chautoscope transform_right -* +tx +ty +tz +rx +ry +rz +sx +sy +sz
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off transform_right
+nbop __netbox1 add transform_right
+opexprlanguage -s hscript transform_right
+opuserdata -n '___Version___' -v '20.5.370' transform_right
+
+# Node switch1 (Sop/switch)
+opadd -e -n switch switch1
+oplocate -x -6.6288 -y -8.8359699999999997 switch1
+opspareds "" switch1
+chblockbegin
+chadd -t 0 0 switch1 input
+chkey -t 0 -v 0 -m 0 -a 0 -A 0 -T a  -F 'ch("../Param/Side")' switch1/input
+chblockend
+opparm -V 20.5.370 switch1 input ( input )
+chlock switch1 -*
+chautoscope switch1 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off switch1
+nbop __netbox1 add switch1
+opexprlanguage -s hscript switch1
+opuserdata -n '___Version___' -v '20.5.370' switch1
+
+# Node tube1 (Sop/tube)
+opadd -e -n tube tube1
+oplocate -x -16.807600000000001 -y 1.86025 tube1
+opspareds "" tube1
+opparm -V 20.5.370 tube1 type ( poly ) surftype ( quads ) orient ( y ) cap ( off ) consolidatepts ( on ) vertexnormals ( off ) t ( 0 0 0 ) r ( 0 0 0 ) rad ( 0.5 0.5 ) radscale ( 1 ) height ( 1 ) rows ( 2 ) cols ( 12 ) orderu ( 4 ) orderv ( 2 ) imperfect ( on )
+chlock tube1 -*
+chautoscope tube1 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off tube1
+opexprlanguage -s hscript tube1
+opuserdata -n '___Version___' -v '20.5.370' tube1
+
+# Node bounding_box (Sop/box)
+opadd -e -n box bounding_box
+oplocate -x -14.3538 -y -0.36013400000000001 bounding_box
+opspareds "" bounding_box
+opparm -V 20.5.370 bounding_box type ( polymesh ) surftype ( quads ) consolidatepts ( on ) size ( 1 1 1 ) t ( 0 0 0 ) r ( 0 0 0 ) scale ( 1 ) divrate ( 2 2 2 ) orderrate ( 4 4 4 ) dodivs ( off ) divs ( 3 3 3 ) rebar ( off ) orientedbbox ( off ) vertexnormals ( off )
+chlock bounding_box -*
+chautoscope bounding_box -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off bounding_box
+opexprlanguage -s hscript bounding_box
+opuserdata -n '___Version___' -v '20.5.370' bounding_box
+
+# Node merge1 (Sop/merge)
+opadd -e -n merge merge1
+oplocate -x -17.279800000000002 -y -2.38443 merge1
+opspareds "" merge1
+opparm -V 20.5.370 merge1
+chlock merge1 -*
+chautoscope merge1 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off merge1
+opexprlanguage -s hscript merge1
+opuserdata -n '___Version___' -v '20.5.370' merge1
+
+# Node group1 (Sop/groupcreate)
+opadd -e -n groupcreate group1
+oplocate -x -17.278700000000001 -y -0.36013400000000001 group1
+opspareds "" group1
+opparm -V 20.5.370 group1 groupname ( geometry ) grouptype ( primitive ) mergeop ( replace ) folder0 ( 0 ) groupbase ( on ) basegroup ( "" ) ordered ( off ) geotype ( all ) switcher3 ( 0 ) groupbounding ( off ) boundtype ( usebbox ) size ( 1 1 1 ) t ( 0 0 0 ) initbounds ( 0 ) includenotwhollycontained ( off ) iso ( 0 ) invertvolume ( off ) switcher4 ( 0 ) groupnormal ( off ) camerapath ( "" ) nonplanar ( off ) nonplanartol ( 0.001 ) dir ( 0 0 1 ) angle ( 180 ) oppositenormals ( off ) switcher5 ( 0 ) groupedges ( off ) dominedgeangle ( off ) minedgeangle ( 20 ) domaxedgeangle ( off ) maxedgeangle ( 20 ) edgeanglebetweenedges ( off ) dominedgelen ( off ) minedgelen ( 0 ) domaxedgelen ( off ) maxedgelen ( 0 ) dodepth ( off ) edgestep ( 0 ) edgeptgrp ( 0 ) unshared ( off ) boundarygroups ( off ) switcher6 ( 0 ) grouprandom ( off ) globalseed ( 1 ) useseedattrib ( off ) seedattrib ( id ) percent ( 50 )
+chlock group1 -*
+chautoscope group1 -*
+opset -d off -r off -h on -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off group1
+opexprlanguage -s hscript group1
+opuserdata -n '___Version___' -v '20.5.370' group1
+
+# Node group2 (Sop/groupcreate)
+opadd -e -n groupcreate group2
+oplocate -x -14.3538 -y -1.24946 group2
+opspareds "" group2
+opparm -V 20.5.370 group2 groupname ( boundingbox ) grouptype ( primitive ) mergeop ( replace ) folder0 ( 0 ) groupbase ( on ) basegroup ( "" ) ordered ( off ) geotype ( all ) switcher3 ( 0 ) groupbounding ( off ) boundtype ( usebbox ) size ( 1 1 1 ) t ( 0 0 0 ) initbounds ( 0 ) includenotwhollycontained ( off ) iso ( 0 ) invertvolume ( off ) switcher4 ( 0 ) groupnormal ( off ) camerapath ( "" ) nonplanar ( off ) nonplanartol ( 0.001 ) dir ( 0 0 1 ) angle ( 180 ) oppositenormals ( off ) switcher5 ( 0 ) groupedges ( off ) dominedgeangle ( off ) minedgeangle ( 20 ) domaxedgeangle ( off ) maxedgeangle ( 20 ) edgeanglebetweenedges ( off ) dominedgelen ( off ) minedgelen ( 0 ) domaxedgelen ( off ) maxedgelen ( 0 ) dodepth ( off ) edgestep ( 0 ) edgeptgrp ( 0 ) unshared ( off ) boundarygroups ( off ) switcher6 ( 0 ) grouprandom ( off ) globalseed ( 1 ) useseedattrib ( off ) seedattrib ( id ) percent ( 50 )
+chlock group2 -*
+chautoscope group2 -*
+opset -d off -r off -h on -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off group2
+opexprlanguage -s hscript group2
+opuserdata -n '___Version___' -v '20.5.370' group2
+
+# Node bound2 (Sop/bound)
+opadd -e -n bound bound2
+oplocate -x -14.3538 -y -2.7827500000000001 bound2
+opspareds "" bound2
+opparm -V 20.5.370 bound2 group ( boundingbox ) grouptype ( guess ) keepOriginal ( off ) createboundinggeo ( on ) createempty ( on ) separator ( ) boundtype ( off ) orientedbbox ( off ) refinementiterations ( 6 ) dodivs ( on ) divs ( 1 1 1 ) rebar ( off ) minsize ( 0 0 0 ) orient ( y ) accurate ( off ) minradius ( 0 ) orientedbrect ( off ) origin ( 0 0 0 ) dist ( 0 ) dir ( 0 1 0 ) minpad ( 0 0 0 ) maxpad ( 0 0 0 ) addboundsgroup ( off ) boundsgroup ( bounds ) addxformattrib ( off ) xformattrib ( xform ) addradiiattrib ( off ) radiiattrib ( radii )
+chlock bound2 -*
+chautoscope bound2 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off bound2
+opexprlanguage -s hscript bound2
+opuserdata -n '___Version___' -v '20.5.370' bound2
+
+# Node lattice3 (Sop/lattice)
+opadd -e -n lattice lattice3
+oplocate -x -17.278700000000001 -y -5.5777900000000002 lattice3
+opspareds "" lattice3
+opparm -V 20.5.370 lattice3 group ( "" ) stdswitcher ( 0 0 ) divs ( 1 1 1 ) interptype ( bezier ) restgroup ( "" ) kernel ( wyvill ) radius ( 1 ) normthreshold ( 0 ) bspheres ( off )
+chlock lattice3 -*
+chautoscope lattice3 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off lattice3
+nbop __netbox3 add lattice3
+opexprlanguage -s hscript lattice3
+opuserdata -n '___Version___' -v '20.5.370' lattice3
+
+# Node attribwrangle2 (Sop/attribwrangle)
+opadd -e -n attribwrangle attribwrangle2
+oplocate -x -14.3568 -y -4.6640100000000002 attribwrangle2
+opspareds "" attribwrangle2
+opparm attribwrangle2  bindings ( 0 ) groupbindings ( 0 )
+opparm attribwrangle2 folder0 ( 0 0 ) group ( "" ) grouptype ( guess ) class ( detail ) vex_numcount ( 10 ) vex_threadjobsize ( 1024 ) snippet ( 'setpointattrib(0, "P", 0, 3);\n//@P.x += 10.0;' ) exportlist ( * ) vex_strict ( off ) autobind ( on ) bindings ( 0 ) groupautobind ( on ) groupbindings ( 0 ) vex_cwdpath ( . ) vex_outputmask ( * ) vex_updatenmls ( off ) vex_matchattrib ( id ) vex_inplace ( off ) vex_selectiongroup ( "" ) vex_precision ( auto )
+chlock attribwrangle2 -*
+chautoscope attribwrangle2 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off attribwrangle2
+nbop __netbox2 add attribwrangle2
+opexprlanguage -s hscript attribwrangle2
+opuserdata -n '___Version___' -v '' attribwrangle2
+
+# Node transform2 (Sop/xform)
+opadd -e -n xform transform2
+oplocate -x -14.3538 -y -3.7219799999999998 transform2
+opspareds "" transform2
+opparm -V 20.5.370 transform2 group ( "" ) grouptype ( guess ) xOrd ( srt ) rOrd ( xyz ) t ( 3.0016536712646484 2.244396448135376 3.607526659965515 ) r ( 40.738271394979826 -19.572366844358818 21.253265643770526 ) s ( 1 1 1 ) shear ( 0 0 0 ) scale ( 1 ) parmgroup_pivotxform ( 0 ) p ( 0 0 0 ) pr ( 0 0 0 ) parmgroup_prexform ( 0 ) prexform_xOrd ( srt ) prexform_rOrd ( xyz ) prexform_t ( 0 0 0 ) prexform_r ( 0 0 0 ) prexform_s ( 1 1 1 ) prexform_shear ( 0 0 0 ) movecentroid ( 0 ) movepivot ( 0 ) attribs ( * ) updatenmls ( off ) updateaffectednmls ( on ) vlength ( on ) invertxform ( off ) addattrib ( off ) outputattrib ( xform ) outputmerge ( post )
+chlock transform2 -*
+chautoscope transform2 -* +tx +ty +tz +rx +ry +rz +sx +sy +sz
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off transform2
+nbop __netbox2 add transform2
+opexprlanguage -s hscript transform2
+opuserdata -n '___Version___' -v '20.5.370' transform2
+
+# Node split2 (Sop/split)
+opadd -e -n split split2
+oplocate -x -17.278700000000001 -y -6.57057 split2
+opspareds "" split2
+opparm split2 group ( geometry ) grouptype ( guess ) negate ( off ) removegrp ( off )
+chlock split2 -*
+chautoscope split2 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off split2
+opexprlanguage -s hscript split2
+opuserdata -n '___Version___' -v '' split2
+
+# Node Deformed_BoundingBox (Sop/null)
+opadd -e -n null Deformed_BoundingBox
+oplocate -x -16.532399999999999 -y -8.0603099999999994 Deformed_BoundingBox
+opspareds "" Deformed_BoundingBox
+opparm -V 20.5.370 Deformed_BoundingBox copyinput ( on ) cacheinput ( off )
+chlock Deformed_BoundingBox -*
+chautoscope Deformed_BoundingBox -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off Deformed_BoundingBox
+opexprlanguage -s hscript Deformed_BoundingBox
+opuserdata -n '___Version___' -v '20.5.370' Deformed_BoundingBox
+
+# Node Deformed_Geometry (Sop/null)
+opadd -e -n null Deformed_Geometry
+oplocate -x -18.300599999999999 -y -8.7205100000000009 Deformed_Geometry
+opspareds "" Deformed_Geometry
+opparm -V 20.5.370 Deformed_Geometry copyinput ( on ) cacheinput ( off )
+chlock Deformed_Geometry -*
+chautoscope Deformed_Geometry -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off Deformed_Geometry
+opexprlanguage -s hscript Deformed_Geometry
+opuserdata -n '___Version___' -v '20.5.370' Deformed_Geometry
+
+# Node attribwrangle3 (Sop/attribwrangle)
+opadd -e -n attribwrangle attribwrangle3
+oplocate -x -23.436199999999999 -y -12.9825 attribwrangle3
+opspareds '    group {         name    "folder1"         label   "Code"          parm {             name    "group"             baseparm             label   "Group"             export  none             bindselector uvselect "Modify Attribs"                 "Select the geometry to affect and press Enter to complete."                 0 1 0xffffffff 0 grouptype 0         }         parm {             name    "grouptype"             baseparm             label   "Group Type"             export  none         }         parm {             name    "class"             baseparm             label   "Run Over"             export  none         }         parm {             name    "vex_numcount"             baseparm             label   "Number Count"             export  none         }         parm {             name    "vex_threadjobsize"             baseparm             label   "Thread Job Size"             export  none         }         groupsimple {             name    "folder_generatedparms_snippet"             label   "Generated Channel Parameters"             grouptag { "group_type" "simple" }             grouptag { "sidefx::look" "blank" }              parm {                 name    "EdgeId"                 label   "Edgeid"                 type    integer                 default { "0" }                 range   { 0 10 }             }             parm {                 name    "StartEnd"                 label   "Startend"                 type    integer                 default { "0" }                 range   { 0 10 }             }         }          parm {             name    "snippet"             baseparm             label   "VEXpression"             export  all         }         parm {             name    "exportlist"             baseparm             label   "Attributes to Create"             export  none         }         parm {             name    "vex_strict"             baseparm             label   "Enforce Prototypes"             export  none         }     }      group {         name    "folder1_1"         label   "Bindings"          parm {             name    "autobind"             baseparm             label   "Autobind by Name"             export  none         }         multiparm {             name    "bindings"             label    "Number of Bindings"             baseparm             default 0             parmtag { "autoscope" "0000000000000000" }             parmtag { "multistartoffset" "1" }              parm {                 name    "bindname#"                 baseparm                 label   "Attribute Name"                 export  none             }             parm {                 name    "bindparm#"                 baseparm                 label   "VEX Parameter"                 export  none             }         }          parm {             name    "groupautobind"             baseparm             label   "Autobind Groups by Name"             export  none         }         multiparm {             name    "groupbindings"             label    "Group Bindings"             baseparm             default 0             parmtag { "autoscope" "0000000000000000" }             parmtag { "multistartoffset" "1" }              parm {                 name    "bindgroupname#"                 baseparm                 label   "Group Name"                 export  none             }             parm {                 name    "bindgroupparm#"                 baseparm                 label   "VEX Parameter"                 export  none             }         }          parm {             name    "vex_cwdpath"             baseparm             label   "Evaluation Node Path"             export  none         }         parm {             name    "vex_outputmask"             baseparm             label   "Export Parameters"             export  none         }         parm {             name    "vex_updatenmls"             baseparm             label   "Update Normals If Displaced"             export  none         }         parm {             name    "vex_matchattrib"             baseparm             label   "Attribute to Match"             export  none         }         parm {             name    "vex_inplace"             baseparm             label   "Compute Results In Place"             export  none         }         parm {             name    "vex_selectiongroup"             baseparm             label   "Output Selection Group"             export  none         }         parm {             name    "vex_precision"             baseparm             label   "VEX Precision"             export  none         }     }  ' attribwrangle3
+opparm attribwrangle3  bindings ( 0 ) groupbindings ( 0 )
+opparm attribwrangle3 folder0 ( 0 0 ) group ( "" ) grouptype ( guess ) class ( detail ) vex_numcount ( 10 ) vex_threadjobsize ( 1024 ) snippet ( 'int startend = chi("StartEnd");\nint edge_id = chi("EdgeId");\n//v@pos = {10, 0, -10};\n\nvector pos = point(0, "P", startend==0 ? edge_id : (edge_id+1)%npoints(0) );//set(10, 0, -10);\nvector dir = point(0, "edge_normal", edge_id);\n\nint p0 = addpoint(0, pos );// joint\nint p1 = addpoint(0, pos+dir );// handle\n\nsetpointgroup(0, "joint_start", p0, 1);\nsetpointgroup(0, "handle_start", p1, 1);\nsetpointattrib(0, "start_or_end", edge_id, startend==0 ? "start" : "end" );\n' ) exportlist ( * ) vex_strict ( off ) autobind ( on ) bindings ( 0 ) groupautobind ( on ) groupbindings ( 0 ) vex_cwdpath ( . ) vex_outputmask ( * ) vex_updatenmls ( off ) vex_matchattrib ( id ) vex_inplace ( off ) vex_selectiongroup ( "" ) vex_precision ( auto ) folder1 ( 0 0 ) folder_generatedparms_snippet ( 0 ) EdgeId ( 0 ) StartEnd ( 1 )
+chlock attribwrangle3 -*
+chautoscope attribwrangle3 -*
+opset -d on -r on -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off attribwrangle3
+opexprlanguage -s hscript attribwrangle3
+opuserdata -n '___Version___' -v '' attribwrangle3
+
+# Node footprint (Sop/add)
+opadd -e -n add footprint
+oplocate -x -23.433199999999999 -y -9.625 footprint
+opspareds "" footprint
+opparm footprint  points ( 4 ) prims ( 1 )
+opparm -V 20.5.370 footprint stdswitcher ( 1 1 1 ) keep ( off ) points ( 4 ) remove ( off ) switcher ( 1 1 ) prims ( 1 ) group ( "" ) add ( all ) inc ( 2 ) attrname ( "" ) closedall ( on ) addparticlesystem ( off ) particlegroup ( "" ) appendunusedtoparticlesystem ( off ) prim0 ( "" ) closed0 ( off ) usept0 ( on ) pt0 ( 0 0 0 ) weight0 ( 1 ) usept1 ( on ) pt1 ( 10 0 0 ) weight1 ( 1 ) usept2 ( on ) pt2 ( 10 0 -10 ) weight2 ( 1 ) usept3 ( on ) pt3 ( 0 0 -10 ) weight3 ( 1 )
+chlock footprint -*
+chautoscope footprint -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off footprint
+opexprlanguage -s hscript footprint
+opuserdata -n '___Version___' -v '20.5.370' footprint
+
+# Node polypath1 (Sop/polypath)
+opadd -e -n polypath polypath1
+oplocate -x -23.433199999999999 -y -10.642099999999999 polypath1
+opspareds "" polypath1
+opparm polypath1 connectends ( off ) maxendptdist ( 0.01 ) connectonlytoends ( on ) closeloops ( off )
+chlock polypath1 -*
+chautoscope polypath1 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off polypath1
+opexprlanguage -s hscript polypath1
+opuserdata -n '___Version___' -v '' polypath1
+
+# Node compute_normal (Sop/attribwrangle)
+opadd -e -n attribwrangle compute_normal
+oplocate -x -23.436199999999999 -y -11.753299999999999 compute_normal
+opspareds "" compute_normal
+opparm compute_normal  bindings ( 0 ) groupbindings ( 0 )
+opparm compute_normal folder0 ( 0 0 ) group ( "" ) grouptype ( guess ) class ( detail ) vex_numcount ( 10 ) vex_threadjobsize ( 1024 ) snippet ( '\nfor( int i=0; i<npoints(0); ++i )\n{\n    vector p0 = point(0, "P", i);\n    vector p1 = point(0, "P", (i+1)%npoints(0) );\n\n    vector vec_tan = normalize(p1-p0); \n    setpointattrib(0, "edge_normal", i, set(-vec_tan.z, 0, vec_tan.x));\n}\n' ) exportlist ( * ) vex_strict ( off ) autobind ( on ) bindings ( 0 ) groupautobind ( on ) groupbindings ( 0 ) vex_cwdpath ( . ) vex_outputmask ( * ) vex_updatenmls ( off ) vex_matchattrib ( id ) vex_inplace ( off ) vex_selectiongroup ( "" ) vex_precision ( auto )
+chlock compute_normal -*
+chautoscope compute_normal -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off compute_normal
+opexprlanguage -s hscript compute_normal
+opuserdata -n '___Version___' -v '' compute_normal
+
+# Node Placement (Sop/null)
+opadd -e -n null Placement
+oplocate -x -20.359200000000001 -y -11.0482 Placement
+opspareds '    parm {         name    "copyinput"         baseparm         label   "Copy Input (Note: Input will be still cooked if disabled)"         export  none     }     parm {         name    "cacheinput"         baseparm         label   "Cache Input"         export  none     }     parm {         name    "CornerIdx"         label   "CornerIdx"         type    integer         default { "0" }         range   { 0! 10 }         parmtag { "script_callback_language" "python" }     }     parm {         name    "LeftRight"         label   "LeftRight"         type    integer         default { "0" }         range   { 0 10 }         parmtag { "script_callback_language" "python" }     } ' Placement
+opparm -V 20.5.370 Placement copyinput ( on ) cacheinput ( off ) CornerIdx ( 1 ) LeftRight ( 0 )
+chlock Placement -*
+chautoscope Placement -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off Placement
+opexprlanguage -s hscript Placement
+opuserdata -n '___Version___' -v '20.5.370' Placement
+oporder -e Stair_BoundingBox lattice1 bound1 edit1 transform1 sphere1 attribwrangle1 lattice2 transform_front transform_left Param transform_right switch1 tube1 bounding_box merge1 group1 group2 bound2 lattice3 attribwrangle2 transform2 split2 Deformed_BoundingBox Deformed_Geometry attribwrangle3 footprint polypath1 compute_normal Placement 
+opcf ..
+opcf ..
+
+# Node out (/out)
+
+# Node ch (/ch)
+
+# Node shop (/shop)
+
+# Node img (/img)
+opcf img
+
+# Node comp1 (CopNet/img)
+opadd -e -n img comp1
+oplocate -x 1 -y 1 comp1
+opspareds "" comp1
+opparm -V 20.5.370 comp1
+chlock comp1 -*
+chautoscope comp1 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e off -b off comp1
+opexprlanguage -s hscript comp1
+opuserdata -n '___Version___' -v '20.5.370' comp1
+
+# Node copnet1 (CopNet/copnet)
+opadd -e -n copnet copnet1
+oplocate -x 0 -y 0 copnet1
+opspareds "" copnet1
+opparm -V 20.5.370 copnet1 setres ( off ) res ( 1024 1024 ) resmenu ( none ) setpixelscale ( off ) pixelscale ( 2 ) setborder ( off ) border ( wrap ) setprecision ( off ) precision ( b32 ) setvistile ( off ) vistile ( 3 )
+chlock copnet1 -*
+chautoscope copnet1 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c on -e on -b off copnet1
+opexprlanguage -s hscript copnet1
+opuserdata -n '___Version___' -v '20.5.370' copnet1
+oporder -e comp1 copnet1 
+opcf ..
+
+# Node stage (/stage)
+
+# Node tasks (/tasks)
+opcf tasks
+
+# Node topnet1 (TopNet/topnet)
+opadd -e -n topnet topnet1
+oplocate -x 0 -y 0 topnet1
+opspareds "" topnet1
+opparm -V 20.5.370 topnet1 cookcontrolssection ( 0 ) generatestatic ( 0 ) cookbutton ( 0 ) dirtybutton ( 0 ) cancelbutton ( 0 ) taskgraphsection ( 0 ) checkpointformat ( 1 ) taskgraphfile ( '$HIP/$HIPNAME.taskgraph.$F.py' ) savetaskgraph ( 0 ) loadtaskgraph ( 0 ) taskgraphautosave ( off ) taskgraphsaverate ( 10 ) checkpointfile ( '$HIP/$HIPNAME.checkpoint.json' ) loadcheckpoint ( 0 ) checkpointload ( 0 ) checkpointenabled ( off ) checkpointrate ( 10 ) sep2 ( ) savegraphattribs ( on ) schedulersection ( 0 ) topscheduler ( localscheduler ) usedefaultlabel ( off ) defaultlabel ( '$OS.`@pdg_index`' ) sep1 ( ) regenerationtype ( 0 ) evaluationtime ( 0 ) customtime ( 0 ) savescenefile ( on )
+chlock topnet1 -*
+chautoscope topnet1 -*
+opset -d off -r off -h off -f off -y off -t off -l off -s off -u off -F on -c off -e on -b off topnet1
+opexprlanguage -s hscript topnet1
+opuserdata -n '___Version___' -v '20.5.370' topnet1
+opcf topnet1
+
+# Node localscheduler (Top/localscheduler)
+opadd -e -n localscheduler localscheduler
+oplocate -x 0 -y 0 localscheduler
+opspareds "" localscheduler
+opparm localscheduler  local_envmulti ( 0 )
+opparm -V 1 localscheduler folder0 ( 0 0 0 ) folder5 ( 0 ) maxprocsmenu ( 0 ) maxprocs ( 1 ) pdg_usemaxtasks ( off ) pdg_maxtasks ( 0 ) verbose ( off ) pdg_waitforfailures ( off ) folder4 ( 0 ) pdg_workingdir ( '$HIP' ) hythonbin ( 0 ) hythonbincustomuniversal ( "" ) pdg_workitemdatasource ( 0 ) pdg_compressworkitemdata ( on ) pdg_validateoutputs ( on ) pdg_checkexpectedoutputs ( on ) sepparm2 ( ) pdg_mapmode ( 0 ) pdg_usemapzone ( off ) pdg_mapzone ( '$PDG_PATHMAP_ZONE' ) folder1 ( 0 ) tempdirmenu ( 1 ) tempdirappendpid ( on ) tempdircustom ( '$HOUDINI_TEMP_DIR/$HIPNAME/pdgtemp' ) pdg_deletetempdir ( 0 ) socketcallbacks ( 1 ) pdg_rpcignoreerrors ( 0 ) pdg_rpcmaxerrors ( 5 ) pdg_rpctimeout ( 4 ) pdg_rpcretries ( 2 ) pdg_rpcbackoff ( 2 ) pdg_rpcbatch ( 1 ) pdg_rpcrelease ( on ) folder0_3 ( 0 ) local_single ( off ) local_is_CPU_number_set ( off ) local_CPUs_to_use ( 1 ) folder6 ( 0 ) local_useminfreemem ( 0 ) local_minfreemem ( 0 ) local_minfreemempct ( 0 ) folder2 ( 0 ) local_enabletimeout ( off ) local_maxtime ( 0 ) local_handletimeout ( 0 ) sepparm4 ( ) local_enablemaxmemory ( off ) local_maxmemory ( 0 ) local_handlememory ( 0 ) sepparm5 ( ) local_echandleby ( 0 ) local_echandleall ( on ) local_eccustomcode ( 1 ) sepparm ( ) local_maximumretries ( 3 ) local_addfailcountattr ( off ) local_failcountattr ( failurecount ) folder3 ( 0 ) local_usehoudinimaxthreads ( off ) local_houdinimaxthreads ( 0 ) local_requireswindow ( off ) local_skippackages ( on ) local_envunset ( "" ) local_env_file ( "" ) local_envmulti ( 0 )
+chlock localscheduler -*
+chautoscope localscheduler -*
+opset -d on -r on -h off -f off -y off -t off -l off -s off -u off -F on -c off -e on -b off localscheduler
+opexprlanguage -s hscript localscheduler
+opuserdata -n '___Version___' -v '1' localscheduler
+opcf ..
+opcf ..
+oporder -e obj out ch shop img vex mat stage tasks 
+
+opcf /
+opcf obj
+opcf test_deform
+opwire -n sphere1 -0 Stair_BoundingBox
+opwire -n sphere1 -0 lattice1
+opwire -n bound1 -1 lattice1
+opwire -n attribwrangle1 -2 lattice1
+opwire -n Stair_BoundingBox -0 bound1
+opwire -n bound1 -0 edit1
+opwire -n bound1 -0 transform1
+opwire -n bound1 -0 attribwrangle1
+opwire -n Stair_BoundingBox -0 lattice2
+opwire -n bound1 -1 lattice2
+opwire -n attribwrangle1 -2 lattice2
+opwire -n lattice2 -0 transform_front
+opwire -n transform_front -0 transform_left
+opwire -n transform_front -0 transform_right
+opwire -n transform_left -0 switch1
+opwire -n transform_right -1 switch1
+opwire -n tube1 -0 bounding_box
+opwire -n group1 -0 merge1
+opwire -n group2 -1 merge1
+opwire -n tube1 -0 group1
+opwire -n bounding_box -0 group2
+opwire -n group2 -0 bound2
+opwire -n merge1 -0 lattice3
+opwire -n bound2 -1 lattice3
+opwire -n attribwrangle2 -2 lattice3
+opwire -n transform2 -0 attribwrangle2
+opwire -n bound2 -0 transform2
+opwire -n lattice3 -0 split2
+opwire -n -o 1 split2 -0 Deformed_BoundingBox
+opwire -n split2 -0 Deformed_Geometry
+opwire -n compute_normal -0 attribwrangle3
+opwire -n footprint -0 polypath1
+opwire -n polypath1 -0 compute_normal
+opcf ..
+opcf ..
+opcf img
+opcf ..
+opcf tasks
+opcf topnet1
+opcf ..
+opcf ..
+opcf $saved_path
