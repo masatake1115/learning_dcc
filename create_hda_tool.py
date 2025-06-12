@@ -114,14 +114,15 @@ class MyWidget( QFrame ):
             version = "0.1"
             
             node.cook(force=True)
-            #all_parms = get_all_parm_templates([], node )
+
+            max_num_inputs = 0
             
-            #for p in all_parms:
-            #    #if( not p.parmTemplate().isSpare() ):
-            #    try:
-            #        node.addSpareParmTuple(p)
-            #    except: pass
-                
+            # If there are inputs to the node, find the largest index of the input connections and use it as the max_num_inputs
+            # This will preserve the inputs at the right indexes
+            if( len(node.inputs()) > 0 ):
+                for connection in node.inputConnections():
+                    max_num_inputs = max(max_num_inputs,connection.inputIndex())
+                max_num_inputs = max_num_inputs + 1
             
             
             hda = node.createDigitalAsset(
@@ -129,10 +130,10 @@ class MyWidget( QFrame ):
                 hda_file_name = hda_file_name,
                 description = description,
                 min_num_inputs = 0,
-                max_num_inputs = 0,
+                max_num_inputs = max_num_inputs,
                 compress_contents= False,
                 change_node_type= True,
-                create_backup= False,                
+                create_backup= False,
             )
             
             promoteParams(hda)# IMPORTANT!!!! Migrates all custom parameters from subnet to hda
