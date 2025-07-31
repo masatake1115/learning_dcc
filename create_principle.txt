@@ -1,0 +1,87 @@
+import hou
+import pathlib
+
+
+
+def import_texture(jpg_file_path):pass
+#    print( "importing texture: ", jpg_file_path )
+
+
+
+
+
+Root_tex = "D:/DataSet/pbr mats/ambientCG"
+Specifier = [ "AmbientOcclusion", "Color", "Displacement", "NormalGL", "Roughness", "Metalness" ]# ambientcg pbr tex channel specifier
+Channel = { "AmbientOcclusion": "AmbientOcclusion", "Color": "BaseColor", "Displacement" : "Displacement", "NormalGL": "Normal", "Roughness": "Roughness", "Metalness": "Metallic" }# my MI_Base texture slot names
+
+
+directories = [ p for p in pathlib.Path( Root_tex ).iterdir() if p.is_dir() ]
+
+pbrDirs = {}# pbt dir name: texture paths
+texAssets = {}
+
+for d in directories:
+    #print(d, d.name)
+    pbrDirs[ d.name ] = {}
+
+    tex_files = list( d.rglob("*.jpg") )
+
+    pbrTexFiles = pbrDirs[ d.name ]
+
+    for file in tex_files:
+        for spc in Specifier:
+            if( spc in file.name ):
+                pbrTexFiles[ Channel[spc] ] = file
+
+
+for k, v in pbrDirs.items():
+    print( k, v )                
+
+
+#================== create material ===================#
+
+matnet = hou.node("/mat")
+
+if matnet is None:
+    matnet = hou.node("/shop").createNode("matnet")  # fallback
+
+
+
+    
+for k, v in pbrDirs.items():
+
+    #======= Create a Principled Shader ======#
+    shader = matnet.node(k)
+    if( not shader ):
+        shader = matnet.createNode("principledshader", k)
+
+    
+    #======= Initialize parameters ==========#
+    if( "BaseColor" in v ):
+        shader.parm("basecolorr").set(1)
+        shader.parm("basecolorg").set(1)
+        shader.parm("basecolorb").set(1)
+    
+        shader.parm("basecolor_useTexture").set(1)
+        shader.parm("basecolor_texture").set( v["BaseColor"].as_posix() )
+ 
+    if( "Roughness" in v ):
+        shader.parm("rough").set(1)
+        shader.parm("rough_useTexture").set(1)
+        shader.parm("rough_texture").set( v["Roughness"].as_posix() )    
+    
+    if( "Metallic" in v ):
+        shader.parm("metallic").set(1)
+        shader.parm("metallic_useTexture").set(1)
+        shader.parm("metallic_texture").set( v["Metallic"].as_posix() )        
+
+    if( "Normal" in v ):
+        shader.parm("baseBumpAndNormal_enable").set(1)
+        shader.parm("baseNormal_texture").set( v["Normal"].as_posix() )
+        
+    if( "Displacement" in v ):
+        shader.parm("dispTex_enable").set(1)
+        shader.parm("dispTex_texture").set( v["Displacement"].as_posix() )          
+
+        
+matnet.layoutChildren()
