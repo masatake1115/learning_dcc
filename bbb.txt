@@ -1,0 +1,159 @@
+﻿macroScript MySampleTool
+category:"My Tools"
+toolTip:"My Sample Tool"
+(
+	try(destroyDialog myRollout)catch()
+	
+
+	
+	local val_spn_offset = 0.0
+	local val_clr_wire = [0,255,0]
+	
+	rollout ro_tab1 ""
+	(
+		spinner spn_offset "Offset:" range:[-100, 100, 0] type:#float scale:0.25
+        colorpicker clr_wire "Color:" color:red
+		button btn_test "Attach OffsetCurve Modifier"
+		
+
+		on ro_tab1 open do
+		(
+            spn_offset.value = val_spn_offset
+			clr_wire.color = val_clr_wire
+        )
+		
+		on spn_offset changed val do val_spn_offset = val
+		on clr_wire changed col do val_clr_wire = col
+		
+		
+		
+		on btn_test pressed do
+		(
+			if myLibLoaded != true do
+			(
+				print("!!!")
+				global myLibLoaded = true
+				fileIn @"D:/Repository/bitbucket/3dsmaxworkspace/clone_tools/scripts/generate_offset_curve.ms"   --(getDir #scripts + "\\MyLib\\lib.ms")
+			)
+						
+			/*
+			undo "SetupOffsetCurveAttrib" on
+			(
+				local theMod = EmptyModifier()
+				theMod.name = "Clone Offset Curve"
+				addModifier $ theMod	
+				custAttributes.add theMod Offset_Attributes
+				--max modify mode
+			)			
+			*/
+			
+		)
+		
+	)
+	
+	rollout ro_tab2 ""
+	(
+		checkbox chk_test "Tab 2 func"
+	)	
+	
+	rollout ro_tab3 ""
+	(
+		checkbox chk_test "Tab 3 func"
+	)
+	
+	
+	
+	/*
+	rollout ro_main "Tabbed UI" width:200 height:250
+	(
+		-- tab like selection buttons
+		checkbutton btn_page1 "Main" width:90 across:2 checked:true
+		checkbutton btn_page2 "Settings" width:90
+
+		-- layout to display tab rollout(container)
+		subrollout sub_container "" height:200
+
+		-- switching function
+		fn switchTab type =
+		(
+			-- remove all contents
+			for r in sub_container.rollouts do removeSubRollout sub_container r
+				
+			-- switch rollout by type
+			if type == 1 then addSubRollout sub_container ro_tab1
+			else addSubRollout sub_container ro_tab2
+		)
+
+		on btn_page1 changed state do
+		(
+			if state then ( btn_page2.state = false; switchTab 1 )
+			else btn_page1.state = true
+		)
+		
+		on btn_page2 changed state do
+		(
+			if state then ( btn_page1.state = false; switchTab 2 )
+			else btn_page2.state = true
+		)
+		
+		-- initial display(ro_tab1)
+		on ro_main open do ( addSubRollout sub_container ro_tab1 )
+	)
+	*/
+		
+	
+	rollout ro_main "My Test Tab" width:300 height:200
+	(
+		-- dotNet tab control
+		dotNetControl tabs "System.Windows.Forms.TabControl" height:25 width:290
+		
+		-- container to display rollout
+		subrollout sub_container "" height:230 width:210 offset:[-5,-5]
+				
+		-- switching function
+		fn updateTabDisplay index =
+		(
+			-- remove all contents
+			for r in sub_container.rollouts do removeSubRollout sub_container r
+				
+			-- switch rollout by tab index
+			case index of
+			(
+					0: addSubRollout sub_container ro_tab1
+					1: addSubRollout sub_container ro_tab2
+					2:	addSubRollout sub_container ro_tab3
+			)
+		)	
+		
+		on ro_main open do
+		(
+			-- Add tab pages
+			tabs.TabPages.add "Curve"
+			tabs.TabPages.add "Area"
+			tabs.TabPages.add "Extra - Road"
+			
+			-- Set initial display
+			updateTabDisplay 0					
+		)
+
+		-- tab selection changed event
+		on tabs SelectedIndexChanged arg do
+		(
+			updateTabDisplay tabs.SelectedIndex
+		)
+		
+	)-- end of rollout ro_tabs
+	
+	
+	createDialog ro_main
+
+)	
+
+/*
+Setup
+1. put this file in
+  [USER_HOME]/appData/Local/Autodesk/3dsmax/[VERSION]/[LANGUAGE]/scripts/startup
+
+2. Open 3dsmax and do the following operation. 
+  Customize -> Customize User Interface... -> Toolbars tab -> Category:My Tools -> Drag to "My Sample Tool" to toolbar
+*/
