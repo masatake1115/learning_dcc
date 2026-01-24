@@ -1,0 +1,165 @@
+﻿struct MyUtilityFunctions
+(
+
+
+	fn CollectChildren_rec obj &allChildren includeParent:false includeHidden:false =
+	(
+		-- check if object should be collected
+		if (includeHidden or not obj.isHiddenInVpt) and includeParent and finditem allChildren obj == 0 then
+			append allChildren obj
+
+		-- collect current object's children
+		for c in obj.children do
+			CollectChildren_rec c &allChildren includeParent:true includeHidden:includeHidden
+	),
+		
+
+	fn CollectChildren obj includeParent includeHidden  =
+	(
+		result = #()
+
+		CollectChildren_rec obj result includeParent:includeParent includeHidden:includeHidden
+
+		return result
+	),
+	
+	
+	fn CreateCombinedMesh objs =
+	(
+		--progressStart "Creating Collision Mesh..."
+		
+		local snapshots = for o in objs collect (snapshot o)
+		
+		local combinedMesh = snapshots[1]
+		combinedMesh.isHidden = true
+
+		for i = 2 to objs.count do
+		(
+			meshop.attach combinedMesh snapshots[i]
+			--progressUpdate (i * 100.0 / objs.count)
+		)
+		--progressEnd()
+		
+		return combinedMesh
+	),
+
+	
+	-- Hierarchical object version
+	fn CollectIntersectingObjects obstacle_list obj_list =
+	(
+		local collison_list = #()
+		
+		if obstacle_list.count == 0 or obj_list.count == 0 do return collison_list
+		
+		local rmgi = RayMeshGridIntersect()
+		
+		suspendEditing()
+		try
+		(
+			with redraw off (
+				with undo off (	--undo "Create Collision List" on
+
+					local tempRoad = CreateCombinedMesh obstacle_list
+					
+					-- Initialize meshgrid
+					rmgi.Initialize 30 -- グリッドの解像度（10x10x10）		
+					rmgi.AddNode tempRoad
+					rmgi.BuildGrid()
+					
+					for b in obj_list do
+					(
+						local hierarchy_nodes = CollectChildren b true true
+
+						local testPoints = #()
+						for n in hierarchy_nodes do
+						(
+							local bMin = n.min, bMax = n.max
+							local zTest = bMin.z + 100.0 -- 底面より少し上からレイを飛ばす
+							join testPoints #(
+								[bMin.x, bMin.y, n.pos.z + zTest], -- 少し上から下へ飛ばす
+								[bMax.x, bMin.y, n.pos.z + zTest],
+								[bMin.x, bMax.y, n.pos.z + zTest],
+								[bMax.x, bMax.y, n.pos.z + zTest],
+								[n.pos.x, n.pos.y, n.pos.z + zTest]
+							)
+						)
+
+						--local bMin = [1e9, 1e9, 1e9]
+						--local bMax = [-1e9, -1e9, -1e9]
+						
+						---- ジオメトリを持つ子要素から正確なBBoxを算出
+						--for n in hierarchy_nodes where (superClassOf n == GeometryClass) do
+						--(
+						--    if n.min.x < bMin.x then bMin.x = n.min.x
+						--    if n.min.y < bMin.y then bMin.y = n.min.y
+						--    if n.min.z < bMin.z then bMin.z = n.min.z
+						--    if n.max.x > bMax.x then bMax.x = n.max.x
+						--    if n.max.y > bMax.y then bMax.y = n.max.y
+						--    if n.max.z > bMax.z then bMax.z = n.max.z
+						--)			
+						
+						---- BBoxの5点（底面4隅 + 中心）をチェック
+						--local zTest = bMin.z + 5.0 -- 底面より少し上からレイを飛ばす
+						--local testPoints = #(
+						--    [bMin.x, bMin.y, zTest],
+						--    [bMax.x, bMin.y, zTest],
+						--    [bMin.x, bMax.y, zTest],
+						--    [bMax.x, bMax.y, zTest],
+						--    [(bMin.x+bMax.x)/2.0, (bMin.y+bMax.y)/2.0, zTest]
+						--)			
+						
+						local isColliding = false
+						
+						-- 建物の底面の中心座標
+						for p in testPoints while not isColliding do
+						(
+							-- Do ray intersection test against obstacles. returns hit face index
+							local hitCount = rmgi.intersectRay p [0,0,-1] true
+							
+							if hitCount > 0 then
+							(
+								-- 最も近いヒット位置の距離を確認
+								local dist = rmgi.GetHitDist 1
+								--if dist < 10.0 do
+								--(
+								isColliding = true
+								--)
+								join collison_list hierarchy_nodes
+							)
+							
+						)-- end of p loop
+					)-- end of obj_list loop
+					
+					
+					
+					
+				)-- end of undo off
+			)-- end of redraw off
+		
+		)
+		catch
+		(
+			format "Error occured: %\n" (getCurrentException())
+		)
+
+		resumeEditing()
+		
+		-- 解放
+		rmgi.Free()
+		delete tempRoad
+		
+		return collison_list
+	)
+		
+		
+	
+	
+	
+	
+)
+	
+
+global MyUtil = MyUtilityFunctions()
+	
+--	aa = getAllChildren selection[1] true true
+--	select aa
