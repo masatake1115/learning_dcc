@@ -1,0 +1,22 @@
+﻿theMod = $.modifiers[#Sweep]
+
+
+getPropNames theMod
+
+
+-- Use Custom Sectionを選択
+theMod.CustomShape=1 --0でUse Buint-In section
+
+
+-- 断面形状オブジェクトをセット
+theMod.shapes[1] =  getNodeByName "cross_deck"
+
+
+-- X Offset Y Offsetの値をセット
+theMod.XOffset =10
+theMod.yOffset =20
+theMod.angle = 15
+
+
+
+-- Loft(CompoundShape)も検討したが、断面形状のオフセットができないため使わない
