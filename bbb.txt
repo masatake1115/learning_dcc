@@ -1,0 +1,287 @@
+﻿/*
+(
+	local sel = selection as array
+	
+	if sel .count >= 2 then
+	(
+		local thePath = sel[sel.count] -- 最後に選択したものがパス
+		local propAssets = deleteItem sel sel.count -- パス以外を配列にする		
+		
+		local gap = -2.0 -- プロップ間の隙間
+		
+        local totalPathLength = curveLength thePath 1
+        local currentDist = 0.0
+		local propIndex = 1
+		
+		local newObjects = #()
+		
+		
+		undo "Random Fill Path" on
+        (            
+            while currentDist < totalPathLength do
+            (
+				-- 2. プロップをランダムに1つ選ぶ
+				--local sourceProp = propAssets[random 1 propAssets.count]
+				local sourceProp = propAssets[propIndex]
+				
+				-- 3. 選んだプロップのサイズを測る (Y軸方向と仮定)
+				local bbox = nodeLocalBoundingBox sourceProp
+				local propSize = bbox[2].x - bbox[1].x
+				
+				-- パスをはみ出さないかチェック
+				if ( currentDist + propSize ) > totalPathLength do exit
+				
+				-- 配置位置（プロップの中心）を計算
+				local pivotOffset = currentDist + (propSize * 0.5)
+				local param = pivotOffset / totalPathLength
+                
+               -- 4. 行列を計算して配置
+                local pos = lengthInterp thePath 1 param -- 距離ベースで座標取得
+                local tan = lengthTangent thePath 1 param -- 距離ベースで接線取得
+                local bitan = normalize( cross z_axis tan )
+				local normal = normalize( cross tan bitan )
+
+				local finalMatrix = matrix3 tan bitan normal pos
+
+                -- 配置
+                local newProp = instance sourceProp
+                newProp.transform = finalMatrix
+	
+				-- カウンターを更新する
+				propIndex += 1
+				if propIndex > propAssets.count do propIndex = 1 -- 最後まで行ったら1に戻る
+                
+				-- 5. 次の配置開始位置を更新（今回のプロップ分進める）
+                currentDist += ( propSize + gap )
+				
+                append newObjects newProp				
+            )
+        )
+        format "配置完了: % 個のオブジェクトを作成しました。\n" newObjects.count	
+	)
+	else (
+		print "オブジェクトとパスを選択してください"
+	)
+
+)
+*/
+
+
+
+/*
+(
+    local sel = selection as array
+    if sel.count >= 2 then
+    (
+        local thePath = sel[sel.count]
+        -- 選択順を [ポール, 柵] にしていると想定
+        local propAssets = deleteItem sel sel.count 
+        
+        local totalPathLength = curveLength thePath 1
+        local currentDist = 0.0
+        local propIndex = 1
+
+        undo "Build Guardrail" on
+        (
+            while currentDist < totalPathLength do
+            (
+                local sourceProp = propAssets[propIndex]
+                local bbox = nodeLocalBoundingBox sourceProp
+                local propSize = bbox[2].x - bbox[1].x
+                
+                -- 配置位置の計算
+                -- currentDistを「パーツの開始地点」として、その半分先にピボットを置く
+                local pivotOffset = currentDist + (propSize * 0.5)
+                
+                if pivotOffset > totalPathLength do exit
+                
+				local param = pivotOffset / totalPathLength
+				
+                local pos = lengthInterp thePath 1 param
+                local tan = lengthTangent thePath 1 param
+                
+                -- 行列構築（Y軸を進行方向に）
+                local worldUp = [0,0,1]
+                local sideVec = normalize (cross worldUp tan)
+                local upVec = normalize (cross tan sideVec)
+                local finalMat = matrix3 tan sideVec upVec pos
+                
+                local newProp = instance sourceProp
+                newProp.transform = finalMat
+				
+                -- ★ 次のパーツの開始位置へ
+                -- 柵の端とポールの中心を合わせたい場合は、
+                -- モデリング時に「柵」の長さを調整するか、ここで少しマイナス値を足します
+                currentDist += propSize
+                
+                -- [ポール -> 柵] の順でループ
+                propIndex = (mod propIndex propAssets.count) + 1
+            )
+        )
+    )
+    else (
+        messageBox "1.ポール 2.柵 3.パス の順で選択してください。"
+    )
+)
+*/
+
+
+
+
+/*
+(
+    local sel = selection as array
+    if sel.count >= 2 then
+    (
+		local gap = 5.0 -- プロップ間の隙間
+		
+        local thePath = sel[sel.count]
+        local propAssets = deleteItem sel sel.count -- [1]=ポール, [2]=パネル
+        
+        local totalPathLength = curveLength thePath 1
+        local currentDist = 0.0
+        
+        local poleModel = propAssets[1]
+        local panelModel = propAssets[2]
+        
+        -- パネルの長さを取得（これが支柱間のスパンになる）
+        local panelBBox = nodeLocalBoundingBox panelModel
+        local panelLen = panelBBox[2].x - panelBBox[1].x
+
+        undo "Linear Fence" on
+        (
+            while (currentDist + panelLen) <= totalPathLength do
+            (
+				local param = currentDist / totalPathLength
+				local param_next =  (currentDist + panelLen + gap) / totalPathLength
+				
+				if param_next >= 1 do exit
+				
+                -- 1. 現在地点（支柱A）と次の地点（支柱B）の座標を取得
+                local posA = lengthInterp thePath 1 param
+                local posB = lengthInterp thePath 1 param_next
+                
+                -- 2. 支柱Aを配置（向きはパスの接線でOK）				
+                local tanA = lengthTangent thePath 1 param
+                local poleObj = instance poleModel
+                poleObj.pos = posA
+                --poleObj.dir = tanA -- 支柱はパスの向きに従う
+                
+                -- 3. パネルの計算
+                -- 向き：AからBへの直線ベクトル
+                local panelDir = normalize (posB - posA) 
+                local panelMidPos = (posA + posB) * 0.5 -- 中点
+                
+                -- 行列構築（Y軸をパネルの向きに合わせる）
+                local worldUp = [0,0,1]
+                local sideVec = normalize (cross worldUp panelDir)
+                local upVec = normalize (cross panelDir sideVec)
+                local panelMat = matrix3 panelDir sideVec upVec panelMidPos
+                
+                local panelObj = instance panelModel
+                panelObj.transform = panelMat
+                
+                -- 次の支柱位置へ
+                currentDist += (panelLen + gap)
+            )
+            
+            -- 最後に終点の支柱を追加
+            local finalPos = lengthInterp thePath 1 param
+            local finalTan = lengthTangent thePath 1 param
+            local lastPole = instance poleModel
+            lastPole.pos = finalPos
+            lastPole.dir = finalTan
+        )
+    )
+    else (messageBox "ポール、パネル、パスの順で選択してください。")
+)
+*/
+
+
+
+
+
+
+(
+    -- 1. 設定：選択物の取得
+    local sel = selection as array
+    if sel.count >= 2 then
+    (
+		local gap = 5.0 -- プロップ間の隙間
+		
+        local thePath = sel[sel.count]
+        local propAssets = deleteItem sel sel.count -- [1]=ポール, [2]=パネル
+        
+        local poleModel = propAssets[1]
+        local panelModel = propAssets[2]
+        
+        -- パネルの厳密な直線長さを取得
+        local panelBBox = nodeLocalBoundingBox panelModel
+        local targetLen = panelBBox[2].x - panelBBox[1].x + gap
+        
+        local totalPathLength = curveLength thePath 1
+        local currentPathDist = 0.0 -- パスに沿った累積距離
+
+        -- 2. 補助関数：直線距離(targetLen)離れた「次のパス上の点」を二分法で探す
+        fn findNextDistByChord thePath startDist targetLen maxPath =
+        (
+            local pStart = lengthInterp thePath 1 (startDist / maxPath)
+            local low = startDist
+            local high = amin (startDist + targetLen * 1.5) maxPath -- 探索範囲の上限
+            
+            for i = 1 to 15 do -- 15回の反復で精度は十分(約0.003%以下の誤差)
+            (
+                local mid = (low + high) * 0.5
+                local pMid = lengthInterp thePath 1 (mid / maxPath)
+                if (distance pStart pMid) < targetLen then low = mid else high = mid
+            )
+            return high
+        )
+
+        undo "Build Perfect Guardrail" on
+        (
+            -- 最初のポールの配置
+            local startPos = lengthInterp thePath 1 0
+            local startTan = lengthTangent thePath 1 0
+            local firstPole = instance poleModel
+            firstPole.pos = startPos
+            firstPole.dir = startTan
+            
+            -- メインループ
+            while currentPathDist < totalPathLength do
+            (
+                -- 次の支柱が来るべき「パス上の距離」を計算
+                local nextPathDist = findNextDistByChord thePath currentPathDist targetLen totalPathLength
+                
+                -- パスの終端を超えたら終了
+                if nextPathDist >= totalPathLength do exit
+                
+                -- 座標の取得
+                local posA = lengthInterp thePath 1 (currentPathDist / totalPathLength)
+                local posB = lengthInterp thePath 1 (nextPathDist / totalPathLength)
+                local tanB = lengthTangent thePath 1 (nextPathDist / totalPathLength)
+                
+                -- パネルの向きと配置
+                local panelDir = normalize (posB - posA)
+                local panelMidPos = (posA + posB) * 0.5
+                
+                -- 行列構築
+                local worldUp = [0,0,1]
+                local sideVec = normalize (cross worldUp panelDir)
+                local upVec = normalize (cross panelDir sideVec)
+                
+                local panelObj = instance panelModel
+                panelObj.transform = matrix3 panelDir sideVec upVec panelMidPos
+                
+                -- 次のポールの配置
+                local poleObj = instance poleModel
+                poleObj.pos = posB
+                --poleObj.dir = tanB
+                
+                -- 距離の更新
+                currentPathDist = nextPathDist
+            )
+        )
+    )
+    else (messageBox "1.ポール 2.パネル 3.パス の順に選択してください。")
+)
