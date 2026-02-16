@@ -1,33 +1,34 @@
-﻿(
-	/*
-	-- Duplicate hierarchical object as reference
-	fn ReferenceHierarchy obj parentNode:undefined =
+﻿(	
+	-- Duplicate hierarchical object as instance
+	fn CloneInstanceHierarchy obj parentNode:undefined prefix:"Inst_" =
 	(
 		-- 1. Create reference
-		local newObj = reference obj
-		newObj.name = "ref_" + newObj.name
+		local newObj = instance obj
+		newObj.name = prefix + obj.name + "_" + obj.inode.handle as String
 		
 		-- 2. Set parent if specified
 		if parentNode != undefined do
 			newObj.parent = parentNode
+		newObj.isFrozen = true
+		newObj.showFrozenInGray  = false
 		
 		-- 3. Process all children
 		for child in obj.children do
 		(
-			ReferenceHierarchy child parentNode:newObj
+			CloneInstanceHierarchy child parentNode:newObj
 		)
 		
 		return newObj
 	)
-*/
+
 
 	-- 実行部分
 	if selection.count > 0 then
 	(
-		undo "Reference Hierarchy" on
+		with undo off
 		(
-			-- 選択されたトップノードから開始
-			MyUtil.ReferenceHierarchy selection[1]
+			-- 選択されたトップノードから開始			
+			CloneInstanceHierarchy selection[1]
 		)
 	)
 	else
