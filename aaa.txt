@@ -36,3 +36,64 @@
 		messageBox "オブジェクトを選択してください。"
 	)
 )
+
+
+
+
+
+
+
+
+
+(
+    -- 1. 対象のオブジェクトを取得（モディファイヤ適用後の「現在の状態」をメッシュとして取得）
+    local obj = selection[1]
+    local density = 1 -- 密度設定
+    
+    if (isValidNode obj) then
+    (
+        -- snapshotAsMeshで、現在のスタック状態の三角形メッシュをメモリ上に生成
+        local tempMesh = snapshotAsMesh obj
+        local numFaces = tempMesh.numfaces
+        local totalPoints = 0
+        
+        undo "Distribute Points Universal" on
+        (
+            for f = 1 to numFaces do
+            (
+                -- 三角形の面積を計算（meshOpではなく、直接Faceの頂点から計算）
+                local vidx = getFace tempMesh f
+                local vA = getVert tempMesh vidx.x
+                local vB = getVert tempMesh vidx.y
+                local vC = getVert tempMesh vidx.z
+                
+                -- 外積を用いて三角形の面積を求める（面積 = |(B-A) x (C-A)| / 2）
+                local fArea = 0.5 * (length (cross (vB - vA) (vC - vA)))
+                
+                -- 配置する点数を決定
+                local numPointsInFace = (fArea * density) as integer
+                -- 密度が低い場合に備え、確率で1つ配置するか判定（オプション）
+                if ((fArea * density) - numPointsInFace) > random 0.0 1.0 do numPointsInFace += 1
+                
+                for i = 1 to numPointsInFace do
+                (
+                    local r1 = random 0.0 1.0
+                    local r2 = random 0.0 1.0
+                    local sqrtR1 = sqrt r1
+                    
+                    local pos = (1 - sqrtR1) * vA + (sqrtR1 * (1 - r2)) * vB + (sqrtR1 * r2) * vC
+                    
+                    -- 法線方向（配置した点の上方向）も取得可能
+                    local fNormal = getFaceNormal tempMesh f
+                    point pos:pos dir:fNormal size:0.1 wirecolor:white
+                    
+                    totalPoints += 1
+                )
+            )
+        )
+        -- メモリ解放
+        delete tempMesh
+        format "汎用配置完了: % 個のポイントを作成しました。\n" totalPoints
+    )
+    else (messageBox "オブジェクトを選択してください。")
+)
