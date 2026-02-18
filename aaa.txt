@@ -97,3 +97,97 @@
     )
     else (messageBox "オブジェクトを選択してください。")
 )
+
+
+
+
+
+
+
+(
+	global rollout_SortManager
+	try(destroyDialog rollout_SortManager)catch()
+
+	rollout rollout_SortManager "Object Sorter" --width:240
+	(
+		local margin = 5
+		local btnSize = 25
+		
+		-- オブジェクト保持用配列
+		local pickedObjects = #()
+		
+		button btn_add "Add" across:2
+		button btn_remove "Remove"
+		
+		listbox lbx_objects "リスト:"  --across:3 ---width:150 height:10
+		button btn_up "▲" width:btnSize height:btnSize pos:[150, 50]
+		button btn_down "▼" width:btnSize height:btnSize pos:[150, 80]
+
+		
+		 -- レイアウト更新関数
+		fn updateLayout =
+		(	
+			local w = rollout_SortManager.width
+			local h = rollout_SortManager.height
+			
+			lbx_objects.width = w - btnSize - margin*4
+			
+			btn_up.pos = [ lbx_objects.pos.x + lbx_objects.width + margin, lbx_objects.pos.y ]
+			btn_down.pos = [ btn_up.pos.x, btn_up.pos.y + btnSize + margin ]
+		
+		)	
+		
+		-- UI更新用関数
+		fn updateUI = (
+			lbx_objects.items = for o in pickedObjects where isValidObj o collect o.name
+		)
+
+		
+		on btn_add pressed do
+		(
+			local currSel = selection as array
+			for obj in currSel do ( appendIfUnique pickedObjects obj )
+			 updateUI()
+		)
+		
+		
+		on btn_remove pressed do
+		(
+			local idx = lbx_objects.selection
+			if idx > 0 do
+			(
+				deleteItem pickedObjects idx
+				updateUI()
+			)
+		)	
+		
+		on btn_up pressed do
+		(
+			local idx = lbx_objects.selection
+			if idx > 1 do -- Execute if not first element
+			(
+				swap pickedObjects[idx] pickedObjects[idx - 1]
+				updateUI()
+				lbx_objects.selection = idx - 1 -- Follow row selection
+			)
+		)
+
+		on btn_down pressed do
+		(
+			local idx = lbx_objects.selection
+			if idx > 0 and idx < pickedObjects.count do  -- Execute if not last element
+			(
+				swap pickedObjects[idx] pickedObjects[idx + 1]
+				updateUI()
+				lbx_objects.selection = idx + 1 -- Follow row selection
+			)
+		)
+		
+	
+	on rollout_SortManager open do updateLayout()	
+	--on rollout_SortManager resized size do updateLayout()	
+		
+		
+	)
+	createDialog rollout_SortManager
+)
