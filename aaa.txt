@@ -191,3 +191,40 @@
 	)
 	createDialog rollout_SortManager
 )
+
+
+
+
+
+(
+
+	SpinnerTest = attributes "SpinnerTest"
+	(
+		parameters main rollout:ui
+		(
+			myValue type:#float default:0
+		)
+		
+		rollout ui "Test"
+		(
+			spinner spn "Value:" range:[0,100,0]
+			
+			on ui open do spn.value = myValue
+			
+			on spn changed val do
+			(
+				with undo off
+				(
+					--myValue = val
+				)
+			)
+		)
+	)
+	
+
+	local theMod = EmptyModifier()
+	theMod.name = "AAAAAAA"
+	addModifier $ theMod	
+	custAttributes.add theMod SpinnerTest
+	--max modify mode
+)
