@@ -1,0 +1,564 @@
+﻿
+
+
+
+
+
+--============================ 別ノードのカスタムアトリビュートからロールアウト(params)を取り出してはめ込み表示する ======================
+
+/*
+(
+	------------------- dropdownList/subRollout implementation to avoid  "rubber-band select->Delete" mulfunction -----------------
+	MyCA = attributes "MyCA"
+	(
+		rollout params "Params"
+		(
+			dropdownList ddl_type "dropdownlist: "
+			subRollout sub_container "Sub" height:100
+			
+			rollout roll_A "Base" ( spinner spn_size "Size:" )
+			
+			
+			-- timer to delay "on params open" initialization process ---
+			timer delay_timer interval:100 active:false
+
+			on delay_timer tick do
+			(
+				if sub_container.rollouts.count == 0 do ( -- Execute 100ms after "on params open"
+					addSubRollout sub_container roll_A
+				)
+				delay_timer.active = false
+			)			
+			--------------------------------------------------
+			
+			
+			on params open do
+			(
+				delay_timer.active = true --start timer
+			)
+			
+			on params close do 
+			(
+				for r in sub_container.rollouts do removeSubRollout sub_container r
+			)
+		)
+	)
+
+	p = Point name:(uniquename "Test_")
+	custAttributes.add p MyCA
+	select p
+)
+*/
+
+
+(
+	
+	fn AddObj = (
+		-- Boxにカスタムアトリビュートを追加する
+		ca_test = attributes "MyCustomProps"
+		(
+			parameters main rollout:params
+			(
+				mySize type:#float ui:spn_size default:10.0
+			)
+			rollout params "ノード固有の属性"
+			(
+				spinner spn_size "サイズ係数: "
+			)
+			
+		)
+
+		b = box name:"TestBox_with_CA"
+		--custAttributes.add b ca_test	
+			
+
+		local m = EmptyModifier()
+		addModifier b m
+		custAttributes.add m ca_test
+
+		return b
+	)
+		
+	
+	b = AddObj()
+	
+	-- 1. カスタムアトリビュートの定義
+	myExtraParams = attributes "SwitchingUI_v2"
+	(
+		parameters main rollout:params
+		(
+			-- ドロップダウンの選択状態（数値）を保存
+			selectedType type:#integer default:1 ui:ddl_type
+			
+			on selectedType set val do this.params.updateSubUI val
+		)
+		
+
+		rollout params "Params"
+		(
+			rollout roll_A "Base" ( spinner spn_size "Size:" )
+			rollout roll_B "Extra" ( colorPicker clr_wire "Color:" )
+			
+			dropdownList ddl_type "表示モードを選択:" items:#("Base", "Extra", "???")
+			subRollout sub_container "Sub" height:100
+			
+			-- サブロールアウト更新関数
+			fn updateSubUI val =
+			(
+				try (
+					if params.open and sub_container != undefined do
+					(
+						-- Clear existing rollouts
+						for r in sub_container.rollouts do removeSubRollout sub_container r
+						
+						-- Reattach sub rollout
+						if val == 1 then addSubRollout sub_container roll_A
+						else if val == 2 then addSubRollout sub_container roll_B
+						else if val == 3 then addSubRollout sub_container b.modifiers[1].MyCustomProps.params
+					)
+				) catch (
+					-- Do nothing if error occured
+				)
+				
+			)
+			
+			
+			-- timer to delay "on params open" initialization process ---
+			-- this avoids "rubber-band select->Delete" mulfunction of dropdownList/subRollout rollout
+			timer delay_timer interval:100 active:false
+			on delay_timer tick do -- Do initialization
+			(
+				if sub_container.rollouts.count == 0 do updateSubUI this.selectedType -- delay execution after 100ms
+				delay_timer.active = false
+			)			
+			--------------------------------------------------
+			
+			on params open do
+			(
+				delay_timer.active = true -- ignite delay initialization
+			)	
+			
+			on params close do
+			(
+				for r in sub_container.rollouts do removeSubRollout sub_container r
+			)
+			
+			
+		)
+	)
+
+	-- 選択しているオブジェクトに適用する
+	p = Point()
+	custAttributes.add p myExtraParams-- もしオブジェクト自体に追加するなら:
+	
+)
+
+
+
+
+(
+	-- UI管理用のカスタムアトリビュート定義
+	ui_manager_ca = attributes "UIManagerProps"
+	(
+		-- パラメータ（今回はUIのみなので空でもOK）
+		parameters main rollout:params
+		(
+			
+		)
+
+		-- 表示されるロールアウト
+		rollout params "Params"
+		(
+			local margin_v = 25
+			
+			subRollout sub_container "対象の属性" height:20
+			
+			-- 外部からSubRolloutを操作するための関数を定義しておく
+			fn ClearUI =
+			(
+				for r in sub_container.rollouts do removeSubRollout sub_container r
+			)
+			
+			fn AddTargetUI ca_rollout =
+			(
+				-- ロールアウトを追加する
+				addSubRollout sub_container ca_rollout
+				
+				-- 追加したロールアウトの高さを取得する
+				local newHeight = ca_rollout.height + margin_v -- 枠線の分少し余裕を持たせる
+				
+				-- SubRolloutコントロールのサイズを更新する
+				sub_container.width = ca_rollout.width + margin_v
+				sub_container.height = newHeight	
+				
+				--format "sub_container.height = %\n" sub_container.height
+				
+				-- 親ロールアウト（params）の高さも更新する
+				params.height = sub_container.pos.y + newHeight + margin_v
+				params.width = sub_container.width + margin_v * 4
+			)
+			
+			-- 指定したノードのモディファイアからCAを探す関数
+			fn findAndAddCA sel =
+			(
+				local found = false
+				-- 1. 全てのモディファイアをループ
+				for m in sel.modifiers do
+				(
+					-- 2. そのモディファイアが持つCAの数を取得
+					local ca_count = custAttributes.count m
+					for i = 1 to ca_count do
+					(
+						local the_ca = custAttributes.get m i
+						-- 3. CAの名前や中身をチェック
+						if the_ca != undefined and isProperty the_ca #params do -- paramsロールアウトを検出する
+						(
+							-- ロールアウトを埋め込む
+							AddTargetUI the_ca.params
+							
+							-- 不要なGUIコンポーネントを、埋め込んでいる間だけ非表示にする
+							the_ca.params.btn_create.visible = false
+							the_ca.params.btn_del.visible = false
+							
+							found = true
+							exit -- 見つかったらループを抜ける
+						)
+					)
+					if found do exit
+				)
+				return found -- 戻り値
+			)				
+				
+			fn updateUI =
+			(
+				-- 掃除
+				ClearUI()
+				
+local sel = $Line001--$TestBox_with_CA001
+				if sel != undefined then
+				(
+					try
+					(
+						-- モディファイアからCAを探して表示
+						local success = findAndAddCA sel
+						
+						-- もし見つからなければ「なし」を表示
+						if not success do (
+							-- （ここに「なし」用のロールアウトを表示する処理など）
+						)
+						
+					)
+					catch
+					(
+							-- ロールアウト名が不明な場合の汎用的な取得（特殊なケース用）
+							-- print "Rollout not found in CA"
+					)
+				)
+			)			
+			
+			
+			on params open do
+			(
+				updateUI()
+			)
+			on params close do
+			(
+				params = undefined
+			)
+			
+			/*
+			fn Attach =
+			(
+				print"Attach!"
+			)*/
+			
+			
+		)
+		
+		
+		fn Attach =
+		(
+			print"Attach!"
+		)		
+		
+	)
+
+	-- 1. Pointヘルパーを作成してCAを適用
+	pt = point name:"UI_Controller_Point" size:20 wirecolor:yellow
+	custAttributes.add pt ui_manager_ca
+	
+	pt.UIManagerProps.Attach()
+	
+)
+
+
+
+/*
+----------------- 単独ダイアログ版 ----------------
+(
+	callbacks.removeScripts id:#caSelector
+	
+	global main_ca_panel
+	rollout main_ca_panel "CA Viewer" --width:220 height:180
+	(
+		subRollout sub_container "Attribute UI" height:140
+
+		-- 指定したノードのモディファイアからCAを探す関数
+        fn findAndAddCA sel =
+		(
+            local found = false
+            -- 1. 全てのモディファイアをループ
+            for m in sel.modifiers do
+			(
+                -- 2. そのモディファイアが持つCAの数を取得
+                local ca_count = custAttributes.count m
+                for i = 1 to ca_count do
+				(
+                    local the_ca = custAttributes.get m i
+                    -- 3. CAの名前や中身をチェック（今回は simple に最初のものを使用）
+                    if the_ca != undefined and isProperty the_ca #params do
+					(
+                        addSubRollout sub_container the_ca.params
+                        found = true
+                        exit -- 見つかったらループを抜ける
+                    )
+                )
+                if found do exit
+            )
+            return found -- 戻り値
+        )	
+		
+		
+		fn updateUI = (
+			-- 掃除
+			for r in sub_container.rollouts do removeSubRollout sub_container r
+			
+			local sel = selection[1]
+			if sel != undefined then
+			(
+				try
+				(
+					-- モディファイアからCAを探して表示
+					local success = findAndAddCA sel
+					
+					-- もし見つからなければ「なし」を表示
+					if not success do (
+						-- （ここに「なし」用のロールアウトを表示する処理など）
+					)
+					
+				)
+				catch
+				(
+						-- ロールアウト名が不明な場合の汎用的な取得（特殊なケース用）
+						-- print "Rollout not found in CA"
+				)
+			)
+		)
+
+		on main_ca_panel open do (
+			callbacks.addScript #selectionSetChanged "if main_ca_panel != undefined do main_ca_panel.updateUI()" id:#caSelector
+			updateUI()
+		)
+		on main_ca_panel close do (
+			callbacks.removeScripts id:#caSelector
+			main_ca_panel = undefined
+		)
+	)
+	
+	createDialog main_ca_panel
+)
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+--==================================== TestCode =====================================
+
+
+(
+	-- 選択したスプラインに適用
+	if selection.count == 1 and superClassOf $ == shape then
+	(
+		undo "SetupOffsetCurveAttrib" on
+		(
+			local theMod = EmptyModifier()
+			theMod.name = "Clone Offset Curve"
+			addModifier $ theMod
+			custAttributes.add theMod Offset_Attributes
+			--max modify mode
+			
+			theMod.OffsetPro.AddCurve()
+		)
+	)
+	else
+	(
+		messageBox "スプラインを1つ選択してください"
+	)
+)
+
+-- $Line001.modifiers[1].OffsetPro[#offset_Horizontal]
+
+/*
+--------------------- Control GUI parameters from outside-node -----------------
+(
+    -- 1. Custom Attributeの定義
+    local myCA = attributes "MyCA"
+    (
+        parameters main rollout:mainRollout
+        (
+            myVal type:#float ui:spn_val default:0
+        )
+        rollout mainRollout "Control" (
+            spinner spn_val "Value" range:[-1000, 1000, 0]
+        )
+    )
+
+    -- 2. Boxの作成とCAの追加
+    local b1 = Box name:"Source_Box" pos:[-50,0,0]
+    custAttributes.add b1 myCA
+        
+    -- 3. ハンドル値とID名の作成
+	local targetHandle = getHandleByAnim $Line001
+    local nodeHandle = getHandleByAnim b1
+    local idStr = "objHandler_" + (nodeHandle as string)
+    local handle_id = idStr as name
+
+    -- 4. 既存のハンドラを削除（ここは動的なname型でOK）
+    deleteAllChangeHandlers id:handle_id
+    
+    -- 5. execute を使用してハンドラを登録
+    -- 文字列の中で getAnimByHandle を使うことで、実行時に確実にb1を参照させます
+    local cmd = StringStream ""
+    format "when parameters (getAnimByHandle %).MyCA[#myVal] changes id:#% do (\n" nodeHandle idStr to:cmd
+    format "    format \"Custom Attribute changed! (Node Handle: %)\\n\"\n" nodeHandle to:cmd
+    format "    try (\n" to:cmd
+    format "        (getAnimByHandle %).modifiers[1].OffsetPro.offset_Horizontal = (getAnimByHandle %).MyCA.myVal\n" targetHandle nodeHandle to:cmd
+    format "    ) catch ()\n" to:cmd
+    format ")" to:cmd
+
+    execute (cmd as string)
+    
+    format "Handler registered with ID: #%\n" idStr
+)
+*/
+
+
+
+
+
+/*
+(
+	-- 1. カスタムアトリビュートの定義
+	myCA = attributes "MyCA"
+	(
+		parameters main rollout:mainRollout
+		(
+			myVal type:#float ui:spn_val default:0
+		)
+		
+		rollout mainRollout "Control" (
+			spinner spn_val "Value" range:[-1000, 1000, 0]
+		)
+	)
+
+	-- 2. 選択中のオブジェクトにモディファイヤを追加してCAを適用
+	b = Box()
+	mod = EmptyModifier()
+	addModifier b mod
+	custAttributes.add mod myCA
+
+	-- 3. パラメータワイヤリングの実行
+	-- 例：$Box001 のカスタムアトリビュートで $Box002 の Z回転を制御する
+	-- 角度として扱う場合は "degtorad myVal" のように式を書きます
+	paramWire.connect b.modifiers[1].MyCA[#myVal] $Line001.modifiers[1].OffsetPro[#offset_Horizontal] "myVal"
+)
+*/
+
+
+
+
+/*global ca_undoableList
+ca_undoableList = attributes "MyListAttrib"
+(
+    parameters main rollout:params
+    (
+        itemNames type:#stringTab tabSizeVariable:true
+        
+		
+        -- データに変更があった（Undo/Redo含む）際に自動実行される
+        on itemNames set val do --on itemNames tabChanged change tabIndex tabCount do
+        (
+            -- ロールアウトが開いている場合のみUIを更新
+			print "!!!!"
+            --if this.params.open do 
+				this.params.updateUI()
+        )
+    )
+
+    rollout params "Item Manager"
+    (
+        listbox lbx_items "Items:"
+        edittext edt_newItem "New Name:"
+        button btn_add "Add" width:70 across:2
+        button btn_remove "Remove" width:70
+
+        -- UI更新用関数（共通化）
+        fn updateUI = (
+            lbx_items.items = itemNames as array
+        )
+		
+--	-- 安全なUI更新関数
+--        fn updateUI = (
+--            -- 1. Tabの中身を安全に配列化（undefinedを避ける）
+--            local safeArray = for i in itemNames collect (
+--                if i == undefined then "" else i
+--            )
+--            
+--            -- 2. リストボックスにセット
+--            lbx_items.items = safeArray
+--        )
+		
+        on btn_add pressed do
+        (
+            if edt_newItem.text != "" do
+            (
+                undo "Add Item" on
+                (
+                    append itemNames edt_newItem.text
+                    --updateUI()-- ※updateUI()をここで呼ぶ必要はなくなります（tabChangedが反応するため）
+                )
+            )
+        )
+
+        on btn_remove pressed do
+        (
+            if lbx_items.selection > 0 do
+            (
+                undo "Remove Item" on
+                (
+                    deleteItem itemNames lbx_items.selection
+					--updateUI()
+                )
+            )
+        )
+
+        -- 初期表示
+        on params open do updateUI()
+    )
+)
+
+-- 適用テスト
+if selection.count > 0 then custAttributes.add $ ca_undoableList
+*/
