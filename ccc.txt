@@ -51,6 +51,8 @@
 */
 
 
+
+#########################################################################################################################################################
 (
 	
 	fn AddObj = (
@@ -78,13 +80,26 @@
 
 		return b
 	)
-		
 	
 	b = AddObj()
+		
+	
 	
 	-- 1. カスタムアトリビュートの定義
 	myExtraParams = attributes "SwitchingUI_v2"
 	(
+		local ctrl_stats = Dictionary #integer
+		/*
+		#(
+			-- rollout name --
+			"params",
+			-- control visibility --
+			#("spn_size", false)
+			#("btn_create", false),
+			#("btn_del", true)
+		)*/
+		
+		
 		local sub_contents = #()
 		
 		parameters main rollout:params
@@ -104,10 +119,40 @@
 			dropdownList ddl_type "表示モードを選択:" items:#("Base", "Extra", "???")
 			subRollout sub_container "Sub" height:100
 			
+			
+
+			fn InitSubrollout =
+			(
+				try(
+					
+					for elm in ctrl_stats do
+					(
+						local ca = getAnimByHandle elm.key
+						--format "ro_name: %\n"  elm.value[1]
+						local ro = getProperty ca elm.value[1]
+						
+						-- Add subrollout
+						addSubRollout sub_container ro
+						
+						-- Change visibility
+						for i=2 to elm.value.count do
+						(
+							local ctrl = getProperty ro elm.value[i][1]
+							ctrl.visible = elm.value[i][2]
+							--format "%: %\n" i elm.value[i]
+						)
+
+					)-- end of elm loop
+					
+				) catch ( format "Error occured: %\n" (getCurrentExceptionStackTrace()) )
+			)
+
+			
+			
 			-- サブロールアウト更新関数
 			fn updateSubUI val =
 			(
-				try (
+				--try (
 					if params.open and sub_container != undefined do
 					(
 						-- Clear existing rollouts
@@ -119,13 +164,37 @@
 						--else if val == 3 then addSubRollout sub_container b.modifiers[1].MyCustomProps.params
 						else if val==3 then
 						(
-							--for ca in sub_contents do addSubRollout sub_container ca.params --CAを渡すのはOK
-							for ro in sub_contents do addSubRollout sub_container ro -- rolloutを直接渡すのはNG
+							InitSubrollout()
+							
+							/*
+							for ca in sub_contents do(
+								
+								--local ro = ca.params --OK
+								local ro = getProperty ca "params"-- 文字列指定もOK
+								
+								addSubRollout sub_container ro --CAを渡すのはOK
+								ro.spn_size.visible = false -- これもOK. この書き方をする
+								
+								local theControl = getProperty ro "spn_size"-- これもOK. 文字列で名前指定してコントローラーを取得できる
+								theControl.visible = false
+								
+								format "Added sub_rollout: %\n" ro.name theControl.value
+							)
+							*/
+							/*
+							for ro in sub_contents do
+							(
+								--ro.spn_size.visible = false
+								addSubRollout sub_container ro -- rolloutを直接渡すのはNG
+							)
+							*/
+								
 						)
+						
 					)
-				) catch (
+				--) catch (
 					-- Do nothing if error occured
-				)
+				--)
 				
 			)
 			
@@ -153,9 +222,11 @@
 			
 		)
 	)
+	
+	
 
 	
-	
+
 	-- 選択しているオブジェクトに適用する
 	p = Point()
 	custAttributes.add p myExtraParams-- もしオブジェクト自体に追加するなら:
@@ -164,15 +235,30 @@
 		-- rolloutを直接渡すのはNG. カスタムアトリビュートまでなら安全
 	
 	-- カスタムアトリビュートを直接渡す ----------------------------- OK
-	--append p.SwitchingUI_v2.sub_contents b.modifiers[1].MyCustomProps
+	append p.SwitchingUI_v2.sub_contents b.modifiers[1].MyCustomProps
 	
 	-- カスタムアトリビュート内部のrolloutを直接渡すのは ----------------------- NG
 	--append p.SwitchingUI_v2.sub_contents b.modifiers[1].MyCustomProps.params
 	
 	-- カスタムアトリビュート内部のrolloutを直接渡すのは(2) ----------------------- NG
 	--append p.SwitchingUI_v2.sub_contents (getProperty b.modifiers[1].MyCustomProps #params)
+	
+	local myDict = Dictionary #integer
+	
+	local h =  getHandleByAnim b.modifiers[1].MyCustomProps
+	
+	myDict[h] = #(
+		-- rollout name --
+		"params",
+		-- control visibility --
+		#("spn_size", false)
+		--#("btn_create", false),
+		--#("btn_del", true)
+	)
+	
+	p.SwitchingUI_v2.ctrl_stats = myDict
 )
-
+#########################################################################################################################################################
 
 
 
