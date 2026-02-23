@@ -85,6 +85,8 @@
 	-- 1. カスタムアトリビュートの定義
 	myExtraParams = attributes "SwitchingUI_v2"
 	(
+		local sub_contents = #()
+		
 		parameters main rollout:params
 		(
 			-- ドロップダウンの選択状態（数値）を保存
@@ -114,7 +116,12 @@
 						-- Reattach sub rollout
 						if val == 1 then addSubRollout sub_container roll_A
 						else if val == 2 then addSubRollout sub_container roll_B
-						else if val == 3 then addSubRollout sub_container b.modifiers[1].MyCustomProps.params
+						--else if val == 3 then addSubRollout sub_container b.modifiers[1].MyCustomProps.params
+						else if val==3 then
+						(
+							--for ca in sub_contents do addSubRollout sub_container ca.params --CAを渡すのはOK
+							for ro in sub_contents do addSubRollout sub_container ro -- rolloutを直接渡すのはNG
+						)
 					)
 				) catch (
 					-- Do nothing if error occured
@@ -147,10 +154,23 @@
 		)
 	)
 
+	
+	
 	-- 選択しているオブジェクトに適用する
 	p = Point()
 	custAttributes.add p myExtraParams-- もしオブジェクト自体に追加するなら:
 	
+	
+		-- rolloutを直接渡すのはNG. カスタムアトリビュートまでなら安全
+	
+	-- カスタムアトリビュートを直接渡す ----------------------------- OK
+	--append p.SwitchingUI_v2.sub_contents b.modifiers[1].MyCustomProps
+	
+	-- カスタムアトリビュート内部のrolloutを直接渡すのは ----------------------- NG
+	--append p.SwitchingUI_v2.sub_contents b.modifiers[1].MyCustomProps.params
+	
+	-- カスタムアトリビュート内部のrolloutを直接渡すのは(2) ----------------------- NG
+	--append p.SwitchingUI_v2.sub_contents (getProperty b.modifiers[1].MyCustomProps #params)
 )
 
 
