@@ -56,10 +56,12 @@
 			selectedType type:#integer default:1 ui:ddl_type
 			
 			m_SubrolloutNodes type:#maxObjectTab tabSizeVariable:true
+			m_ModIndices type:#intTab tabSizeVariable:true
 			
 			on selectedType set val do this.params.updateSubUI val
 
 		)
+		
 		
 
 		rollout params "Params"
@@ -74,11 +76,12 @@
 			
 			
 
-			fn InitSubrollout n desc =
+			fn InitSubrollout n mod_idx desc =
 			(
 				try(
 					
-					local ca = getProperty n.modifiers[1] desc[1]
+--TODO: モディファイヤ1番目とは限らない
+					local ca = getProperty n.modifiers[mod_idx] desc[1] --
 					local ro = getProperty ca desc[2]-- 文字列指定もOK
 					
 					-- Add subrollout
@@ -100,7 +103,8 @@
 					for i=1 to m_SubrolloutNodes.count by DescStride do
 					(
 						-- 
-						if isValidNode m_SubrolloutNodes[i].node do ( InitSubrollout m_SubrolloutNodes[i].node MyCustomPropsDesc )
+						local n = m_SubrolloutNodes[i].node
+						if isValidNode n do ( InitSubrollout n m_ModIndices[i] MyCustomPropsDesc )
 						
 						--
 					)
@@ -190,7 +194,69 @@
 				for r in sub_container.rollouts do removeSubRollout sub_container r
 			)
 			
-			
 		)
+		
+		
 	)
 	
+	
+
+	
+
+	-- 選択しているオブジェクトに適用する
+	p = Point()
+	custAttributes.add p myExtraParams-- もしオブジェクト自体に追加するなら:
+	
+	
+		-- rolloutを直接渡すのはNG. カスタムアトリビュートまでなら安全
+	
+	-- カスタムアトリビュートを直接渡す ----------------------------- OK
+	--append p.SwitchingUI_v2.sub_contents b.modifiers[1].MyCustomProps
+	
+	-- カスタムアトリビュート内部のrolloutを直接渡すのは ----------------------- NG
+	--append p.SwitchingUI_v2.sub_contents b.modifiers[1].MyCustomProps.params
+	
+	-- カスタムアトリビュート内部のrolloutを直接渡すのは(2) ----------------------- NG
+	--append p.SwitchingUI_v2.sub_contents (getProperty b.modifiers[1].MyCustomProps #params)
+	
+
+	--サブロールアウト参照元CAのノード参照を登録する
+	append p.SwitchingUI_v2.m_SubrolloutNodes (nodeTransformMonitor node:b forwardTransformMessages:false)
+
+
+--ノードにモディファイヤが複数アタッチされている場合、どのモディファイヤのCAなのかが分からない。
+append p.SwitchingUI_v2.m_ModIndices (findItem b.modifiers b.modifiers[1])
+-- CA毎にノード参照は登録する
+-- CA毎にモディファイヤインデックスも登録する
+
+	
+	
+	local sCtrl = float_script()
+	b.modifiers[1].MyCustomProps.mySize.controller =  sCtrl--    p.SwitchingUI_v2.with = sCtrl--ctrlBox.pos.controller.Z_Position.controller = sCtrl
+
+	-- 4. 変数の登録（ここが重要！）
+	-- masterSphereのカスタムアトリビュートの「トラック」を直接参照させる
+	--sCtrl.addNode "masterNode" masterSphere
+	
+	sCtrl.AddObject "masterCA" p.SwitchingUI_v2
+	
+	-- 変数として特定のトラックを割り当てる方法（より安全）
+	sCtrl.addTarget "myInput" p.baseObject.SwitchingUI_v2[#width] --masterSphere.baseObject.MyData[#val]
+
+	-- 5. 複雑なロジックを記述
+	local scriptString = ""
+	/*
+	scriptString += "local baseVal = myInput\n" -- 登録した変数を使用
+	scriptString += "if baseVal > 50 then (\n"
+	scriptString += "    (sin(currenttime.ticks / 10.0)) * 20 + baseVal\n" -- 50を超えると揺れる
+	scriptString += ") else (\n"
+	scriptString += "    baseVal * 0.5\n" -- 50以下なら半分の値
+	scriptString += ")"
+	*/
+	
+	scriptString += "local baseVal = myInput\n" -- 登録した変数を使用
+	scriptString += "return baseVal * 0.5\n" -- 50以下なら半分の値
+	
+	sCtrl.script = scriptString	
+	
+)
