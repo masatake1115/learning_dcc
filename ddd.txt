@@ -1,5 +1,4 @@
-﻿
-(
+﻿(
 	
 	fn AddObj = (
 		-- Boxにカスタムアトリビュートを追加する
@@ -11,7 +10,7 @@
 			)
 			rollout params "ノード固有の属性"
 			(
-				spinner spn_size "サイズ係数: "
+				spinner spn_size "サイズ係数: "range:[-1.0e+9,1.0e+9, 0]
 			)
 			
 		)
@@ -46,21 +45,13 @@
 			--#("btn_create", false),
 			--#("btn_del", true)
 		)
-		
-		/*
-		#(
-			-- rollout name --
-			"params",
-			-- control visibility --
-			#("spn_size", false)
-			#("btn_create", false),
-			#("btn_del", true)
-		)*/
-		
 
 		
 		parameters main rollout:params
 		(
+			
+			width type:#float default:10.0 ui:spn_float
+			
 			-- ドロップダウンの選択状態（数値）を保存
 			selectedType type:#integer default:1 ui:ddl_type
 			
@@ -75,6 +66,8 @@
 		(
 			rollout roll_A "Base" ( spinner spn_size "Size:" )
 			rollout roll_B "Extra" ( colorPicker clr_wire "Color:" )
+			
+			spinner spn_float "width: " range:[-1.0e+9,1.0e+9, 0]
 			
 			dropdownList ddl_type "表示モードを選択:" items:#("Base", "Extra", "???")
 			subRollout sub_container "Sub" height:100
@@ -96,28 +89,7 @@
 					(
 						local ctrl = getProperty ro desc[i][1]
 						ctrl.enabled = desc[i][2] --ctrl.visible 
-					)					
-					
-					/*
-					for elm in ctrl_stats do
-					(
-						local ca = getAnimByHandle elm.key
-						--format "ro_name: %\n"  elm.value[1]
-						local ro = getProperty ca elm.value[1]
-						
-						-- Add subrollout
-						addSubRollout sub_container ro
-						
-						-- Change visibility
-						for i=2 to elm.value.count do
-						(
-							local ctrl = getProperty ro elm.value[i][1]
-							ctrl.visible = elm.value[i][2]
-							--format "%: %\n" i elm.value[i]
-						)
-
-					)-- end of elm loop
-					*/
+					)
 					
 				) catch ( format "Error occured: %\n" (getCurrentExceptionStackTrace()) )
 			)
@@ -222,40 +194,3 @@
 		)
 	)
 	
-	
-
-	
-
-	-- 選択しているオブジェクトに適用する
-	p = Point()
-	custAttributes.add p myExtraParams-- もしオブジェクト自体に追加するなら:
-	
-	
-		-- rolloutを直接渡すのはNG. カスタムアトリビュートまでなら安全
-	
-	-- カスタムアトリビュートを直接渡す ----------------------------- OK
-	--append p.SwitchingUI_v2.sub_contents b.modifiers[1].MyCustomProps
-	
-	-- カスタムアトリビュート内部のrolloutを直接渡すのは ----------------------- NG
-	--append p.SwitchingUI_v2.sub_contents b.modifiers[1].MyCustomProps.params
-	
-	-- カスタムアトリビュート内部のrolloutを直接渡すのは(2) ----------------------- NG
-	--append p.SwitchingUI_v2.sub_contents (getProperty b.modifiers[1].MyCustomProps #params)
-	
-	local myDict = Dictionary #integer
-	
-	local h =  getHandleByAnim b.modifiers[1].MyCustomProps
-	
-	myDict[h] = #(
-		-- rollout name --
-		"params",
-		-- control visibility --
-		#("spn_size", false)
-		--#("btn_create", false),
-		--#("btn_del", true)
-	)
-	
-	append p.SwitchingUI_v2.m_SubrolloutNodes (nodeTransformMonitor node:b forwardTransformMessages:false)
-	
-)
-
